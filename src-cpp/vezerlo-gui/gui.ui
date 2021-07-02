@@ -106,7 +106,7 @@
             </property>
            </column>
           </widget>
-          <widget class="QTableWidget" name="tableWidget_6">
+          <widget class="QTableWidget" name="joystickdata">
            <property name="geometry">
             <rect>
              <x>164</x>
@@ -127,6 +127,31 @@
              <height>250</height>
             </size>
            </property>
+           <row>
+            <property name="text">
+             <string>J1</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>J2</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>J3</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>J4</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>Adat</string>
+            </property>
+           </column>
           </widget>
           <widget class="QTableWidget" name="tableWidget_10">
            <property name="geometry">

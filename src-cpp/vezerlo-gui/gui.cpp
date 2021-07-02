@@ -36,7 +36,7 @@ GUI::GUI(QWidget *parent)
     ui->ad->setScaledContents(false);
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-    timer->start(100);
+    timer->start(10);
 
 
 }
@@ -58,7 +58,12 @@ void GUI::update()
     sliddat = sliddat +"\nMotor közös:\t" + QString::number(sl);
     ui-> slidText->setText(sliddat);
     joydat();
-    qDebug()<<get_joystickAdatok();
+    QList<double> jd=get_joystickAdatok();
+    ui->joystickdata->setItem(0, 0,new QTableWidgetItem(QString::number(joystickAdatok[0])));
+    ui->joystickdata->setItem(0, 1,new QTableWidgetItem(QString::number(joystickAdatok[1])));
+    ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
+    //ui->retranslateUi(this);
+
 }
 
 void GUI::cmdSlot()
@@ -134,7 +139,10 @@ void GUI::joydat()
         stream >> number;
         array.append(number);
     }
-    joystickAdatok=array;
+    QList<double> ur;
+    if (array!=ur){
+        joystickAdatok=array;
+    }
     return;
 }
 QList<double> GUI::get_joystickAdatok()

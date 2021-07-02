@@ -5,7 +5,7 @@ A tengeralattjáró projekt cpp fejlesztése
 # A programokról
 A projektem nem nyilvános, így a kódok terjesztése tilos! Amennyiben másik felhasznló is szeretne hozzáférést kérni a ropo-hoz, kérjen hozzáférés az alábbi linken keresztül: https://docs.google.com/forms/d/1wjkiEEXhBRLhWbO0bBj651J_wT-xS9aCB350i4ifadg/edit?usp=sharing 
 
-Amennyiben kérdésük van a kódokkal kapcsolatban az [Issues](https://github.com/KerteszDomokos/Tengeralattjaro-RUV/issues) menüben, vagy emailban tudják feltenni.
+Amennyiben kérdésük van a kódokkal kapcsolatban az [Issues](https://gitlab.com/krtdm/tengeralattjaro-cpp/-/issues) menüben, vagy emailban tudják feltenni.
 
 ## Régi github repo adatai
 ### Felépítés

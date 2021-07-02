@@ -31,7 +31,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -183,6 +183,31 @@
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
+       <widget class="QQuickWidget" name="joyh">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>300</width>
+          <height>350</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>350</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>350</height>
+         </size>
+        </property>
+        <property name="resizeMode">
+         <enum>QQuickWidget::SizeRootObjectToView</enum>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

@@ -32,6 +32,10 @@ GUI::GUI(QWidget *parent)
     ui->hd->setSource(QUrl::fromLocalFile("../vezerlo-gui/3dview.qml"));
     ui->hd->show();
 
+    ui->joyh->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\joy.qml"));
+    //QObject *object = ui->horizont->rootObject();
+
+
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
     QTimer *timer = new QTimer(this);

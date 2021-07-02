@@ -67,6 +67,10 @@ void GUI::update()
     ui->joystickdata->setItem(0, 1,new QTableWidgetItem(QString::number(joystickAdatok[1])));
     ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
     //ui->retranslateUi(this);
+    ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
+    QObject *object = ui->horizont->rootObject();
+    object->setProperty("rollAngle", (joystickAdatok[0])*90);
+    object->setProperty("pitchAngle", (joystickAdatok[1])*90);
 
 }
 

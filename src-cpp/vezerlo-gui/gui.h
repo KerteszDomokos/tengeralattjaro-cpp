@@ -30,4 +30,6 @@ private:
     QList<double> joystickAdatok;
     QList<double> get_joystickAdatok();
 };
+
+
 #endif // GUI_H

@@ -25,7 +25,7 @@ GUI::GUI(QWidget *parent)
 {
     ui->setupUi(this);
     QPixmap pm("G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\Tengeralattjaro-RUV\\src-py\\camToSave.jpg"); // <- path to image file
-    ui->horizont->setSource(QUrl::fromLocalFile("../vezerlo-gui/horizon.qml"));
+    ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
     QObject *object = ui->horizont->rootObject();
     object->setProperty("rollAngle", 10);
     object->setProperty("pitchAngle", 10);
@@ -57,7 +57,8 @@ void GUI::update()
     sl = ui->slid3->value();
     sliddat = sliddat +"\nMotor közös:\t" + QString::number(sl);
     ui-> slidText->setText(sliddat);
-    qDebug()<<joydat();
+    joydat();
+    qDebug()<<get_joystickAdatok();
 }
 
 void GUI::cmdSlot()
@@ -117,7 +118,7 @@ void GUI::joydat()
 {
     QList<double> array;
 
-    QFile file("G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\Tengeralattjaro-RUV\\src-cpp\\vezerlo-gui\\joystick.txt");
+    QFile file("../vezerlo-gui/joystick.txt");
 
     if (!file.open(QIODevice::ReadOnly)){
         qDebug()<<"Error in file read";
@@ -136,7 +137,6 @@ void GUI::joydat()
     joystickAdatok=array;
     return;
 }
-
 QList<double> GUI::get_joystickAdatok()
 {
     return joystickAdatok;

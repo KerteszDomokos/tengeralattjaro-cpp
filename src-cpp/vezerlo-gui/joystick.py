@@ -22,7 +22,7 @@ except:
 while jo==1:
     pygame.event.get()
     txt=str(j.get_axis(0))+' '+str(j.get_axis(1))+' '+str(j.get_axis(3))
-    f=open('src-cpp/vezerlo-gui/joystick.txt','w')
+    f=open('joystick.txt','w')
     f.write(txt)
     f.close()
 

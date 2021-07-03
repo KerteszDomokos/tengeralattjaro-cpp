@@ -14,8 +14,13 @@
 #include <QTableWidgetItem>
 #include <QFile>
 #include <QMessageBox>
-
-
+#include <QThreadPool>
+#include <QtConcurrent>
+#include <QtConcurrentRun>
+#include <QFuture>
+#include <QProcess>
+#include <QIODevice>
+#include <QStringList>
 
 
 
@@ -42,6 +47,11 @@ GUI::GUI(QWidget *parent)
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
     timer->start(10);
 
+    //Joystick adatokat mentő program idítása
+    QProcess *pr = new QProcess(this);
+    QString file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\joystick.py";
+    pr->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
+
 
 }
 
@@ -67,10 +77,7 @@ void GUI::update()
     ui->joystickdata->setItem(0, 1,new QTableWidgetItem(QString::number(joystickAdatok[1])));
     ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
     //ui->retranslateUi(this);
-    ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
-    QObject *object = ui->horizont->rootObject();
-    object->setProperty("rollAngle", (joystickAdatok[0])*90);
-    object->setProperty("pitchAngle", (joystickAdatok[1])*90);
+
 
 }
 

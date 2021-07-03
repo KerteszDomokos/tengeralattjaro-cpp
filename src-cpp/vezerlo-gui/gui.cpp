@@ -24,10 +24,18 @@
 #include <thread>
 #include <mutex>
 
-int valw=4;
+QList<double> bejovo={0.2,45.2,10.0};
+std::mutex bejovo_mutex;
 void komm(){
-    Sleep(100000);
-    qDebug()<<"tghr";
+    for (int i; i<100000; i++){
+        bejovo_mutex.lock();
+        bejovo[2]++;
+        qDebug()<<"Megváltoztatás közben: "<<bejovo;
+        bejovo_mutex.unlock();
+        qDebug()<<"tghr";
+        Sleep(10);
+    }
+
 }
 
 GUI::GUI(QWidget *parent)
@@ -58,7 +66,10 @@ GUI::GUI(QWidget *parent)
     QString file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\joystick.py";
     pr->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
 
-
+    while(bejovo_mutex.try_lock()==1){}
+    qDebug()<<"Megváltoztatás előtt: "<<bejovo;
+    bejovo[2]++;
+    bejovo_mutex.unlock();
 
     std::thread ob(komm);
     ob.detach();
@@ -93,6 +104,8 @@ void GUI::update()
         ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
         //ui->retranslateUi(this);
     }
+    qDebug()<<"Megváltoztatás után: "<<bejovo;
+
 
 }
 

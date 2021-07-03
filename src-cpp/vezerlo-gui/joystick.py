@@ -1,5 +1,4 @@
 import pygame
-import time
 import sys
 import os
 
@@ -12,7 +11,6 @@ try:
     j.init()
     jo=1
     pygame.event.get()
-    time.sleep(.1)
     joyyNull=j.get_axis(0)
     joyxNull=j.get_axis(1)
     joyzNull=j.get_axis(3)

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QProcess>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -29,6 +30,7 @@ private:
     void joydat();
     QList<double> joystickAdatok;
     QList<double> get_joystickAdatok();
+    QProcess *pr = new QProcess(this);
 };
 
 

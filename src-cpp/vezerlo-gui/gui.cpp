@@ -21,8 +21,12 @@
 #include <QProcess>
 #include <QIODevice>
 #include <QStringList>
+#include <thread>
 
-
+int valw=4;
+void komm(){
+    qDebug()<<"tghr";
+}
 
 GUI::GUI(QWidget *parent)
     : QMainWindow(parent)
@@ -48,9 +52,14 @@ GUI::GUI(QWidget *parent)
     timer->start(10);
 
     //Joystick adatokat mentő program idítása
-    QProcess *pr = new QProcess(this);
+
     QString file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\joystick.py";
     pr->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
+
+
+
+    std::thread ob(komm);
+    ob.join();
 
 
 }
@@ -58,6 +67,7 @@ GUI::GUI(QWidget *parent)
 GUI::~GUI()
 {
     delete ui;
+    pr->terminate();//joystick folyamat befejezése
 }
 
 void GUI::update()
@@ -73,11 +83,14 @@ void GUI::update()
     ui-> slidText->setText(sliddat);
     joydat();
     QList<double> jd=get_joystickAdatok();
-    ui->joystickdata->setItem(0, 0,new QTableWidgetItem(QString::number(joystickAdatok[0])));
-    ui->joystickdata->setItem(0, 1,new QTableWidgetItem(QString::number(joystickAdatok[1])));
-    ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
-    //ui->retranslateUi(this);
-
+    if(jd.isEmpty()==1){
+        qDebug()<<"Üres joystickadatok";
+    }else{
+        ui->joystickdata->setItem(0, 0,new QTableWidgetItem(QString::number(joystickAdatok[0])));
+        ui->joystickdata->setItem(0, 1,new QTableWidgetItem(QString::number(joystickAdatok[1])));
+        ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
+        //ui->retranslateUi(this);
+    }
 
 }
 
@@ -146,17 +159,19 @@ void GUI::joydat()
         return;
         }
     QString str;
+
     QTextStream in(&file);
     str = in.readLine();
-    QTextStream stream(&str);
-    while (!stream.atEnd()) {
-        double number;
-        stream >> number;
-        array.append(number);
-    }
-    QList<double> ur;
-    if (array!=ur){
-        joystickAdatok=array;
+    if (str!=""){
+        QTextStream stream(&str);
+        while (!stream.atEnd()) {
+            double number;
+            stream >> number;
+            array.append(number);
+        }
+        if (array.isEmpty()==0){
+            joystickAdatok=array;
+        }
     }
     return;
 }

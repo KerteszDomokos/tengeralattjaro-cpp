@@ -22,9 +22,11 @@
 #include <QIODevice>
 #include <QStringList>
 #include <thread>
+#include <mutex>
 
 int valw=4;
 void komm(){
+    Sleep(100000);
     qDebug()<<"tghr";
 }
 
@@ -59,7 +61,7 @@ GUI::GUI(QWidget *parent)
 
 
     std::thread ob(komm);
-    ob.join();
+    ob.detach();
 
 
 }

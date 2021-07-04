@@ -31,6 +31,7 @@ private:
     QList<double> joystickAdatok;
     QList<double> get_joystickAdatok();
     QProcess *pr = new QProcess(this);
+
 };
 
 

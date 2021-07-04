@@ -23,18 +23,18 @@
 #include <QStringList>
 #include <thread>
 #include <mutex>
+#include <QUdpSocket>
+#include <QHostAddress>
+
+
+
+QUdpSocket *m_socket=new QUdpSocket;
+m_socket.writeDatagram("msg", QHostAddress::localhost, 8000);
 
 QList<double> bejovo={0.2,45.2,10.0};
 std::mutex bejovo_mutex;
-void komm(){
-    for (int i; i<100000; i++){
-        bejovo_mutex.lock();
-        bejovo[2]++;
-        qDebug()<<"Megváltoztatás közben: "<<bejovo;
-        bejovo_mutex.unlock();
-        qDebug()<<"tghr";
-        Sleep(10);
-    }
+void read(){
+
 
 }
 
@@ -71,7 +71,7 @@ GUI::GUI(QWidget *parent)
     bejovo[2]++;
     bejovo_mutex.unlock();
 
-    std::thread ob(komm);
+    std::thread ob(read);
     ob.detach();
 
 

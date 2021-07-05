@@ -35,6 +35,7 @@ std::mutex bejovo_mutex;
 
 void read(){
     QString dat;
+    QString elozoOlv;
     while(true){
         dat=sock.readS();
         Sleep(1);
@@ -42,10 +43,13 @@ void read(){
             Sleep(10);
         }
         else{
-//            qDebug()<<dat;
-            bejovo_mutex.lock();
-            bejovo=dat;
-            bejovo_mutex.unlock();
+//          qDebug()<<dat;
+            if(dat!=elozoOlv || dat!=""){
+                bejovo_mutex.lock();
+                bejovo=dat;
+                bejovo_mutex.unlock();
+                elozoOlv=bejovo;
+            }
         }
     }
 

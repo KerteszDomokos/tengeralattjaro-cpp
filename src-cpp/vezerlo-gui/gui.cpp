@@ -44,7 +44,7 @@ void read(){
         }
         else{
 //          qDebug()<<dat;
-            if(dat!=elozoOlv || dat!=""){
+            if(dat!=elozoOlv){
                 bejovo_mutex.lock();
                 bejovo=dat;
                 bejovo_mutex.unlock();
@@ -111,9 +111,9 @@ void GUI::update()
     if(jd.isEmpty()==1){
         qDebug()<<"Üres joystickadatok";
     }else{
-        ui->joystickdata->setItem(0, 0,new QTableWidgetItem(QString::number(joystickAdatok[0])));
+        /*ui->joystickdata->setItem(0, 0,new QTableWidgetItem(QString::number(joystickAdatok[0])));
         ui->joystickdata->setItem(0, 1,new QTableWidgetItem(QString::number(joystickAdatok[1])));
-        ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
+        ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));*/
         //ui->retranslateUi(this);
     }
 //    qDebug()<<"Megváltoztatás után: "<<bejovo;

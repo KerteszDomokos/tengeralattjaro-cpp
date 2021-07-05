@@ -124,6 +124,23 @@ bejovo_mutex.lock();
     }
 bejovo_mutex.unlock();
 
+if(ui->tabWidget->currentIndex()==1){
+    QObject *object = ui->joyh->rootObject();
+    object->setProperty("b1", joystickAdatok[3]);
+    object->setProperty("b2", joystickAdatok[4]);
+    object->setProperty("b3", joystickAdatok[5]);
+    object->setProperty("b4", joystickAdatok[6]);
+    object->setProperty("b5", joystickAdatok[7]);
+    object->setProperty("b6", joystickAdatok[8]);
+    object->setProperty("b7", joystickAdatok[9]);
+    object->setProperty("b8", joystickAdatok[10]);
+    object->setProperty("b9", joystickAdatok[11]);
+    object->setProperty("b10", joystickAdatok[12]);
+    object->setProperty("b11", joystickAdatok[13]);
+    object->setProperty("b12", joystickAdatok[14]);
+    QString wrt="ElőreHátra:\n"+QString::number(joystickAdatok[0])+"\nJobbraBalra:\n"+QString::number(joystickAdatok[1])+"\nForgat:\n"+QString::number(joystickAdatok[2]);
+    ui->joySzogadatok->setText(wrt);
+}
 }
 
 void GUI::cmdSlot()

@@ -13,10 +13,12 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    gui.cpp
+    gui.cpp \
+    sockread.cpp
 
 HEADERS += \
-    gui.h
+    gui.h \
+    sockread.h
 
 FORMS += \
     gui.ui

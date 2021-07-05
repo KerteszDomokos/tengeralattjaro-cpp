@@ -23,18 +23,31 @@
 #include <QStringList>
 #include <thread>
 #include <mutex>
-#include <QUdpSocket>
-#include <QHostAddress>
+#include "sockread.h"
 
 
 
-QUdpSocket *m_socket=new QUdpSocket;
-m_socket.writeDatagram("msg", QHostAddress::localhost, 8000);
 
-QList<double> bejovo={0.2,45.2,10.0};
+SockRead sock;
+
+QString bejovo="";
 std::mutex bejovo_mutex;
-void read(){
 
+void read(){
+    QString dat;
+    while(true){
+        dat=sock.readS();
+        Sleep(1);
+        if (dat==""){
+            Sleep(10);
+        }
+        else{
+//            qDebug()<<dat;
+            bejovo_mutex.lock();
+            bejovo=dat;
+            bejovo_mutex.unlock();
+        }
+    }
 
 }
 
@@ -59,17 +72,12 @@ GUI::GUI(QWidget *parent)
     ui->ad->setScaledContents(false);
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-    timer->start(10);
+    timer->start(5);
 
     //Joystick adatokat mentő program idítása
 
     QString file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\joystick.py";
     pr->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
-
-    while(bejovo_mutex.try_lock()==1){}
-    qDebug()<<"Megváltoztatás előtt: "<<bejovo;
-    bejovo[2]++;
-    bejovo_mutex.unlock();
 
     std::thread ob(read);
     ob.detach();
@@ -104,8 +112,13 @@ void GUI::update()
         ui->joystickdata->setItem(0, 2,new QTableWidgetItem(QString::number(joystickAdatok[2])));
         //ui->retranslateUi(this);
     }
-    qDebug()<<"Megváltoztatás után: "<<bejovo;
-
+//    qDebug()<<"Megváltoztatás után: "<<bejovo;
+bejovo_mutex.lock();
+    if(bejovo!=elozoOlv){
+        elozoOlv=bejovo;
+        ui->nyersOlvasott->setText(bejovo);
+    }
+bejovo_mutex.unlock();
 
 }
 
@@ -144,6 +157,10 @@ QString GUI::commands(QString comm)
     else if(comm=="exit"){
         close();
         return "Kilépés...";
+    }
+    else if(comm=="readUdp"){
+        read();
+        return"Parancssoron az eredmény";
     }
 
     return "Nem található a kért parancs: "+comm;

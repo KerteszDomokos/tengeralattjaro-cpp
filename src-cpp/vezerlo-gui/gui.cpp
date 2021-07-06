@@ -138,7 +138,7 @@ if(ui->tabWidget->currentIndex()==1){
     object->setProperty("b10", joystickAdatok[12]);
     object->setProperty("b11", joystickAdatok[13]);
     object->setProperty("b12", joystickAdatok[14]);
-    QString wrt="ElőreHátra:\n"+QString::number(joystickAdatok[0])+"\nJobbraBalra:\n"+QString::number(joystickAdatok[1])+"\nForgat:\n"+QString::number(joystickAdatok[2]);
+    QString wrt="ElőreHátra:\n"+QString::number(joystickAdatok[1])+"\nJobbraBalra:\n"+QString::number(joystickAdatok[0])+"\nForgat:\n"+QString::number(joystickAdatok[2]);
     ui->joySzogadatok->setText(wrt);
 }
 }

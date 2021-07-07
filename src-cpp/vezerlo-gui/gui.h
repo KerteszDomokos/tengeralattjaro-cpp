@@ -16,6 +16,7 @@ class GUI : public QMainWindow
 public:
     GUI(QWidget *parent = nullptr);
     ~GUI();
+    QList<double> olvasott;
 public slots:
     void closeApp(){close();}
     void update();

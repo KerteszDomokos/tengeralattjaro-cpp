@@ -159,7 +159,6 @@
 <br>
 
 ## Megjegyzések
-
 - VSCode SSH kiterjesztés Permission denied: sudo chown -R myuser /path/to/folder 
 
 ### Csatlakozási adatok

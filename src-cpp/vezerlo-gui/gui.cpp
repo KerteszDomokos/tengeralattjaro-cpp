@@ -30,7 +30,7 @@
 
 SockRead sock;
 
-QString bejovo="";
+QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
 
 void read(){
@@ -117,12 +117,7 @@ void GUI::update()
         //ui->retranslateUi(this);
     }
 //    qDebug()<<"Megváltoztatás után: "<<bejovo;
-bejovo_mutex.lock();
-    if(bejovo!=elozoOlv){
-        elozoOlv=bejovo;
-        ui->nyersOlvasott->setText(bejovo);
-    }
-bejovo_mutex.unlock();
+
 
 if(ui->tabWidget->currentIndex()==1){
     QObject *object = ui->joyh->rootObject();
@@ -140,6 +135,26 @@ if(ui->tabWidget->currentIndex()==1){
     object->setProperty("b12", joystickAdatok[14]);
     QString wrt="ElőreHátra:\n"+QString::number(joystickAdatok[1])+"\nJobbraBalra:\n"+QString::number(joystickAdatok[0])+"\nForgat:\n"+QString::number(joystickAdatok[2]);
     ui->joySzogadatok->setText(wrt);
+}
+
+bejovo_mutex.lock();
+olvasott=conv(bejovo);
+bejovo_mutex.unlock();
+
+
+
+if(ui->tabWidget->currentIndex()==0){
+    QString string;
+    for(int i=0; i<olvasott.size(); i++)
+    {
+        string += QString::number(olvasott[i]);
+        if(i<olvasott.size()-1)
+        string += "," ;
+    }
+    ui->nyersOlvasott->setText(string);
+    if(olvasott.size()>10){
+    ui->foadatok_1->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[0])));
+}
 }
 }
 
@@ -187,7 +202,7 @@ QString GUI::commands(QString comm)
     return "Nem található a kért parancs: "+comm;
 }
 
-
+//Szünettel elválasztott szöveget konvertál QList doubel ba
 QList<double> GUI::conv(QString str){
     QTextStream stream(&str);
     QList<double> array;

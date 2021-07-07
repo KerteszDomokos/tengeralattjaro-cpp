@@ -37,7 +37,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -52,7 +52,7 @@
           <property name="title">
            <string>Vezérlési adatok</string>
           </property>
-          <widget class="QTableWidget" name="foadatok">
+          <widget class="QTableWidget" name="foadatok_1">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -318,7 +318,7 @@ p, li { white-space: pre-wrap; }
            </row>
            <row>
             <property name="text">
-             <string>--</string>
+             <string>Kommsik</string>
             </property>
            </row>
            <column>

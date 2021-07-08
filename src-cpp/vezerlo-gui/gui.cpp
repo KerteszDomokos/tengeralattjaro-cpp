@@ -30,7 +30,7 @@
 
 SockRead sock;
 
-QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0";
+QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
 
 void read(){
@@ -54,7 +54,6 @@ void read(){
     }
 
 }
-
 GUI::GUI(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::GUI)
@@ -152,8 +151,34 @@ if(ui->tabWidget->currentIndex()==0){
         string += "," ;
     }
     ui->nyersOlvasott->setText(string);
-    if(olvasott.size()>10){
-    ui->foadatok_1->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[0])));
+    if(olvasott.size()>26){
+    ui->foadatok_1->setItem(0,0, new QTableWidgetItem(QString::number(0)));//sebesség
+    ui->foadatok_1->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[22])));//dőlés x
+    ui->foadatok_1->setItem(0,2, new QTableWidgetItem(QString::number(olvasott[23])));//dőlés y
+    ui->foadatok_1->setItem(0,3, new QTableWidgetItem(QString::number(olvasott[9])));//motorB
+    ui->foadatok_1->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[10])));//motorJ
+    ui->foadatok_1->setItem(0,5, new QTableWidgetItem(QString::number(olvasott[26])));//test iránya
+    ui->foadatok_2->setItem(0,0, new QTableWidgetItem(QString::number(0)));//döntőmotor felső
+    ui->foadatok_2->setItem(0,1, new QTableWidgetItem(QString::number(0)));//alsó
+    ui->foadatok_2->setItem(0,2, new QTableWidgetItem(QString::number(0)));//vízhőm
+    ui->foadatok_2->setItem(0,3, new QTableWidgetItem(QString::number(0)));//wifi jelerősség
+    ui->foadatok_2->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[12])));//nyomás
+    ui->foadatok_2->setItem(0,5, new QTableWidgetItem(QString::number(olvasott[0])));//sikerese a komm
+    ui->foadatok_3->setItem(0,0, new QTableWidgetItem(QString::number(olvasott[5])));//belső hőm
+    ui->foadatok_3->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[7])));//DHT hőm
+    ui->foadatok_3->setItem(0,2, new QTableWidgetItem(QString::number(olvasott[8])));//páratart
+    ui->foadatok_3->setItem(0,3, new QTableWidgetItem(QString::number(olvasott[1])));//belső víz
+    ui->foadatok_3->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[21])));//rpi proc
+    ui->foadatok_3->setItem(0,5, new QTableWidgetItem(QString::number(olvasott[20])));// serbuff fedélzet
+    ui->foadatok_4->setItem(0,0, new QTableWidgetItem(QString::number(olvasott[11])));//5vakk1 raspi akku
+    ui->foadatok_4->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[13])));//12vakku1 motor
+    ui->foadatok_4->setItem(0,2, new QTableWidgetItem(QString::number(0)));//5v masodlagos
+    ui->foadatok_4->setItem(0,3, new QTableWidgetItem(QString::number(0)));//12v masodlagos
+    ui->foadatok_4->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[4])));//csp1
+    ui->foadatok_4->setItem(0,5, new QTableWidgetItem(QString::number(0)));//csp2
+    qDebug()<<olvasott;
+
+
 }
 }
 }

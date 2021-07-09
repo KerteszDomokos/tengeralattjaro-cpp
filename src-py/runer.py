@@ -148,7 +148,8 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):
         cap.release()
         cv2.destroyAllWindows()
         s.close()
-    main()
+    # main()
+    
 
 
 def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
@@ -398,7 +399,7 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
     try:
         cpuR=cpu()
         lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        UDP_IP='169.254.51.13'
+        UDP_IP='192.168.31.169'#vevő ip címe
         UDP_PORT=6010
         udp = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
@@ -419,7 +420,7 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
             lista[24]=bdatas_us[3]
             lista[26]=bdatas_us[4]
             lista[25]=time.time()
-            irando=str(lista[:])
+            irando=str(lista[:]).replace(","," ").replace("[","").replace("]","")
         except:
             pre(str(sys.exc_info())) 
         try:
@@ -431,8 +432,8 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
 
 def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
     try:
-        UDP_IP='169.254.198.81'
-        UDP_PORT=6002
+        UDP_IP='192.168.31.247'
+        UDP_PORT=6000
         udp = socket.socket(socket.AF_INET, # Internet
                         socket.SOCK_DGRAM) # UDP
         MAX_DATA_SIZE=512
@@ -441,14 +442,14 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
         pre('UDP olvasóegységnél hiba!'+str(sys.exc_info()))
     while True:
         try:
-            prl('Olvasás...')
             data, addr = udp.recvfrom(MAX_DATA_SIZE)
             try:
                 dat1=str(data)
                 dat2=dat1.replace("b'","")
                 dat3=dat2[:-1]
                 vegso=ast.literal_eval(dat3)
-                prl(dat3)
+                print(vegso)
+                
             except:
                 pre('Konvertálás sikertelen'+str(sys.exc_info()))
             try:
@@ -457,7 +458,7 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
                     udp_ut[i]=int(vegso[i])
                     i=i+1
             except:
-                pre('Mentés sikertelen'+str(sys.exc_info()))
+                pre('Mentés sikertelen'+str(sys.exc_info())+str(i))
         except:
             pre('Hibás UDP adatvétel'+str(sys.exc_info()))
 

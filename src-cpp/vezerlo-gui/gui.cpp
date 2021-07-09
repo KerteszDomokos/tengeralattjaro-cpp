@@ -33,6 +33,10 @@ SockRead sock;
 QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
 
+QList<double> kuldendo;
+std::mutex kuldendo_mutex;
+
+
 void read(){
     QString dat;
     QString elozoOlv;
@@ -142,8 +146,9 @@ bejovo_mutex.unlock();
 
 
 
-if(ui->tabWidget->currentIndex()==0){
+if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
     QString string;
+    elozoOlvasottList=olvasott;
     for(int i=0; i<olvasott.size(); i++)
     {
         string += QString::number(olvasott[i]);
@@ -176,11 +181,46 @@ if(ui->tabWidget->currentIndex()==0){
     ui->foadatok_4->setItem(0,3, new QTableWidgetItem(QString::number(0)));//12v masodlagos
     ui->foadatok_4->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[4])));//csp1
     ui->foadatok_4->setItem(0,5, new QTableWidgetItem(QString::number(0)));//csp2
-    qDebug()<<olvasott;
-
+//    qDebug()<<olvasott;
 
 }
 }
+
+if (ui->motegy->isChecked()==1){
+    int val=ui->slid3->value();
+    ui->slid1->setValue(val);
+    ui->slid2->setValue(val);
+}
+
+
+QList<double> idl;
+
+idl.append(0);//0 használatlan
+idl.append(ui->slid2->value());//1 motor2 érték
+idl.append(0);//2 mélységmérés
+idl.append(0);//3 tápegység állapot
+idl.append(0);//4 ballaszttartály1 állapot
+idl.append(0);//5 ballaszttartály2 állapot
+idl.append(ui->slid6->value());//6 hűtőventillátor
+idl.append(0);//7 bal vezérsík - üres
+idl.append(0);//8 jobb vezérsík - üres
+idl.append(0);//9 motor reset kérés
+idl.append(ui->slid1->value());//10 motor1 %
+idl.append(ui->slid4->value());//11 Navigációs motor felső
+idl.append(ui->slid5->value());//12 Navigációs motor alsó
+idl.append(0);//13 SSH reset kérés
+idl.append(0);//14 Küldés időpontja
+idl.append(0);//15 robotkar adatok ...
+
+
+
+
+kuldendo_mutex.lock();
+kuldendo=idl;
+kuldendo_mutex.unlock();
+
+
+
 }
 
 void GUI::cmdSlot()

@@ -17,6 +17,8 @@ public:
     GUI(QWidget *parent = nullptr);
     ~GUI();
     QList<double> olvasott;
+    QList<double> elozoOlvasottList;
+
 public slots:
     void closeApp(){close();}
     void update();

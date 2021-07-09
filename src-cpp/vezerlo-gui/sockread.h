@@ -12,6 +12,7 @@ class SockRead : public QObject{
 
     private:
         QUdpSocket *socket;
+        QUdpSocket *socketSend;
 
 };
 

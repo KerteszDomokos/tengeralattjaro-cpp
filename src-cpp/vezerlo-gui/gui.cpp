@@ -40,21 +40,27 @@ std::mutex kuldendo_mutex;
 void read(){
     QString dat;
     QString elozoOlv;
+    QList<double> sending; QString sendingS;
+    long rsz;
     while(true){
         dat=sock.readS();
         Sleep(1);
-        if (dat==""){
-            Sleep(10);
+        if(rsz%10==0){
+            kuldendo_mutex.lock();
+            sending=kuldendo;
+            kuldendo_mutex.unlock();
+
+            sock.send(sending);
         }
-        else{
-//          qDebug()<<dat;
-            if(dat!=elozoOlv){
-                bejovo_mutex.lock();
-                bejovo=dat;
-                bejovo_mutex.unlock();
-                elozoOlv=bejovo;
-            }
+        if(dat!=elozoOlv && dat!=""){
+            bejovo_mutex.lock();
+            bejovo=dat;
+            bejovo_mutex.unlock();
+            elozoOlv=bejovo;
+
         }
+    rsz++;
+    if (rsz>2147483600){rsz=0;}
     }
 
 }
@@ -211,8 +217,19 @@ idl.append(ui->slid5->value());//12 Navigációs motor alsó
 idl.append(0);//13 SSH reset kérés
 idl.append(0);//14 Küldés időpontja
 idl.append(0);//15 robotkar adatok ...
+idl.append(0);//16 robotkar adatok ...
+idl.append(0);//17 robotkar adatok ...
+idl.append(0);//18 robotkar adatok ...
+idl.append(0);//19 robotkar adatok ...
+idl.append(0);//20 robotkar adatok ...
+idl.append(0);//20 robotkar adatok ...
+idl.append(0);//22 robotkar adatok ...
+idl.append(0);//23 robotkar adatok ...
+idl.append(0);//24 robotkar adatok ...
+idl.append(0);//25 robotkar adatok ...
+idl.append(0);//26 robotkar adatok ...
 
-
+qDebug()<<idl;
 
 
 kuldendo_mutex.lock();

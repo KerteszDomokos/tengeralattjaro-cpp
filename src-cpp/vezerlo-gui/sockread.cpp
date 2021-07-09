@@ -6,9 +6,11 @@
 
 SockRead::SockRead(){
 socket = new QUdpSocket(this);
+socketSend = new QUdpSocket(this);
 
 //socket->connectToHost(6010);
 socket->bind(QHostAddress("192.168.31.169"),6010);//vevő ezen eszköz ip címe
+socketSend->connectToHost(QHostAddress("192.168.31.247"),6000);//??
 
 }
 QString SockRead::readS()
@@ -36,7 +38,7 @@ bool SockRead::send(QList<double> dat)
     datS+="]";
     QTextStream in(&datS);
     byts=datS.toUtf8();
-    socket->writeDatagram(byts,QHostAddress("192.168.31.247"),6002);
+    socketSend->write(byts);
     return 1;
 }
 

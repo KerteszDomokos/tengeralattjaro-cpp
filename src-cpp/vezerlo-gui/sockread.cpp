@@ -8,27 +8,35 @@ SockRead::SockRead(){
 socket = new QUdpSocket(this);
 
 //socket->connectToHost(6010);
-socket->bind(QHostAddress("192.168.31.169"),6010);
+socket->bind(QHostAddress("192.168.31.169"),6010);//vevő ezen eszköz ip címe
 
 }
 QString SockRead::readS()
 {
-        QByteArray buffer;
-//        buffer.resize(socket->pendingDatagramSize());
+    QByteArray buffer;
+    qint16 s=socket->pendingDatagramSize();
 
-        QHostAddress sender;
-//        quint16 senderPort;
-        qint16 s=socket->pendingDatagramSize();
+    QNetworkDatagram datagram = socket->receiveDatagram(s);
+    buffer=(datagram.data());
+    return buffer;
+}
 
-           QNetworkDatagram datagram = socket->receiveDatagram(s);
-           buffer=(datagram.data());
+bool SockRead::send(QList<double> dat)
+{
+    QByteArray byts;
+    QString datS="[";
 
-//        socket->readDatagram(buffer.data(), buffer.size(),
-//                             &sender, &senderPort);
-//        qDebug() << "Message from: " << sender.toString();
-//        qDebug() << "Message port: " << senderPort;
-//          qDebug() << "Message: " << buffer;
+    for(int i=0; i<dat.size(); i++)
+    {
+        datS += QString::number(dat[i]);
+        if(i<dat.size()-1)
+        datS += "," ;
+    }
 
-        return buffer;
+    datS+="]";
+    QTextStream in(&datS);
+    byts=datS.toUtf8();
+    socket->writeDatagram(byts,QHostAddress("192.168.31.247"),6002);
+    return 1;
 }
 

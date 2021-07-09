@@ -8,6 +8,7 @@ class SockRead : public QObject{
     public:
         SockRead();
         QString readS();
+        bool send(QList<double> dat);
 
     private:
         QUdpSocket *socket;

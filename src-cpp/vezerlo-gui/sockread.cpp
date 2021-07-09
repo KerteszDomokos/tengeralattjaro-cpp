@@ -2,25 +2,43 @@
 #include <QDebug>
 #include <QHostAddress>
 #include <QUdpSocket>
+#include <QNetworkDatagram>
 
 SockRead::SockRead(){
 socket = new QUdpSocket(this);
-socket->bind(QHostAddress::LocalHost, 7755);
+socketSend = new QUdpSocket(this);
+
+//socket->connectToHost(6010);
+socket->bind(QHostAddress("192.168.31.169"),6010);//vevő ezen eszköz ip címe
+socketSend->connectToHost(QHostAddress("192.168.31.247"),6000);//??
+
 }
 QString SockRead::readS()
 {
-        QByteArray buffer;
-        buffer.resize(socket->pendingDatagramSize());
+    QByteArray buffer;
+    qint16 s=socket->pendingDatagramSize();
 
-        QHostAddress sender;
-        quint16 senderPort;
+    QNetworkDatagram datagram = socket->receiveDatagram(s);
+    buffer=(datagram.data());
+    return buffer;
+}
 
-        socket->readDatagram(buffer.data(), buffer.size(),
-                             &sender, &senderPort);
-//        qDebug() << "Message from: " << sender.toString();
-//        qDebug() << "Message port: " << senderPort;
-//        qDebug() << "Message: " << buffer;
+bool SockRead::send(QList<double> dat)
+{
+    QByteArray byts;
+    QString datS="[";
 
-        return buffer;
+    for(int i=0; i<dat.size(); i++)
+    {
+        datS += QString::number(dat[i]);
+        if(i<dat.size()-1)
+        datS += "," ;
+    }
+
+    datS+="]";
+    QTextStream in(&datS);
+    byts=datS.toUtf8();
+    socketSend->write(byts);
+    return 1;
 }
 

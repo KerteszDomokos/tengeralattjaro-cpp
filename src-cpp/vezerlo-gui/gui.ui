@@ -120,7 +120,7 @@
             <rect>
              <x>0</x>
              <y>220</y>
-             <width>631</width>
+             <width>681</width>
              <height>41</height>
             </rect>
            </property>
@@ -138,7 +138,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
-          <widget class="QTableWidget" name="foadatok_2">
+          <widget class="QTableWidget" name="foadatok_3">
            <property name="geometry">
             <rect>
              <x>320</x>
@@ -201,7 +201,7 @@ p, li { white-space: pre-wrap; }
             </property>
            </column>
           </widget>
-          <widget class="QTableWidget" name="foadatok_3">
+          <widget class="QTableWidget" name="foadatok_4">
            <property name="geometry">
             <rect>
              <x>480</x>
@@ -264,7 +264,7 @@ p, li { white-space: pre-wrap; }
             </property>
            </column>
           </widget>
-          <widget class="QTableWidget" name="foadatok_4">
+          <widget class="QTableWidget" name="foadatok_2">
            <property name="geometry">
             <rect>
              <x>160</x>
@@ -498,13 +498,16 @@ p, li { white-space: pre-wrap; }
         <number>400</number>
        </property>
        <property name="pageStep">
-        <number>30</number>
+        <number>40</number>
        </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
        <property name="tickPosition">
         <enum>QSlider::NoTicks</enum>
+       </property>
+       <property name="tickInterval">
+        <number>15</number>
        </property>
       </widget>
       <widget class="QSlider" name="slid2">
@@ -523,13 +526,16 @@ p, li { white-space: pre-wrap; }
         <number>400</number>
        </property>
        <property name="pageStep">
-        <number>30</number>
+        <number>40</number>
        </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
        <property name="tickPosition">
         <enum>QSlider::NoTicks</enum>
+       </property>
+       <property name="tickInterval">
+        <number>15</number>
        </property>
       </widget>
       <widget class="QSlider" name="slid3">
@@ -548,13 +554,16 @@ p, li { white-space: pre-wrap; }
         <number>400</number>
        </property>
        <property name="pageStep">
-        <number>30</number>
+        <number>40</number>
        </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
        <property name="tickPosition">
         <enum>QSlider::NoTicks</enum>
+       </property>
+       <property name="tickInterval">
+        <number>15</number>
        </property>
       </widget>
       <widget class="QSlider" name="slid4">
@@ -573,7 +582,7 @@ p, li { white-space: pre-wrap; }
         <number>400</number>
        </property>
        <property name="pageStep">
-        <number>30</number>
+        <number>40</number>
        </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -581,14 +590,70 @@ p, li { white-space: pre-wrap; }
        <property name="tickPosition">
         <enum>QSlider::NoTicks</enum>
        </property>
+       <property name="tickInterval">
+        <number>15</number>
+       </property>
       </widget>
-      <widget class="QSlider" name="slid6">
+      <widget class="QSlider" name="slid5">
        <property name="geometry">
         <rect>
          <x>160</x>
          <y>20</y>
          <width>21</width>
          <height>171</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-400</number>
+       </property>
+       <property name="maximum">
+        <number>400</number>
+       </property>
+       <property name="singleStep">
+        <number>2</number>
+       </property>
+       <property name="pageStep">
+        <number>40</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::NoTicks</enum>
+       </property>
+       <property name="tickInterval">
+        <number>15</number>
+       </property>
+      </widget>
+      <widget class="QTextBrowser" name="slidText">
+       <property name="geometry">
+        <rect>
+         <x>232</x>
+         <y>23</y>
+         <width>161</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;teszt1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="slid6">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>20</y>
+         <width>21</width>
+         <height>81</height>
         </rect>
        </property>
        <property name="minimum">
@@ -610,35 +675,26 @@ p, li { white-space: pre-wrap; }
         <enum>QSlider::NoTicks</enum>
        </property>
       </widget>
-      <widget class="QTextBrowser" name="slidText">
+      <widget class="QRadioButton" name="motegy">
        <property name="geometry">
         <rect>
-         <x>232</x>
-         <y>23</y>
-         <width>161</width>
-         <height>170</height>
+         <x>230</x>
+         <y>170</y>
+         <width>151</width>
+         <height>21</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="html">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;teszt1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <property name="text">
+        <string>Egyenlő motorok</string>
        </property>
       </widget>
-      <widget class="QSlider" name="slid6_2">
+      <widget class="QSlider" name="slid7">
        <property name="geometry">
         <rect>
          <x>200</x>
-         <y>20</y>
+         <y>110</y>
          <width>21</width>
-         <height>171</height>
+         <height>81</height>
         </rect>
        </property>
        <property name="minimum">

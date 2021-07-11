@@ -9,10 +9,12 @@ class SockRead : public QObject{
         SockRead();
         QString readS();
         bool send(QList<double> dat);
+        QByteArray readKep();
 
     private:
         QUdpSocket *socket;
         QUdpSocket *socketSend;
+        QUdpSocket *socketKep;
 
 };
 

@@ -23,12 +23,13 @@
 #include <QStringList>
 #include <thread>
 #include <mutex>
+#include <QImage>
 #include "sockread.h"
 
-
-
-
 SockRead sock;
+
+QByteArray kepadat;
+std::mutex kepadat_mutex;
 
 QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
@@ -52,6 +53,11 @@ void read(){
 
             sock.send(sending);
         }
+        if(rsz%1000==0){
+            kepadat_mutex.lock();
+            kepadat=sock.readKep();
+            kepadat_mutex.unlock();
+        }
         if(dat!=elozoOlv && dat!=""){
             bejovo_mutex.lock();
             bejovo=dat;
@@ -69,7 +75,9 @@ GUI::GUI(QWidget *parent)
     , ui(new Ui::GUI)
 {
     ui->setupUi(this);
-    QPixmap pm("G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\Tengeralattjaro-RUV\\src-py\\camToSave.jpg"); // <- path to image file
+    QImage kep;
+    kep.loadFromData(kepadat);
+    QPixmap pm=QPixmap::fromImage(kep); //("G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\Tengeralattjaro-RUV\\src-py\\camToSave.jpg"); // <- path to image file
     ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
     QObject *object = ui->horizont->rootObject();
     object->setProperty("rollAngle", 10);
@@ -106,6 +114,10 @@ GUI::~GUI()
 
 void GUI::update()
 {
+
+    QImage kep;
+    kep.loadFromData(kepadat);
+    QPixmap pm=QPixmap::fromImage(kep);
     int sl;
     QString sliddat;
     sl = ui->slid1->value();
@@ -229,7 +241,7 @@ idl.append(0);//24 robotkar adatok ...
 idl.append(0);//25 robotkar adatok ...
 idl.append(0);//26 robotkar adatok ...
 
-qDebug()<<idl;
+//qDebug()<<idl;
 
 
 kuldendo_mutex.lock();

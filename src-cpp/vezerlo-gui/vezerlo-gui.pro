@@ -27,4 +27,5 @@ FORMS += \
 DISTFILES += \
     3dview.qml \
     horizon.qml \
-    joy.qml
+    joy.qml \
+    teszt.qml

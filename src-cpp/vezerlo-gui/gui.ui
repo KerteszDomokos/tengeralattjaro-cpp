@@ -537,7 +537,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="0" column="1" rowspan="4">
-     <widget class="QQuickWidget" name="quickWidget">
+     <widget class="QQuickWidget" name="magmer">
       <property name="resizeMode">
        <enum>QQuickWidget::SizeRootObjectToView</enum>
       </property>

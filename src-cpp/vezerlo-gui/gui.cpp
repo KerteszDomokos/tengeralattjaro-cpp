@@ -83,7 +83,8 @@ GUI::GUI(QWidget *parent)
     ui->joyh->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\joy.qml"));
     //QObject *object = ui->horizont->rootObject();
 
-
+    ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/teszt.qml"));
+    ui->magmer->show();
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
     QTimer *timer = new QTimer(this);
@@ -180,7 +181,7 @@ if (olvasott.size()>26){
     if(olvasott[23]>0){dy=std::sqrt(pow(olvasott[23]-90,2));}else{dy=-(olvasott[23]+90);}
     QObject *object = ui->horizont->rootObject();
     object->setProperty("pitchAngle", dx);//dőlés
-    object->setProperty("rollhAngle", dy);//frogás
+    object->setProperty("rollhAngle", dy);//forgás
 
 }
 if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){

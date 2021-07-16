@@ -509,20 +509,8 @@ p, li { white-space: pre-wrap; }
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QLabel" name="ad">
-         <property name="minimumSize">
-          <size>
-           <width>448</width>
-           <height>336</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>448</width>
-           <height>336</height>
-          </size>
-         </property>
          <property name="text">
-          <string>kep</string>
+          <string>kép</string>
          </property>
         </widget>
        </item>

@@ -22,6 +22,7 @@ public:
 public slots:
     void closeApp(){close();}
     void update();
+    void fps();
     void cmdSlot(); //if the cmd_p line text has an enter
     void openCmd();
     void closeCmd();

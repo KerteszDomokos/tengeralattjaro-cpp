@@ -25,6 +25,7 @@
 #include <mutex>
 #include <QImage>
 #include "sockread.h"
+#include <cmath>
 
 SockRead sock;
 
@@ -44,8 +45,9 @@ void read(){
     QList<double> sending; QString sendingS;
     long rsz;
     while(true){
-        dat=sock.readS();
         Sleep(1);
+        dat=sock.readS();
+
         if(rsz%10==0){
             kuldendo_mutex.lock();
             sending=kuldendo;
@@ -53,11 +55,7 @@ void read(){
 
             sock.send(sending);
         }
-        if(rsz%1000==0){
-            kepadat_mutex.lock();
-            kepadat=sock.readKep();
-            kepadat_mutex.unlock();
-        }
+
         if(dat!=elozoOlv && dat!=""){
             bejovo_mutex.lock();
             bejovo=dat;
@@ -75,13 +73,10 @@ GUI::GUI(QWidget *parent)
     , ui(new Ui::GUI)
 {
     ui->setupUi(this);
-    QImage kep;
-    kep.loadFromData(kepadat);
-    QPixmap pm=QPixmap::fromImage(kep); //("G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\Tengeralattjaro-RUV\\src-py\\camToSave.jpg"); // <- path to image file
+
+    QPixmap pm = QPixmap("..\\vezerlo-gui\\live.jpg"); // <- path to image file
     ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
-    QObject *object = ui->horizont->rootObject();
-    object->setProperty("rollAngle", 10);
-    object->setProperty("pitchAngle", 10);
+
     ui->hd->setSource(QUrl::fromLocalFile("../vezerlo-gui/3dview.qml"));
     ui->hd->show();
 
@@ -93,7 +88,10 @@ GUI::GUI(QWidget *parent)
     ui->ad->setScaledContents(false);
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-    timer->start(5);
+    timer->start(6);
+    QTimer *kt = new QTimer(this);
+    connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
+    kt->start(10);
 
     //Joystick adatokat mentő program idítása
 
@@ -108,9 +106,23 @@ GUI::GUI(QWidget *parent)
 
 GUI::~GUI()
 {
+    pr->kill();//joystick folyamat befejezése
+    pr->kill();//joystick folyamat befejezése
+    pr->kill();//joystick folyamat befejezése
+
     delete ui;
-    pr->terminate();//joystick folyamat befejezése
 }
+
+
+void GUI::fps()
+{
+    QPixmap pm2 = QPixmap("..\\vezerlo-gui\\live.jpg"); // <- path to image file
+    if (pm2.isNull()!=1){
+        ui->ad->setPixmap(pm2);
+        ui->ad->setScaledContents(false);
+    }
+}
+
 
 void GUI::update()
 {
@@ -161,9 +173,16 @@ if(ui->tabWidget->currentIndex()==1){
 bejovo_mutex.lock();
 olvasott=conv(bejovo);
 bejovo_mutex.unlock();
+double dx;
+double dy;
+if (olvasott.size()>26){
+    if(olvasott[22]>0){dx=std::sqrt(pow(olvasott[22]-90,2));}else{dx=-(olvasott[22]+90);}
+    if(olvasott[23]>0){dy=std::sqrt(pow(olvasott[23]-90,2));}else{dy=-(olvasott[23]+90);}
+    QObject *object = ui->horizont->rootObject();
+    object->setProperty("pitchAngle", dx);//dőlés
+    object->setProperty("rollhAngle", dy);//frogás
 
-
-
+}
 if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
     QString string;
     elozoOlvasottList=olvasott;
@@ -176,8 +195,8 @@ if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
     ui->nyersOlvasott->setText(string);
     if(olvasott.size()>26){
     ui->foadatok_1->setItem(0,0, new QTableWidgetItem(QString::number(0)));//sebesség
-    ui->foadatok_1->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[22])));//dőlés x
-    ui->foadatok_1->setItem(0,2, new QTableWidgetItem(QString::number(olvasott[23])));//dőlés y
+    ui->foadatok_1->setItem(0,1, new QTableWidgetItem(QString::number(dx)));//dőlés x
+    ui->foadatok_1->setItem(0,2, new QTableWidgetItem(QString::number(dy)));//dőlés y
     ui->foadatok_1->setItem(0,3, new QTableWidgetItem(QString::number(olvasott[9])));//motorB
     ui->foadatok_1->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[10])));//motorJ
     ui->foadatok_1->setItem(0,5, new QTableWidgetItem(QString::number(olvasott[26])));//test iránya

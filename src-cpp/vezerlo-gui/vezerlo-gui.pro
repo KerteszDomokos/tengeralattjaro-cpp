@@ -28,4 +28,5 @@ DISTFILES += \
     3dview.qml \
     horizon.qml \
     joy.qml \
+    magassag.qml \
     teszt.qml

@@ -77,13 +77,13 @@ GUI::GUI(QWidget *parent)
     QPixmap pm = QPixmap("..\\vezerlo-gui\\live.jpg"); // <- path to image file
     ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
 
-    ui->hd->setSource(QUrl::fromLocalFile("../vezerlo-gui/3dview.qml"));
-    ui->hd->show();
+//    ui->hd->setSource(QUrl::fromLocalFile("../vezerlo-gui/3dview.qml"));
+//    ui->hd->show();
 
     ui->joyh->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\joy.qml"));
     //QObject *object = ui->horizont->rootObject();
 
-    ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/teszt.qml"));
+    ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/magassag.qml"));
     ui->magmer->show();
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
@@ -184,6 +184,11 @@ if (olvasott.size()>26){
     object->setProperty("rollhAngle", dy);//forgás
 
 }
+
+
+
+
+
 if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
     QString string;
     elozoOlvasottList=olvasott;
@@ -221,6 +226,10 @@ if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
     ui->foadatok_4->setItem(0,5, new QTableWidgetItem(QString::number(0)));//csp2
 //    qDebug()<<olvasott;
 
+
+
+    QObject *object2 = ui->magmer->rootObject();
+    object2->setProperty("alt", olvasott[12]*10);//magasság
 }
 }
 

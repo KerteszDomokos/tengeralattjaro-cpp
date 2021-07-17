@@ -27,7 +27,7 @@ Item {
         color: "green"
         smooth: true
         anchors.centerIn: parent
-        height: 150
+        height: 250
         width: 90
     }
         Rectangle{

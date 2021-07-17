@@ -85,6 +85,8 @@ GUI::GUI(QWidget *parent)
 
     ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/magassag.qml"));
     ui->magmer->show();
+    ui->compass->setSource(QUrl::fromLocalFile("../vezerlo-gui/compass.qml"));
+    ui->compass->show();
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
     QTimer *timer = new QTimer(this);
@@ -92,7 +94,7 @@ GUI::GUI(QWidget *parent)
     timer->start(6);
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
-    kt->start(10);
+    kt->start(30);
 
     //Joystick adatokat mentő program idítása
 
@@ -154,6 +156,7 @@ void GUI::update()
 
 
 if(ui->tabWidget->currentIndex()==1){
+
     QObject *object = ui->joyh->rootObject();
     object->setProperty("b1", joystickAdatok[3]);
     object->setProperty("b2", joystickAdatok[4]);
@@ -176,6 +179,8 @@ olvasott=conv(bejovo);
 bejovo_mutex.unlock();
 double dx;
 double dy;
+
+
 if (olvasott.size()>26){
     if(olvasott[22]>0){dx=std::sqrt(pow(olvasott[22]-90,2));}else{dx=-(olvasott[22]+90);}
     if(olvasott[23]>0){dy=std::sqrt(pow(olvasott[23]-90,2));}else{dy=-(olvasott[23]+90);}
@@ -226,12 +231,20 @@ if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
     ui->foadatok_4->setItem(0,5, new QTableWidgetItem(QString::number(0)));//csp2
 //    qDebug()<<olvasott;
 
-
-
     QObject *object2 = ui->magmer->rootObject();
     object2->setProperty("alt", olvasott[12]*10);//magasság
+    QObject *object3 = ui->compass->rootObject();
+    object3->setProperty("fok", olvasott[26]);//iránytű adatai
+
+
+
+
 }
 }
+
+
+if (joystickAdatok.size()>2){}
+
 
 if (ui->motegy->isChecked()==1){
     int val=ui->slid3->value();

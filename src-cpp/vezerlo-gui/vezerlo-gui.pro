@@ -26,6 +26,7 @@ FORMS += \
 
 DISTFILES += \
     3dview.qml \
+    compass.qml \
     horizon.qml \
     joy.qml \
     magassag.qml \

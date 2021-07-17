@@ -76,17 +76,12 @@ GUI::GUI(QWidget *parent)
 
     QPixmap pm = QPixmap("..\\vezerlo-gui\\live.jpg"); // <- path to image file
     ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
-
-//    ui->hd->setSource(QUrl::fromLocalFile("../vezerlo-gui/3dview.qml"));
-//    ui->hd->show();
-
     ui->joyh->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\joy.qml"));
-    //QObject *object = ui->horizont->rootObject();
-
     ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/magassag.qml"));
-    ui->magmer->show();
     ui->compass->setSource(QUrl::fromLocalFile("../vezerlo-gui/compass.qml"));
-    ui->compass->show();
+//    ui->map->setSource(QUrl::fromLocalFile("../vezerlo-gui/map.qml"));
+
+
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
     QTimer *timer = new QTimer(this);

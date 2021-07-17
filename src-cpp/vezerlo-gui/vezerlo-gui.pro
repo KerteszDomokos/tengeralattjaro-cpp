@@ -30,4 +30,5 @@ DISTFILES += \
     horizon.qml \
     joy.qml \
     magassag.qml \
+    map.qml \
     teszt.qml

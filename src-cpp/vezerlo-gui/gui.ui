@@ -851,6 +851,25 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="0" column="2">
      <widget class="QQuickWidget" name="compass">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="resizeMode">
+       <enum>QQuickWidget::SizeRootObjectToView</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QQuickWidget" name="map">
       <property name="resizeMode">
        <enum>QQuickWidget::SizeRootObjectToView</enum>
       </property>

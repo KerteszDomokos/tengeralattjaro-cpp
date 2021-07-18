@@ -64,6 +64,9 @@ void read(){
     }
 
 }
+
+
+
 GUI::GUI(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::GUI)
@@ -98,6 +101,9 @@ GUI::GUI(QWidget *parent)
     //szál indítása
     std::thread ob(read);
     ob.detach();
+
+    ui->elokep->setChecked(1);
+    ui->cmdDock->setHidden(1);
 
 }
 
@@ -304,9 +310,33 @@ QString GUI::commands(QString comm)
         return "Kilépés...";
     }
     else if(comm=="readUdp"){
-        read();
-        return"Parancssoron az eredmény";
+//        read();
+        return"Nem hajtható végre, mert végtelen ciklus elindítását eredményezné";
     }
+
+    else if(comm=="getJoy"){
+        QString dat;
+        for(int i=0; i<joystickAdatok.size(); i++)
+        {
+            dat += QString::number(joystickAdatok[i]);
+            if(i<joystickAdatok.size()-1)
+            dat += "," ;
+        }
+        return "Joystick olvasott adatai:\n"+dat;
+    }
+    else if(comm=="getProc"){
+        QString dat;
+        dat=QString::number(pr->processId());
+        return "Joystick és kép továbbítás pID:\n"+dat;
+    }
+    else if(comm=="stopPy"){
+        QString dat;
+        pr->processId();
+        pr->terminate();
+        pr->kill();
+        return "Sikeres: "+dat;
+    }
+
     return "Nem található a kért parancs: "+comm;
 }
 

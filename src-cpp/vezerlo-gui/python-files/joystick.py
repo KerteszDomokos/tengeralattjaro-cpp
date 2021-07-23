@@ -3,7 +3,7 @@ import cv2
 import pygame
 import sys
 import os
-
+from time import sleep
 
 dat=b''
 
@@ -33,6 +33,7 @@ def joy():
             f=open(file_path.replace("joystick.py","../program-datas/joystick.txt"),'w')
             f.write(txt)
             f.close()
+            sleep(.005)
         except KeyboardInterrupt:
             print("Kilépés: KeyboardInterrupt")
             f.close()

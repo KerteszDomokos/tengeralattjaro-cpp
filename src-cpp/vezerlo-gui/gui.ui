@@ -789,13 +789,10 @@ p, li { white-space: pre-wrap; }
          </rect>
         </property>
         <property name="minimum">
-         <number>-400</number>
+         <number>0</number>
         </property>
         <property name="maximum">
-         <number>400</number>
-        </property>
-        <property name="pageStep">
-         <number>40</number>
+         <number>1023</number>
         </property>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -817,16 +814,13 @@ p, li { white-space: pre-wrap; }
          </rect>
         </property>
         <property name="minimum">
-         <number>-400</number>
+         <number>0</number>
         </property>
         <property name="maximum">
-         <number>400</number>
+         <number>1023</number>
         </property>
         <property name="singleStep">
-         <number>2</number>
-        </property>
-        <property name="pageStep">
-         <number>40</number>
+         <number>0</number>
         </property>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -934,12 +928,12 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>230</x>
           <y>150</y>
-          <width>101</width>
+          <width>91</width>
           <height>19</height>
          </rect>
         </property>
         <property name="text">
-         <string>Serpot</string>
+         <string>Hardveres Pot</string>
         </property>
        </widget>
        <widget class="QCheckBox" name="motegy">
@@ -953,6 +947,19 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string>Egyenlő motorok</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="dmotjoy">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>150</y>
+          <width>71</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>DMot Joy</string>
         </property>
        </widget>
       </widget>

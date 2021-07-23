@@ -94,6 +94,11 @@ GUI::GUI(QWidget *parent)
     kt->start(30);
 
 
+    QTimer *jd = new QTimer(this);
+    connect(jd, &QTimer::timeout, this, QOverload<>::of(&GUI::joydat));
+    jd->start(1000*0.005);
+
+
 
     //Joystick adatokat mentő program idítása
     pr = new QProcess(this);
@@ -149,7 +154,6 @@ void GUI::fps()
 
 void GUI::update()
 {
-    joydat();
 
     QList<double> jd=get_joystickAdatok();
     if(jd.isEmpty()==1){
@@ -247,11 +251,16 @@ void GUI::update()
     int jmot=ui->slid2->value();
     int navmota=ui->slid5->value();
     int navmotf=ui->slid4->value();
-    if(joystickAdatok.isEmpty()==0){
+    if(joystickAdatok.size()>=14){
         if (joystickAdatok[4]==1){
             double elt=joystickAdatok[2]*200;
             bmot=int(bmot+elt);
             jmot=int(jmot-elt);
+        }
+        if (joystickAdatok[5]==1){
+            motorNull();
+            bmot=0;
+            jmot=0;
         }
         if (joystickAdatok[11]==1){
             bmot=-200;
@@ -260,6 +269,19 @@ void GUI::update()
         if (joystickAdatok[14]==1){
             bmot=200;
             jmot=-200;
+        }
+
+        if (ui->dmotjoy->isChecked()==1){
+            if(joystickAdatok[1]*1023>0){
+                navmotf=int(joystickAdatok[1]*1023);
+                navmota=0;
+            }
+            else{
+                navmota=int(-joystickAdatok[1]*1023);
+                navmotf=0;
+            }
+            ui->slid4->setValue(navmota);
+            ui->slid5->setValue(navmotf);
         }
     }
 
@@ -347,18 +369,19 @@ void GUI::motorNull()
 
 QString GUI::commands(QString comm)
 {
+    QString alap="Parancs: "+comm+"\n";
     if (comm=="comm"){
-        return "Parancs végrehajtása siekeres";
+        return alap+"Parancs végrehajtása siekeres";
     }
 
     else if(comm=="exit"){
         close();
-        return "Kilépés...";
+        return alap+"Kilépés...";
     }
 
     else if(comm=="readUdp"){
 //        read();
-        return"Nem hajtható végre, mert végtelen ciklus elindítását eredményezné";
+        return alap+"Nem hajtható végre, mert végtelen ciklus elindítását eredményezné";
     }
 
     else if(comm=="getJoy"){
@@ -369,45 +392,46 @@ QString GUI::commands(QString comm)
             if(i<joystickAdatok.size()-1)
             dat += "," ;
         }
-        return "Joystick olvasott adatai:\n"+dat;
+        return alap+"Joystick olvasott adatai:\n"+dat;
     }
 
     else if(comm=="PIDjoy"){
         QString dat;
         dat=QString::number(pr->processId());
-        return "Joystick továbbítás folyamat pID:\n"+dat;
+        return alap+"Joystick továbbítás folyamat pID:\n"+dat;
     }
 
     else if(comm=="PIDkep"){
         QString dat;
         dat=QString::number(pr2->processId());
-        return "Kép továbbítás folyamat pID:\n"+dat;
+        return alap+"Kép továbbítás folyamat pID:\n"+dat;
     }
 
     else if(comm=="stopJoy"){
         QString dat;
-        pr->processId();
-        pr->terminate();
         pr->kill();
-        return "Sikeres: "+dat;
+        return alap+"Sikeres: "+dat;
     }
 
     else if(comm=="stopKep"){
         QString dat;
-        pr2->processId();
-        pr2->terminate();
         pr2->kill();
-        return "Sikeres: "+dat;
+        return alap+"Sikeres: "+dat;
+    }
+    else if(comm=="stop"){
+        pr2->kill();
+        pr->kill();
+        return alap+"Minden alfolyamat leállítva ";
     }
     else if(comm=="h"){
         QString dat=comH;
-        return "Helptext:\n"+dat;
+        return alap+"Helptext:\n"+dat;
     }
     else if(comm=="startJoy"){
-        return stJ();
+        return alap+stJ();
     }
     else if(comm=="startKep"){
-        return stK();
+        return alap+stK();
     }
 
     return "Nem található a kért parancs: "+comm;
@@ -485,7 +509,6 @@ void GUI::joydat()
             joystickAdatok=array;
         }
     }
-    return;
 }
 QList<double> GUI::get_joystickAdatok()
 {

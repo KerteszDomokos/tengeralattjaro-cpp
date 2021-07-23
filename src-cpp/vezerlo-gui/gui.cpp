@@ -74,13 +74,13 @@ GUI::GUI(QWidget *parent)
     ui->setupUi(this);
 
 
-    ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\horizon.qml"));
-    ui->joyh->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\joy.qml"));
-    ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/magassag.qml"));
-    ui->compass->setSource(QUrl::fromLocalFile("../vezerlo-gui/compass.qml"));
+    ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\qml-files\\horizon.qml"));
+    ui->joyh->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\qml-files\\joy.qml"));
+    ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/magassag.qml"));
+    ui->compass->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/compass.qml"));
 //    ui->map->setSource(QUrl::fromLocalFile("../vezerlo-gui/map.qml"));
 
-    QPixmap pm = QPixmap("..\\vezerlo-gui\\live.jpg"); // <- path to image file
+    QPixmap pm = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
 
@@ -105,7 +105,10 @@ GUI::GUI(QWidget *parent)
     file = keppath;
     pr2->start(pypath, QStringList() << file);
 
-
+    ui->joyPID->setText(QString::number(pr->processId()));
+    ui->kepPID->setText(QString::number(pr2->processId()));
+    ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");
+    ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");
 
     //szál indítása
     std::thread ob(read);
@@ -126,11 +129,21 @@ GUI::~GUI()
 
 void GUI::fps()
 {
-    QPixmap pm2 = QPixmap("..\\vezerlo-gui\\live.jpg"); // <- path to image file
+    QPixmap pm2 = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file
     if (pm2.isNull()!=1){//ha a kép létezik:
         ui->ad->setPixmap(pm2);
         ui->ad->setScaledContents(false);
     }
+
+
+    //Külső folyamatok sikerességére vonatkozó adatok
+    int pid=pr->processId();
+    ui->joyPID->setText(QString::number(pid));
+    if (pid==0){ui->joyPID->setStyleSheet("QLineEdit {background-color: red;}");}else{ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");}
+    pid=pr2->processId();
+    ui->kepPID->setText(QString::number(pid));
+    if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");}else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");}
+
 }
 
 
@@ -312,10 +325,12 @@ QString GUI::commands(QString comm)
     if (comm=="comm"){
         return "Parancs végrehajtása siekeres";
     }
+
     else if(comm=="exit"){
         close();
         return "Kilépés...";
     }
+
     else if(comm=="readUdp"){
 //        read();
         return"Nem hajtható végre, mert végtelen ciklus elindítását eredményezné";
@@ -331,16 +346,19 @@ QString GUI::commands(QString comm)
         }
         return "Joystick olvasott adatai:\n"+dat;
     }
+
     else if(comm=="PIDjoy"){
         QString dat;
         dat=QString::number(pr->processId());
-        return "Joystick és kép továbbítás pID:\n"+dat;
+        return "Joystick továbbítás folyamat pID:\n"+dat;
     }
+
     else if(comm=="PIDkep"){
         QString dat;
         dat=QString::number(pr2->processId());
-        return "Joystick és kép továbbítás pID:\n"+dat;
+        return "Kép továbbítás folyamat pID:\n"+dat;
     }
+
     else if(comm=="stopJoy"){
         QString dat;
         pr->processId();
@@ -348,6 +366,7 @@ QString GUI::commands(QString comm)
         pr->kill();
         return "Sikeres: "+dat;
     }
+
     else if(comm=="stopKep"){
         QString dat;
         pr2->processId();
@@ -355,8 +374,50 @@ QString GUI::commands(QString comm)
         pr2->kill();
         return "Sikeres: "+dat;
     }
+    else if(comm=="h"){
+        QString dat=comH;
+        return "Helptext:\n"+dat;
+    }
+    else if(comm=="startJoy"){
+        return stJ();
+    }
+    else if(comm=="startKep"){
+        return stK();
+    }
 
     return "Nem található a kért parancs: "+comm;
+}
+
+QString GUI::stK()
+{
+    if(pr2->processId()==0)
+    {
+        //Kép adatokat mentő program indítása
+        pr2 = new QProcess(this);
+        pr2->start(pypath, QStringList() << keppath);
+        if(pr2->processId()!=0){return "Kép folyamat\nSikeres indítás, új PID:\n"+QString::number(pr2->processId());}//sikeresség ellenőrzés
+        else{return "Kép folyamat\nSikertelen indítás - program továbbra sem fut";}
+    }
+    else{
+        return "Kép folyamat\nNincs szükség indításra, a folyamat már fut; PID:\n"+QString::number(pr2->processId());
+    }
+}
+
+QString GUI::stJ()
+{
+    //Joystick adatokat mentő program idítása
+
+    if(pr->processId()==0)
+    {
+        //Kép adatokat mentő program indítása
+        pr = new QProcess(this);
+        pr->start(pypath, QStringList() << joypath);
+        if(pr->processId()!=0){return "Joystick folyamat\nSikeres indítás, új PID:\n"+QString::number(pr->processId());}//sikeresség ellenőrzés
+        else{return "Joystick folyamat\nSikertelen indítás - program továbbra sem fut";}
+    }
+    else{
+        return "Joystick folyamat\nNincs szükség indításra, a folyamat már fut; PID:\n"+QString::number(pr->processId());
+    }
 }
 
 
@@ -377,7 +438,7 @@ void GUI::joydat()
 {
     QList<double> array;
 
-    QFile file("../vezerlo-gui/joystick.txt");
+    QFile file("../vezerlo-gui/program-datas/joystick.txt");
 
     if (!file.open(QIODevice::ReadOnly)){
         qDebug()<<"Error in file read";

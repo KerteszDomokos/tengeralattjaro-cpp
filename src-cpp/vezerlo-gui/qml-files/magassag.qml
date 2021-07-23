@@ -6,7 +6,7 @@ Rectangle {
     property real maxAlt: 20
     property real minAlt: -200
     property real graticuleSpacing: 45-graticuleHeight
-    property real graticuleAlt: 1 //metres
+    property real graticuleAlt: 0.5 //metres
     property real graticuleHeight: 2
 
     anchors.verticalCenter: parent.verticalCenter

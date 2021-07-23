@@ -18,6 +18,9 @@ public:
     ~GUI();
     QList<double> olvasott;
     QList<double> elozoOlvasottList;
+    QString pypath="C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe";
+    QString keppath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\kep.py";
+    QString joypath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\joystick.py";
 
 public slots:
     void closeApp(){close();}
@@ -26,13 +29,12 @@ public slots:
     void cmdSlot(); //if the cmd_p line text has an enter
     void openCmd();
     void closeCmd();
-    QString pypath="C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe";
-    QString keppath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\program-datas\\kep.py";
-    QString joypath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\program-datas\\joystick.py";
 
 private:
     Ui::GUI *ui;
     QString commands(QString comm) ;
+    QString stK();
+    QString stJ();
     QList<double> conv(QString str);
     void joydat();
     QList<double> joystickAdatok;
@@ -40,7 +42,8 @@ private:
     QProcess *pr ;
     QProcess *pr2 ;
     QString elozoOlv="";
-
+public:
+    QString comH="comm - teszt parancs\nexit - program bezárása és kilépés\nPID(joy/kep) - kép vagy joy folyamat PID\nstop(Joy/Kep) - kép vagy joy folyamat megölése\ngetJoy - joystick adatai lekérése adott pillanatban";
 
 };
 

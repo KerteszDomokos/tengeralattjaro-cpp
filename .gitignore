@@ -3,4 +3,5 @@ src-cpp/build-vezerlo-gui-Desktop_Qt_5_15_2_MinGW_64_bit-Release/
 #src-cpp/vezerlo-gui/3rd-party/
 #src-cpp/resources/
 src-cpp/vezerlo-gui/teszt.qml
-src-cpp/vezerlo-gui/joystick.txt
+src-cpp/vezerlo-gui/program-datas/joystick.txt
+

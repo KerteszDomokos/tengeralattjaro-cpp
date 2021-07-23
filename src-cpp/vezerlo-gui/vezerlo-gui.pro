@@ -25,10 +25,10 @@ FORMS += \
 
 
 DISTFILES += \
-    3dview.qml \
-    compass.qml \
-    horizon.qml \
-    joy.qml \
-    magassag.qml \
-    map.qml \
-    teszt.qml
+    qml-files/3dview.qml \
+    qml-files/compass.qml \
+    qml-files/horizon.qml \
+    qml-files/joy.qml \
+    qml-files/magassag.qml \
+    qml-files/map.qml \
+    qml-files/teszt.qml

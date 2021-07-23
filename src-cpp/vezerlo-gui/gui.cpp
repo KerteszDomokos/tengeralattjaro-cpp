@@ -97,13 +97,13 @@ GUI::GUI(QWidget *parent)
 
     //Joystick adatokat mentő program idítása
     pr = new QProcess(this);
-    QString file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\joystick.py";
-    pr->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
+    QString file = joypath;
+    pr->start(pypath, QStringList() << file);
 
     //Kép adatokat mentő program indítása
     pr2 = new QProcess(this);
-    file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\kep.py";
-    pr2->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
+    file = keppath;
+    pr2->start(pypath, QStringList() << file);
 
 
 

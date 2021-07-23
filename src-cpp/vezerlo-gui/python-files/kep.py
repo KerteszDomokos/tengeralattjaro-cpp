@@ -5,7 +5,7 @@ import os
 import numpy as np
 import socket
 
-
+file_path = os.path.realpath(__file__)
 def kep():
     MAX_DGRAM = 2**16
     global dat
@@ -32,7 +32,7 @@ def kep():
             img = cv2.imdecode(np.fromstring(dat, dtype=np.uint8), 1)
             try:
                 # cv2.imshow('frame', img)
-                cv2.imwrite("..\\vezerlo-gui\\live.jpg",img)
+                cv2.imwrite(file_path.replace("kep.py","../program-datas/live.jpg"),img)
             except:
                 print('megjelenítés és mentés'+str(sys.exc_info()))
                 while True:

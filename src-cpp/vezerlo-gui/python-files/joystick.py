@@ -30,7 +30,7 @@ def joy():
         try:
             pygame.event.get()
             txt=str(j.get_axis(0))+' '+str(j.get_axis(1))+' '+str(j.get_axis(3))+' '+str(j.get_button(0))+' '+str(j.get_button(1))+' '+str(j.get_button(2))+' '+str(j.get_button(3))+' '+str(j.get_button(4))+' '+str(j.get_button(5))+' '+str(j.get_button(6))+' '+str(j.get_button(7))+' '+str(j.get_button(8))+' '+str(j.get_button(9))+' '+str(j.get_button(10))+' '+str(j.get_button(11))
-            f=open(file_path.replace("joystick.py","joystick.txt"),'w')
+            f=open(file_path.replace("joystick.py","../program-datas/joystick.txt"),'w')
             f.write(txt)
             f.close()
         except KeyboardInterrupt:

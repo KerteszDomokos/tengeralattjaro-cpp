@@ -26,6 +26,9 @@ public slots:
     void cmdSlot(); //if the cmd_p line text has an enter
     void openCmd();
     void closeCmd();
+    QString pypath="C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe";
+    QString keppath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\program-datas\\kep.py";
+    QString joypath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\program-datas\\joystick.py";
 
 private:
     Ui::GUI *ui;

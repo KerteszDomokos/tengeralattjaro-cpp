@@ -16,6 +16,63 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="minimumSize">
+       <size>
+        <width>770</width>
+        <height>350</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>770</width>
+        <height>350</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Grafikák</string>
+      </property>
+      <widget class="QLabel" name="ad">
+       <property name="geometry">
+        <rect>
+         <x>12</x>
+         <y>28</y>
+         <width>431</width>
+         <height>301</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>kép</string>
+       </property>
+      </widget>
+      <widget class="QQuickWidget" name="horizont">
+       <property name="geometry">
+        <rect>
+         <x>458</x>
+         <y>33</y>
+         <width>300</width>
+         <height>300</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>300</height>
+        </size>
+       </property>
+       <property name="resizeMode">
+        <enum>QQuickWidget::SizeRootObjectToView</enum>
+       </property>
+      </widget>
+     </widget>
+    </item>
     <item row="1" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="minimumSize">
@@ -552,70 +609,6 @@ p, li { white-space: pre-wrap; }
       </widget>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="minimumSize">
-       <size>
-        <width>770</width>
-        <height>350</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>770</width>
-        <height>350</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Grafikák</string>
-      </property>
-      <widget class="QLabel" name="ad">
-       <property name="geometry">
-        <rect>
-         <x>12</x>
-         <y>28</y>
-         <width>431</width>
-         <height>301</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>kép</string>
-       </property>
-      </widget>
-      <widget class="QQuickWidget" name="horizont">
-       <property name="geometry">
-        <rect>
-         <x>458</x>
-         <y>33</y>
-         <width>300</width>
-         <height>300</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>300</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>300</height>
-        </size>
-       </property>
-       <property name="resizeMode">
-        <enum>QQuickWidget::SizeRootObjectToView</enum>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QQuickWidget" name="map">
-      <property name="resizeMode">
-       <enum>QQuickWidget::SizeRootObjectToView</enum>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="1">
      <widget class="QQuickWidget" name="magmer">
       <property name="minimumSize">
@@ -628,6 +621,32 @@ p, li { white-space: pre-wrap; }
        <size>
         <width>50</width>
         <height>1000000</height>
+       </size>
+      </property>
+      <property name="resizeMode">
+       <enum>QQuickWidget::SizeRootObjectToView</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QQuickWidget" name="map">
+      <property name="resizeMode">
+       <enum>QQuickWidget::SizeRootObjectToView</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QQuickWidget" name="compass">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>300</height>
        </size>
       </property>
       <property name="resizeMode">
@@ -825,7 +844,7 @@ p, li { white-space: pre-wrap; }
           <x>232</x>
           <y>23</y>
           <width>161</width>
-          <height>141</height>
+          <height>121</height>
          </rect>
         </property>
         <property name="font">
@@ -869,19 +888,6 @@ p, li { white-space: pre-wrap; }
          <enum>QSlider::NoTicks</enum>
         </property>
        </widget>
-       <widget class="QRadioButton" name="motegy">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>170</y>
-          <width>101</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Egyenlő motorok</string>
-        </property>
-       </widget>
        <widget class="QSlider" name="slid7">
         <property name="geometry">
          <rect>
@@ -921,6 +927,32 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="text">
          <string>Nullázás</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="serplot">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>150</y>
+          <width>101</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Serpot</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="motegy">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>170</y>
+          <width>111</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Egyenlő motorok</string>
         </property>
        </widget>
       </widget>
@@ -985,25 +1017,6 @@ p, li { white-space: pre-wrap; }
         <string>Erőforrássporolás</string>
        </property>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QQuickWidget" name="compass">
-      <property name="minimumSize">
-       <size>
-        <width>300</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="resizeMode">
-       <enum>QQuickWidget::SizeRootObjectToView</enum>
-      </property>
      </widget>
     </item>
    </layout>
@@ -1650,12 +1663,28 @@ p, li { white-space: pre-wrap; }
    <slot>cmdSlot()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>749</x>
-     <y>418</y>
+     <x>1570</x>
+     <y>429</y>
     </hint>
     <hint type="destinationlabel">
      <x>568</x>
      <y>473</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nullgomb</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>motorNull()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>379</x>
+     <y>1041</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1000</x>
+     <y>995</y>
     </hint>
    </hints>
   </connection>
@@ -1664,5 +1693,6 @@ p, li { white-space: pre-wrap; }
   <slot>closeCmd()</slot>
   <slot>openCmd()</slot>
   <slot>cmdSlot()</slot>
+  <slot>motorNull()</slot>
  </slots>
 </ui>

@@ -149,16 +149,6 @@ void GUI::fps()
 
 void GUI::update()
 {
-    int sl;
-    QString sliddat;
-    sl = ui->slid1->value();
-    sliddat = "Motor 1:\t"+ QString::number(sl);
-    sl = ui->slid2->value();
-    sliddat = sliddat +"\nMotor 2:\t" + QString::number(sl);
-    sl = ui->slid3->value();
-    sliddat = sliddat +"\nMotor közös:\t" + QString::number(sl);
-    ui-> slidText->setText(sliddat);
-
     joydat();
 
     QList<double> jd=get_joystickAdatok();
@@ -252,11 +242,39 @@ void GUI::update()
         ui->slid2->setValue(val);
     }
 
+//navigáció
+    int bmot=ui->slid1->value();
+    int jmot=ui->slid2->value();
+    int navmota=ui->slid5->value();
+    int navmotf=ui->slid4->value();
+    if(joystickAdatok.isEmpty()==0){
+        if (joystickAdatok[4]==1){
+            double elt=joystickAdatok[2]*200;
+            bmot=int(bmot+elt);
+            jmot=int(jmot-elt);
+        }
+        if (joystickAdatok[11]==1){
+            bmot=-200;
+            jmot=200;
+        }
+        if (joystickAdatok[14]==1){
+            bmot=200;
+            jmot=-200;
+        }
+    }
+
+    int sl;
+    QString sliddat;
+    sliddat = "Motor 1:\t"+ QString::number(bmot);
+    sliddat = sliddat +"\nMotor 2:\t" + QString::number(jmot);
+    sl = ui->slid3->value();
+    sliddat = sliddat +"\nMotor közös:\t" + QString::number(sl);
+    ui-> slidText->setText(sliddat);
 
     QList<double> idl;
 
     idl.append(0);//0 használatlan
-    idl.append(ui->slid2->value());//1 motor2 érték
+    idl.append(jmot);//1 motor2 érték
     idl.append(0);//2 mélységmérés
     idl.append(0);//3 tápegység állapot
     idl.append(0);//4 ballaszttartály1 állapot
@@ -265,9 +283,9 @@ void GUI::update()
     idl.append(0);//7 bal vezérsík - üres
     idl.append(0);//8 jobb vezérsík - üres
     idl.append(0);//9 motor reset kérés
-    idl.append(ui->slid1->value());//10 motor1 %
-    idl.append(ui->slid4->value());//11 Navigációs motor felső
-    idl.append(ui->slid5->value());//12 Navigációs motor alsó
+    idl.append(bmot);//10 motor1 %
+    idl.append(navmotf);//11 Navigációs motor felső
+    idl.append(navmota);//12 Navigációs motor alsó
     idl.append(0);//13 SSH reset kérés
     idl.append(0);//14 Küldés időpontja
     idl.append(0);//15 robotkar adatok ...
@@ -318,6 +336,13 @@ void GUI::closeCmd()
 {
     qDebug()<<"cmd bezárása";
     ui->cmdDock->setHidden(1);
+}
+
+void GUI::motorNull()
+{
+    ui->slid1->setValue(0);
+    ui->slid2->setValue(0);
+    ui->motegy->setChecked(0);
 }
 
 QString GUI::commands(QString comm)

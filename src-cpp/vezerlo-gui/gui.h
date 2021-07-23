@@ -29,6 +29,7 @@ public slots:
     void cmdSlot(); //if the cmd_p line text has an enter
     void openCmd();
     void closeCmd();
+    void motorNull();
 
 private:
     Ui::GUI *ui;
@@ -43,7 +44,7 @@ private:
     QProcess *pr2 ;
     QString elozoOlv="";
 public:
-    QString comH="comm - teszt parancs\nexit - program bezárása és kilépés\nPID(joy/kep) - kép vagy joy folyamat PID\nstop(Joy/Kep) - kép vagy joy folyamat megölése\ngetJoy - joystick adatai lekérése adott pillanatban";
+    QString comH="comm - teszt parancs\nexit - program bezárása és kilépés\nPID(joy/kep) - kép vagy joy folyamat PID\nstop(Joy/Kep) - kép vagy joy folyamat megölése\ngetJoy - joystick adatai lekérése adott pillanatban\nstart(Kep/Joy) - elindítja a folyamatot ha az még nem fut\n";
 
 };
 

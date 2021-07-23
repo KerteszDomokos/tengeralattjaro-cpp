@@ -34,7 +34,8 @@ private:
     void joydat();
     QList<double> joystickAdatok;
     QList<double> get_joystickAdatok();
-    QProcess *pr = new QProcess(this);
+    QProcess *pr ;
+    QProcess *pr2 ;
     QString elozoOlv="";
 
 

@@ -94,9 +94,18 @@ GUI::GUI(QWidget *parent)
     kt->start(30);
 
 
+
     //Joystick adatokat mentő program idítása
+    pr = new QProcess(this);
     QString file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\joystick.py";
     pr->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
+
+    //Kép adatokat mentő program indítása
+    pr2 = new QProcess(this);
+    file = "G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\kep.py";
+    pr2->start("C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe", QStringList() << file);
+
+
 
     //szál indítása
     std::thread ob(read);
@@ -110,9 +119,7 @@ GUI::GUI(QWidget *parent)
 GUI::~GUI()
 {
     pr->kill();//joystick folyamat befejezése
-    pr->kill();//joystick folyamat befejezése
-    pr->kill();//joystick folyamat befejezése
-
+    pr2->kill();//kép folyamat befejezése
     delete ui;
 }
 
@@ -324,16 +331,28 @@ QString GUI::commands(QString comm)
         }
         return "Joystick olvasott adatai:\n"+dat;
     }
-    else if(comm=="getProc"){
+    else if(comm=="PIDjoy"){
         QString dat;
         dat=QString::number(pr->processId());
         return "Joystick és kép továbbítás pID:\n"+dat;
     }
-    else if(comm=="stopPy"){
+    else if(comm=="PIDkep"){
+        QString dat;
+        dat=QString::number(pr2->processId());
+        return "Joystick és kép továbbítás pID:\n"+dat;
+    }
+    else if(comm=="stopJoy"){
         QString dat;
         pr->processId();
         pr->terminate();
         pr->kill();
+        return "Sikeres: "+dat;
+    }
+    else if(comm=="stopKep"){
+        QString dat;
+        pr2->processId();
+        pr2->terminate();
+        pr2->kill();
         return "Sikeres: "+dat;
     }
 

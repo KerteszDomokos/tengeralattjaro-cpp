@@ -21,6 +21,8 @@ public:
     QString pypath="C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe";
     QString keppath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\kep.py";
     QString joypath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\joystick.py";
+    //Üzenőfelület - 1:message, 2:warning, 3:error
+    void msg(QString txt, int priority);
 
 public slots:
     void closeApp(){close();}

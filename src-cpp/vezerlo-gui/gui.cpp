@@ -26,6 +26,7 @@
 #include <QImage>
 #include "sockread.h"
 #include <cmath>
+#include <QTextCursor>
 
 SockRead sock;
 
@@ -126,9 +127,10 @@ GUI::GUI(QWidget *parent)
 
 GUI::~GUI()
 {
+    delete ui;
     pr->kill();//joystick folyamat befejezése
     pr2->kill();//kép folyamat befejezése
-    delete ui;
+
 }
 
 
@@ -148,7 +150,6 @@ void GUI::fps()
     pid=pr2->processId();
     ui->kepPID->setText(QString::number(pid));
     if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");}else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");}
-
 }
 
 
@@ -158,6 +159,7 @@ void GUI::update()
     QList<double> jd=get_joystickAdatok();
     if(jd.isEmpty()==1){
         qDebug()<<"Üres joystickadatok";
+        msg("Üres joystickadatok",2);
     }
     else {
     if(ui->tabWidget->currentIndex()==1){
@@ -245,8 +247,7 @@ void GUI::update()
         ui->slid1->setValue(val);
         ui->slid2->setValue(val);
     }
-
-//navigáció
+    //navigáció
     int bmot=ui->slid1->value();
     int jmot=ui->slid2->value();
     int navmota=ui->slid5->value();
@@ -341,6 +342,7 @@ void GUI::cmdSlot()
     QString ures="";
     ui->cmd_p->show();
     qDebug() <<"Beírt parancs:"<< readedT;
+    msg("Parancssorba írt parancs: "+readedT,1);
     ui->cmd_p-> setText(ures);
     QString regiT = ui->command->toPlainText();
     ui->command-> setText(commands(readedT));
@@ -349,6 +351,7 @@ void GUI::cmdSlot()
 void GUI::openCmd()
 {
     qDebug()<<"cmd megnyitása";
+    msg("Parancssor megnyitása",1);
     ui->cmdDock->show();
     ui->cmdDock->activateWindow();
     ui->cmd_p->cursorWordForward(1);
@@ -357,6 +360,7 @@ void GUI::openCmd()
 void GUI::closeCmd()
 {
     qDebug()<<"cmd bezárása";
+    msg("Parancssor bezárása",1);
     ui->cmdDock->setHidden(1);
 }
 
@@ -470,6 +474,35 @@ QString GUI::stJ()
 }
 
 
+//Üzenőfelület - 1:message, 2:warning, 3:error
+void GUI::msg(QString txt, int priority=1)
+{
+    QString message=ui->output->toPlainText();
+
+    switch(priority){
+    case 1:
+        message=message+"MESSAGE - ";
+        break;
+    case 2:
+        message=message+"WARNING - ";
+        break;
+    case 3:
+        message=message+"ERROR - ";
+        break;
+    }
+
+    message=message+txt+"\n";
+
+    ui->output->setText(message);
+    ui->output->moveCursor(QTextCursor::End);
+    ui->output->setStyleSheet("body{font-size=12px;}");
+}
+
+
+
+
+
+
 //Szünettel elválasztott szöveget konvertál QList doubel ba
 QList<double> GUI::conv(QString str){
     QTextStream stream(&str);
@@ -491,6 +524,7 @@ void GUI::joydat()
 
     if (!file.open(QIODevice::ReadOnly)){
         qDebug()<<"Error in file read";
+        msg("Joystick fájl olvasásakor hiba",3);
         QMessageBox::information(0, "error", file.errorString());
         return;
         }

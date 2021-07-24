@@ -272,6 +272,9 @@ void GUI::update()
             jmot=-200;
         }
 
+        if (joystickAdatok[3]==1){//középső gomb egyenesen haladjon
+            bmot = jmot = (bmot + jmot)/2 ;
+        }
         if (ui->dmotjoy->isChecked()==1){
             if(joystickAdatok[1]*1023>0){
                 navmotf=int(joystickAdatok[1]*1023);
@@ -284,6 +287,7 @@ void GUI::update()
             ui->slid4->setValue(navmota);
             ui->slid5->setValue(navmotf);
         }
+
     }
 
     int sl;

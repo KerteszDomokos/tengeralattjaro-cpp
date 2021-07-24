@@ -3,6 +3,8 @@ QT += quickwidgets
 QT += concurrent
 QT += core
 QT += network
+QT += serialport
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -32,3 +34,6 @@ DISTFILES += \
     qml-files/magassag.qml \
     qml-files/map.qml \
     qml-files/teszt.qml
+
+
+win32: RC_ICONS = resources/program-icon.ico

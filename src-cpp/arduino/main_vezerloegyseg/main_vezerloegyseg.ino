@@ -60,7 +60,7 @@ int m=0;int n=0;int o=0;int p=0;int q=0;int r=0;int s=0;
 senderArray(dat);
 */
 sender(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s);
-delay(5);
+delay(20);
 }
 
 void senderArray(uint8_t arr[19]){

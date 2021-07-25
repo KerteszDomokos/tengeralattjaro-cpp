@@ -32,7 +32,7 @@ def kep():
             img = cv2.imdecode(np.fromstring(dat, dtype=np.uint8), 1)
             try:
                 # cv2.imshow('frame', img)
-                cv2.imwrite(file_path.replace("kep.py","../program-datas/live.jpg"),img)
+                cv2.imwrite("../vezerlo-gui/program-datas/live.jpg",img)
             except:
                 print('megjelenítés és mentés'+str(sys.exc_info()))
                 while True:

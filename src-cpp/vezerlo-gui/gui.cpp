@@ -90,11 +90,11 @@ GUI::GUI(QWidget *parent)
 
     QTimer *timer = new QTimer(this);//időzítők
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-    timer->start(6);
+    timer->start(20);
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
-    kt->start(30);
+    kt->start(50);
 
 
     QTimer *jd = new QTimer(this);
@@ -146,12 +146,17 @@ GUI::~GUI()
 
 void GUI::fps()
 {
-    QPixmap pm2 = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file
-    if (pm2.isNull()!=1){//ha a kép létezik:
-        ui->ad->setPixmap(pm2);
-        ui->ad->setScaledContents(false);
-    }
-
+    int sz;
+    //ujraproba:
+        sz++;
+        QPixmap pm2 = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file
+        if (pm2.isNull()!=1){//ha a kép létezik:
+            ui->ad->setPixmap(pm2);
+            ui->ad->setScaledContents(false);
+        }
+        else{
+           // if(sz<5){goto ujraproba;}
+        }
 
     //Külső folyamatok sikerességére vonatkozó adatok
     int pid=pr->processId();
@@ -160,6 +165,7 @@ void GUI::fps()
     pid=pr2->processId();
     ui->kepPID->setText(QString::number(pid));
     if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");}else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");}
+
 }
 
 
@@ -203,8 +209,8 @@ void GUI::update()
         if(olvasott[22]>0){dx=std::sqrt(pow(olvasott[22]-90,2));}else{dx=-(olvasott[22]+90);}
         if(olvasott[23]>0){dy=std::sqrt(pow(olvasott[23]-90,2));}else{dy=-(olvasott[23]+90);}
         QObject *object = ui->horizont->rootObject();
-        object->setProperty("pitchAngle", dx);//dőlés
-        object->setProperty("rollhAngle", dy);//forgás
+        object->setProperty("pitchAngle", -dx);//dőlés
+        object->setProperty("rollAngle", -dy);//forgás
 
     }
     if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
@@ -258,10 +264,20 @@ void GUI::update()
         ui->slid2->setValue(val);
     }
     //navigáció
-    int bmot=ui->slid1->value();
-    int jmot=ui->slid2->value();
+    int bmot;
+    int jmot;
+    if(ui->serplot->isChecked()==0){
+        bmot=ui->slid1->value();
+        jmot=ui->slid2->value();
+    }
+    else{
+        bmot=serDat[0];
+        jmot=serDat[1];
+        ui->motegy->setChecked(0);
+    }
     int navmota=ui->slid5->value();
     int navmotf=ui->slid4->value();
+
     if(joystickAdatok.size()>=14){
         if (joystickAdatok[4]==1){
             double elt=joystickAdatok[2]*200;
@@ -298,6 +314,10 @@ void GUI::update()
             ui->slid5->setValue(navmotf);
         }
 
+    }
+    if(ui->serplot->isChecked()==1){
+        ui->slid1->setValue(bmot);
+        ui->slid2->setValue(jmot);
     }
 
     int sl;
@@ -345,8 +365,14 @@ void GUI::update()
     kuldendo_mutex.lock();
     kuldendo=idl;
     kuldendo_mutex.unlock();
-
-
+    QString string;
+    for(int i=0; i<idl.size(); i++)
+    {
+        string += QString::number(idl[i]);
+        if(i<idl.size()-1)
+        string += "," ;
+    }
+    ui->nyersIrando->setText(string);
 
 }
 

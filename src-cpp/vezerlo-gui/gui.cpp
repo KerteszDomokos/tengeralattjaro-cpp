@@ -27,6 +27,8 @@
 #include "sockread.h"
 #include <cmath>
 #include <QTextCursor>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
 SockRead sock;
 
@@ -99,8 +101,6 @@ GUI::GUI(QWidget *parent)
     connect(jd, &QTimer::timeout, this, QOverload<>::of(&GUI::joydat));
     jd->start(1000*0.005);
 
-
-
     //Joystick adatokat mentő program idítása
     pr = new QProcess(this);
     QString file = joypath;
@@ -123,10 +123,20 @@ GUI::GUI(QWidget *parent)
     ui->elokep->setChecked(1);
     ui->cmdDock->setHidden(1);
 
+    mSerial = new QSerialPort(this);
+
+    connect(mSerial, &QSerialPort::readyRead,
+            this, &GUI::serkom);
+
+
+
+
+
 }
 
 GUI::~GUI()
 {
+    mSerial->close();
     delete ui;
     pr->kill();//joystick folyamat befejezése
     pr2->kill();//kép folyamat befejezése
@@ -296,6 +306,7 @@ void GUI::update()
     sliddat = sliddat +"\nMotor 2:\t" + QString::number(jmot);
     sl = ui->slid3->value();
     sliddat = sliddat +"\nMotor közös:\t" + QString::number(sl);
+    sliddat=sliddat+"\ncs1: " +QString::number(serDat[0])+"\ncs2: "+QString::number(serDat[1]);
     ui-> slidText->setText(sliddat);
 
     QList<double> idl;
@@ -373,6 +384,68 @@ void GUI::motorNull()
     ui->slid1->setValue(0);
     ui->slid2->setValue(0);
     ui->motegy->setChecked(0);
+}
+
+void GUI::serkom()
+{
+    QByteArray data = mSerial->readLine();
+    QString str = QString(data);
+    QList<int> id=convInt(str);
+    if(id != serDatElozo && id.size()>=19){
+        serDat=id;
+        serDatElozo=serDat;
+        ui->serNyers->setText(str);
+    }
+
+    mSerial->clear(QSerialPort::AllDirections);
+}
+
+void GUI::serKeres()
+{
+    msg("Portok frissítése",1);
+    mSerialPorts = QSerialPortInfo::availablePorts();
+
+    ui->serKomBox->clear();
+    ui->serKomBox->addItem("Nincs");
+    for (QSerialPortInfo port : mSerialPorts) {
+        ui->serKomBox->addItem(port.portName(), port.systemLocation());
+    }
+}
+
+void GUI::serConn()
+{
+    ui->csatlSer->setEnabled(false);
+    QString serialLoc  =  ui->serKomBox->currentData().toString();
+
+    if (mSerial->isOpen()) {
+        qDebug() << "Serial already connected, disconnecting!";
+        msg("Soros kapcsolat már aktív, újracsatlakozás",2);
+        mSerial->close();
+    }
+
+    mSerial->setPortName(serialLoc);
+    mSerial->setBaudRate(QSerialPort::Baud115200);
+    mSerial->setDataBits(QSerialPort::Data8);
+    mSerial->setParity(QSerialPort::NoParity);
+    mSerial->setStopBits(QSerialPort::OneStop);
+    mSerial->setFlowControl(QSerialPort::NoFlowControl);
+
+    if(mSerial->open(QIODevice::ReadWrite)) {
+        qDebug() << "SERIAL: OK!";
+        msg("Soros nyitás siekres",1);
+    } else {
+        qDebug() << "SERIAL: ERROR!";
+        msg("Soros nyitás siekrtelen",3);
+    }
+    mSerial->clear(QSerialPort::AllDirections);
+
+    ui->csatlSer->setEnabled(true);
+}
+
+void GUI::serDeconn()
+{
+    mSerial->close();
+    msg("Soros lecsatlakozás",2);
 }
 
 QString GUI::commands(QString comm)
@@ -511,6 +584,17 @@ void GUI::msg(QString txt, int priority=1)
 QList<double> GUI::conv(QString str){
     QTextStream stream(&str);
     QList<double> array;
+    while (!stream.atEnd()) {
+        double number;
+        stream >> number;
+        array.append(number);
+    }
+    return array;
+
+}
+QList<int> GUI::convInt(QString str){
+    QTextStream stream(&str);
+    QList<int> array;
     while (!stream.atEnd()) {
         double number;
         stream >> number;

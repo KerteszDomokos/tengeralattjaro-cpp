@@ -32,8 +32,6 @@
 
 SockRead sock;
 
-QByteArray kepadat;
-std::mutex kepadat_mutex;
 
 QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
@@ -95,6 +93,10 @@ GUI::GUI(QWidget *parent)
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
     kt->start(50);
+
+    QTimer *friss = new QTimer(this);
+    connect(friss, &QTimer::timeout, this, QOverload<>::of(&GUI::updateKommData));
+    friss->start(2);
 
 
     QTimer *jd = new QTimer(this);
@@ -197,9 +199,7 @@ void GUI::update()
         }
     }
 
-    bejovo_mutex.lock();
-    olvasott=conv(bejovo);
-    bejovo_mutex.unlock();
+    olvasott=conv(bejovoFriss);
 
     double dx;
     double dy;
@@ -362,9 +362,8 @@ void GUI::update()
     //qDebug()<<idl;
 
 
-    kuldendo_mutex.lock();
-    kuldendo=idl;
-    kuldendo_mutex.unlock();
+    kuldendoFriss=idl;
+
     QString string;
     for(int i=0; i<idl.size(); i++)
     {
@@ -410,6 +409,18 @@ void GUI::motorNull()
     ui->slid1->setValue(0);
     ui->slid2->setValue(0);
     ui->motegy->setChecked(0);
+}
+
+void GUI::updateKommData()
+{
+    bejovo_mutex.lock();
+    bejovoFriss=bejovo;
+    bejovo_mutex.unlock();
+
+    kuldendo_mutex.lock();
+    kuldendo=kuldendoFriss;
+    kuldendo_mutex.unlock();
+
 }
 
 void GUI::serkom()

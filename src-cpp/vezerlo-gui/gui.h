@@ -34,6 +34,7 @@ public slots:
     void openCmd();
     void closeCmd();
     void motorNull();
+    void updateKommData();
 private slots:
     void serkom();
     void serKeres();
@@ -53,6 +54,8 @@ private:
     QProcess *pr ;
     QProcess *pr2 ;
     QString elozoOlv="";
+    QString bejovoFriss="";
+    QList<double> kuldendoFriss;
 public:
     QString comH="comm - teszt parancs\nexit - program bezárása és kilépés\nPID(joy/kep) - kép vagy joy folyamat PID\nstop(Joy/Kep) - kép vagy joy folyamat megölése\ngetJoy - joystick adatai lekérése adott pillanatban\nstart(Kep/Joy) - elindítja a folyamatot ha az még nem fut\n";
     QList<QSerialPortInfo> mSerialPorts;

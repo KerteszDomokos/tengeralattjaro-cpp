@@ -148,9 +148,7 @@ GUI::~GUI()
 
 void GUI::fps()
 {
-    int sz;
     //ujraproba:
-        sz++;
         QPixmap pm2 = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file
         if (pm2.isNull()!=1){//ha a kép létezik:
             ui->ad->setPixmap(pm2);
@@ -310,8 +308,8 @@ void GUI::update()
                 navmota=int(-joystickAdatok[1]*1023);
                 navmotf=0;
             }
-            ui->slid4->setValue(navmota);
-            ui->slid5->setValue(navmotf);
+            ui->slid4->setValue(navmotf);
+            ui->slid5->setValue(navmota);
         }
 
     }
@@ -342,13 +340,13 @@ void GUI::update()
     idl.append(0);//8 jobb vezérsík - üres
     idl.append(0);//9 motor reset kérés
     idl.append(bmot);//10 motor1 %
-    idl.append(navmotf);//11 Navigációs motor felső
-    idl.append(navmota);//12 Navigációs motor alsó
+    idl.append(0);//11 --
+    idl.append(0);//12 --
     idl.append(0);//13 SSH reset kérés
     idl.append(0);//14 Küldés időpontja
     idl.append(0);//15 robotkar adatok ...
-    idl.append(0);//16 robotkar adatok ...
-    idl.append(0);//17 robotkar adatok ...
+    idl.append(navmotf);//16 Navigációs motor felső
+    idl.append(navmota);//17 Navigációs motor alsó
     idl.append(0);//18 robotkar adatok ...
     idl.append(0);//19 robotkar adatok ...
     idl.append(0);//20 robotkar adatok ...

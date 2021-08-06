@@ -35,6 +35,7 @@ public slots:
     void closeCmd();
     void motorNull();
     void updateKommData();
+
 private slots:
     void serkom();
     void serKeres();

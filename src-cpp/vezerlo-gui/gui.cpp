@@ -157,7 +157,6 @@ void GUI::fps()
         else{
            // if(sz<5){goto ujraproba;}
         }
-
     //Külső folyamatok sikerességére vonatkozó adatok
     int pid=pr->processId();
     ui->joyPID->setText(QString::number(pid));
@@ -167,6 +166,7 @@ void GUI::fps()
     if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");}else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");}
 
 }
+
 
 
 void GUI::update()
@@ -222,35 +222,64 @@ void GUI::update()
         }
         ui->nyersOlvasott->setText(string);
         if(olvasott.size()>26){
-            ui->foadatok_1->setItem(0,0, new QTableWidgetItem(QString::number(0)));//sebesség
-            ui->foadatok_1->setItem(0,1, new QTableWidgetItem(QString::number(dx)));//dőlés x
-            ui->foadatok_1->setItem(0,2, new QTableWidgetItem(QString::number(dy)));//dőlés y
-            ui->foadatok_1->setItem(0,3, new QTableWidgetItem(QString::number(olvasott[9])));//motorB
-            ui->foadatok_1->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[10])));//motorJ
-            ui->foadatok_1->setItem(0,5, new QTableWidgetItem(QString::number(olvasott[26])));//test iránya
-            ui->foadatok_2->setItem(0,0, new QTableWidgetItem(QString::number(0)));//döntőmotor felső
-            ui->foadatok_2->setItem(0,1, new QTableWidgetItem(QString::number(0)));//alsó
-            ui->foadatok_2->setItem(0,2, new QTableWidgetItem(QString::number(0)));//vízhőm
-            ui->foadatok_2->setItem(0,3, new QTableWidgetItem(QString::number(0)));//wifi jelerősség
-            ui->foadatok_2->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[12])));//nyomás
-            ui->foadatok_2->setItem(0,5, new QTableWidgetItem(QString::number(olvasott[0])));//sikerese a komm
-            ui->foadatok_3->setItem(0,0, new QTableWidgetItem(QString::number(olvasott[5])));//belső hőm
-            ui->foadatok_3->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[7])));//DHT hőm
-            ui->foadatok_3->setItem(0,2, new QTableWidgetItem(QString::number(olvasott[8])));//páratart
-            ui->foadatok_3->setItem(0,3, new QTableWidgetItem(QString::number(olvasott[1])));//belső víz
-            ui->foadatok_3->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[21])));//rpi proc
-            ui->foadatok_3->setItem(0,5, new QTableWidgetItem(QString::number(olvasott[20])));// serbuff fedélzet
-            ui->foadatok_4->setItem(0,0, new QTableWidgetItem(QString::number(olvasott[11])));//5vakk1 raspi akku
-            ui->foadatok_4->setItem(0,1, new QTableWidgetItem(QString::number(olvasott[13])));//12vakku1 motor
-            ui->foadatok_4->setItem(0,2, new QTableWidgetItem(QString::number(0)));//5v masodlagos
-            ui->foadatok_4->setItem(0,3, new QTableWidgetItem(QString::number(0)));//12v masodlagos
-            ui->foadatok_4->setItem(0,4, new QTableWidgetItem(QString::number(olvasott[4])));//csp1
-            ui->foadatok_4->setItem(0,5, new QTableWidgetItem(QString::number(0)));//csp2
+QTableWidgetItem *i;
+QColor red(QColor("red"));
+QColor green(QColor("green"));
+ui->foadatok_1->setItem(0,0, i = new QTableWidgetItem(QString::number(0)));//sebesség
+    if(0 > 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_1->setItem(0,1, i = new QTableWidgetItem(QString::number(dx)));//dőlés x
+    if(dx > 30 || dx < -30){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_1->setItem(0,2, i = new QTableWidgetItem(QString::number(dy)));//dőlés y
+    if(dy > 30|| dy < -30){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_1->setItem(0,3, i = new QTableWidgetItem(QString::number(olvasott[9])));//motorB
+    if(0 > 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_1->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[10])));//motorJ
+    if(0 > 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_1->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[26])));//test iránya
+ui->foadatok_2->setItem(0,0, i = new QTableWidgetItem(QString::number(0)));//döntőmotor felső
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_2->setItem(0,1, i = new QTableWidgetItem(QString::number(0)));//alsó
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_2->setItem(0,2, i = new QTableWidgetItem(QString::number(0)));//vízhőm
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_2->setItem(0,3, i = new QTableWidgetItem(QString::number(0)));//wifi jelerősség
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_2->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[12])));//nyomás
+    if(olvasott[12] > 10){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_2->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[0])));//sikerese a komm
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_3->setItem(0,0, i = new QTableWidgetItem(QString::number(olvasott[5])));//belső hőm
+    if(olvasott[5]> 30){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_3->setItem(0,1, i = new QTableWidgetItem(QString::number(olvasott[7])));//DHT hőm
+    if(olvasott[7]> 30){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_3->setItem(0,2, i = new QTableWidgetItem(QString::number(olvasott[8])));//páratart
+    if(olvasott[8]> 70){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_3->setItem(0,3, i = new QTableWidgetItem(QString::number(olvasott[1])));//belső víz
+    if(olvasott[1]> 20){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_3->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[21])));//rpi proc
+    if(olvasott[21]> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_3->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[20])));// serbuff fedélzet
+    if(olvasott[20]> 1000){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_4->setItem(0,0, i = new QTableWidgetItem(QString::number(olvasott[11])));//5vakk1 raspi akku
+    if(olvasott[11]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_4->setItem(0,1, i = new QTableWidgetItem(QString::number(olvasott[13])));//12vakku1 motor
+    if(olvasott[13]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_4->setItem(0,2, i = new QTableWidgetItem(QString::number(0)));//5v masodlagos
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_4->setItem(0,3, i = new QTableWidgetItem(QString::number(0)));//12v masodlagos
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_4->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[4])));//csp1
+    if(olvasott[4]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp2
+    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+
 
             QObject *object2 = ui->magmer->rootObject();
             object2->setProperty("alt", olvasott[12]*10);//magasság
             QObject *object3 = ui->compass->rootObject();
             object3->setProperty("fok", olvasott[26]);//iránytű adatai
+
+
         }
     }
 //    if (joystickAdatok.size()>2){}
@@ -609,6 +638,7 @@ void GUI::msg(QString txt, int priority=1)
     ui->output->moveCursor(QTextCursor::End);
     ui->output->setStyleSheet("body{font-size=12px;}");
 }
+
 
 
 

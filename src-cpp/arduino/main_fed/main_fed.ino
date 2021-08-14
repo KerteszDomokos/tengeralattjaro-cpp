@@ -100,6 +100,7 @@ karBolintoa.attach(KAR_BOLINTO_ALSO);
 karBolintof.attach(KAR_BOLINTO_FELSO);
 RAD_s.attach(RAD_servop);
 RAD_s.write(90);
+delay(1000);
 
 myArray[3]=1;
 
@@ -182,9 +183,10 @@ if (millis()-lastCom>10000){
 }
 }
 void radar(){
-  int tav=tavm(1);
-
-  RAD_adatok[RAD_pos]=tav;
+  int atlag;    
+  atlag=tavm(1);  //atlag=atlag+tavm(1);atlag=atlag+tavm(1);atlag=atlag+tavm(1);atlag=atlag+tavm(1);
+  
+  RAD_adatok[RAD_pos]=atlag;//5;
   
   RAD_pos++;
   if(RAD_pos==19){RAD_pos=0;}
@@ -407,7 +409,7 @@ int tavm(int sz)
   digitalWrite(RAD_trig,0);
   long ido;
   ido = pulseIn(RAD_echo,HIGH,10000);
-  int tav = 0.0345*ido/2;
+  int tav = 0.1496*ido/2;
   if (tav==0){error(2);}
   return tav;
   }

@@ -301,16 +301,16 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
              int fok=(olvasott[12]-i)*5+45;
              int tav=std::cos(rad(fok-90))*olvasott[13+i];
              int x=std::sin(rad(fok-90))*olvasott[13+i];
-             x=200+(x*10);
+             x=200+(x*2);
 
             QObject *rect = object->findChild<QObject*>("p"+QString::number(fid));
 
                 if (rect){
                     rect->setProperty("x", QString::number(x));
-                    rect->setProperty("y", QString::number(300-(tav*10)));
+                    rect->setProperty("y", QString::number(300-(tav*2)));
                 }
                 else{
-                    msg("Qml radar adatbellítás sikertelen (!rect)",3);
+                    msg("Qml radar adatbellítás sikertelen (!rect)",2);
                 }
             }
 

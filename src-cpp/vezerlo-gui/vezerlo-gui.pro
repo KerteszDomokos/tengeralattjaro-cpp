@@ -4,6 +4,7 @@ QT += concurrent
 QT += core
 QT += network
 QT += serialport
+QT += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -33,7 +34,8 @@ DISTFILES += \
     qml-files/joy.qml \
     qml-files/magassag.qml \
     qml-files/map.qml \
-    qml-files/teszt.qml
+    qml-files/teszt.qml \
+    qml-files/radar.qml \
 
 
 win32: RC_ICONS = resources/program-icon.ico

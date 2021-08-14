@@ -80,6 +80,8 @@ GUI::GUI(QWidget *parent)
     ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/magassag.qml"));
     ui->compass->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/compass.qml"));
 //    ui->map->setSource(QUrl::fromLocalFile("../vezerlo-gui/map.qml"));
+    ui->radarG->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/radar.qml"));
+
 
     QPixmap pm = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file
     ui->ad->setPixmap(pm);
@@ -129,7 +131,6 @@ GUI::GUI(QWidget *parent)
 
     connect(mSerial, &QSerialPort::readyRead,
             this, &GUI::serkom);
-
 
 
 
@@ -275,9 +276,43 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
 
             QObject *object2 = ui->magmer->rootObject();
-            object2->setProperty("alt", olvasott[12]*10);//magasság
+            object2->setProperty("alt", olvasott[12]);//magasság
             QObject *object3 = ui->compass->rootObject();
             object3->setProperty("fok", olvasott[26]);//iránytű adatai
+
+            QString radaradat="Szög: "+QString::number(olvasott[12]*5+45)+"\n"+
+                              "-4: "+QString::number(olvasott[13])+"\n"+
+                              "-3: "+QString::number(olvasott[14])+"\n"+
+                              "-2: "+QString::number(olvasott[15])+"\n"+
+                              "-1: "+QString::number(olvasott[16])+"\n"+
+                              "Friss: "+QString::number(olvasott[17]);
+            ui->radar->setText(radaradat);
+
+
+
+            QObject *object = ui->radarG->rootObject();
+
+            for (int i; i<5; i++){
+             int fid = olvasott[12]-5+i;
+             if(fid<=0){
+                 fid=18+fid;
+             }
+
+             int fok=(olvasott[12]-i)*5+45;
+             int tav=std::cos(rad(fok-90))*olvasott[13+i];
+             int x=std::sin(rad(fok-90))*olvasott[13+i];
+             x=200+(x*10);
+
+            QObject *rect = object->findChild<QObject*>("p"+QString::number(fid));
+
+                if (rect){
+                    rect->setProperty("x", QString::number(x));
+                    rect->setProperty("y", QString::number(300-(tav*10)));
+                }
+                else{
+                    msg("Qml radar adatbellítás sikertelen (!rect)",3);
+                }
+            }
 
 
         }
@@ -448,6 +483,12 @@ void GUI::updateKommData()
     kuldendo=kuldendoFriss;
     kuldendo_mutex.unlock();
 
+}
+
+double GUI::rad(double degree)
+{
+    double pi = 3.14159265359;
+    return (degree * (pi / 180));
 }
 
 void GUI::serkom()

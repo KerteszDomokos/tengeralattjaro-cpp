@@ -6,6 +6,7 @@
 #include <QProcess>
 #include <QSerialPortInfo>
 #include <QSerialPort>
+#include <QQmlApplicationEngine>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -25,6 +26,8 @@ public:
     QString joypath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\joystick.py";
     //Üzenőfelület - 1:message, 2:warning, 3:error
     void msg(QString txt, int priority);
+    double rad(double degree);
+
 
 public slots:
     void closeApp(){close();}

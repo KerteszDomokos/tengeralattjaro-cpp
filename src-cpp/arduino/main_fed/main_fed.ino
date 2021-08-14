@@ -9,6 +9,8 @@
 #define WSens 15
 #define trig 30
 #define echo 31
+#define RAD_trig 35
+#define RAD_echo 34
 #define csp1 0
 #define m1 4
 #define m2 5
@@ -23,6 +25,8 @@
 #define raspiAkk_PIN 14
 #define PWM_M1 10
 #define PWM_M2 11
+#define RAD_servop 2
+
 
 #define KAR_ALSO 6
 #define KAR_FORGATO 7
@@ -34,6 +38,8 @@ Servo sb;
 Servo sj;
 Servo mb;
 Servo mj;
+Servo RAD_s;
+
 
 Servo karAlso;
 Servo karForgato;
@@ -67,6 +73,8 @@ bool ledSet_vill;
 long ledTime;
 bool releLetilt;
 long milltime2;
+int RAD_pos=9;
+int RAD_adatok[18];
 
 //kommunikáció
 int myArray[20];
@@ -79,6 +87,7 @@ void setup()
 {
 Serial.begin(115200);
 pinMode(trig,OUTPUT);pinMode(echo,INPUT);
+pinMode(RAD_trig,OUTPUT);pinMode(RAD_echo,INPUT);
 pinMode(m1,OUTPUT); pinMode(m2, OUTPUT);
 pinMode(r1,OUTPUT); pinMode(r2, OUTPUT);
 pinMode(OK_LED_Z,OUTPUT);
@@ -89,6 +98,8 @@ karAlso.attach(KAR_ALSO);
 karForgato.attach(KAR_FORGATO);
 karBolintoa.attach(KAR_BOLINTO_ALSO);
 karBolintof.attach(KAR_BOLINTO_FELSO);
+RAD_s.attach(RAD_servop);
+RAD_s.write(90);
 
 myArray[3]=1;
 
@@ -105,9 +116,11 @@ void loop()
   ledSet(ledAllapot);
   motorReset=motorSet(0,motorReset);
   
-  if (millis()-milltime2>20)    //Robotkar beállítása
+  if (millis()-milltime2>50)    //Robotkar beállítása
   {
+    milltime2=millis();
     robotkarSet();
+    radar();
   }
     if (millis()-mtime>300 || millis()%300==0)    
   {
@@ -127,10 +140,10 @@ void loop()
     lastCom=millis();
     }
 
-if (millis()-kommill>10) //Kommunikáció, és adatgyűjtés
+if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
 {
   kommill=millis();
-  //int mely = tavm();
+  //int mely = tavm(0);
   //mely=0;
   checkCom();
   bviz=analogRead(WSens);
@@ -139,7 +152,8 @@ if (millis()-kommill>10) //Kommunikáció, és adatgyűjtés
   //motorJobbRead=myArray[0];
   int raspiAkk = analogRead(raspiAkk_PIN);
   //kommunikáció:
-  rpikom(komms,bviz,mely,err_k(),analogRead(csp1),h1,h2,h3,hum,motorBalRead,motorJobbRead,raspiAkk,12,13,14,15,16,17,18);
+  rpikom(komms,bviz,mely,err_k(),analogRead(csp1),h1,h2,h3,hum,motorBalRead,motorJobbRead,raspiAkk,
+  RAD_pos,RAD_adatok[RAD_pos-4],RAD_adatok[RAD_pos-3],RAD_adatok[RAD_pos-2],RAD_adatok[RAD_pos-1],RAD_adatok[RAD_pos],18);
   
   komms=0;
   vegrehajt();
@@ -167,7 +181,16 @@ if (millis()-lastCom>10000){
   vesz();
 }
 }
+void radar(){
+  int tav=tavm(1);
 
+  RAD_adatok[RAD_pos]=tav;
+  
+  RAD_pos++;
+  if(RAD_pos==19){RAD_pos=0;}
+  
+  RAD_s.write((RAD_pos*5)+45);
+}
 void vegrehajt()
 {
   //motorok beállítása
@@ -185,7 +208,7 @@ void vegrehajt()
   melymeresb=1;
 //mélységmérés kérése
   if (myArray[2]==1){
-    mely = tavm();
+    mely = tavm(0);
   }
 //vezérsíkok beállítása - törölt
 
@@ -354,15 +377,17 @@ bool ellenorzes()
     problem++;
   }
   else{retlist[0]=0;}
+  /*
   if(tavm<krittav)
   {
     retlist[0]=1;
     problem++;
-  }
+  }*/
 }
 
-int tavm()
+int tavm(int sz)
 {
+  if(sz==0){
   digitalWrite(trig,0);
   delayMicroseconds(5);
   digitalWrite(trig,1);
@@ -373,7 +398,21 @@ int tavm()
   int tav = 0.0345*ido/2;
   if (tav==0){error(2);}
   return tav;
+  }
+    if(sz==1){
+  digitalWrite(RAD_trig,0);
+  delayMicroseconds(5);
+  digitalWrite(RAD_trig,1);
+  delayMicroseconds(10);
+  digitalWrite(RAD_trig,0);
+  long ido;
+  ido = pulseIn(RAD_echo,HIGH,10000);
+  int tav = 0.0345*ido/2;
+  if (tav==0){error(2);}
+  return tav;
+  }
 }
+
 
 double fm(int Apin){ //just 12v 
   int f=analogRead(Apin)*11/204.6;

@@ -18,13 +18,13 @@
 8: Páratartalom  
 9: Motor bal mért erő (nullért kivonva)  
 10: Motor jobb mért erő (nullért kivonva)  
-11: Raspi akkumlátor analog  
-12: -
-13: -
-14: -
-15: -
-16: -
-17: -
+11: Raspi akkumlátor analog   
+12: RAD jelenlegi mérés azonosító szám (array id)  
+13: RAD jelenlegi mérés előtt -4  
+14: RAD jelenlegi mérés előtt -3  
+15: RAD jelenlegi mérés előtt -2  
+16: RAD jelenlegi mérés előtt -1  
+17: RAD legfrissebb mérés
 18: -
 19:  
 20: Soros komm buffer size  
@@ -167,4 +167,19 @@
 - Home passwd: NJk3fdstksj4
 
 
+### Matekok  
+    | \  
+    |al\  
+    |   \  
+    |b   \ c  
+    |     \  
+    | .    \  
+     -------  
+        a
+c - mért távolság 
+al - elfordulási szög 90-érkező szög=al  
+b - valós távolság  
+a - mérőtől oldalirányú eltérés 
 
+b = acos(al)*c  
+a = asin(al)*c  

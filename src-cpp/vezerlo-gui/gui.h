@@ -44,12 +44,12 @@ private slots:
     void serKeres();
     void serConn();
     void serDeconn();
+    QString stK();
+    QString stJ();
 
 private:
     Ui::GUI *ui;
     QString commands(QString comm) ;
-    QString stK();
-    QString stJ();
     QList<double> conv(QString str);
     QList<int> convInt(QString str);
     void joydat();

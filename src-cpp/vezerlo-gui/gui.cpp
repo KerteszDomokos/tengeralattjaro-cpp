@@ -36,7 +36,7 @@ SockRead sock;
 QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
 
-QList<double> kuldendo;
+QList<double> kuldendo={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 std::mutex kuldendo_mutex;
 
 
@@ -161,10 +161,14 @@ void GUI::fps()
     //Külső folyamatok sikerességére vonatkozó adatok
     int pid=pr->processId();
     ui->joyPID->setText(QString::number(pid));
-    if (pid==0){ui->joyPID->setStyleSheet("QLineEdit {background-color: red;}");}else{ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");}
+    if (pid==0){ui->joyPID->setStyleSheet("QLineEdit {background-color: red;}");ui->startJoyb->setEnabled(true);}
+    else{ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");ui->startJoyb->setEnabled(false);}
     pid=pr2->processId();
     ui->kepPID->setText(QString::number(pid));
-    if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");}else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");}
+    if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");ui->startKepb->setEnabled(true);}
+    else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");ui->startKepb->setEnabled(false);}
+
+
 
 }
 
@@ -179,7 +183,7 @@ void GUI::update()
         msg("Üres joystickadatok",2);
     }
     else {
-    if(ui->tabWidget->currentIndex()==1){
+    if(ui->joyon->isChecked()==1){
         QObject *object = ui->joyh->rootObject();
         object->setProperty("b1", joystickAdatok[3]);
         object->setProperty("b2", joystickAdatok[4]);
@@ -288,7 +292,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
                               "Friss: "+QString::number(olvasott[17]);
             ui->radar->setText(radaradat);
 
-
+        if(ui->radaron->isChecked()==1){
 
             QObject *object = ui->radarG->rootObject();
 
@@ -314,7 +318,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
                 }
             }
 
-
+          }
         }
     }
 //    if (joystickAdatok.size()>2){}
@@ -404,14 +408,14 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(0);//8 jobb vezérsík - üres
     idl.append(0);//9 motor reset kérés
     idl.append(bmot);//10 motor1 %
-    idl.append(0);//11 --
-    idl.append(0);//12 --
+    idl.append(0);//--
+    idl.append(ui->radaron->isChecked());//12 radar kibe
     idl.append(0);//13 SSH reset kérés
     idl.append(0);//14 Küldés időpontja
     idl.append(0);//15 robotkar adatok ...
     idl.append(navmotf);//16 Navigációs motor felső
     idl.append(navmota);//17 Navigációs motor alsó
-    idl.append(0);//18 robotkar adatok ...
+    idl.append(ui->kameraon->isChecked());//18 élő kép kérés
     idl.append(0);//19 robotkar adatok ...
     idl.append(0);//20 robotkar adatok ...
     idl.append(0);//20 robotkar adatok ...

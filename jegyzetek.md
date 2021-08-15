@@ -50,8 +50,8 @@
 4: ballaszttartály 1 áll. %  
 5: ballaszttartály 2 áll. %  
 6: hűtőventillátor %  
-7: bal vezérsík  
-8: jobb vezérsík   
+7: --
+8: Radar működés 
 9: Motor resetelésének kérése  
 10: motor1 %-os érték  
 11: Raspi akkumlátor analog  
@@ -63,7 +63,7 @@
 
 16: Navigációs motor PWM 1  
 17: Navigációs motor PWM 1 
-18:
+18: Élő kép kérés   
 19:  
 20: SSH újraindítás  
 21: Küldés időpontja a time.time()-t használva. Ezzel meghatározható a frissebb adat. hozzáadva mindig a küldés előtt közvetlenül. Másra nem használható! 
@@ -81,8 +81,8 @@
 4: ballaszttartály 1 áll. %  
 5: ballaszttartály 2 áll. %  
 6: hűtőventillátor %  
-7: bal vezérsík  
-8: jobb vezérsík   
+7: -- 
+8: radar on?   
 9: Motor resetelésének kérése  
 10: motor1 %-os érték
 11:  
@@ -181,5 +181,5 @@ al - elfordulási szög 90-érkező szög=al
 b - valós távolság  
 a - mérőtől oldalirányú eltérés 
 
-b = acos(al)*c  
-a = asin(al)*c  
+b = cos(al)*c  
+a = sin(al)*c  

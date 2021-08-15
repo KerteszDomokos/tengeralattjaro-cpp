@@ -4,7 +4,8 @@ QT += multimedia
 QT -= gui
 
 CONFIG += c++11
-CONFIG += config
+CONFIG += console
+CONFIG += multimedia
 
 SOURCES += \
     main.cpp

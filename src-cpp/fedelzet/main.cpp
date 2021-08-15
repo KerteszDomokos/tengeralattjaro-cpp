@@ -1,27 +1,39 @@
-#define PY_SSIZE_T_CLEAN
 
-#include <QApplication>
 
-#include <QCamera>
-#include <QCameraImageCapture>
-#include <QCameraInfo>
+
+
+#include <QtMultimedia/QCamera>
+#include <QtMultimedia/QCameraImageCapture>
+#include <QtMultimedia/QCameraInfo>
 #include <QImage>
 #include <iostream>
+#include <QDebug>
+#include <QList>
 
-
-
-QByteArray device = QCamera::availableDevices()[0];
-        QCamera camera(device);
-        QVideoWidget surface;
-        surface.resize(320, 240);
-        camera.setViewfinder(&surface);
+bool checkCameraAvailability()
+{
+    if (QCameraInfo::availableCameras().count() > 0)
+        return true;
+    else
+        return false;
+}
 
 
 int main()
 {
-    QCamera camera(device);
-    QImage img = camera.getQImage(); //take the image buffer of camera
+    const QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
+qDebug()<<cameras;
+    QCamera camera(cameras[0]);
+    QCameraImageCapture imCap(camera);
+    camera.setCaptureMode(QCamera::CaptureStillImage);
+    camera.start();
+    camera.searchAndLock();
+    imCap.capture();
+    camera.unlock();
+
+
+
+    QImage img = imCap.getQImage(); //take the image buffer of camera
     img.save("test.jpg");
     return 0;
 }
-

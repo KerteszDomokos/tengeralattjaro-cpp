@@ -32,7 +32,7 @@ def prl(txt,kiiras=0):
 
 
 
-def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):
+def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):#kamera
     maxImg=100
     class FrameSegment(object):
         """ 
@@ -41,7 +41,7 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):
         """
         MAX_DGRAM = 2**16
         MAX_IMAGE_DGRAM = MAX_DGRAM - 64 # extract 64 bytes in case UDP frame overflown
-        def __init__(self, sock, port, addr="169.254.51.13"):
+        def __init__(self, sock, port, addr="192.168.31.170"):
             self.s = sock
             self.port = port
             self.addr = addr
@@ -53,7 +53,7 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):
             """
             img2=cv2.resize(img,(448,336))
             compress_img = cv2.imencode('.jpg', img2)[1]
-            dat = compress_img.tostring()
+            dat = compress_img.tobytes()
             size = len(dat)
             count = math.ceil(size/(self.MAX_IMAGE_DGRAM))
             array_pos_start = 0
@@ -89,7 +89,18 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):
         out.release()
         
         
-
+    def camopen():
+        i=0
+        while i<6:
+            cap = cv2.VideoCapture(i)
+            i=i+1
+            if cap.isOpened():
+                prl("Sikeres kamera nyitás",1)
+                return cap
+                break
+        if cap.isOpened()==0:
+            pre("Hiba a kamera nyitásánál")
+        return cap
 
     def main():
         """ Top level main function """
@@ -99,37 +110,21 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):
 
         fs = FrameSegment(s, port)
         #indexelés, for, próbálgat cap.isOpened() al
-        i=0        
         print(udp_readed_u[:])
-        while i<6:
-            cap = cv2.VideoCapture(i)
-            i=i+1
-            if cap.isOpened():
-                kh=0
-                prl("Sikeres kamera nyitás",1)
-                break
-        if cap.isOpened()==0:
-            pre("Hiba a kamera nyitásánál")
-            kh=1
-        i=0
+        cap=cv2.VideoCapture(10)
         try:
-            while kh==0:
-                if (udp_readed_u[11]==1):
-                    # print('Kamera kezdés')
-                    i=0
-                    while i<6:
-                        cap = cv2.VideoCapture(i)
-                        i=i+1
-                        if cap.isOpened():
-                            print('Sikeres kamera nyitás')
-                            break
-                if udp_readed_u[11]==0:
-                    # print('Kamera befejezés')
+            while True:
+                if udp_readed_u[18]==1 and cap.isOpened()==0:
+                    print('Kamera kezdés')
+                    cap=camopen()
+                if udp_readed_u[18]==0 and cap.isOpened()==1:
+                    print('Kamera befejezés')
                     cap.release()
-                    while udp_readed_u[11]==0: 
-                        if udp_readed_u[11]==1: break
+                    while udp_readed_u[18]==0: 
+                        if udp_readed_u[18]==1: break
 
-                while (cap.isOpened() and udp_readed_u[11]==1):
+                i=0
+                while (cap.isOpened()) and udp_readed_u[18]==1:
                     _, frame = cap.read()
                     fs.udp_frame(frame)
                     if gyro_u[3]==1:
@@ -148,7 +143,7 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):
         cap.release()
         cv2.destroyAllWindows()
         s.close()
-    # main()
+    main()
     
 
 
@@ -199,7 +194,7 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
                     prl('Soros porton olvasott adat: '+str(list_))
                     save(list_)
                     
-                    if ser.inWaiting()>2000:
+                    if ser.inWaiting()>2600:
                         ser.flushInput()
                         pre('Delete input buffer')
                         #time.sleep(.19)
@@ -263,7 +258,7 @@ def gy(serw_g,serr_g,gyro_g, udp_g,bdatas_g):
     #devices address
     MPU_Address = 0x68 
     GY_Address  = 0x1E
-    prl('I2C kezdés',1)
+   
 
     def calc(ax,ay,az,T): # az itteni számításokat a csillagászatos füzet utolsó oldalán végeztem
         zxc=math.sqrt(az**2+ax**2) #nyers gyorsulás adatok (ax;ay;az)
@@ -333,52 +328,72 @@ def gy(serw_g,serr_g,gyro_g, udp_g,bdatas_g):
         if(value > 32768):
             value = value - 65536
         return value
-    bus = smbus.SMBus(1) 	
-
-    MPU_Init()
-
-    timer=0
-    Gx=0
-    Gy=0
-    Gz=0
-
-    while True:
-        timer=0.01
+    
+    ex=0
+    while ex==0:
         try:
-            acc_x = read_raw_data(ACCEL_XOUT_H)
-            acc_y = read_raw_data(ACCEL_YOUT_H)
-            acc_z = read_raw_data(ACCEL_ZOUT_H)
-            gyro_x = read_raw_data(GYRO_XOUT_H)
-            gyro_y = read_raw_data(GYRO_YOUT_H)
-            gyro_z = read_raw_data(GYRO_ZOUT_H)
-            temp=read_raw_data(TEMP_OUT)
-            gyro_g[3]=calcCom()
+            prl('I2C kezdés',1)
+            bus = smbus.SMBus(1) 	
+
+            MPU_Init()
+            Magnetometer_Init()
+
+            timer=0
+            Gx=0
+            Gy=0
+            Gz=0
+        except KeyboardInterrupt:
+            ex=1
+            break
         except OSError:
-            pre('MPU6050 csatlakozóhiba')
-            errlist.append(4)
-            serr_g[3]=4
-            break
-
+            pre("I/O error")
+            time.sleep(.1)
         except:
-            pre('Ismeretlen hiba')
-            errlist.append(5)
-            serr_g[3]=5
-            break
-        Ax = acc_x/2048.0
-        Ay = acc_y/2048.0
-        Az = acc_z/2048.0
+            time.sleep(.1)
 
-        Gx = gyro_x/131.0
-        Gy = gyro_y/131.0
-        Gz = gyro_z/131.0
-        calc(Ax,Ay,Az,temp)
-        try:
-            gyro_g[3] = calcCom()
-        except:
-            pre('Iránytű hiba'+str(sys.exc_info()))
-        #print ("Gx=%.2f" %Gx, u'\u00b0'+ "/s", "\tGy=%.2f" %Gy, u'\u00b0'+ "/s", "\tGz=%.2f" %Gz, u'\u00b0'+ "/s", "\tAx=%.2f g" %Ax, "\tAy=%.2f g" %Ay, "\tAz=%.2f g" %Az) 	
-        #prl(str(gyro_g[:]),1)
-        time.sleep(.01)
+        while True:
+            timer=0.01
+            try:
+                acc_x = read_raw_data(ACCEL_XOUT_H)
+                acc_y = read_raw_data(ACCEL_YOUT_H)
+                acc_z = read_raw_data(ACCEL_ZOUT_H)
+                gyro_x = read_raw_data(GYRO_XOUT_H)
+                gyro_y = read_raw_data(GYRO_YOUT_H)
+                gyro_z = read_raw_data(GYRO_ZOUT_H)
+                temp=read_raw_data(TEMP_OUT)
+                gyro_g[3]=calcCom()
+            except OSError:
+                pre('MPU6050 csatlakozóhiba')
+                errlist.append(4)
+                serr_g[3]=4
+                break
+            except KeyboardInterrupt:
+                ex=1
+                break
+            
+            except:
+                pre('Ismeretlen hiba')
+                errlist.append(5)
+                serr_g[3]=5
+                break
+            Ax = acc_x/2048.0
+            Ay = acc_y/2048.0
+            Az = acc_z/2048.0
+
+            Gx = gyro_x/131.0
+            Gy = gyro_y/131.0
+            Gz = gyro_z/131.0
+            calc(Ax,Ay,Az,temp)
+            try:
+                gyro_g[3] = calcCom()
+            except KeyboardInterrupt:
+                ex=1
+                break
+            except:
+                pre('Iránytű hiba'+str(sys.exc_info()))
+            #print ("Gx=%.2f" %Gx, u'\u00b0'+ "/s", "\tGy=%.2f" %Gy, u'\u00b0'+ "/s", "\tGz=%.2f" %Gz, u'\u00b0'+ "/s", "\tAx=%.2f g" %Ax, "\tAy=%.2f g" %Ay, "\tAz=%.2f g" %Az) 	
+            #prl(str(gyro_g[:]),1)
+            time.sleep(.01)
 
 def bdat(serw_us, serr_us,gyro_us, udp_us,bdatas_b):
     cpuR=cpu()
@@ -399,7 +414,7 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
     try:
         cpuR=cpu()
         lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        UDP_IP='192.168.31.169'#vevő ip címe
+        UDP_IP='192.168.31.170'#vevő ip címe
         UDP_PORT=6010
         udp = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
@@ -448,15 +463,18 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
                 dat2=dat1.replace("b'","")
                 dat3=dat2[:-1]
                 vegso=ast.literal_eval(dat3)
-                print(vegso)
+                # print(vegso)
                 
             except:
                 pre('Konvertálás sikertelen'+str(sys.exc_info()))
             try:
                 i=0
-                while i<21:
-                    udp_ut[i]=int(vegso[i])
-                    i=i+1
+                if (len(vegso)<21):
+                    pre("Index error: érkező adatok")
+                else:
+                    while i<21:
+                        udp_ut[i]=int(vegso[i])
+                        i=i+1
             except:
                 pre('Mentés sikertelen'+str(sys.exc_info())+str(i))
         except:
@@ -467,7 +485,7 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
 
 if __name__=="__main__":
     l=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    l2=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    l2=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     l3=[0,0,0,0,0]
     serr=Array('f',l2)
     serw=Array('i',l)

@@ -81,6 +81,7 @@ GUI::GUI(QWidget *parent)
     ui->compass->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/compass.qml"));
 //    ui->map->setSource(QUrl::fromLocalFile("../vezerlo-gui/map.qml"));
     ui->radarG->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/radar.qml"));
+    ui->robotkarG->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/robotkar.qml"));
 
 
     QPixmap pm = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file
@@ -124,7 +125,6 @@ GUI::GUI(QWidget *parent)
     std::thread ob(read);
     ob.detach();
 
-    ui->elokep->setChecked(1);
     ui->cmdDock->setHidden(1);
 
     mSerial = new QSerialPort(this);
@@ -319,6 +319,19 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
             }
 
           }
+
+        QObject *object = ui->robotkarG->rootObject();
+        QList<QString> pots={"alapV","forgV","pot2V","pot3V"};//robotkar potméterek
+        if (object){
+            QString txt="Robotkar adatok:\n";
+            for (int i; i<3; i++){
+                txt=txt+"Pot"+QString::number(i+1)+": ";
+                QVariant a=QQmlProperty(object, pots[i]).read();
+                txt=txt+QString::number(a.toInt())+"\n";
+            }
+
+            ui->robotkaradatok->setText(txt);
+        }
         }
     }
 //    if (joystickAdatok.size()>2){}
@@ -657,6 +670,16 @@ QString GUI::stJ()
     else{
         return "Joystick folyamat\nNincs szükség indításra, a folyamat már fut; PID:\n"+QString::number(pr->processId());
     }
+}
+
+void GUI::ponton_stop()
+{
+    ui->pontonmotor->setValue(0);
+}
+
+void GUI::ponton_egyenes()
+{
+  ui->pontonkormany->setValue(0);
 }
 
 

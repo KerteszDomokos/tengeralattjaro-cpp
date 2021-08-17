@@ -46,6 +46,8 @@ private slots:
     void serDeconn();
     QString stK();
     QString stJ();
+    void ponton_stop();
+    void ponton_egyenes();
 
 private:
     Ui::GUI *ui;

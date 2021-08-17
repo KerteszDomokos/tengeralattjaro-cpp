@@ -36,6 +36,7 @@ DISTFILES += \
     qml-files/map.qml \
     qml-files/teszt.qml \
     qml-files/radar.qml \
+    qml-files/robotkar.qml
 
 
 win32: RC_ICONS = resources/program-icon.ico

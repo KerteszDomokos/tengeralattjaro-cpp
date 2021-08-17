@@ -120,8 +120,11 @@ void loop()
   if (millis()-milltime2>50)    //Robotkar beállítása
   {
     milltime2=millis();
-    robotkarSet();
+    if(myArray[12]==1){
     radar();
+    }    
+    robotkarSet();
+    
   }
     if (millis()-mtime>300 || millis()%300==0)    
   {

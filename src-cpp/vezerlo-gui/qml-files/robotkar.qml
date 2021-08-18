@@ -68,6 +68,7 @@ Item {
                     width: 51
                     height: 37
                     anchors.bottom: kar1.top
+                    to:180
                 }
 
                 Rectangle {

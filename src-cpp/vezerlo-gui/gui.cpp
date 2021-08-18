@@ -488,6 +488,7 @@ void GUI::motorNull()
     ui->slid1->setValue(0);
     ui->slid2->setValue(0);
     ui->motegy->setChecked(0);
+    ui->serplot->setChecked(0);
 }
 
 void GUI::updateKommData()

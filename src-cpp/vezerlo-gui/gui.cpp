@@ -451,7 +451,6 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
         string += "," ;
     }
     ui->nyersIrando->setText(string);
-
 }
 
 void GUI::cmdSlot()
@@ -680,7 +679,24 @@ void GUI::ponton_stop()
 
 void GUI::ponton_egyenes()
 {
-  ui->pontonkormany->setValue(0);
+    ui->pontonkormany->setValue(0);
+}
+
+//Ha bekapcsoltam a sporolast akkor kikapcsol. Ezt csak egyszer hajtja végre tehát fölülírható! A loopban egy hasonló if a felülírhatatlan döntéseket kezeli.
+void GUI::akksporolas()
+{
+    if(ui->sporolas->isChecked()==1){
+        //felülírható:
+        ui->radaron->setChecked(0);
+        //felülírhatatlan:
+        ui->kameraon->setChecked(0); ui->kameraon->setEnabled(0);
+
+        msg("Spórolás bekapcsolva!",1);
+    }
+    else{
+        ui->kameraon->setEnabled(1);
+        msg("Spórolás kikapcsolva",1);
+    }
 }
 
 

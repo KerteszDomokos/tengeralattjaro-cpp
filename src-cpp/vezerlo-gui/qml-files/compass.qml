@@ -6,13 +6,13 @@ Item {
 
     Image{
         id:comp
-        source: "../resources/compass.svg"
+        source: "qrc:/horizon/resources/compass.svg"
         rotation: root.fok
         height: 300
         width: 300
         Image{
             id:nyil
-            source: "../resources/compass-nyil.png"
+            source: "qrc:/horizon/resources/compass-nyil.png"
             anchors.centerIn: comp
             height: 50
             width: 50

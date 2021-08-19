@@ -91,7 +91,7 @@ Item {
 
         Image { // Roll Graticule
             id: rollGraticule
-            source: "../resources/components/rollPitchIndicator/rollGraticule.svg"
+            source: "qrc:/horizon/resources/components/rollPitchIndicator/rollGraticule.svg"
 
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
@@ -101,7 +101,7 @@ Item {
             rotation: -rollAngle
 
             Image {
-                source: "../resources/components/rollPitchIndicator/rollPointer.svg"
+                source: "qrc:/horizon/resources/components/rollPitchIndicator/rollPointer.svg"
                 fillMode: Image.PreserveAspectFit
                 transformOrigin: Item.Bottom
                 rotation: rollAngle
@@ -114,7 +114,7 @@ Item {
         id: crossHairs
         anchors.centerIn: parent
         z:3
-        source: "../resources/components/rollPitchIndicator/crossHair.svg"
+        source: "qrc:/horizon/resources/components/rollPitchIndicator/crossHair.svg"
 
     }
     states: [

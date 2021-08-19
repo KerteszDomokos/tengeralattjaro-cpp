@@ -29,6 +29,7 @@
 #include <QTextCursor>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QFile>
 
 SockRead sock;
 
@@ -75,13 +76,12 @@ GUI::GUI(QWidget *parent)
     ui->setupUi(this);
 
 
-    ui->horizont->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\qml-files\\horizon.qml"));
-    ui->joyh->setSource(QUrl::fromLocalFile("..\\vezerlo-gui\\qml-files\\joy.qml"));
-    ui->magmer->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/magassag.qml"));
-    ui->compass->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/compass.qml"));
-//    ui->map->setSource(QUrl::fromLocalFile("../vezerlo-gui/map.qml"));
-    ui->radarG->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/radar.qml"));
-    ui->robotkarG->setSource(QUrl::fromLocalFile("../vezerlo-gui/qml-files/robotkar.qml"));
+    ui->horizont->setSource(QUrl(QStringLiteral("qrc:/qml-files/horizon")));
+    ui->joyh->setSource(QUrl(QStringLiteral("qrc:/qml-files/joy")));
+    ui->magmer->setSource(QUrl(QStringLiteral("qrc:/qml-files/melyseg")));
+    ui->compass->setSource(QUrl(QStringLiteral("qrc:/qml-files/compass")));
+    ui->radarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/radar")));
+    ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
 
 
     QPixmap pm = QPixmap("..\\vezerlo-gui\\program-datas\\live.jpg"); // <- path to image file

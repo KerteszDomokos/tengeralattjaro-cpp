@@ -13,10 +13,6 @@
         <file alias="joypy">python-files/joystick.py</file>
         <file alias="keppy">python-files/kep.py</file>
     </qresource>
-    <qresource prefix="/datas">
-        <file alias="joydat">program-datas/joystick.txt</file>
-        <file alias="elokep">program-datas/live.jpg</file>
-    </qresource>
     <qresource prefix="/horizon">
         <file>resources/components/rollPitchIndicator/artGroundSky.svg</file>
         <file>resources/components/rollPitchIndicator/background.png</file>

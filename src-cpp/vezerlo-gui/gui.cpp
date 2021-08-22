@@ -25,6 +25,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QFile>
+#include <QImage>
 
 SockRead sock;
 
@@ -79,7 +80,7 @@ GUI::GUI(QWidget *parent)
     ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
 
 
-    QPixmap pm = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/joystick.txt"); // <- path to image file
+    QPixmap pm = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
 
@@ -144,15 +145,27 @@ GUI::~GUI()
 
 void GUI::fps()
 {
-    //ujraproba:
-        QPixmap pm2 = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
-        if (pm2.isNull()!=1){//ha a kép létezik:
-            ui->ad->setPixmap(pm2);
-            ui->ad->setScaledContents(false);
+    QPixmap pm2 = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
+    if (pm2.isNull()!=1){//ha a kép létezik:
+        QImage img = pm2.toImage();//érvényes kép
+            if(  img.pixel(img.width()-1,img.height()-1 )  ==  4286611584   &&  img.pixel(img.width()/2,img.height()-1 )  ==  4286611584  &&  img.pixel(0,img.height()-1 )  ==  4286611584  )
+            {
+                int hatar=5;
+                kepHiba++;
+                if(kepHiba>=hatar){
+                    msg("Kép egymás után "+QString::number(hatar)+"-szer hibás",3);
+                }
+            }
+            else{
+                kepHiba=0;
+                ui->ad->setPixmap(pm2);
+                ui->ad->setScaledContents(false);
+            }
         }
-        else{
-           // if(sz<5){goto ujraproba;}
-        }
+    else{
+       // if(sz<5){goto ujraproba;}
+        msg("Kép betöltés sikertelen",2);
+    }
     //Külső folyamatok sikerességére vonatkozó adatok
     int pid=pr->processId();
     ui->joyPID->setText(QString::number(pid));
@@ -783,5 +796,6 @@ QList<double> GUI::get_joystickAdatok()
 {
     return joystickAdatok;
 }
+
 
 

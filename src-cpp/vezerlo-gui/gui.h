@@ -61,6 +61,7 @@ private:
     QList<QSerialPortInfo> mSerialPorts; //elérhető soros portok, nem a legfrissebbek, scan gomb
     QList<double> elozoOlvasottList;//előző olvasott adatcsomag listában
     QList<double> olvasott;//legfrissebb olvasott adatcsomag listában
+    int kepHiba;
 
 public:
     //a parancssor helptxt-je:

@@ -29,7 +29,7 @@ def kep():
             print ("üres")
         else:
             dat += seg[1:]
-            img = cv2.imdecode(np.fromstring(dat, dtype=np.uint8), 1)
+            img = cv2.imdecode(np.frombuffer(dat, dtype=np.uint8), 1)
             try:
                 # cv2.imshow('frame', img)
                 cv2.imwrite("../vezerlo-gui/program-datas/live.jpg",img)

@@ -43,3 +43,6 @@ win32: RC_ICONS = resources/program-icon.ico
 
 RESOURCES += \
     resource.qrc
+
+CONFIG-=debug_and_release
+DESTDIR = ./

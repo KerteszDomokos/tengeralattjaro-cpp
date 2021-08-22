@@ -14,16 +14,11 @@
 #include <QTableWidgetItem>
 #include <QFile>
 #include <QMessageBox>
-#include <QThreadPool>
-#include <QtConcurrent>
-#include <QtConcurrentRun>
-#include <QFuture>
 #include <QProcess>
 #include <QIODevice>
 #include <QStringList>
 #include <thread>
 #include <mutex>
-#include <QImage>
 #include "sockread.h"
 #include <cmath>
 #include <QTextCursor>
@@ -765,7 +760,7 @@ void GUI::joydat()
     if (!file.open(QIODevice::ReadOnly)){
         qDebug()<<"Error in file read";
         msg("Joystick fájl olvasásakor hiba",3);
-        QMessageBox::information(0, "error", file.errorString());
+//        QMessageBox::information(0, "Error", file.errorString());
         return;
         }
     QString str;

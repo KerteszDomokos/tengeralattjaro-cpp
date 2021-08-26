@@ -128,7 +128,7 @@ GUI::GUI(QWidget *parent)
     connect(mSerial, &QSerialPort::readyRead,
             this, &GUI::serkom);
 
-
+    ballaszt_manualis_click();
 
 
 }
@@ -707,6 +707,34 @@ void GUI::akksporolas()
         ui->kameraon->setEnabled(1);
         msg("Spórolás kikapcsolva",1);
     }
+}
+
+void GUI::ballaszt_manualis_click()
+{
+    if(ui->ballaszt_manualis->isChecked()==1){
+        ui->ballaszt_lebeges->setChecked(0);
+        ui->ballaszt_lassuemelk->setChecked(0);
+        ui->ballaszt_lassully->setChecked(0);
+        ui->ballaszt_lebeges->setEnabled(0);
+        ui->ballaszt_lassuemelk->setEnabled(0);
+        ui->ballaszt_lassully->setEnabled(0);
+
+        ui->ballaszt_baltart->setEnabled(1);
+        ui->ballaszt_jobbtart->setEnabled(1);
+    }
+    else{
+        ui->ballaszt_lebeges->setEnabled(1);
+        ui->ballaszt_lassuemelk->setEnabled(1);
+        ui->ballaszt_lassully->setEnabled(1);
+
+        ui->ballaszt_baltart->setEnabled(0);
+        ui->ballaszt_jobbtart->setEnabled(0);
+    }
+}
+
+void GUI::ballaszt_emelkedes()
+{
+
 }
 
 

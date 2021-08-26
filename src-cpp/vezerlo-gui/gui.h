@@ -40,6 +40,8 @@ private slots:
     void ponton_stop();//pontonhajó motor lenullázása
     void ponton_egyenes();//ponton kormány egyenesbe
     void akksporolas();//spórolás beállítása
+    void ballaszt_manualis_click();
+    void ballaszt_emelkedes();
 
 private:
     Ui::GUI *ui;
@@ -63,7 +65,7 @@ private:
     QList<double> olvasott;//legfrissebb olvasott adatcsomag listában
     int kepHiba;
 
-public:
+public: //hösszú szöveges változók
     //a parancssor helptxt-je:
     QString comH="comm - teszt parancs\nexit - program bezárása és kilépés\nPID(joy/kep) - kép vagy joy folyamat PID\nstop(Joy/Kep) - kép vagy joy folyamat megölése\ngetJoy - joystick adatai lekérése adott pillanatban\nstart(Kep/Joy) - elindítja a folyamatot ha az még nem fut\n";
     QString joypath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\joystick.py";

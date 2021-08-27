@@ -6,6 +6,7 @@
 
 //pinek és konstansok definiálása
 #define krittav 60 //cm
+#define motorNull 1490
 #define WSens 15
 #define trig 30
 #define echo 31
@@ -115,7 +116,6 @@ void loop()
     ledAllapot=3;
   }
   ledSet(ledAllapot);
-  motorReset=motorSet(0,motorReset);
   
   if (millis()-milltime2>50)    //Robotkar beállítása
   {
@@ -151,8 +151,8 @@ if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
   //mely=0;
   checkCom();
   bviz=analogRead(WSens);
-  int motorBalRead = mb.read();
-  int motorJobbRead= mj.read();
+  int motorBalRead = mb.readMicroseconds();
+  int motorJobbRead= mj.readMicroseconds();
   //motorJobbRead=myArray[0];
   int raspiAkk = analogRead(raspiAkk_PIN);
   //kommunikáció:
@@ -199,14 +199,14 @@ void radar(){
 void vegrehajt()
 {
   //motorok beállítása
-  if (motorLetilt==0){
+  //if (motorLetilt==0){
   
-  mj.writeMicroseconds(myArray[10]+motorNullVal);
-  mb.writeMicroseconds(myArray[1]+motorNullVal);
-  }
-  else{
-    ledAllapot=3;
-  }
+  mj.writeMicroseconds(myArray[10]+motorNull);
+  mb.writeMicroseconds(myArray[1]+motorNull);
+  //}
+//  else{
+//    ledAllapot=3;
+//  }
   analogWrite(PWM_M1,myArray[16]);
   analogWrite(PWM_M2,myArray[17]);
 
@@ -267,60 +267,7 @@ int reading = analogRead(pin);
  return temp;
 }
 
-int motorSet(bool dela,int motorR){
-  if (dela==1){
-    delay(5000);
-    mb.write(0);
-    mj.write(0);
-    delay(3000);
-    mb.write(motorNullVal);
-    mj.write(motorNullVal);
-    delay(4000);
-    mb.write(0);
-    mj.write(0);
-    delay(3000);
-    motorLetilt=0;
-  }
-  if (dela==0) {
-      if (motorR==1){
-        mb.write(0);
-        mj.write(0);
-          motorTime = millis();
-        digitalWrite(r1,1);
-        digitalWrite(r2,1);
-        releLetilt=1;
-        motorLetilt=1;
-        motorR=2;
-      }
-       if (motorR==2){
-        if (millis()-motorTime>4000){
-          digitalWrite(r1,1);
-        mb.write(motorNullVal);
-        mj.write(motorNullVal);
-        digitalWrite(r1,0);
-        digitalWrite(r2,0);
-        motorR=3;
-        motorTime=millis();
-        }
-      }
-       if (motorR==3){
-        if (millis()-motorTime>5000){
-        mb.write(0);
-        mj.write(0);
-        motorR=4;
-        motorTime=millis();
-        }
-      }
-       if (motorR==4){
-        if (millis()-motorTime>4000){
-          motorLetilt=0;
-          motorR=0;
-          releLetilt=0;
-        }
-      }
-    }
-return motorR;
-}
+
 
 
 void rpikom(int a,int b,int c,int d,int e,double f,

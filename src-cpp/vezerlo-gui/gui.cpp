@@ -431,7 +431,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(0);//8 jobb vezérsík - üres
     idl.append(0);//9 motor reset kérés
     idl.append(bmot);//10 motor1 %
-    idl.append(0);//--
+    idl.append(ui->pontonkormany->value());//11 Pontonhajó kormány
     idl.append(ui->radaron->isChecked());//12 radar kibe
     idl.append(0);//13 SSH reset kérés
     idl.append(0);//14 Küldés időpontja
@@ -439,9 +439,9 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(navmotf);//16 Navigációs motor felső
     idl.append(navmota);//17 Navigációs motor alsó
     idl.append(ui->kameraon->isChecked());//18 élő kép kérés
-    idl.append(0);//19 robotkar adatok ...
-    idl.append(0);//20 robotkar adatok ...
-    idl.append(0);//20 robotkar adatok ...
+    idl.append(0);//19 Pontonhajó motor
+    idl.append(0);//20 ballaszt bal tartály százalék
+    idl.append(0);//21 ballaszt jobb tartaly százalék
     idl.append(0);//22 robotkar adatok ...
     idl.append(0);//23 robotkar adatok ...
     idl.append(0);//24 robotkar adatok ...

@@ -50,7 +50,7 @@
 4: ballaszttartály 1 áll. %  
 5: ballaszttartály 2 áll. %  
 6: hűtőventillátor %  
-7: --
+7: Pontonhajó kormány
 8: Radar működés 
 9: Motor resetelésének kérése  
 10: motor1 %-os érték  
@@ -60,13 +60,12 @@
 13: Forgófej motor állás  
 14: Alsó karmozgató  
 15: Felsó karmozgató  
-
 16: Navigációs motor PWM 1  
 17: Navigációs motor PWM 1 
 18: Élő kép kérés   
-19:  
-20: SSH újraindítás  
-21: Küldés időpontja a time.time()-t használva. Ezzel meghatározható a frissebb adat. hozzáadva mindig a küldés előtt közvetlenül. Másra nem használható! 
+19: Pontonhajó motor  
+20: ballaszt bal tartály   
+21: ballaszt jobb tartaly   
 
 <br>
 
@@ -183,3 +182,10 @@ a - mérőtől oldalirányú eltérés
 
 b = cos(al)*c  
 a = sin(al)*c  
+
+
+### Ballasztrendszer
+- 0-10-es skálán
+- 
+
+

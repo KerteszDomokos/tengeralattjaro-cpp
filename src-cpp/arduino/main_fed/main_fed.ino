@@ -27,6 +27,9 @@
 #define PWM_M1 10
 #define PWM_M2 11
 #define RAD_servop 2
+#define PONTON_MOTOR 6
+#define PONTON_KORMANY 7
+#define BALLASZT_MAXPOF 200
 
 
 #define KAR_ALSO 6
@@ -76,6 +79,11 @@ bool releLetilt;
 long milltime2;
 int RAD_pos=9;
 int RAD_adatok[18];
+long ballaszt_timer=millis();
+long ballaszt_timer2=millis();
+int ballasztPump=BALLASZT_MAXPOF;//max
+
+
 
 //kommunikáció
 int myArray[20];
@@ -253,6 +261,14 @@ float hm(int pin){
   return temp;
 }
 */
+
+void ballaszt(){
+}
+
+
+
+
+
 float hm(int pin){
 int reading = analogRead(pin);  
  

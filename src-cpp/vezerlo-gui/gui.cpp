@@ -368,6 +368,12 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     int navmotf=ui->slid4->value();
 
     if(joystickAdatok.size()>=14){
+        if(joystickAdatok[7]==1){
+            ui->serplot->setChecked(1);
+        }
+        if(joystickAdatok[10]==1){
+            ui->motegy->setChecked(1);
+        }
         if (joystickAdatok[4]==1){
             double elt=joystickAdatok[2]*200;
             bmot=int(bmot+elt);
@@ -375,6 +381,10 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
         }
         if (joystickAdatok[5]==1){
             motorNull();
+            bmot=0;
+            jmot=0;
+        }
+        if(joystickAdatok[6]==1){
             bmot=0;
             jmot=0;
         }

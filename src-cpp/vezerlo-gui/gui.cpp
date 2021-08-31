@@ -41,7 +41,7 @@ void read(){
     QString dat;
     QString elozoOlv;
     QList<double> sending; QString sendingS;
-    long rsz;
+    long rsz=0;
     while(true){
         Sleep(1);
         dat=sock.readS();
@@ -177,6 +177,8 @@ void GUI::fps()
     else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");ui->startKepb->setEnabled(false);}
 
 
+    ui->ballaszt_balval->setText(QString::number(ui->ballaszt_baltart->value()));
+    ui->ballaszt_jobbval->setText(QString::number(ui->ballaszt_jobbtart->value()));
 
 }
 
@@ -212,8 +214,8 @@ void GUI::update()
 
     olvasott=conv(bejovoFriss);
 
-    double dx;
-    double dy;
+    double dx=0;
+    double dy=0;
 
 
     if (olvasott.size()>26){
@@ -224,6 +226,8 @@ void GUI::update()
         object->setProperty("rollAngle", -dy);//forgás
 
     }
+
+
     if(ui->tabWidget->currentIndex()==0 || olvasott!=elozoOlvasottList){
         QString string;
         elozoOlvasottList=olvasott;
@@ -304,7 +308,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
             QObject *object = ui->radarG->rootObject();
 
-            for (int i; i<5; i++){
+            for (int i=0; i<5; i++){
              int fid = olvasott[12]-5+i;
              if(fid<=0){
                  fid=18+fid;
@@ -744,6 +748,23 @@ void GUI::ballaszt_manualis_click()
 
 void GUI::ballaszt_emelkedes()
 {
+
+}
+
+void GUI::ballaszt_erzekenyseg()
+{
+    int erz=ui->ballasztErz->value();
+    int val=ui->ballaszt_baltart->maximum()/10;
+    int val2=ui->ballaszt_jobbtart->maximum()/10;
+    int valeb=ui->ballaszt_baltart->value();
+    int valej=ui->ballaszt_jobbtart->value();
+
+    ui->ballaszt_jobbtart->setMaximum(10*erz);
+    ui->ballaszt_baltart->setMaximum(10*erz);
+    ui->ballaszt_baltart->setValue(erz*(valeb/val));
+    ui->ballaszt_jobbtart->setValue(erz*(valej/val2));
+
+
 
 }
 

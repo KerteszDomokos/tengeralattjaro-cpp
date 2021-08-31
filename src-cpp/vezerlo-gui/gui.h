@@ -42,6 +42,7 @@ private slots:
     void akksporolas();//spórolás beállítása
     void ballaszt_manualis_click();
     void ballaszt_emelkedes();
+    void ballaszt_erzekenyseg();
 
 private:
     Ui::GUI *ui;

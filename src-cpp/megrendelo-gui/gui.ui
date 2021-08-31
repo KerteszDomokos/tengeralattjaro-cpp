@@ -16,14 +16,18 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <widget class="QQuickWidget" name="quickWidget">
+     <widget class="QQuickWidget" name="horizon_3">
       <property name="resizeMode">
        <enum>QQuickWidget::SizeRootObjectToView</enum>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QTableWidget" name="tableWidget"/>
+    <item row="0" column="1">
+     <widget class="QQuickWidget" name="horizon_2">
+      <property name="resizeMode">
+       <enum>QQuickWidget::SizeRootObjectToView</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

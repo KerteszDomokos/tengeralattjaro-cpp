@@ -185,7 +185,16 @@ a = sin(al)*c
 
 
 ### Ballasztrendszer
-- 0-10-es skálán
-- 
+- 0-100-es skálán
+- Érzékenység állítható
+- 10 ig növekszik a pöffök közti idő
 
+
+country=HU
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+network{
+    ssid="RUV-system-VE"
+    psk="Tengeralattjaro2020"
+    key_mgmt=WPA-PSK
+}
 

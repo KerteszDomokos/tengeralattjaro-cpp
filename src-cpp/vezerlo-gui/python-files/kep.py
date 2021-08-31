@@ -10,7 +10,7 @@ def kep():
     MAX_DGRAM = 2**16
     global dat
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.bind(('192.168.31.170', 5556))
+    s.bind(('169.254.51.13', 5556))
     s.settimeout(5)
     dat = b''
     while True:

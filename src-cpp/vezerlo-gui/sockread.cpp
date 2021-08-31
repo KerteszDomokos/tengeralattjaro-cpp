@@ -10,9 +10,9 @@ socketSend = new QUdpSocket(this);
 socketKep = new QUdpSocket(this);
 
 //socket->connectToHost(6010);
-socket->bind(QHostAddress("192.168.31.170"),6010);//vevő ezen eszköz ip címe
+socket->bind(QHostAddress("169.254.51.13"),6010);//vevő ezen eszköz ip címe
 socketSend->connectToHost(QHostAddress("192.168.31.247"),6000);//küldő ip
-socketKep->bind(QHostAddress("192.168.31.170"),6020);//eszköz ip
+socketKep->bind(QHostAddress("169.254.51.13"),6020);//eszköz ip
 
 }
 QString SockRead::readS()

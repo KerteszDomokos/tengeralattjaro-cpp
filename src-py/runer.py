@@ -41,7 +41,7 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):#kamera
         """
         MAX_DGRAM = 2**16
         MAX_IMAGE_DGRAM = MAX_DGRAM - 64 # extract 64 bytes in case UDP frame overflown
-        def __init__(self, sock, port, addr="192.168.31.170"):
+        def __init__(self, sock, port, addr="192.168.31.171"): #cél ip
             self.s = sock
             self.port = port
             self.addr = addr
@@ -171,30 +171,47 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
     time.sleep(3)
     ures=0
     e=0
+    l=None
     while ena==1 and e==0:
         try:
-            l=serw_s[:] if (serw_s[21]>udp_s[21]) else udp_s[:]
+            y=0
+            while i<len(udp_s):
+                l.append(udp_s[y])
+                y=y+1
             #time.sleep(.0004)
-            prl('Küldendő adat:'+str(l))
-            ser.write(pack ('20h',l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8],l[9],l[10],l[11],l[12],l[13],l[14],l[15],l[16],l[17],l[18],l[19]))
-            time.sleep(.007)
+            # prl('Küldendő adat:'+str(l),1)
+            if len(l)<30:
+                i=len(l)
+                while i<30:
+                    l.append(0)
+                    i=i+1
+            ser.write(pack ('30i',l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8],l[9],l[10],l[11],l[12],l[13],l[14], \
+            l[15],l[16],l[17],l[18],l[19],l[20],l[21],l[22],l[23],l[24],l[25],l[26],l[27],l[28],l[29]))
+            time.sleep(.02)
             dat=ser.readline()
+            print(l)
             if dat!=b''and dat!=b'\r\n':
                 try:
                     ures=0
                     dats=str(dat)
-                    dat1=dats.replace("b","")
-                    dat2=dat1.replace("'",'')
-                    dat3=dat2[:-4]
-                    dat3=dat3.replace('NAN,','0,')
-                    list_=ast.literal_eval(dat3)
-                    list_.append(0)
-                    list_.append(0)
-                    list_[20]=ser.inWaiting()
-                    prl('Soros porton olvasott adat: '+str(list_))
-                    save(list_)
                     
-                    if ser.inWaiting()>2600:
+                    if dat!=b'0\r\n':
+                        dat1=dats.replace("b","")
+                        dat2=dat1.replace("'",'')
+                        dat3=dat2[:-4]
+                        dat3=dat3.replace('NAN,','0,')
+                        list_=ast.literal_eval(dat3)
+                    
+                        list_.append(0)
+                        list_.append(0)
+                        list_[20]=ser.inWaiting()
+                        prl('Soros porton olvasott adat: '+str(list_))
+                        save(list_)
+                    else:
+                        ser.flushInput()
+                        pre('Delete input buffer - dat==')
+                    
+                    if ser.inWaiting()>6000:
                         ser.flushInput()
                         pre('Delete input buffer')
                         #time.sleep(.19)
@@ -414,7 +431,7 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
     try:
         cpuR=cpu()
         lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        UDP_IP='192.168.31.170'#vevő ip címe
+        UDP_IP='192.168.31.171'#vevő ip címe
         UDP_PORT=6010
         udp = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
@@ -447,7 +464,7 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
 
 def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
     try:
-        UDP_IP='192.168.31.247'
+        UDP_IP='192.168.31.248'
         UDP_PORT=6000
         udp = socket.socket(socket.AF_INET, # Internet
                         socket.SOCK_DGRAM) # UDP
@@ -463,17 +480,18 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
                 dat2=dat1.replace("b'","")
                 dat3=dat2[:-1]
                 vegso=ast.literal_eval(dat3)
-                # print(vegso)
+                print(vegso)
                 
             except:
                 pre('Konvertálás sikertelen'+str(sys.exc_info()))
             try:
                 i=0
-                if (len(vegso)<21):
+                if (len(vegso)<30):
                     pre("Index error: érkező adatok")
                 else:
                     while i<21:
                         udp_ut[i]=int(vegso[i])
+                        # serw_ut[i]=udp_ut[i]
                         i=i+1
             except:
                 pre('Mentés sikertelen'+str(sys.exc_info())+str(i))
@@ -488,7 +506,7 @@ if __name__=="__main__":
     l2=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     l3=[0,0,0,0,0]
     serr=Array('f',l2)
-    serw=Array('i',l)
+    serw=Array('i',l2)
     gyro=Array('f',l3)
     udp_readed=Array('i',l)
     bdatas=Array('f',l)

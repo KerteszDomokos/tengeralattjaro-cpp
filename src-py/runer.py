@@ -171,25 +171,22 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
     time.sleep(3)
     ures=0
     e=0
-    l=None
+    li=[0,0,0,0,0,00,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     while ena==1 and e==0:
         try:
-            y=0
-            while i<len(udp_s):
-                l.append(udp_s[y])
-                y=y+1
+            li[:]=udp_s[:]
             #time.sleep(.0004)
             # prl('Küldendő adat:'+str(l),1)
-            if len(l)<30:
-                i=len(l)
-                while i<30:
-                    l.append(0)
+            if len(li)<30:
+                i=len(li)
+                while i<31:
+                    li.append(0)
                     i=i+1
-            ser.write(pack ('30i',l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8],l[9],l[10],l[11],l[12],l[13],l[14], \
-            l[15],l[16],l[17],l[18],l[19],l[20],l[21],l[22],l[23],l[24],l[25],l[26],l[27],l[28],l[29]))
-            time.sleep(.02)
+            ser.write(pack ('30h',li[0],li[1],li[2],li[3],li[4],li[5],li[6],li[7],li[8],li[9],li[10],li[11],li[12],li[13],li[14], \
+            li[15],li[16],li[17],li[18],li[19],li[20],li[21],li[22],li[23],li[24],li[25],li[26],li[27],li[28],li[29]))
+            time.sleep(.02) 
             dat=ser.readline()
-            print(l)
+            print(li)
             if dat!=b''and dat!=b'\r\n':
                 try:
                     ures=0
@@ -480,7 +477,7 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
                 dat2=dat1.replace("b'","")
                 dat3=dat2[:-1]
                 vegso=ast.literal_eval(dat3)
-                print(vegso)
+                # print(vegso)
                 
             except:
                 pre('Konvertálás sikertelen'+str(sys.exc_info()))

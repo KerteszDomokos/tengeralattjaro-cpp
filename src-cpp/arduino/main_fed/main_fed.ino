@@ -129,6 +129,12 @@ digitalWrite(OK_LED_Z,0);
 
 void loop() 
 {
+  checkForNewData();
+  if (newData == true) {
+    newData = false;
+    //lastCom=millis();
+  }
+    
   if (myArray[22]>50){
     ledAllapot=3;
   }
@@ -155,13 +161,7 @@ void loop()
      if (h3==NAN){h3=0;}
   }
 
-    checkForNewData();
-  if (newData == true) {
-    newData = false;
-    lastCom=millis();
-    }
-
-if (millis()-kommill>25) //Kommunikáció, és adatgyűjtés
+if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
 {
   kommill=millis();
   
@@ -202,7 +202,6 @@ else{
   komms=1;
 }
 if (millis()-lastCom>10000){
-  vesz();
 }
 }
 void radar(){

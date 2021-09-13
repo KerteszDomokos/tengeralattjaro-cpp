@@ -6,6 +6,10 @@ GUI::GUI(QWidget *parent)
     , ui(new Ui::GUI)
 {
     ui->setupUi(this);
+
+
+
+
 }
 
 GUI::~GUI()

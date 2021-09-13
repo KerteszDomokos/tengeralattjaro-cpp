@@ -3,7 +3,6 @@
 #include <DHT.h>
 
 
-
 //pinek és konstansok definiálása
 #define krittav 60 //cm
 #define motorNull 1490
@@ -30,6 +29,8 @@
 #define PONTON_MOTOR 6
 #define PONTON_KORMANY 7
 #define BALLASZT_MAXPOF 200
+#define TALCA_SERB 8
+#define TALCA_SERJ 9
 
 
 #define KAR_ALSO 6
@@ -49,6 +50,10 @@ Servo karAlso;
 Servo karForgato;
 Servo karBolintoa;
 Servo karBolintof;
+
+Servo talcaBal;
+Servo talcaJobb;
+
 
 DHT dht(DHTPIN, DHT11); //pin, type
 
@@ -82,11 +87,13 @@ int RAD_adatok[18];
 long ballaszt_timer=millis();
 long ballaszt_timer2=millis();
 int ballasztPump=BALLASZT_MAXPOF;//max
+long talcaTime;
+int talcaFok;
 
 
 
 //kommunikáció
-int myArray[20];
+int myArray[30];
 byte* ddata = reinterpret_cast<byte*>(&myArray); // pointer for transferData()
 size_t pcDataLen = sizeof(myArray);
 bool newData=false;
@@ -109,6 +116,8 @@ karBolintoa.attach(KAR_BOLINTO_ALSO);
 karBolintof.attach(KAR_BOLINTO_FELSO);
 RAD_s.attach(RAD_servop);
 RAD_s.write(90);
+talcaBal.attach(TALCA_SERB);
+talcaJobb.attach(TALCA_SERJ);
 delay(1000);
 
 myArray[3]=1;
@@ -120,7 +129,7 @@ digitalWrite(OK_LED_Z,0);
 
 void loop() 
 {
-  if (motorLetilt==1){
+  if (myArray[22]>50){
     ledAllapot=3;
   }
   ledSet(ledAllapot);
@@ -152,9 +161,10 @@ void loop()
     lastCom=millis();
     }
 
-if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
+if (millis()-kommill>25) //Kommunikáció, és adatgyűjtés
 {
   kommill=millis();
+  
   //int mely = tavm(0);
   //mely=0;
   checkCom();
@@ -165,7 +175,8 @@ if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
   int raspiAkk = analogRead(raspiAkk_PIN);
   //kommunikáció:
   rpikom(komms,bviz,mely,err_k(),analogRead(csp1),h1,h2,h3,hum,motorBalRead,motorJobbRead,raspiAkk,
-  RAD_pos,RAD_adatok[RAD_pos-4],RAD_adatok[RAD_pos-3],RAD_adatok[RAD_pos-2],RAD_adatok[RAD_pos-1],RAD_adatok[RAD_pos],18);
+  RAD_pos,RAD_adatok[RAD_pos-4],RAD_adatok[RAD_pos-3],RAD_adatok[RAD_pos-2],RAD_adatok[RAD_pos-1],RAD_adatok[RAD_pos],
+  myArray[14]);
   
   komms=0;
   vegrehajt();
@@ -173,6 +184,7 @@ if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
 }
 }
 void robotkarSet(){
+    talca(myArray[22]);
   karAlso.write(myArray[12]);
   karForgato.write(myArray[13]);
   karBolintoa.write(myArray[14]);
@@ -265,6 +277,14 @@ float hm(int pin){
 void ballaszt(){
 }
 
+
+
+void talca(int fok){
+  talcaTime=millis();
+
+  talcaJobb.write(myArray[13]);
+  talcaBal.write(myArray[13]);
+}
 
 
 

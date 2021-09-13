@@ -163,9 +163,7 @@
 ### Csatlakozási adatok
 - A Raspberry pi hostapd jelszava: Tengeralattjaro2020  
 - A Raspberry pi SSH jelszava: KerteeszDom (felhasznalo: pi)  
-- Home passwd: NJk3fdstksj4
-
-
+- Home passwd: NJk3fdstk
 ### Matekok  
     | \  
     |al\  

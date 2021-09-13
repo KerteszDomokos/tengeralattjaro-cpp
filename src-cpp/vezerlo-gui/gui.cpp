@@ -289,8 +289,7 @@ ui->foadatok_4->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[4
     if(olvasott[4]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp2
     if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
-
-
+ui->talcaFok->setText(QString::number(olvasott[18]));
             QObject *object2 = ui->magmer->rootObject();
             object2->setProperty("alt", olvasott[12]);//magasság
             QObject *object3 = ui->compass->rootObject();
@@ -432,6 +431,13 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     sliddat=sliddat+"\ncs1: " +QString::number(serDat[0])+"\ncs2: "+QString::number(serDat[1]);
     ui-> slidText->setText(sliddat);
 
+    if(ui->fordtest->isChecked()==1){
+        int a=bmot;
+        int b=jmot;
+        bmot=b;
+        jmot=a;
+    }
+
     QList<double> idl;
 
     idl.append(0);//0 használatlan
@@ -440,14 +446,14 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(0);//3 tápegység állapot
     idl.append(0);//4 ballaszttartály1 állapot
     idl.append(0);//5 ballaszttartály2 állapot
-    idl.append(ui->slid6->value());//6 hűtőventillátor
+    idl.append(ui->hutes->value());//6 hűtőventillátor
     idl.append(0);//7 bal vezérsík - üres
     idl.append(0);//8 jobb vezérsík - üres
     idl.append(0);//9 motor reset kérés
     idl.append(bmot);//10 motor1 %
     idl.append(ui->pontonkormany->value());//11 Pontonhajó kormány
     idl.append(ui->radaron->isChecked());//12 radar kibe
-    idl.append(0);//13 SSH reset kérés
+    idl.append(ui->talcaHajtas->value());//13 tálca hajtásszög
     idl.append(0);//14 Küldés időpontja
     idl.append(0);//15 robotkar adatok ...
     idl.append(navmotf);//16 Navigációs motor felső
@@ -456,11 +462,16 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(0);//19 Pontonhajó motor
     idl.append(0);//20 ballaszt bal tartály százalék
     idl.append(0);//21 ballaszt jobb tartaly százalék
-    idl.append(0);//22 robotkar adatok ...
+    idl.append(60);//22 SSH reset kérés
     idl.append(0);//23 robotkar adatok ...
     idl.append(0);//24 robotkar adatok ...
     idl.append(0);//25 robotkar adatok ...
     idl.append(0);//26 robotkar adatok ...
+    idl.append(0);//27 robotkar adatok ...
+    idl.append(0);//28 robotkar adatok ...
+    idl.append(0);//29 robotkar adatok ...
+    idl.append(0);//30 robotkar adatok ...
+    idl.append(0);//31 robotkar adatok ...
 
     //qDebug()<<idl;
 

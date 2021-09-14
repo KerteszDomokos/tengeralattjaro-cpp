@@ -35,8 +35,8 @@
 
 #define KAR_ALSO 6
 #define KAR_FORGATO 7
-#define KAR_BOLINTO_ALSO 8
-#define KAR_BOLINTO_FELSO 9
+#define KAR_BOLINTO_ALSO 40
+#define KAR_BOLINTO_FELSO 41
 
 //könyvtár: pédányok létrehozása
 Servo sb;
@@ -107,6 +107,9 @@ pinMode(RAD_trig,OUTPUT);pinMode(RAD_echo,INPUT);
 pinMode(m1,OUTPUT); pinMode(m2, OUTPUT);
 pinMode(r1,OUTPUT); pinMode(r2, OUTPUT);
 pinMode(OK_LED_Z,OUTPUT);
+pinMode(TALCA_SERB, OUTPUT);
+pinMode(TALCA_SERJ, OUTPUT);
+
 
 mb.attach(m1);
 mj.attach(m2);
@@ -147,6 +150,10 @@ void loop()
     radar();
     }    
     robotkarSet();
+      if(myArray[23]==1){
+    talcaJobb.write(180-myArray[13]);
+    talcaBal.write(myArray[13]);
+  }
     
   }
     if (millis()-mtime>300 || millis()%300==0)    
@@ -176,7 +183,7 @@ if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
   //kommunikáció:
   rpikom(komms,bviz,mely,err_k(),analogRead(csp1),h1,h2,h3,hum,motorBalRead,motorJobbRead,raspiAkk,
   RAD_pos,RAD_adatok[RAD_pos-4],RAD_adatok[RAD_pos-3],RAD_adatok[RAD_pos-2],RAD_adatok[RAD_pos-1],RAD_adatok[RAD_pos],
-  myArray[14]);
+  talcaBal.read());
   
   komms=0;
   vegrehajt();
@@ -184,9 +191,7 @@ if (millis()-kommill>15) //Kommunikáció, és adatgyűjtés
 }
 }
 void robotkarSet(){
-    talca(myArray[22]);
   karAlso.write(myArray[12]);
-  karForgato.write(myArray[13]);
   karBolintoa.write(myArray[14]);
   karBolintof.write(myArray[15]);
 }
@@ -279,10 +284,7 @@ void ballaszt(){
 
 
 void talca(int fok){
-  talcaTime=millis();
 
-  talcaJobb.write(myArray[13]);
-  talcaBal.write(myArray[13]);
 }
 
 

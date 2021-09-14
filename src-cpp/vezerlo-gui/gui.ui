@@ -1167,14 +1167,27 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="talcaFok">
        <property name="geometry">
         <rect>
-         <x>370</x>
+         <x>390</x>
          <y>190</y>
-         <width>41</width>
-         <height>16</height>
+         <width>21</width>
+         <height>20</height>
         </rect>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Hűtés&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="talcaAktiv">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>200</y>
+         <width>41</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Aktív</string>
        </property>
       </widget>
      </widget>

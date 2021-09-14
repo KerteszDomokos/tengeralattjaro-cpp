@@ -171,7 +171,7 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
     time.sleep(3)
     ures=0
     e=0
-    li=[0,0,0,0,0,00,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    li=[0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     while ena==1 and e==0:
         try:
             li[:]=udp_s[:]
@@ -186,7 +186,6 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
             li[15],li[16],li[17],li[18],li[19],li[20],li[21],li[22],li[23],li[24],li[25],li[26],li[27],li[28],li[29]))
             time.sleep(.02) 
             dat=ser.readline()
-            print(li)
             if dat!=b''and dat!=b'\r\n':
                 try:
                     ures=0
@@ -427,7 +426,7 @@ def bdat(serw_us, serr_us,gyro_us, udp_us,bdatas_b):
 def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
     try:
         cpuR=cpu()
-        lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         UDP_IP='192.168.31.171'#vevő ip címe
         UDP_PORT=6010
         udp = socket.socket(socket.AF_INET, # Internet
@@ -443,12 +442,15 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
             while i<len(serr_us):
                 lista[i]=serr_us[i]
                 i=i+1
-            lista[21]=bdatas_us[0]
-            lista[22]=bdatas_us[1]
-            lista[23]=bdatas_us[2]
-            lista[24]=bdatas_us[3]
-            lista[26]=bdatas_us[4]
-            lista[25]=time.time()
+            try:
+                lista[21]=bdatas_us[0]
+                lista[22]=bdatas_us[1]
+                lista[23]=bdatas_us[2]
+                lista[24]=bdatas_us[3]
+                lista[26]=bdatas_us[4]
+                lista[25]=time.time()
+            except:
+                pre("bdat error")
             irando=str(lista[:]).replace(","," ").replace("[","").replace("]","")
         except:
             pre(str(sys.exc_info())) 
@@ -486,7 +488,7 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
                 if (len(vegso)<30):
                     pre("Index error: érkező adatok")
                 else:
-                    while i<21:
+                    while i<30:
                         udp_ut[i]=int(vegso[i])
                         # serw_ut[i]=udp_ut[i]
                         i=i+1
@@ -500,12 +502,12 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
 
 if __name__=="__main__":
     l=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    l2=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    l2=[0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     l3=[0,0,0,0,0]
     serr=Array('f',l2)
     serw=Array('i',l2)
-    gyro=Array('f',l3)
-    udp_readed=Array('i',l)
+    gyro=Array('f',l3) 
+    udp_readed=Array('i',l2)
     bdatas=Array('f',l)
     try:
         p1 = multiprocessing.Process(target=bdat, args=(serw,serr,gyro,udp_readed,bdatas))

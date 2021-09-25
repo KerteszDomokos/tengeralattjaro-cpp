@@ -348,7 +348,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QCheckBox" name="rpiakk">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>430</x>
          <y>40</y>
          <width>121</width>
          <height>19</height>
@@ -361,7 +361,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QCheckBox" name="motakk">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>430</x>
          <y>60</y>
          <width>121</width>
          <height>19</height>
@@ -374,7 +374,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QCheckBox" name="sporolas">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>430</x>
          <y>80</y>
          <width>121</width>
          <height>19</height>
@@ -1019,7 +1019,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>410</x>
+         <x>420</x>
          <y>20</y>
          <width>151</width>
          <height>16</height>
@@ -1063,9 +1063,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QPushButton" name="talca_csuk">
        <property name="geometry">
         <rect>
-         <x>373</x>
+         <x>376</x>
          <y>170</y>
-         <width>37</width>
+         <width>41</width>
          <height>21</height>
         </rect>
        </property>
@@ -1089,7 +1089,7 @@ p, li { white-space: pre-wrap; }
       <widget class="Line" name="line_3">
        <property name="geometry">
         <rect>
-         <x>404</x>
+         <x>414</x>
          <y>20</y>
          <width>20</width>
          <height>191</height>
@@ -1102,9 +1102,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QPushButton" name="talca_nyit">
        <property name="geometry">
         <rect>
-         <x>373</x>
+         <x>376</x>
          <y>60</y>
-         <width>37</width>
+         <width>41</width>
          <height>21</height>
         </rect>
        </property>
@@ -1115,7 +1115,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QCheckBox" name="fordtest">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>430</x>
          <y>130</y>
          <width>91</width>
          <height>19</height>
@@ -1128,7 +1128,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>410</x>
+         <x>420</x>
          <y>110</y>
          <width>151</width>
          <height>16</height>
@@ -1168,13 +1168,13 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>390</x>
-         <y>190</y>
-         <width>21</width>
+         <y>188</y>
+         <width>16</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Hűtés&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="talcaAktiv">
@@ -1182,7 +1182,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>370</x>
          <y>200</y>
-         <width>41</width>
+         <width>51</width>
          <height>19</height>
         </rect>
        </property>
@@ -4728,6 +4728,38 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>talca_csuk</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>talca_becsuk()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>397</x>
+     <y>977</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>1049</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>talca_nyit</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>talca_kinyit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>408</x>
+     <y>868</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>408</x>
+     <y>1054</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>closeCmd()</slot>
@@ -4745,5 +4777,7 @@ p, li { white-space: pre-wrap; }
   <slot>ballaszt_manualis_click()</slot>
   <slot>ballaszt_emelkedes()</slot>
   <slot>ballaszt_erzekenyseg()</slot>
+  <slot>talca_becsuk()</slot>
+  <slot>talca_kinyit()</slot>
  </slots>
 </ui>

@@ -438,6 +438,7 @@ ui->talcaFok->setText(QString::number(olvasott[18]));
         jmot=a;
     }
 
+    int szoros=ui->ballasztErz->value();
     QList<double> idl;
 
     idl.append(0);//0 használatlan
@@ -460,8 +461,8 @@ ui->talcaFok->setText(QString::number(olvasott[18]));
     idl.append(navmota);//17 Navigációs motor alsó
     idl.append(ui->kameraon->isChecked());//18 élő kép kérés
     idl.append(0);//19 Pontonhajó motor
-    idl.append(0);//20 ballaszt bal tartály százalék
-    idl.append(0);//21 ballaszt jobb tartaly százalék
+    idl.append(ui->ballaszt_baltart->value()*10/szoros);//20 ballaszt bal tartály százalék
+    idl.append(ui->ballaszt_jobbtart->value()*10/szoros);//21 ballaszt jobb tartaly százalék
     idl.append(60);//22 SSH reset kérés
     idl.append(ui->talcaAktiv->isChecked());//23 Tálca érték állítható
     idl.append(0);//24 robotkar adatok ...
@@ -777,6 +778,16 @@ void GUI::ballaszt_erzekenyseg()
 
 
 
+}
+
+void GUI::talca_kinyit()
+{
+    ui->talcaHajtas->setValue(ui->talcaHajtas->maximum());
+}
+
+void GUI::talca_becsuk()
+{
+    ui->talcaHajtas->setValue(ui->talcaHajtas->minimum());
 }
 
 

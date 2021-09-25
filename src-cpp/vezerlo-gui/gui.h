@@ -43,6 +43,8 @@ private slots:
     void ballaszt_manualis_click();
     void ballaszt_emelkedes();
     void ballaszt_erzekenyseg();
+    void talca_kinyit();
+    void talca_becsuk();
 
 private:
     Ui::GUI *ui;

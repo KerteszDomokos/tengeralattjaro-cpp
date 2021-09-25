@@ -28,7 +28,7 @@
 #define RAD_servop 2
 #define PONTON_MOTOR 6
 #define PONTON_KORMANY 7
-#define BALLASZT_MAXPOF 200
+#define BALLASZT_MAXPOF 60
 #define TALCA_SERB 8
 #define TALCA_SERJ 9
 
@@ -37,6 +37,11 @@
 #define KAR_FORGATO 7
 #define KAR_BOLINTO_ALSO 40
 #define KAR_BOLINTO_FELSO 41
+
+#define BALLASZT_REL_B_B 42
+#define BALLASZT_REL_J_B 44
+#define BALLASZT_REL_B_K 43
+#define BALLASZT_REL_J_K 45
 
 //könyvtár: pédányok létrehozása
 Servo sb;
@@ -85,11 +90,13 @@ long milltime2;
 int RAD_pos=9;
 int RAD_adatok[18];
 long ballaszt_timer=millis();
-long ballaszt_timer2=millis();
+int ballaszt_bal_toltottseg;
+int ballaszt_jobb_toltottseg;
 int ballasztPump=BALLASZT_MAXPOF;//max
 long talcaTime;
 int talcaFok;
-
+bool ballaszt_nyitvaB=0;
+bool ballaszt_nyitvaJ;
 
 
 //kommunikáció
@@ -109,7 +116,14 @@ pinMode(r1,OUTPUT); pinMode(r2, OUTPUT);
 pinMode(OK_LED_Z,OUTPUT);
 pinMode(TALCA_SERB, OUTPUT);
 pinMode(TALCA_SERJ, OUTPUT);
-
+pinMode(BALLASZT_REL_B_B,OUTPUT);
+pinMode(BALLASZT_REL_J_B,OUTPUT);
+pinMode(BALLASZT_REL_B_K,OUTPUT);
+pinMode(BALLASZT_REL_J_K,OUTPUT);
+digitalWrite(BALLASZT_REL_B_B,1);//relék kikapcsolása
+digitalWrite(BALLASZT_REL_J_B,1);
+digitalWrite(BALLASZT_REL_B_K,1);
+digitalWrite(BALLASZT_REL_J_K,1);
 
 mb.attach(m1);
 mj.attach(m2);
@@ -118,10 +132,11 @@ karForgato.attach(KAR_FORGATO);
 karBolintoa.attach(KAR_BOLINTO_ALSO);
 karBolintof.attach(KAR_BOLINTO_FELSO);
 RAD_s.attach(RAD_servop);
-RAD_s.write(90);
 talcaBal.attach(TALCA_SERB);
 talcaJobb.attach(TALCA_SERJ);
-delay(1000);
+RAD_s.write(90);
+
+delay(500);
 
 myArray[3]=1;
 
@@ -133,6 +148,7 @@ digitalWrite(OK_LED_Z,0);
 void loop() 
 {
   checkForNewData();
+  ballaszt(myArray[20],myArray[21]);
   if (newData == true) {
     newData = false;
     //lastCom=millis();
@@ -278,7 +294,34 @@ float hm(int pin){
 }
 */
 
-void ballaszt(){
+void ballaszt(int bal, int jobb){
+  //bal
+  if (ballaszt_nyitvaB==0){
+ int bkul = int(bal/10)-ballaszt_bal_toltottseg;
+ if (bkul<0){
+  //nyomás csökkentése 1-el
+  digitalWrite(BALLASZT_REL_B_K,0);
+  ballaszt_nyitvaB=1;
+  ballaszt_timer=millis();
+  ballaszt_bal_toltottseg--;
+ }
+ else if (bkul>0){
+  //nyomás növelése 1-el
+  digitalWrite(BALLASZT_REL_B_B,0);
+  ballaszt_nyitvaB=1;
+  ballaszt_timer=millis();
+  ballaszt_bal_toltottseg++;
+ }
+ else{/*Ballaszt beállítás helyes*/ }
+}
+
+if(ballaszt_nyitvaB==1){
+  if (millis()-ballaszt_timer>BALLASZT_MAXPOF){
+    digitalWrite(BALLASZT_REL_B_K,1);
+    digitalWrite(BALLASZT_REL_B_B,1);
+    ballaszt_nyitvaB=0;
+  }
+}
 }
 
 

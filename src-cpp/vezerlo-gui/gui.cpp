@@ -790,6 +790,37 @@ void GUI::talca_becsuk()
     ui->talcaHajtas->setValue(ui->talcaHajtas->minimum());
 }
 
+void GUI::ballasztBalmin()
+{
+    //ballaszt_baltart
+    ui->ballaszt_baltart->setValue(0);
+}
+
+void GUI::ballasztBalmax()
+{
+    ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->maximum());
+}
+
+void GUI::ballasztBalk()
+{
+    ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->maximum()/2);
+}
+
+void GUI::ballasztJobbk()
+{
+    ui->ballaszt_jobbtart->setValue(ui->ballaszt_jobbtart->maximum()/2);
+}
+
+void GUI::ballasztJobbmin()
+{
+    ui->ballaszt_jobbtart->setValue(0);
+}
+
+void GUI::ballasztJobbmax()
+{
+    ui->ballaszt_jobbtart->setValue(ui->ballaszt_jobbtart->maximum());
+}
+
 
 //Üzenőfelület - 1:message, 2:warning, 3:error
 void GUI::msg(QString txt, int priority=1)

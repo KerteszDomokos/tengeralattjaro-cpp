@@ -4760,6 +4760,150 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztBalmax()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>804</x>
+     <y>852</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>915</x>
+     <y>560</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztBalk()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>809</x>
+     <y>893</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>894</x>
+     <y>564</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztBalmin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>810</x>
+     <y>959</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>872</x>
+     <y>570</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztJobbmax()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1057</x>
+     <y>845</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>978</x>
+     <y>571</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztJobbk()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1069</x>
+     <y>905</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1002</x>
+     <y>582</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ballasztr</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztJobbmin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1058</x>
+     <y>944</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1029</x>
+     <y>593</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztJobbmin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1053</x>
+     <y>957</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1099</x>
+     <y>590</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_8</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztJobbk()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>897</x>
+     <y>903</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>932</x>
+     <y>500</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_8</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>ballasztBalk()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>989</x>
+     <y>904</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>958</x>
+     <y>512</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>closeCmd()</slot>
@@ -4779,5 +4923,11 @@ p, li { white-space: pre-wrap; }
   <slot>ballaszt_erzekenyseg()</slot>
   <slot>talca_becsuk()</slot>
   <slot>talca_kinyit()</slot>
+  <slot>ballasztBalmin()</slot>
+  <slot>ballasztBalmax()</slot>
+  <slot>ballasztBalk()</slot>
+  <slot>ballasztJobbmax()</slot>
+  <slot>ballasztJobbmin()</slot>
+  <slot>ballasztJobbk()</slot>
  </slots>
 </ui>

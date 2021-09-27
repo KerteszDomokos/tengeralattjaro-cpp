@@ -45,6 +45,12 @@ private slots:
     void ballaszt_erzekenyseg();
     void talca_kinyit();
     void talca_becsuk();
+    void ballasztBalmin();
+    void ballasztBalmax();
+    void ballasztBalk();
+    void ballasztJobbk();
+    void ballasztJobbmin();
+    void ballasztJobbmax();
 
 private:
     Ui::GUI *ui;

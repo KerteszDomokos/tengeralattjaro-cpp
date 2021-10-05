@@ -821,6 +821,29 @@ void GUI::ballasztJobbmax()
     ui->ballaszt_jobbtart->setValue(ui->ballaszt_jobbtart->maximum());
 }
 
+void GUI::set_darkmode()
+{
+    QFile styleFile( ":/programs/resources/dark-style.qss" );
+    styleFile.open( QFile::ReadOnly );
+
+    // Apply the loaded stylesheet
+    QString style( styleFile.readAll() );
+    styleFile.close();
+
+    QString st="QWidget{background: black;color:rgb(0, 255, 0);}";
+    ui->centralwidget->setStyleSheet(style);
+    ui->darkmode->setChecked(1);
+    ui->lightmode->setChecked(0);
+}
+
+void GUI::set_lightmode()
+{
+    QString st="QWidget{background: black;color:rgb(0, 255, 0);}";
+    ui->centralwidget->setStyleSheet("");
+    ui->darkmode->setChecked(0);
+    ui->lightmode->setChecked(1);
+}
+
 
 //Üzenőfelület - 1:message, 2:warning, 3:error
 void GUI::msg(QString txt, int priority=1)

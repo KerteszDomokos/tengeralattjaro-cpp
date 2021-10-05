@@ -1,3 +1,8 @@
+/*
+ * A fájl a GitLab lerakatban található
+ * A fájlhoz a ../build... tartozik
+ */
+
 //könyvtárak includálása
 #include <Servo.h>
 #include <DHT.h>

@@ -51,6 +51,8 @@ private slots:
     void ballasztJobbk();
     void ballasztJobbmin();
     void ballasztJobbmax();
+    void set_darkmode();
+    void set_lightmode();
 
 private:
     Ui::GUI *ui;

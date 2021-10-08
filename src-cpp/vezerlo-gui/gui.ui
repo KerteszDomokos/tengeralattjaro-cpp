@@ -21,9 +21,12 @@
    <string>Tengeralattjáró vezérlőfelület</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true"> </string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"> </string>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="6">
      <spacer name="horizontalSpacer">
@@ -4442,6 +4445,9 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="lightmode">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="text">

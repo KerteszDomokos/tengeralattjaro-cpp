@@ -443,12 +443,11 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
                 lista[i]=serr_us[i]
                 i=i+1
             try:
-                lista[21]=bdatas_us[0]
-                lista[22]=bdatas_us[1]
-                lista[23]=bdatas_us[2]
-                lista[24]=bdatas_us[3]
-                lista[26]=bdatas_us[4]
-                lista[25]=time.time()
+                lista[25]=bdatas_us[0]
+                lista[26]=bdatas_us[1]
+                lista[27]=bdatas_us[2]
+                lista[28]=bdatas_us[3]
+                lista[29]=bdatas_us[4]
             except:
                 pre("bdat error")
             irando=str(lista[:]).replace(","," ").replace("[","").replace("]","")

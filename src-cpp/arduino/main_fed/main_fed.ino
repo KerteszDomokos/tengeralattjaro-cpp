@@ -93,16 +93,17 @@ bool releLetilt;
 long milltime2;
 int RAD_pos = 9;
 int RAD_adatok[18];
-long ballaszt_timer = millis();
-int ballaszt_bal_toltottseg;
-int ballaszt_jobb_toltottseg;
-int ballasztPump = BALLASZT_MAXPOF; //max
 long talcaTime;
 int talcaFok;
 
+long ballaszt_timer = millis();
+long ballaszt_timer2 = millis();
+int ballaszt_bal_toltottseg;
+int ballaszt_jobb_toltottseg;
 int BALLASZT_MAXPOF = 60;
+int ballasztPump = BALLASZT_MAXPOF; //max
 bool ballaszt_nyitvaB = 0;
-bool ballaszt_nyitvaJ;
+bool ballaszt_nyitvaJ = 0;
 
 
 //kommunikáció
@@ -207,9 +208,10 @@ void loop()
     //motorJobbRead=myArray[0];
     int raspiAkk = analogRead(raspiAkk_PIN);
     //kommunikáció:
-    rpikom(komms, bviz, mely, err_k(), analogRead(csp1), h1, h2, h3, hum, motorBalRead, motorJobbRead, raspiAkk,
-           RAD_pos, RAD_adatok[RAD_pos - 4], RAD_adatok[RAD_pos - 3], RAD_adatok[RAD_pos - 2], RAD_adatok[RAD_pos - 1], RAD_adatok[RAD_pos],
-           talcaBal.read());
+    rpikom(komms, bviz, mely, err_k(), analogRead(csp1), h1, h2, h3, hum, 
+      motorBalRead, motorJobbRead, raspiAkk, RAD_pos, RAD_adatok[RAD_pos - 4], 
+      RAD_adatok[RAD_pos - 3], RAD_adatok[RAD_pos - 2], RAD_adatok[RAD_pos - 1], 
+      RAD_adatok[RAD_pos],ballaszt_bal_toltottseg,ballaszt_jobb_toltottseg,0,0);
 
     komms = 0;
     vegrehajt();
@@ -338,6 +340,36 @@ void ballaszt(int bal, int jobb) {
       ballaszt_nyitvaB = 0;
     }
   }
+
+//jobb
+  if (ballaszt_nyitvaJ == 0) {
+    int jkul = int(jobb / 10) - ballaszt_jobb_toltottseg;
+    if (jkul < 0) {
+      //nyomás csökkentése 1-el
+      digitalWrite(BALLASZT_REL_J_K, 0);
+      ballaszt_nyitvaJ = 1;
+      ballaszt_timer2 = millis();
+      ballaszt_jobb_toltottseg--;
+    }
+    else if (jkul > 0) {
+      //nyomás növelése 1-el
+      digitalWrite(BALLASZT_REL_J_B, 0);
+      ballaszt_nyitvaJ = 1;
+      ballaszt_timer2 = millis();
+      ballaszt_jobb_toltottseg++;
+    }
+    else {
+      /*Ballaszt beállítás helyes*/
+    }
+  }
+
+  if (ballaszt_nyitvaJ == 1) {
+    if (millis() - ballaszt_timer2 > BALLASZT_MAXPOF) {
+      digitalWrite(BALLASZT_REL_J_K, 1);
+      digitalWrite(BALLASZT_REL_J_B, 1);
+      ballaszt_nyitvaJ = 0;
+    }
+  }
 }
 
 
@@ -368,11 +400,15 @@ float hm(int pin) {
 
 void rpikom(int a, int b, int c, int d, int e, double f,
             double g, double h, int i, int j, int k, int l, int m, int n,
-            int o, int p, int q, int r, double s)
+            int o, int p, int q, int r, int s, int t, int u, int v)
 {
   String
-  rpidata = "[" + String(a) + "," + String(b) + "," + String(c) + "," + String(d) + "," + String(e) + "," + String(f) + "," + String(g) + "," + String(h) + "," + String(i) + "," +
-            String(j) + "," + String(k) + "," + String(l) + "," + String(m) + "," + String(n) + "," + String(o) + "," + String(p) + "," + String(q) + "," + String(r) + "," + String(s) + "]";
+  rpidata = "[" + String(a) + "," + String(b) + "," + String(c) + "," + 
+  String(d) + "," + String(e) + "," + String(f) + "," + String(g) + "," + 
+  String(h) + "," + String(i) + "," + String(j) + "," + String(k) + "," + 
+  String(l) + "," + String(m) + "," + String(n) + "," + String(o) + "," + 
+  String(p) + "," + String(q) + "," + String(r) + "," + String(s) + "," + 
+  String(t) + "," + String(u) + "," + String(v) + "]";
   Serial.println(rpidata);
   delay(1);
 }

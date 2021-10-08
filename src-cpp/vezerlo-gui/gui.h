@@ -6,6 +6,11 @@
 #include <QProcess>
 #include <QSerialPortInfo>
 #include <QSerialPort>
+#include <QElapsedTimer>
+#include <QtXml>
+#include <QTextStream>
+#include <QDomElement>
+#include <QDomDocument>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -53,6 +58,7 @@ private slots:
     void ballasztJobbmax();
     void set_darkmode();
     void set_lightmode();
+    void mentes();
 
 private:
     Ui::GUI *ui;
@@ -61,6 +67,7 @@ private:
     QList<int> convInt(QString str);//Szóközzel elválasztott szöveg konvertálás int listába
     void joydat();//joystick adatok olvasása fájlból
     QList<double> get_joystickAdatok();//joystick adatok lekérése
+    void ment();
 
     QProcess *pr ;//joystick process cl pointer
     QProcess *pr2 ;//kép process cl pointer
@@ -75,6 +82,15 @@ private:
     QList<double> elozoOlvasottList;//előző olvasott adatcsomag listában
     QList<double> olvasott;//legfrissebb olvasott adatcsomag listában
     int kepHiba;
+    bool mentes_onoff=0;
+    QElapsedTimer *mentes_timer;
+    ulong mentid=0;
+    QDomDocument *ment_doc;
+    QTextStream *xmlContent;
+    QFile *xmlFile;
+    QDomElement *root_xml;
+
+
 
 public: //hösszú szöveges változók
     //a parancssor helptxt-je:

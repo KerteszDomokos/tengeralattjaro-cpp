@@ -5,6 +5,7 @@ QT += core
 QT += network
 QT += serialport
 QT += charts
+QT += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

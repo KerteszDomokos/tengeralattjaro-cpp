@@ -26,6 +26,11 @@
 #include <QSerialPortInfo>
 #include <QFile>
 #include <QImage>
+#include <QElapsedTimer>
+#include <QtXml>
+#include <QTextStream>
+#include <QDomElement>
+#include <QDomDocument>
 
 SockRead sock;
 
@@ -218,9 +223,9 @@ void GUI::update()
     double dy=0;
 
 
-    if (olvasott.size()>26){
-        if(olvasott[22]>0){dx=std::sqrt(pow(olvasott[22]-90,2));}else{dx=-(olvasott[22]+90);}
-        if(olvasott[23]>0){dy=std::sqrt(pow(olvasott[23]-90,2));}else{dy=-(olvasott[23]+90);}
+    if (olvasott.size()>28){
+        if(olvasott[22+4]>0){dx=std::sqrt(pow(olvasott[22+4]-90,2));}else{dx=-(olvasott[22+4]+90);}
+        if(olvasott[23+4]>0){dy=std::sqrt(pow(olvasott[23+4]-90,2));}else{dy=-(olvasott[23+4]+90);}
         QObject *object = ui->horizont->rootObject();
         object->setProperty("pitchAngle", -dx);//dőlés
         object->setProperty("rollAngle", -dy);//forgás
@@ -238,7 +243,7 @@ void GUI::update()
             string += "," ;
         }
         ui->nyersOlvasott->setText(string);
-        if(olvasott.size()>26){
+        if(olvasott.size()>28){
 QTableWidgetItem *i;
 QColor red(QColor("red"));
 QColor green(QColor("green"));
@@ -252,7 +257,7 @@ ui->foadatok_1->setItem(0,3, i = new QTableWidgetItem(QString::number(olvasott[9
     if(0 > 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_1->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[10])));//motorJ
     if(0 > 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
-ui->foadatok_1->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[26])));//test iránya
+ui->foadatok_1->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[26+4])));//test iránya
 ui->foadatok_2->setItem(0,0, i = new QTableWidgetItem(QString::number(0)));//döntőmotor felső
     if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_2->setItem(0,1, i = new QTableWidgetItem(QString::number(0)));//alsó
@@ -273,9 +278,9 @@ ui->foadatok_3->setItem(0,2, i = new QTableWidgetItem(QString::number(olvasott[8
     if(olvasott[8]> 70){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_3->setItem(0,3, i = new QTableWidgetItem(QString::number(olvasott[1])));//belső víz
     if(olvasott[1]> 20){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
-ui->foadatok_3->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[21])));//rpi proc
+ui->foadatok_3->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[21+4])));//rpi proc
     if(olvasott[21]> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
-ui->foadatok_3->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[20])));// serbuff fedélzet
+ui->foadatok_3->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[20+4])));// serbuff fedélzet
     if(olvasott[20]> 1000){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,0, i = new QTableWidgetItem(QString::number(olvasott[11])));//5vakk1 raspi akku
     if(olvasott[11]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
@@ -289,11 +294,10 @@ ui->foadatok_4->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[4
     if(olvasott[4]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp2
     if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
-ui->talcaFok->setText(QString::number(olvasott[18]));
             QObject *object2 = ui->magmer->rootObject();
             object2->setProperty("alt", olvasott[12]);//magasság
             QObject *object3 = ui->compass->rootObject();
-            object3->setProperty("fok", olvasott[26]);//iránytű adatai
+            object3->setProperty("fok", olvasott[26+3]);//iránytű adatai
 
             QString radaradat="Szög: "+QString::number(olvasott[12]*5+45)+"\n"+
                               "-4: "+QString::number(olvasott[13])+"\n"+
@@ -302,6 +306,9 @@ ui->talcaFok->setText(QString::number(olvasott[18]));
                               "-1: "+QString::number(olvasott[16])+"\n"+
                               "Friss: "+QString::number(olvasott[17]);
             ui->radar->setText(radaradat);
+
+            ui->ballaszt_jobbnyom_real->setText(QString::number(olvasott[19]));
+            ui->ballaszt_balnyom_real->setText(QString::number(olvasott[18]));
 
         if(ui->radaron->isChecked()==1){
 
@@ -342,7 +349,9 @@ ui->talcaFok->setText(QString::number(olvasott[18]));
 
 
             ui->robotkaradatok->setText(txt);
-                }
+
+
+            }
         }
       }
    }
@@ -487,6 +496,16 @@ ui->talcaFok->setText(QString::number(olvasott[18]));
         string += "," ;
     }
     ui->nyersIrando->setText(string);
+
+    if (mentes_onoff==1){
+        qDebug()<<mentid;
+        QDomElement l=ment_doc->createElement("Event");
+        l.setAttribute("id",mentid);
+        l.appendChild()
+        mentid++;
+
+    }
+
 }
 
 void GUI::cmdSlot()
@@ -844,6 +863,32 @@ void GUI::set_lightmode()
     ui->lightmode->setChecked(1);
 }
 
+void GUI::mentes()
+{
+    if(ui->rogzites_check->isChecked()==1){
+        mentes_onoff=1;
+        xmlFile=new QFile ("../../mentett.xml");
+        if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
+           {
+               msg("Sikertelen fájl nyitás",2);
+               xmlFile->close();
+           }
+        xmlContent= new QTextStream(xmlFile);
+
+        ment_doc=new QDomDocument;
+        //make the root element
+        root_xml = new QDomElement(ment_doc->createElement("Merülés"));
+        ment_doc->appendChild(root_xml);
+
+    }else{
+        mentes_onoff=0;
+        mentid=0;
+        QString *val= new QString(ment_doc->toString());
+        xmlContent->setString(val);
+        xmlFile->close();
+    }
+}
+
 
 //Üzenőfelület - 1:message, 2:warning, 3:error
 void GUI::msg(QString txt, int priority=1)
@@ -930,6 +975,11 @@ void GUI::joydat()
 QList<double> GUI::get_joystickAdatok()
 {
     return joystickAdatok;
+}
+
+void GUI::ment()
+{
+
 }
 
 

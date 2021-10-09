@@ -59,6 +59,7 @@ private slots:
     void set_darkmode();
     void set_lightmode();
     void mentes();
+    void mentesDialog();
 
 private:
     Ui::GUI *ui;

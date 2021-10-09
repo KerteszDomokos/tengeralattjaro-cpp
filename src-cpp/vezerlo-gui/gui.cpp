@@ -1,6 +1,8 @@
 #include "gui.h"
 #include "ui_gui.h"
 
+#include "felvetel.h"
+
 #include <QDebug>
 #include <QString>
 #include <QTimer>
@@ -31,6 +33,7 @@
 #include <QTextStream>
 #include <QDomElement>
 #include <QDomDocument>
+#include <QDialog>
 
 SockRead sock;
 
@@ -901,7 +904,7 @@ void GUI::mentes()
         msg("Mentés befejezése",1);
         mentes_onoff=0;
         mentid=0;
-        xmlFile=new QFile ("../mentett.xml");
+        xmlFile=new QFile ("../mentett.al");
         if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
            {
                msg("Sikertelen fájl nyitás",2);
@@ -914,6 +917,12 @@ void GUI::mentes()
         }
 
     }
+}
+
+void GUI::mentesDialog()
+{
+    Felvetel * widget = new Felvetel;
+    widget->open();
 }
 
 

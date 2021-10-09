@@ -68,6 +68,8 @@ private:
     void joydat();//joystick adatok olvasása fájlból
     QList<double> get_joystickAdatok();//joystick adatok lekérése
     void ment();
+    QString listToStr(QList<double> l);
+    QString listToStr(QList<int> l);
 
     QProcess *pr ;//joystick process cl pointer
     QProcess *pr2 ;//kép process cl pointer
@@ -83,7 +85,6 @@ private:
     QList<double> olvasott;//legfrissebb olvasott adatcsomag listában
     int kepHiba;
     bool mentes_onoff=0;
-    QElapsedTimer *mentes_timer;
     ulong mentid=0;
     QDomDocument *ment_doc;
     QTextStream *xmlContent;

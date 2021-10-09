@@ -2262,6 +2262,9 @@ background-color: rgb(170, 0, 0);
         <height>348</height>
        </size>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
       </property>

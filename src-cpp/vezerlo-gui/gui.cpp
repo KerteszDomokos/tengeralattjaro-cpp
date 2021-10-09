@@ -145,6 +145,24 @@ GUI::~GUI()
     pr->kill();//joystick folyamat befejezése
     pr2->kill();//kép folyamat befejezése
 
+    if(mentes_onoff==1){
+        mentes_onoff=0;
+        mentid=0;
+        xmlFile=new QFile ("../mentett.xml");
+        if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
+           {
+               msg("Sikertelen fájl nyitás",2);
+               qDebug()<<"Hibás fájlnyitás";
+               xmlFile->close();
+           }
+        else{
+            xmlContent= new QTextStream(xmlFile);
+            QTextStream stream(xmlFile);
+            stream << ment_doc->toString();
+        }
+
+    }
+
 }
 
 
@@ -499,9 +517,14 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
     if (mentes_onoff==1){
         qDebug()<<mentid;
-        QDomElement l=ment_doc->createElement("Event");
-        l.setAttribute("id",mentid);
-        l.appendChild()
+        QDomElement l = ment_doc->createElement("Event");
+        l.setAttribute("id",QString::number(mentid));
+
+        l.setAttribute("joystick",listToStr(joystickAdatok));
+        l.setAttribute("olvasott",listToStr(olvasott));
+        l.setAttribute("kuldendo",listToStr(idl));
+
+        root_xml->appendChild(l);
         mentid++;
 
     }
@@ -865,27 +888,31 @@ void GUI::set_lightmode()
 
 void GUI::mentes()
 {
+
     if(ui->rogzites_check->isChecked()==1){
+        msg("Mentés kezdése",1);
+        ment_doc=new QDomDocument;
+        //make the root element
+        root_xml = new QDomElement(ment_doc->createElement("Merülés"));
+        ment_doc->appendChild(*root_xml);
         mentes_onoff=1;
-        xmlFile=new QFile ("../../mentett.xml");
+
+    }else{
+        msg("Mentés befejezése",1);
+        mentes_onoff=0;
+        mentid=0;
+        xmlFile=new QFile ("../mentett.xml");
         if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
            {
                msg("Sikertelen fájl nyitás",2);
                xmlFile->close();
            }
-        xmlContent= new QTextStream(xmlFile);
+        else{
+            xmlContent= new QTextStream(xmlFile);
+            QTextStream stream(xmlFile);
+            stream << ment_doc->toString();
+        }
 
-        ment_doc=new QDomDocument;
-        //make the root element
-        root_xml = new QDomElement(ment_doc->createElement("Merülés"));
-        ment_doc->appendChild(root_xml);
-
-    }else{
-        mentes_onoff=0;
-        mentid=0;
-        QString *val= new QString(ment_doc->toString());
-        xmlContent->setString(val);
-        xmlFile->close();
     }
 }
 
@@ -980,6 +1007,32 @@ QList<double> GUI::get_joystickAdatok()
 void GUI::ment()
 {
 
+}
+
+QString GUI::listToStr(QList<double> l)
+{
+    QString string;
+    elozoOlvasottList=olvasott;
+    for(int i=0; i<l.size(); i++)
+    {
+        string += QString::number(l[i]);
+        if(i<l.size()-1)
+        string += " " ;
+    }
+    return string;
+}
+
+QString GUI::listToStr(QList<int> l)
+{
+    QString string;
+    elozoOlvasottList=olvasott;
+    for(int i=0; i<l.size(); i++)
+    {
+        string += QString::number(l[i]);
+        if(i<l.size()-1)
+        string += " " ;
+    }
+    return string;
 }
 
 

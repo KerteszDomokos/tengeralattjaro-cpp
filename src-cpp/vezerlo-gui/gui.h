@@ -12,6 +12,7 @@
 #include <QDomElement>
 #include <QDomDocument>
 #include <felvetel.h>
+#include <lejatszas.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -62,6 +63,8 @@ private slots:
     void mentes();
     void mentesDialog();
     void felvAccept();
+    void lejatszasOpen();
+    void goPlay();
 
 private:
     Ui::GUI *ui;
@@ -99,6 +102,13 @@ private:
     bool joyIN, olvIN,kuldIN, konzIN,defPathIN,kepIN;
     QString felvPath;
     QString felvPathGyok;
+
+    Lejatszas *lejatszas;
+    bool playing;
+    bool joydat_play;
+    bool kuld_play;
+    bool olv_play;
+    bool guiupdate_play;
 
 
 

@@ -2,6 +2,7 @@
 #include "ui_gui.h"
 
 #include "felvetel.h"
+#include "lejatszas.h"
 
 #include <QDebug>
 #include <QString>
@@ -216,8 +217,9 @@ void GUI::update()
 {
 
     QList<double> jd=get_joystickAdatok();
+    olvasott=conv(bejovoFriss);
+
     if(jd.isEmpty()==1){
-        qDebug()<<"Üres joystickadatok";
         msg("Üres joystickadatok",2);
     }
     else {
@@ -240,7 +242,6 @@ void GUI::update()
         }
     }
 
-    olvasott=conv(bejovoFriss);
 
     double dx=0;
     double dy=0;
@@ -968,6 +969,23 @@ void GUI::felvAccept()
     felvPath = widget->getFullPath();
     felvPathGyok=widget->getFileName();
     delete widget;
+}
+
+void GUI::lejatszasOpen()
+{
+    lejatszas=new Lejatszas;
+    lejatszas->show();
+    connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
+
+}
+
+void GUI::goPlay()
+{
+    playing=1;
+    kuld_play=lejatszas->getKuld();
+    olv_play=lejatszas->getOlv();
+    joydat_play=lejatszas->getJoy();
+    guiupdate_play=lejatszas->getGuiUpdate();
 }
 
 

@@ -10,11 +10,15 @@ class SockRead : public QObject{
         QString readS();
         bool send(QList<double> dat);
         QByteArray readKep();
+        void resetSettings();
+        void applySettings();
 
     private:
         QUdpSocket *socket;
         QUdpSocket *socketSend;
         QUdpSocket *socketKep;
+        QString kuldoIP="192.168.31.248";
+        QString vevoIP="192.168.31.171";
 
 };
 

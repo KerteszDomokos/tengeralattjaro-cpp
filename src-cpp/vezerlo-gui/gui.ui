@@ -3968,9 +3968,9 @@ p, li { white-space: pre-wrap; }
      <string>Rögzítés</string>
     </property>
     <addaction name="rogzitesAblakNyit"/>
-    <addaction name="rogzites_check"/>
+    <addaction name="lejatszasMegny"/>
     <addaction name="separator"/>
-    <addaction name="actionLej_tsz_s"/>
+    <addaction name="rogzites_check"/>
    </widget>
    <addaction name="menuFajl"/>
    <addaction name="menuOpciok"/>
@@ -4550,14 +4550,14 @@ p, li { white-space: pre-wrap; }
     <string>Rögzítés</string>
    </property>
   </action>
-  <action name="actionLej_tsz_s">
+  <action name="lejatszasMegny">
    <property name="text">
-    <string>Lejátszás</string>
+    <string>Lejátszás beállításai</string>
    </property>
   </action>
   <action name="rogzitesAblakNyit">
    <property name="text">
-    <string>Rögzítés ablak</string>
+    <string>Rögzítés beállításai</string>
    </property>
   </action>
  </widget>
@@ -5142,6 +5142,22 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>lejatszasMegny</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>lejatszasOpen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1089</x>
+     <y>538</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>closeCmd()</slot>
@@ -5171,5 +5187,6 @@ p, li { white-space: pre-wrap; }
   <slot>set_lightmode()</slot>
   <slot>mentes()</slot>
   <slot>mentesDialog()</slot>
+  <slot>lejatszasOpen()</slot>
  </slots>
 </ui>

@@ -10,8 +10,9 @@ socketSend = new QUdpSocket(this);
 socketKep = new QUdpSocket(this);
 
 //socket->connectToHost(6010);
-socket->bind(QHostAddress("192.168.31.171"),6010);//vevő ezen eszköz ip címe
-socketSend->connectToHost(QHostAddress("192.168.31.248"),6000);//küldő ip
+socket->bind(QHostAddress(vevoIP),6010);//vevő ezen eszköz ip címe
+socketSend->connectToHost(QHostAddress(kuldoIP),6000);//küldő ip
+
 socketKep->bind(QHostAddress("192.168.31.171"),6020);//eszköz ip
 
 }
@@ -54,5 +55,26 @@ QByteArray SockRead::readKep()
     buffer=(datagram.data());
 //    qDebug ()<<buffer.toHex();
     return buffer.toHex();
+}
+
+void SockRead::resetSettings()
+{
+
+    kuldoIP="192.168.31.248";
+    vevoIP="192.168.31.171";
+
+}
+
+void SockRead::applySettings()
+{
+    delete socket;
+    delete socketSend;
+
+    socket = new QUdpSocket(this);
+    socketSend = new QUdpSocket(this);
+
+    //socket->connectToHost(6010);
+    socket->bind(QHostAddress(vevoIP),6010);//vevő ezen eszköz ip címe
+    socketSend->connectToHost(QHostAddress(kuldoIP),6000);//küldő ip
 }
 

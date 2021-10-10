@@ -34,6 +34,8 @@
 #include <QDomElement>
 #include <QDomDocument>
 #include <QDialog>
+#include <QDate>
+#include <QDir>
 
 SockRead sock;
 
@@ -138,7 +140,7 @@ GUI::GUI(QWidget *parent)
 
     ballaszt_manualis_click();
 
-
+    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 }
 
 GUI::~GUI()
@@ -904,7 +906,20 @@ void GUI::mentes()
         msg("Mentés befejezése",1);
         mentes_onoff=0;
         mentid=0;
-        xmlFile=new QFile ("../mentett.al");
+        int runID=0;
+        QString p=QDate::currentDate().QDate::toString("yy-MM-dd");
+
+        QDir d(felvPath);
+        QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
+        foreach(QString filename, files) {
+            for (int i; i<100; i++){
+               if(filename.replace(0,8,"")==QString::number(i)+".al"){
+                   runID++;
+               }
+            }
+        }
+
+        xmlFile=new QFile (felvPath+"/merules"+p+runID+".al");
         if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
            {
                msg("Sikertelen fájl nyitás",2);
@@ -921,8 +936,21 @@ void GUI::mentes()
 
 void GUI::mentesDialog()
 {
-    Felvetel * widget = new Felvetel;
+    widget = new Felvetel;
     widget->open();
+    connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
+}
+
+void GUI::felvAccept()
+{
+    joyIN = widget->getJoyIN();
+    konzIN = widget->getKonzIN();
+    olvIN = widget->getOlvIN();
+    kuldIN = widget->getKuldIN();
+    defPathIN = widget->getDefPathIN();
+    kepIN = widget->getKepIN();
+    felvPath = widget->getDefPathIN();
+    delete widget;
 }
 
 

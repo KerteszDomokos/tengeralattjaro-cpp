@@ -18,12 +18,30 @@ public:
     explicit Felvetel(QWidget *parent = nullptr);
     ~Felvetel();
 
+    QString getFileName() const;
+    void setFileName(const QString &value);
+    bool getOlvIN() const;
+    bool getKuldIN() const;
+    bool getKonzIN() const;
+    bool getJoyIN() const;
+    bool getKepIN() const;
+    bool getDefPathIN() const;
+
 private slots:
     void chooseFile();
+    void apply();
+    void elvet();
+    void ok();
+    void filenameUpdate();
+
 
 private:
     Ui::Felvetel *ui;
     QString fileName;
+    QString LfileName;
+    bool joyIN, olvIN,kuldIN, konzIN,defPathIN,kepIN;
+    void generateFilename(int id);
+    int rid;
 };
 
 #endif // FELVETEL_H

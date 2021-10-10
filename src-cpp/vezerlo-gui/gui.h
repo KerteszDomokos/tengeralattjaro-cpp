@@ -11,6 +11,7 @@
 #include <QTextStream>
 #include <QDomElement>
 #include <QDomDocument>
+#include <felvetel.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -60,6 +61,7 @@ private slots:
     void set_lightmode();
     void mentes();
     void mentesDialog();
+    void felvAccept();
 
 private:
     Ui::GUI *ui;
@@ -91,6 +93,11 @@ private:
     QTextStream *xmlContent;
     QFile *xmlFile;
     QDomElement *root_xml;
+    Felvetel *widget;
+    bool joyIN, olvIN,kuldIN, konzIN,defPathIN,kepIN;
+    QString felvPath;
+
+
 
 
 
@@ -101,7 +108,8 @@ public: //hösszú szöveges változók
     QString keppath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\kep.py";
     QString pypath="C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe";
 
-};
 
+
+};
 
 #endif // GUI_H

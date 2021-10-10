@@ -907,22 +907,38 @@ void GUI::mentes()
         mentes_onoff=0;
         mentid=0;
         int runID=0;
-        QString p=QDate::currentDate().QDate::toString("yy-MM-dd");
 
-        QDir d(felvPath);
+
+        QList<QString> fn;
+        QDir d(felvPathGyok);
         QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
         foreach(QString filename, files) {
-            for (int i; i<100; i++){
-               if(filename.replace(0,8,"")==QString::number(i)+".al"){
-                   runID++;
-               }
+            fn.append(filename);
             }
-        }
 
-        xmlFile=new QFile (felvPath+"/merules"+p+runID+".al");
+        for (int i=0; i<fn.length();i++){
+            QString del = fn[i].replace(0,16,"").replace(2,3,"");
+            if(del==felvPath){
+                fn.append(generatePath(i+1));
+                msg("Fájl felülírás kikerülése. Új útvonal: "+generatePath(i+1),2);
+            }
+            for (int da=0; da<100;da++){
+                QString c;
+                if(da<10){c="0";}
+                c=c+QString::number(da);
+                if(del==c){
+                    runID=da+1;
+                }
+            }
+            felvPath=generatePath(runID);
+        }
+        msg("Fájl felülírás kikerülése. Új útvonal: "+generatePath(runID),2);   //Biztonsági funkció, fájl fölülírás nincsen
+
+
+        xmlFile=new QFile (felvPath);
         if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
            {
-               msg("Sikertelen fájl nyitás",2);
+               msg("Sikertelen fájl nyitás"+felvPath,2);
                xmlFile->close();
            }
         else{
@@ -949,7 +965,8 @@ void GUI::felvAccept()
     kuldIN = widget->getKuldIN();
     defPathIN = widget->getDefPathIN();
     kepIN = widget->getKepIN();
-    felvPath = widget->getDefPathIN();
+    felvPath = widget->getFullPath();
+    felvPathGyok=widget->getFileName();
     delete widget;
 }
 
@@ -1070,6 +1087,16 @@ QString GUI::listToStr(QList<int> l)
         string += " " ;
     }
     return string;
+}
+
+QString GUI::generatePath(int id)
+{
+    QString p=QDate::currentDate().QDate::toString("yy-MM-dd");
+    QString nam="/merules"+p+"-";
+    if(id<10){nam=nam+"0";}
+    nam=nam+QString::number(id)+".al";
+    QString fullPath=felvPathGyok+nam;
+    return fullPath;
 }
 
 

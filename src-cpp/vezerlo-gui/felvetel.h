@@ -27,6 +27,8 @@ public:
     bool getKepIN() const;
     bool getDefPathIN() const;
 
+    QString getFullPath() const;
+
 private slots:
     void chooseFile();
     void apply();
@@ -39,6 +41,7 @@ private:
     Ui::Felvetel *ui;
     QString fileName;
     QString LfileName;
+    QString fullPath;
     bool joyIN, olvIN,kuldIN, konzIN,defPathIN,kepIN;
     void generateFilename(int id);
     int rid;

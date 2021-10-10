@@ -36,7 +36,7 @@ void Felvetel::chooseFile()
         fn.append(filename);
         }
     for (int i=0; i<fn.length();i++){
-        QString del = fn[i].replace(0,9,"").replace(2,3,"");
+        QString del = fn[i].replace(0,16,"").replace(2,3,"");
         for (int da=0; da<100;da++){
             QString c;
             if(da<10){c="0";}
@@ -70,6 +70,7 @@ void Felvetel::elvet()
 
 void Felvetel::ok()
 {
+    generateFilename(ui->sorszam->value());
     apply();
     accept();
     close();
@@ -80,13 +81,18 @@ void Felvetel::filenameUpdate()
     generateFilename(ui->sorszam->value());
 }
 
+QString Felvetel::getFullPath() const
+{
+    return fullPath;
+}
+
 void Felvetel::generateFilename(int id)
 {
     QString p=QDate::currentDate().QDate::toString("yy-MM-dd");
-    QString nam=".../merules"+p+"-";
+    QString nam="/merules"+p+"-";
     if(id<10){nam=nam+"0";}
     nam=nam+QString::number(id)+".al";
-    ui->kovfile->setText(nam);
+    ui->kovfile->setText("..."+nam);
     ui->sorszam->setValue(id);
     if(rid>ui->sorszam->value()){
         ui->sorszam->setStyleSheet("QSpinBox{background-color:red;}");
@@ -94,6 +100,7 @@ void Felvetel::generateFilename(int id)
     else{
         ui->sorszam->setStyleSheet("");
     }
+    fullPath=fileName+nam;
 }
 
 

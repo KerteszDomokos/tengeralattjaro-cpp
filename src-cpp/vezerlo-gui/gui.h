@@ -73,6 +73,8 @@ private:
     void ment();
     QString listToStr(QList<double> l);
     QString listToStr(QList<int> l);
+    QString generatePath(int id);
+
 
     QProcess *pr ;//joystick process cl pointer
     QProcess *pr2 ;//kép process cl pointer
@@ -96,6 +98,8 @@ private:
     Felvetel *widget;
     bool joyIN, olvIN,kuldIN, konzIN,defPathIN,kepIN;
     QString felvPath;
+    QString felvPathGyok;
+
 
 
 

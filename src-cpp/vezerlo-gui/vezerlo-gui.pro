@@ -17,6 +17,7 @@ CONFIG += c++11
 
 SOURCES += \
     felvetel.cpp \
+    lejatszas.cpp \
     main.cpp \
     gui.cpp \
     sockread.cpp
@@ -24,11 +25,13 @@ SOURCES += \
 HEADERS += \
     felvetel.h \
     gui.h \
+    lejatszas.h \
     sockread.h
 
 FORMS += \
     felvetel.ui \
-    gui.ui
+    gui.ui \
+    lejatszas.ui
 
 
 DISTFILES += \

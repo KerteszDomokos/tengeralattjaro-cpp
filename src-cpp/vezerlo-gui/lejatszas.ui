@@ -7,179 +7,305 @@
     <x>0</x>
     <y>0</y>
     <width>543</width>
-    <height>422</height>
+    <height>502</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Lejátszás beállításai</string>
   </property>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QSlider" name="horizontalSlider">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>420</y>
      <width>521</width>
-     <height>101</height>
+     <height>20</height>
     </rect>
    </property>
-   <property name="title">
-    <string>Lejátszandó fájl</string>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QPushButton" name="filekivalasztas">
-    <property name="geometry">
-     <rect>
-      <x>419</x>
-      <y>29</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Fájl kiválasztása</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="filenametxt">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>29</y>
-      <width>371</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>31</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Fájl:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="fileervenyesseg_label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>491</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Válasszon ki fájlt az érvényesség ellenőrzéséhez</string>
-    </property>
-   </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
+  <widget class="QPushButton" name="playgomb">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>120</y>
-     <width>521</width>
-     <height>131</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Megjelenítési beállítások</string>
-   </property>
-   <widget class="QCheckBox" name="erkezoAdatok">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>111</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Érkező adatok</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>7</x>
-      <y>20</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Megjelenítés</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="kuldottadatok">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>101</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Küldött adatok</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="updateVezerloelem">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>100</y>
-      <width>141</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Vezérlőelemek frissítése</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="Joystickadatok">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>80</y>
-      <width>121</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Joystick adatok</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>390</y>
-     <width>80</width>
+     <x>260</x>
+     <y>440</y>
+     <width>21</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Lejátszás</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icons/play</normaloff>:/icons/play</iconset>
+   </property>
+  </widget>
+  <widget class="QToolBox" name="toolBox">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>521</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <widget class="QWidget" name="page">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>521</width>
+      <height>277</height>
+     </rect>
+    </property>
+    <attribute name="label">
+     <string>Beállítások</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>501</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Lejátszandó fájl</string>
+     </property>
+     <widget class="QPushButton" name="filekivalasztas">
+      <property name="geometry">
+       <rect>
+        <x>414</x>
+        <y>29</y>
+        <width>81</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fájl kiválasztása</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="filenametxt">
+      <property name="geometry">
+       <rect>
+        <x>35</x>
+        <y>29</y>
+        <width>371</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>31</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Fájl:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fileervenyesseg_label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>491</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Válasszon ki fájlt az érvényesség ellenőrzéséhez</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>56</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fájl betöltése</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="load">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>481</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>501</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Megjelenítési beállítások</string>
+     </property>
+     <widget class="QCheckBox" name="erkezoAdatok">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>111</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Érkező adatok</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>20</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Megjelenítés</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="kuldottadatok">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Küldött adatok</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="updateVezerloelem">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>141</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vezérlőelemek frissítése</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="Joystickadatok">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>121</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Joystick adatok</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>521</width>
+      <height>277</height>
+     </rect>
+    </property>
+    <attribute name="label">
+     <string>XML fájl</string>
+    </attribute>
+    <widget class="QTextBrowser" name="xmladatok">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>511</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>350</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Rekordok száma: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="rekordszam">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>350</y>
+     <width>61</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nincs fájl</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>filekivalasztas</sender>
@@ -213,9 +339,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>playgomb</sender>
+   <signal>clicked()</signal>
+   <receiver>Lejatszas</receiver>
+   <slot>lejatszas_idozito()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>264</x>
+     <y>326</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>338</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>chooseFile()</slot>
   <slot>startPlay()</slot>
+  <slot>lejatszas_idozito()</slot>
  </slots>
 </ui>

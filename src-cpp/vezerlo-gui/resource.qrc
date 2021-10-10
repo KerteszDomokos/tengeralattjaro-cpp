@@ -31,4 +31,8 @@
         <file>resources/compass.svg</file>
         <file>resources/compass-nyil.png</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file alias="play">resources/play.ico</file>
+        <file alias="pause">resources/pause.ico</file>
+    </qresource>
 </RCC>

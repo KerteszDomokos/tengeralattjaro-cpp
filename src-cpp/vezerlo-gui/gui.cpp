@@ -522,7 +522,6 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     ui->nyersIrando->setText(string);
 
     if (mentes_onoff==1){
-        qDebug()<<mentid;
         QDomElement l = ment_doc->createElement("Event");
         l.setAttribute("id",QString::number(mentid));
 
@@ -899,7 +898,7 @@ void GUI::mentes()
         msg("Mentés kezdése",1);
         ment_doc=new QDomDocument;
         //make the root element
-        root_xml = new QDomElement(ment_doc->createElement("Merülés"));
+        root_xml = new QDomElement(ment_doc->createElement("Merules"));
         ment_doc->appendChild(*root_xml);
         mentes_onoff=1;
 

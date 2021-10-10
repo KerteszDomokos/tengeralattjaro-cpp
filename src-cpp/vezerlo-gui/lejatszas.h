@@ -2,6 +2,8 @@
 #define LEJATSZAS_H
 
 #include <QDialog>
+#include <QTimer>
+#include <QDomDocument>
 
 namespace Ui {
 class Lejatszas;
@@ -25,12 +27,25 @@ signals:
 private slots:
     void chooseFile();
     void startPlay();
+    void lejatszas_idozito();
+
 
 
 private:
     Ui::Lejatszas *ui;
     QString fileName;
     bool kuld,olv,joy,guiUpdate;
+    QTimer *standard_speed;
+    bool playing;
+
+    QDomDocument *xml;
+    QDomElement *root;
+    QDomElement *node;
+
+
+
+
+
 };
 
 #endif // LEJATSZAS_H

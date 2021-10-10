@@ -11,6 +11,7 @@ Lejatszas::Lejatszas(QWidget *parent) :
     ui(new Ui::Lejatszas)
 {
     ui->setupUi(this);
+    ui->toolBox->setCurrentIndex(0);
 }
 
 Lejatszas::~Lejatszas()
@@ -38,7 +39,14 @@ void Lejatszas::startPlay()
        qDebug() << "Error while loading file";
     }
     // Set data into the QDomDocument before processing
-    xmlBOM.setContent(&f);
+    QString Errormsg;
+    if(xmlBOM.setContent(&f,true,&Errormsg)){
+        ui->fileervenyesseg_label->setText("Érvényes fájl, betölthető");
+        ui->fileervenyesseg_label->setStyleSheet("QLabel{color:green;}");
+    }else{
+        ui->fileervenyesseg_label->setText("Érvénytelen fájl, betöltés siekretelen. Error: "+Errormsg);
+        ui->fileervenyesseg_label->setStyleSheet("QLabel{color:red;}");
+    }
     f.close();
 
     QDomElement root=xmlBOM.documentElement();
@@ -73,6 +81,8 @@ void Lejatszas::startPlay()
         }
 
         ui->xmladatok->setText(txt);
+        ui->toolBox->setCurrentIndex(1);
+
 
     play();
 }

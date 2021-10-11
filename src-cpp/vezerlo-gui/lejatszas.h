@@ -21,6 +21,11 @@ public:
     bool getOlv() const;
     bool getJoy() const;
     bool getGuiUpdate() const;
+    long getRekordszam() const;
+    QList<long> *getIdsp() const;
+    QList<QString> *getKuldendop() const;
+    QList<QString> *getOlvasottp() const;
+    QList<QString> *getJoystickp() const;
 
 signals:
     void play();
@@ -28,7 +33,7 @@ private slots:
     void chooseFile();
     void startPlay();
     void lejatszas_idozito();
-
+    void slidMove();
 
 
 private:
@@ -39,10 +44,29 @@ private:
     bool playing;
 
     QDomDocument *xml;
-    QDomElement *root;
     QDomElement *node;
+    long rekordszam;
+    QList<long> ids;
+    QList<QString> kuldendo;
+    QList<QString> olvasott;
+    QList<QString> joystick;
 
+    QList<long> *idsp;
+    QList<QString> *kuldendop;
+    QList<QString> *olvasottp;
+    QList<QString> *joystickp;
 
+    QDomElement Child;
+    QString tag;
+    QDomNodeList nodes;
+    QDomElement root;
+    QDomElement Component;
+
+    void getElements(long beg);
+    long lastLoad=0;
+
+signals:
+    void xmlReload();
 
 
 

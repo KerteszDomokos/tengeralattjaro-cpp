@@ -66,6 +66,8 @@ private slots:
     void lejatszasOpen();
     void goPlay();
 
+
+
 private:
     Ui::GUI *ui;
     QString commands(QString comm) ;//parancssor parancs kereső függvény

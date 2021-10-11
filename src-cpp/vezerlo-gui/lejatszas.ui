@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Lejátszás beállításai</string>
   </property>
-  <widget class="QSlider" name="horizontalSlider">
+  <widget class="QSlider" name="idovonal">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -22,8 +22,23 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="maximum">
+    <number>110</number>
+   </property>
+   <property name="singleStep">
+    <number>1</number>
+   </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="invertedControls">
+    <bool>false</bool>
+   </property>
+   <property name="tickPosition">
+    <enum>QSlider::TicksBelow</enum>
+   </property>
+   <property name="tickInterval">
+    <number>100</number>
    </property>
   </widget>
   <widget class="QPushButton" name="playgomb">
@@ -53,7 +68,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <property name="geometry">
@@ -302,6 +317,19 @@
     <string>Nincs fájl</string>
    </property>
   </widget>
+  <widget class="QLabel" name="rekordfigy">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>350</y>
+     <width>351</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="resource.qrc"/>
@@ -314,8 +342,8 @@
    <slot>chooseFile()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>449</x>
-     <y>52</y>
+     <x>444</x>
+     <y>79</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -330,8 +358,8 @@
    <slot>startPlay()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>38</x>
-     <y>400</y>
+     <x>428</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>42</x>
@@ -347,11 +375,27 @@
    <hints>
     <hint type="sourcelabel">
      <x>264</x>
-     <y>326</y>
+     <y>446</y>
     </hint>
     <hint type="destinationlabel">
      <x>333</x>
      <y>338</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>idovonal</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Lejatszas</receiver>
+   <slot>slidMove()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>173</x>
+     <y>425</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>201</x>
+     <y>384</y>
     </hint>
    </hints>
   </connection>
@@ -360,5 +404,6 @@
   <slot>chooseFile()</slot>
   <slot>startPlay()</slot>
   <slot>lejatszas_idozito()</slot>
+  <slot>slidMove()</slot>
  </slots>
 </ui>

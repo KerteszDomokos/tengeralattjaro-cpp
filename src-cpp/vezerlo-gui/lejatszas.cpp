@@ -49,22 +49,24 @@ void Lejatszas::startPlay()
     }
     f.close();
 
-    QDomElement root=xmlBOM.documentElement();
-    QDomElement Component=root.firstChild().toElement();
+     root=xmlBOM.documentElement();
+     Component=root.firstChild().toElement();
     QString txt;
 
-    QList<long> ids;
-    QList<QString> kuldendo;
-    QList<QString> olvasott;
-    QList<QString> joystick;
 
     // Get the first child of the component
-    QDomElement Child=Component.firstChild().toElement();
-    QString tag = "Event";
-    QDomNodeList nodes = root.elementsByTagName(tag);
+     Child=Component.firstChild().toElement();
+     tag = "Event";
+     nodes = root.elementsByTagName(tag);
         ui->rekordszam->setText(QString::number(nodes.count()));
         ui->load->setMaximum(nodes.count());
-        for(int i = 0; i < nodes.count(); i++)
+        rekordszam=nodes.count();
+        ui->idovonal->setMaximum(rekordszam);
+        if(rekordszam>1200){
+            ui->rekordfigy->setText("A rendszer max 1000 rekordot tölt be! Jelenlegi kezdőrekord: "+QString::number(0));
+            ui->load->setMaximum(1200);
+        }
+        for(int i = 0; i < nodes.count() && i<1200; i++)
         {
             ui->load->setValue(i+1);
             QDomNode elm = nodes.at(i);
@@ -85,6 +87,7 @@ void Lejatszas::startPlay()
 
 
     play();
+    connect(this,SIGNAL(xmlReload()),this,SLOT(getElements()));
 }
 
 void Lejatszas::lejatszas_idozito()
@@ -96,6 +99,79 @@ void Lejatszas::lejatszas_idozito()
         ui->playgomb->setIcon(QIcon(":/icons/pause"));
         playing=1;
     }
+}
+
+void Lejatszas::getElements(long beg)
+{
+    QString txt;
+    Child=Component.firstChild().toElement();
+    tag = "Event";
+    nodes = root.elementsByTagName(tag);
+       ui->rekordszam->setText(QString::number(nodes.count()));
+       ui->load->setMaximum(nodes.count());
+       rekordszam=nodes.count();
+       ui->idovonal->setMaximum(rekordszam);
+
+       kuldendo.clear();
+       ids.clear();
+       olvasott.clear();
+       joystick.clear();
+
+       if(rekordszam>200){
+           ui->rekordfigy->setText("A rendszer max 200 rekordot tölt be! Jelenlegi kezdőrekord: "+QString::number(beg));
+           ui->load->setMaximum(200);
+       }
+       for(int i = beg; i < nodes.count() && i<beg+200; i++)
+       {
+           ui->load->setValue(i+1);
+           QDomNode elm = nodes.at(i);
+           if(elm.isElement())
+           {
+               QDomElement e = elm.toElement();
+               ids.append(e.attribute("id").toLong());
+               kuldendo.append(e.attribute("kuldendo"));
+               olvasott.append(e.attribute("olvasott"));
+               joystick.append(e.attribute("olvasott"));
+               txt=txt+e.attribute("id")+" - "+e.attribute("kuldendo")+" - "+e.attribute("olvasott")+" - "+e.attribute("olvasott")+"\n";
+
+           }
+       }
+       ui->xmladatok->setText(txt);
+}
+
+void Lejatszas::slidMove()
+{
+    long pos=ui->idovonal->value();
+    if (pos-lastLoad>100 || pos-lastLoad<-100){
+        if(pos<=100){getElements(0);}else{getElements(pos-100);}
+        lastLoad=pos;
+        qDebug()<<"Trig"<<ids[0];
+    }
+}
+
+QList<QString> *Lejatszas::getJoystickp() const
+{
+    return joystickp;
+}
+
+QList<QString> *Lejatszas::getOlvasottp() const
+{
+    return olvasottp;
+}
+
+QList<QString> *Lejatszas::getKuldendop() const
+{
+    return kuldendop;
+}
+
+QList<long> *Lejatszas::getIdsp() const
+{
+    return idsp;
+}
+
+long Lejatszas::getRekordszam() const
+{
+    return rekordszam;
 }
 
 bool Lejatszas::getGuiUpdate() const

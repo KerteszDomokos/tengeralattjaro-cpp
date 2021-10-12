@@ -27,6 +27,13 @@ public:
     QList<QString> *getOlvasottp() const;
     QList<QString> *getJoystickp() const;
 
+    long getNowID() const;
+    QString getNowKuldendo() const;
+    QString getNowOlvasott() const;
+    QString getNowJoystick() const;
+    void updateNow();
+
+
 signals:
     void play();
 private slots:
@@ -51,10 +58,10 @@ private:
     QList<QString> olvasott;
     QList<QString> joystick;
 
-    QList<long> *idsp;
-    QList<QString> *kuldendop;
-    QList<QString> *olvasottp;
-    QList<QString> *joystickp;
+    long nowID;
+    QString nowKuldendo;
+    QString nowOlvasott;
+    QString nowJoystick;
 
     QDomElement Child;
     QString tag;
@@ -64,6 +71,7 @@ private:
 
     void getElements(long beg);
     long lastLoad=0;
+
 
 signals:
     void xmlReload();

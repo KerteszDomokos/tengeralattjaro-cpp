@@ -137,6 +137,17 @@ void Lejatszas::getElements(long beg)
            }
        }
        ui->xmladatok->setText(txt);
+
+}
+
+void Lejatszas::updateNow()
+{
+    nowID=ui->idovonal->value()-lastLoad;
+    if(nowID<0){qDebug()<<"Now id kisebb mint nulla";}else{
+    nowKuldendo=kuldendo[nowID];
+    nowOlvasott=olvasott[nowID];
+    nowJoystick=joystick[nowID];
+    }
 }
 
 void Lejatszas::slidMove()
@@ -149,24 +160,24 @@ void Lejatszas::slidMove()
     }
 }
 
-QList<QString> *Lejatszas::getJoystickp() const
+QString Lejatszas::getNowJoystick() const
 {
-    return joystickp;
+    return nowJoystick;
 }
 
-QList<QString> *Lejatszas::getOlvasottp() const
+QString Lejatszas::getNowOlvasott() const
 {
-    return olvasottp;
+    return nowOlvasott;
 }
 
-QList<QString> *Lejatszas::getKuldendop() const
+QString Lejatszas::getNowKuldendo() const
 {
-    return kuldendop;
+    return nowKuldendo;
 }
 
-QList<long> *Lejatszas::getIdsp() const
+long Lejatszas::getNowID() const
 {
-    return idsp;
+    return nowID;
 }
 
 long Lejatszas::getRekordszam() const

@@ -218,6 +218,10 @@ void GUI::update()
 
     QList<double> jd=get_joystickAdatok();
     olvasott=conv(bejovoFriss);
+    if(playing==1){
+        lejatszas->updateNow();
+        olvasott=conv(lejatszas->getNowOlvasott());
+    }
 
     if(jd.isEmpty()==1){
         msg("Üres joystickadatok",2);
@@ -473,7 +477,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
     int szoros=ui->ballasztErz->value();
     QList<double> idl;
-
+    if(playing==0){
     idl.append(0);//0 használatlan
     idl.append(jmot);//1 motor2 érték
     idl.append(0);//2 mélységmérés
@@ -511,7 +515,14 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
 
     kuldendoFriss=idl;
+}
 
+    else{
+        lejatszas->updateNow();
+        QList<double>rewritedDat=conv(lejatszas->getNowKuldendo());
+        ui->slid1->setValue(rewritedDat[10]);
+        ui->slid2->setValue(rewritedDat[1]);
+    }
     QString string;
     for(int i=0; i<idl.size(); i++)
     {
@@ -534,6 +545,101 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
     }
 
+}
+void GUI::mentes()
+{
+
+    if(ui->rogzites_check->isChecked()==1){
+        msg("Mentés kezdése",1);
+        ment_doc=new QDomDocument;
+        //make the root element
+        root_xml = new QDomElement(ment_doc->createElement("Merules"));
+        ment_doc->appendChild(*root_xml);
+        mentes_onoff=1;
+
+    }else{
+        msg("Mentés befejezése",1);
+        mentes_onoff=0;
+        mentid=0;
+        int runID=0;
+
+
+        QList<QString> fn;
+        QDir d(felvPathGyok);
+        QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
+        foreach(QString filename, files) {
+            fn.append(filename);
+            }
+
+        for (int i=0; i<fn.length();i++){
+            QString del = fn[i].replace(0,16,"").replace(2,3,"");
+            if(del==felvPath){
+                fn.append(generatePath(i+1));
+                msg("Fájl felülírás kikerülése. Új útvonal: "+generatePath(i+1),2);
+            }
+            for (int da=0; da<100;da++){
+                QString c;
+                if(da<10){c="0";}
+                c=c+QString::number(da);
+                if(del==c){
+                    runID=da+1;
+                }
+            }
+            felvPath=generatePath(runID);
+        }
+        msg("Fájl felülírás kikerülése. Új útvonal: "+generatePath(runID),2);   //Biztonsági funkció, fájl fölülírás nincsen
+
+
+        xmlFile=new QFile (felvPath);
+        if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
+           {
+               msg("Sikertelen fájl nyitás"+felvPath,2);
+               xmlFile->close();
+           }
+        else{
+            xmlContent= new QTextStream(xmlFile);
+            QTextStream stream(xmlFile);
+            stream << ment_doc->toString();
+        }
+
+    }
+}
+
+void GUI::mentesDialog()
+{
+    widget = new Felvetel;
+    widget->open();
+    connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
+}
+
+void GUI::felvAccept()
+{
+    joyIN = widget->getJoyIN();
+    konzIN = widget->getKonzIN();
+    olvIN = widget->getOlvIN();
+    kuldIN = widget->getKuldIN();
+    defPathIN = widget->getDefPathIN();
+    kepIN = widget->getKepIN();
+    felvPath = widget->getFullPath();
+    felvPathGyok=widget->getFileName();
+    delete widget;
+}
+
+void GUI::lejatszasOpen()
+{
+    lejatszas=new Lejatszas;
+    lejatszas->show();
+    connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
+
+}
+
+void GUI::goPlay()
+{
+    playing=1;
+    kuld_play=lejatszas->getKuld();
+    olv_play=lejatszas->getOlv();
+    joydat_play=lejatszas->getJoy();
+    guiupdate_play=lejatszas->getGuiUpdate();
 }
 
 void GUI::cmdSlot()
@@ -891,101 +997,6 @@ void GUI::set_lightmode()
     ui->lightmode->setChecked(1);
 }
 
-void GUI::mentes()
-{
-
-    if(ui->rogzites_check->isChecked()==1){
-        msg("Mentés kezdése",1);
-        ment_doc=new QDomDocument;
-        //make the root element
-        root_xml = new QDomElement(ment_doc->createElement("Merules"));
-        ment_doc->appendChild(*root_xml);
-        mentes_onoff=1;
-
-    }else{
-        msg("Mentés befejezése",1);
-        mentes_onoff=0;
-        mentid=0;
-        int runID=0;
-
-
-        QList<QString> fn;
-        QDir d(felvPathGyok);
-        QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
-        foreach(QString filename, files) {
-            fn.append(filename);
-            }
-
-        for (int i=0; i<fn.length();i++){
-            QString del = fn[i].replace(0,16,"").replace(2,3,"");
-            if(del==felvPath){
-                fn.append(generatePath(i+1));
-                msg("Fájl felülírás kikerülése. Új útvonal: "+generatePath(i+1),2);
-            }
-            for (int da=0; da<100;da++){
-                QString c;
-                if(da<10){c="0";}
-                c=c+QString::number(da);
-                if(del==c){
-                    runID=da+1;
-                }
-            }
-            felvPath=generatePath(runID);
-        }
-        msg("Fájl felülírás kikerülése. Új útvonal: "+generatePath(runID),2);   //Biztonsági funkció, fájl fölülírás nincsen
-
-
-        xmlFile=new QFile (felvPath);
-        if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
-           {
-               msg("Sikertelen fájl nyitás"+felvPath,2);
-               xmlFile->close();
-           }
-        else{
-            xmlContent= new QTextStream(xmlFile);
-            QTextStream stream(xmlFile);
-            stream << ment_doc->toString();
-        }
-
-    }
-}
-
-void GUI::mentesDialog()
-{
-    widget = new Felvetel;
-    widget->open();
-    connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
-}
-
-void GUI::felvAccept()
-{
-    joyIN = widget->getJoyIN();
-    konzIN = widget->getKonzIN();
-    olvIN = widget->getOlvIN();
-    kuldIN = widget->getKuldIN();
-    defPathIN = widget->getDefPathIN();
-    kepIN = widget->getKepIN();
-    felvPath = widget->getFullPath();
-    felvPathGyok=widget->getFileName();
-    delete widget;
-}
-
-void GUI::lejatszasOpen()
-{
-    lejatszas=new Lejatszas;
-    lejatszas->show();
-    connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
-
-}
-
-void GUI::goPlay()
-{
-    playing=1;
-    kuld_play=lejatszas->getKuld();
-    olv_play=lejatszas->getOlv();
-    joydat_play=lejatszas->getJoy();
-    guiupdate_play=lejatszas->getGuiUpdate();
-}
 
 
 //Üzenőfelület - 1:message, 2:warning, 3:error

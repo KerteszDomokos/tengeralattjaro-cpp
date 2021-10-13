@@ -152,22 +152,25 @@ void Lejatszas::updateNow()
 {
     long id=0;
     if(ids.size()>1){
-        id=ids[0];
-        nowID=ui->idovonal->value();
-        if(nowID<0){qDebug()<<"Now id kisebb mint nulla";nowID=0;}
-        nowKuldendo=kuldendo[nowID];
-        nowOlvasott=olvasott[nowID];
-        nowJoystick=joystick[nowID];
-    }else{}
+        id=long(ids[0]);
+        nowID=ui->idovonal->value()-id;
+        if(nowID+ids[0]<rekordszam){
+            if(nowID<0){qDebug()<<"Now id kisebb mint nulla";nowID=0;}
+            nowKuldendo=kuldendo[nowID];
+            nowOlvasott=olvasott[nowID];
+            nowJoystick=joystick[nowID];
+            qDebug()<<nowID<<ids[0];
+       }
+    }
 }
 
 void Lejatszas::slidMove()
 {
     long pos=ui->idovonal->value();
-    if (pos-lastLoad>100 || pos-lastLoad<-100){
-        if(pos<=100){getElements(0);}else{getElements(pos-100);}
+    if (pos-lastLoad>90 || pos-lastLoad<-90){
+        if(pos<=90){getElements(0);}else{getElements(pos-90);}
         lastLoad=pos;
-        qDebug()<<"Trig"<<ids[0];
+        qDebug()<<"Új null ID: "<<ids[0];
     }
 }
 

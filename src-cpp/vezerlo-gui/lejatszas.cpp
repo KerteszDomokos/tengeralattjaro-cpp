@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QIcon>
 #include <QDomDocument>
+#include <QTimer>
 
 Lejatszas::Lejatszas(QWidget *parent) :
     QDialog(parent),
@@ -12,10 +13,15 @@ Lejatszas::Lejatszas(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->toolBox->setCurrentIndex(0);
+    playing=0;
+
+    timer = new QTimer(this);//időzítők
+    connect(timer, &QTimer::timeout, this, QOverload<>::of(&Lejatszas::next_steps));
 }
 
 Lejatszas::~Lejatszas()
 {
+    closed();
     delete ui;
 }
 
@@ -95,9 +101,11 @@ void Lejatszas::lejatszas_idozito()
     if(playing==1){//Lejátszás
         ui->playgomb->setIcon(QIcon(":/icons/play"));
         playing=0;
+        timer->stop();
     }else{
         ui->playgomb->setIcon(QIcon(":/icons/pause"));
         playing=1;
+        timer->start(5);
     }
 }
 
@@ -142,12 +150,15 @@ void Lejatszas::getElements(long beg)
 
 void Lejatszas::updateNow()
 {
-    nowID=ui->idovonal->value()-lastLoad;
-    if(nowID<0){qDebug()<<"Now id kisebb mint nulla";}else{
-    nowKuldendo=kuldendo[nowID];
-    nowOlvasott=olvasott[nowID];
-    nowJoystick=joystick[nowID];
-    }
+    long id=0;
+    if(ids.size()>1){
+        id=ids[0];
+        nowID=ui->idovonal->value();
+        if(nowID<0){qDebug()<<"Now id kisebb mint nulla";nowID=0;}
+        nowKuldendo=kuldendo[nowID];
+        nowOlvasott=olvasott[nowID];
+        nowJoystick=joystick[nowID];
+    }else{}
 }
 
 void Lejatszas::slidMove()
@@ -158,6 +169,11 @@ void Lejatszas::slidMove()
         lastLoad=pos;
         qDebug()<<"Trig"<<ids[0];
     }
+}
+
+void Lejatszas::next_steps()
+{
+    ui->idovonal->setValue(ui->idovonal->value()+1);
 }
 
 QString Lejatszas::getNowJoystick() const

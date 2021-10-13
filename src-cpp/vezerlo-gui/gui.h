@@ -65,6 +65,7 @@ private slots:
     void felvAccept();
     void lejatszasOpen();
     void goPlay();
+    void stopPlay();
 
 
 

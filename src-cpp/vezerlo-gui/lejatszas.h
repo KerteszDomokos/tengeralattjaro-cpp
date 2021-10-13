@@ -36,11 +36,14 @@ public:
 
 signals:
     void play();
+    void xmlReload();
+    void closed();
 private slots:
     void chooseFile();
     void startPlay();
     void lejatszas_idozito();
     void slidMove();
+    void next_steps();
 
 
 private:
@@ -71,10 +74,10 @@ private:
 
     void getElements(long beg);
     long lastLoad=0;
+    QTimer *timer;
 
 
-signals:
-    void xmlReload();
+
 
 
 

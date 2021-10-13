@@ -142,6 +142,7 @@ GUI::GUI(QWidget *parent)
     ballaszt_manualis_click();
 
     qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
+
 }
 
 GUI::~GUI()
@@ -221,6 +222,10 @@ void GUI::update()
     if(playing==1){
         lejatszas->updateNow();
         olvasott=conv(lejatszas->getNowOlvasott());
+        QList<double> jd=get_joystickAdatok();
+    }else{
+        QList<double> jd=get_joystickAdatok();
+        olvasott=conv(bejovoFriss);
     }
 
     if(jd.isEmpty()==1){
@@ -477,7 +482,6 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
     int szoros=ui->ballasztErz->value();
     QList<double> idl;
-    if(playing==0){
     idl.append(0);//0 használatlan
     idl.append(jmot);//1 motor2 érték
     idl.append(0);//2 mélységmérés
@@ -515,9 +519,9 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
 
     kuldendoFriss=idl;
-}
 
-    else{
+
+    if(playing==1){
         lejatszas->updateNow();
         QList<double>rewritedDat=conv(lejatszas->getNowKuldendo());
         ui->slid1->setValue(rewritedDat[10]);
@@ -587,7 +591,6 @@ void GUI::mentes()
             }
             felvPath=generatePath(runID);
         }
-        msg("Fájl felülírás kikerülése. Új útvonal: "+generatePath(runID),2);   //Biztonsági funkció, fájl fölülírás nincsen
 
 
         xmlFile=new QFile (felvPath);
@@ -630,16 +633,24 @@ void GUI::lejatszasOpen()
     lejatszas=new Lejatszas;
     lejatszas->show();
     connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
-
+    connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
 }
 
 void GUI::goPlay()
 {
+    qDebug()<<"Lejatszas";
     playing=1;
     kuld_play=lejatszas->getKuld();
     olv_play=lejatszas->getOlv();
     joydat_play=lejatszas->getJoy();
     guiupdate_play=lejatszas->getGuiUpdate();
+    msg("Lejátszás kezdése",1);
+}
+
+void GUI::stopPlay()
+{
+    playing=0;
+    msg("Lejátszás befejezve",1);
 }
 
 void GUI::cmdSlot()

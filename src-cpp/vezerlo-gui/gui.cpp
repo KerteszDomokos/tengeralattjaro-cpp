@@ -149,6 +149,7 @@ GUI::~GUI()
 {
     mSerial->close();
     delete ui;
+    delete widget;
     pr->kill();//joystick folyamat befejezése
     pr2->kill();//kép folyamat befejezése
 
@@ -610,9 +611,25 @@ void GUI::mentes()
 
 void GUI::mentesDialog()
 {
-    widget = new Felvetel;
-    widget->open();
-    connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
+    if(felvetelOpened==0){
+        widget = new Felvetel;
+        widget->open();
+        connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
+        connect(widget,SIGNAL(recStart()),this,SLOT(startRec()));
+        connect(widget,SIGNAL(rejected()),this,SLOT(stopFelvetel()));
+        connect(widget,SIGNAL(message(QString, int)),this,SLOT(msg(QString, int)));
+        felvetelOpened=1;
+    }else{
+        felvetelOpened=0;
+        widget->show();
+        widget->activateWindow();
+    }
+}
+
+void GUI::startRec()
+{
+    felvAccept();
+    ui->rogzites_check->setChecked(1);
 }
 
 void GUI::felvAccept()
@@ -630,27 +647,41 @@ void GUI::felvAccept()
 
 void GUI::lejatszasOpen()
 {
-    lejatszas=new Lejatszas;
-    lejatszas->show();
-    connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
-    connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
+    if(lejatszasOpened==0){
+        lejatszas=new Lejatszas;
+        lejatszas->show();
+        connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
+        connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
+        connect(lejatszas,SIGNAL(message(QString, int)),this,SLOT(msg(QString, int)));
+        lejatszasOpened=1;
+    }else{
+        lejatszas->activateWindow();
+    }
+
+
 }
 
 void GUI::goPlay()
 {
-    qDebug()<<"Lejatszas";
     playing=1;
     kuld_play=lejatszas->getKuld();
     olv_play=lejatszas->getOlv();
     joydat_play=lejatszas->getJoy();
     guiupdate_play=lejatszas->getGuiUpdate();
-    msg("Lejátszás kezdése",1);
+    msg("Lejátszandó fájl sikeresen betöltve",1);
 }
 
 void GUI::stopPlay()
 {
     playing=0;
     msg("Lejátszás befejezve",1);
+    delete lejatszas;
+    lejatszasOpened=0;
+}
+
+void GUI::stopFelvetel()
+{
+    msg("Mentés bezárva",1);
 }
 
 void GUI::cmdSlot()

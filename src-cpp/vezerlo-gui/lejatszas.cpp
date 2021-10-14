@@ -30,6 +30,8 @@ void Lejatszas::chooseFile()
     fileName = QFileDialog::getOpenFileName(this,tr("Megnyitás"), fileName,tr("Aqualab fájlok (*.al, *.AL, *.*)"));
 
     ui->filenametxt->setText(fileName);
+
+    msg("Lejátszásnál kiválasztott fájlnév: "+fileName,1);
 }
 
 void Lejatszas::startPlay()
@@ -106,6 +108,7 @@ void Lejatszas::lejatszas_idozito()
         ui->playgomb->setIcon(QIcon(":/icons/pause"));
         playing=1;
         timer->start(5);
+        msg("Lejátszási időzítő indítása",1);
     }
 }
 
@@ -148,6 +151,11 @@ void Lejatszas::getElements(long beg)
 
 }
 
+void Lejatszas::msg(QString t, int p)
+{
+    message(t,p);
+}
+
 void Lejatszas::updateNow()
 {
     long id=0;
@@ -159,8 +167,11 @@ void Lejatszas::updateNow()
             nowKuldendo=kuldendo[nowID];
             nowOlvasott=olvasott[nowID];
             nowJoystick=joystick[nowID];
-            qDebug()<<nowID<<ids[0];
-       }
+       }else{
+            msg("Lejátszás vége",1);
+            playing=0;
+            lejatszas_idozito();
+        }
     }
 }
 

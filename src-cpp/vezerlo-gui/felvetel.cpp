@@ -24,8 +24,8 @@ Felvetel::~Felvetel()
 
 void Felvetel::chooseFile()
 {
+    message("Fájl választása",1);
     fileName = QFileDialog::getExistingDirectory(this,tr("Felvétel megnyitása"), fileName);
-
     ui->filenametxt->setText(fileName);
     int runID;
     QList<QString> fn;
@@ -66,6 +66,7 @@ void Felvetel::apply()
 void Felvetel::elvet()
 {
     fileName=LfileName;
+    message("Beállítások elvetése",2);
 }
 
 void Felvetel::ok()
@@ -79,6 +80,12 @@ void Felvetel::ok()
 void Felvetel::filenameUpdate()
 {
     generateFilename(ui->sorszam->value());
+}
+
+void Felvetel::acceptRec()
+{
+    recStart();
+    accept();
 }
 
 QString Felvetel::getFullPath() const

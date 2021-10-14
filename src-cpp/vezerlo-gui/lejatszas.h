@@ -38,6 +38,7 @@ signals:
     void play();
     void xmlReload();
     void closed();
+    void message(QString dat, int i);
 private slots:
     void chooseFile();
     void startPlay();
@@ -76,7 +77,7 @@ private:
     long lastLoad=0;
     QTimer *timer;
 
-
+    void msg(QString t,int p);
 
 
 

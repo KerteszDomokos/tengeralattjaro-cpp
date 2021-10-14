@@ -419,9 +419,9 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>499</x>
+     <x>489</x>
      <y>213</y>
-     <width>101</width>
+     <width>111</width>
      <height>21</height>
     </rect>
    </property>
@@ -437,7 +437,7 @@ background-color: rgb(170, 93, 93);
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>240</x>
      <y>213</y>
      <width>101</width>
      <height>21</height>
@@ -450,15 +450,15 @@ color:black;
 }</string>
    </property>
    <property name="text">
-    <string>OK</string>
+    <string>Mentés és felvétel</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>360</x>
      <y>213</y>
-     <width>101</width>
+     <width>111</width>
      <height>21</height>
     </rect>
    </property>
@@ -469,7 +469,7 @@ color:black;
 }</string>
    </property>
    <property name="text">
-    <string>Alkalmazás</string>
+    <string>Mentés felvétel nélkül</string>
    </property>
   </widget>
  </widget>
@@ -495,10 +495,10 @@ color:black;
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
    <receiver>Felvetel</receiver>
-   <slot>accept()</slot>
+   <slot>acceptRec()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>345</x>
+     <x>305</x>
      <y>223</y>
     </hint>
     <hint type="destinationlabel">
@@ -539,9 +539,43 @@ color:black;
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Felvetel</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>420</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>158</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Felvetel</receiver>
+   <slot>elvet()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>539</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>483</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>chooseFile()</slot>
   <slot>filenameUpdate()</slot>
+  <slot>acceptRec()</slot>
+  <slot>elvet()</slot>
  </slots>
 </ui>

@@ -28,13 +28,16 @@ public:
     bool getDefPathIN() const;
 
     QString getFullPath() const;
-
+signals:
+    void recStart();
+    void message(QString, int);
 private slots:
     void chooseFile();
     void apply();
     void elvet();
     void ok();
     void filenameUpdate();
+    void acceptRec();
 
 
 private:

@@ -25,9 +25,7 @@ class GUI : public QMainWindow
 public:
     GUI(QWidget *parent = nullptr);
     ~GUI();
-    void msg(QString txt, int priority);//üzenet kiírása a gui konzolra - Üzenőfelület - 1:message, 2:warning, 3:error
     double rad(double degree);//radiánná konvertálás
-
 
 private slots:
     void closeApp(){close();}
@@ -66,6 +64,9 @@ private slots:
     void lejatszasOpen();
     void goPlay();
     void stopPlay();
+    void stopFelvetel();
+    void startRec();
+    void msg(QString txt, int priority);//üzenet kiírása a gui konzolra - Üzenőfelület - 1:message, 2:warning, 3:error
 
 
 
@@ -112,6 +113,9 @@ private:
     bool kuld_play;
     bool olv_play;
     bool guiupdate_play;
+
+    bool lejatszasOpened;
+    bool felvetelOpened;
 
 
 

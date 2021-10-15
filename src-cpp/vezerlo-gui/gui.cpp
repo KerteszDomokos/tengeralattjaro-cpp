@@ -142,14 +142,16 @@ GUI::GUI(QWidget *parent)
     ballaszt_manualis_click();
 
     qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
-
+//    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
 }
 
 GUI::~GUI()
 {
     mSerial->close();
+    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;}
+    if(felvetelOpened==1){delete widget;felvetelOpened=0;}
     delete ui;
-    delete widget;
+
     pr->kill();//joystick folyamat befejezése
     pr2->kill();//kép folyamat befejezése
 
@@ -527,6 +529,8 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
         QList<double>rewritedDat=conv(lejatszas->getNowKuldendo());
         ui->slid1->setValue(rewritedDat[10]);
         ui->slid2->setValue(rewritedDat[1]);
+        ui->ballaszt_baltart->setValue(rewritedDat[20]);
+        ui->ballaszt_jobbtart->setValue(rewritedDat[21]);
     }
     QString string;
     for(int i=0; i<idl.size(); i++)
@@ -1063,6 +1067,12 @@ void GUI::msg(QString txt, int priority=1)
     ui->output->setText(message);
     ui->output->moveCursor(QTextCursor::End);
     ui->output->setStyleSheet("body{font-size=12px;}");
+}
+
+void GUI::cl()
+{
+    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;}
+    if(felvetelOpened==1){delete widget;felvetelOpened=0;}
 }
 
 

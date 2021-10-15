@@ -168,9 +168,10 @@ void Lejatszas::updateNow()
             nowOlvasott=olvasott[nowID];
             nowJoystick=joystick[nowID];
        }else{
-            msg("Lejátszás vége",1);
-            playing=0;
-            lejatszas_idozito();
+            if(playing==1){
+                msg("Lejátszás vége",1);
+                lejatszas_idozito();
+            }
         }
     }
 }

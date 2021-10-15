@@ -140,8 +140,11 @@ GUI::GUI(QWidget *parent)
             this, &GUI::serkom);
 
     ballaszt_manualis_click();
+    widget = new Felvetel;
+    lejatszas=new Lejatszas;
 
-    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
+
+//    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
 }
 
@@ -616,7 +619,6 @@ void GUI::mentes()
 void GUI::mentesDialog()
 {
     if(felvetelOpened==0){
-        widget = new Felvetel;
         widget->open();
         connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
         connect(widget,SIGNAL(recStart()),this,SLOT(startRec()));
@@ -652,7 +654,6 @@ void GUI::felvAccept()
 void GUI::lejatszasOpen()
 {
     if(lejatszasOpened==0){
-        lejatszas=new Lejatszas;
         lejatszas->show();
         connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
         connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
@@ -870,6 +871,37 @@ QString GUI::commands(QString comm)
     }
     else if(comm=="startKep"){
         return alap+stK();
+    }
+    else if(comm=="openRogz"){
+        widget->show(); felvetelOpened=1;
+        return "Rögzítés ablak megnyitása sikeres";
+    }
+    else if(comm=="openPlay"){
+        widget->show(); lejatszasOpened=1;
+        return "Lejátszás ablak megnyitása sikeres";
+    }
+    else if(comm=="reloadFelv"){
+        widget->close(); felvetelOpened=0;
+        delete widget; widget=new Felvetel;
+        return "Felvetel: sikeres újraindítás";
+    }
+    else if(comm=="reloadPlay"){
+        lejatszasOpened=0;
+        delete lejatszas; lejatszas=new Lejatszas;
+        return "Lejátszás: sikeres újraindítás";
+    }
+    else if(comm=="reloadFelv"){
+        widget->close(); lejatszasOpened=0;
+        delete widget; widget=new Felvetel;
+        return "Felvétel: sikeres újraindítás";
+    }
+    else if(comm=="getFelvPath"){
+        if(widget->getFileName()!=""){
+            return "Felvétel helye: "+widget->getFileName();
+        }
+        else{
+            return "Egyenlőre nincs hely kiválasztva";
+        }
     }
 
     return "Nem található a kért parancs: "+comm;

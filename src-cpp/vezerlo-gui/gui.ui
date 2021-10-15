@@ -3977,7 +3977,6 @@ p, li { white-space: pre-wrap; }
    <addaction name="menuN_zet"/>
    <addaction name="menuR_gz_t_s"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="cmdDock">
    <property name="minimumSize">
     <size>

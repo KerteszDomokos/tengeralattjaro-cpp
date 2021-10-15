@@ -31,7 +31,7 @@ void Lejatszas::chooseFile()
 
     ui->filenametxt->setText(fileName);
 
-    msg("Lejátszásnál kiválasztott fájlnév: "+fileName,1);
+    msg("Lejátszásnál kiválasztott fájlnevet lekérheti a parancssorból",1);
 }
 
 void Lejatszas::startPlay()

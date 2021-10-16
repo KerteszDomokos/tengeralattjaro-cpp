@@ -2070,9 +2070,9 @@ background-color: rgb(170, 0, 0);
       <widget class="QLineEdit" name="ballaszt_tartalynyomas">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>150</x>
          <y>125</y>
-         <width>51</width>
+         <width>81</width>
          <height>21</height>
         </rect>
        </property>
@@ -2092,7 +2092,7 @@ background-color: rgb(170, 0, 0);
       <widget class="QLabel" name="label_14">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>60</x>
          <y>128</y>
          <width>91</width>
          <height>16</height>

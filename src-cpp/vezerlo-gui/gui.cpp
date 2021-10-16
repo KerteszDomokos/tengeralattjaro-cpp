@@ -260,13 +260,18 @@ void GUI::update()
 
     double dx=0;
     double dy=0;
+//    double ballaszt_pres=(olvasott[20]/(1023/5))-0.5;
+    double bar1press=98;
+    double bar10press=200;
+    double egybar=(bar10press-bar1press)/9;
+    double ballaszt_pres = (olvasott[20]-bar1press)/egybar;
 
 
     if (olvasott.size()>28){
         if(olvasott[22+4]>0){dx=std::sqrt(pow(olvasott[22+4]-90,2));}else{dx=-(olvasott[22+4]+90);}
         if(olvasott[23+4]>0){dy=std::sqrt(pow(olvasott[23+4]-90,2));}else{dy=-(olvasott[23+4]+90);}
         QObject *object = ui->horizont->rootObject();
-        object->setProperty("pitchAngle", -dx);//dőlés
+        object->setProperty("pitchAngle", dx);//dőlés
         object->setProperty("rollAngle", -dy);//forgás
 
     }
@@ -348,6 +353,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
             ui->ballaszt_jobbnyom_real->setText(QString::number(olvasott[19]));
             ui->ballaszt_balnyom_real->setText(QString::number(olvasott[18]));
+            ui->ballaszt_tartalynyomas->setText(QString::number(ballaszt_pres));
 
         if(ui->radaron->isChecked()==1){
 
@@ -381,7 +387,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
         QList<QString> pots={"alapV","forgV","pot2V","pot3V"};//robotkar potméterek
         if (object){
             QString txt="Robotkar adatok:\n";
-            for (int i; i<3; i++){
+            for (int i=0; i<3; i++){
                 txt=txt+"Pot"+QString::number(i+1)+": ";
                 QVariant a=QQmlProperty(object, pots[i]).read();
                 txt=txt+QString::number(a.toInt())+"\n";
@@ -682,6 +688,7 @@ void GUI::stopPlay()
     msg("Lejátszás befejezve",1);
     delete lejatszas;
     lejatszasOpened=0;
+    motorNull();
 }
 
 void GUI::stopFelvetel()

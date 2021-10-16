@@ -37,6 +37,7 @@
 #define TALCA_SERJ 9
 
 
+
 #define KAR_ALSO 6
 #define KAR_FORGATO 7
 #define KAR_BOLINTO_ALSO 40
@@ -46,8 +47,10 @@
 #define BALLASZT_REL_J_B 44
 #define BALLASZT_REL_B_K 43
 #define BALLASZT_REL_J_K 45
+#define BALLASZT_PRES 7
 
-//könyvtár: pédányok létrehozása
+
+//könyvtár pédányok létrehozása
 Servo sb;
 Servo sj;
 Servo mb;
@@ -211,7 +214,7 @@ void loop()
     rpikom(komms, bviz, mely, err_k(), analogRead(csp1), h1, h2, h3, hum, 
       motorBalRead, motorJobbRead, raspiAkk, RAD_pos, RAD_adatok[RAD_pos - 4], 
       RAD_adatok[RAD_pos - 3], RAD_adatok[RAD_pos - 2], RAD_adatok[RAD_pos - 1], 
-      RAD_adatok[RAD_pos],ballaszt_bal_toltottseg,ballaszt_jobb_toltottseg,0,0);
+      RAD_adatok[RAD_pos],ballaszt_bal_toltottseg,ballaszt_jobb_toltottseg,pressure(),0);
 
     komms = 0;
     vegrehajt();
@@ -378,7 +381,10 @@ void talca(int fok) {
 
 }
 
-
+int pressure(){
+  int val=analogRead(BALLASZT_PRES);
+  return val;
+}
 
 
 float hm(int pin) {

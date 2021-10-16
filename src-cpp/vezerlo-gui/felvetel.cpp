@@ -27,7 +27,7 @@ void Felvetel::chooseFile()
     message("Fájl választása",1);
     fileName = QFileDialog::getExistingDirectory(this,tr("Felvétel megnyitása"), fileName);
     ui->filenametxt->setText(fileName);
-    int runID;
+    int runID=0;
     QList<QString> fn;
     QDir d(fileName);
     QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);

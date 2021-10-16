@@ -109,7 +109,7 @@ private:
     QString felvPathGyok;
 
     Lejatszas *lejatszas;
-    bool playing;
+    bool playing=0;
     bool joydat_play;
     bool kuld_play;
     bool olv_play;

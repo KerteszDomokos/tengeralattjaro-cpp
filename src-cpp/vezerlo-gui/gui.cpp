@@ -144,6 +144,7 @@ GUI::GUI(QWidget *parent)
     lejatszas=new Lejatszas;
 
 
+
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
 }
@@ -262,8 +263,8 @@ void GUI::update()
     double dy=0;
 //    double ballaszt_pres=(olvasott[20]/(1023/5))-0.5;
     double bar1press=98;
-    double bar10press=200;
-    double egybar=(bar10press-bar1press)/9;
+    double bar81press=288; //8.1=288
+    double egybar=(bar81press-bar1press)/8.1;
     double ballaszt_pres = (olvasott[20]-bar1press)/egybar;
 
 

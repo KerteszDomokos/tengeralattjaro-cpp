@@ -103,7 +103,7 @@ long ballaszt_timer = millis();
 long ballaszt_timer2 = millis();
 int ballaszt_bal_toltottseg;
 int ballaszt_jobb_toltottseg;
-int BALLASZT_MAXPOF = 60;
+int BALLASZT_MAXPOF = 30;
 int ballasztPump = BALLASZT_MAXPOF; //max
 bool ballaszt_nyitvaB = 0;
 bool ballaszt_nyitvaJ = 0;

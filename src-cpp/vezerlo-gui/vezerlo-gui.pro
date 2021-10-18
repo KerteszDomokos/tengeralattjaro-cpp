@@ -20,18 +20,21 @@ SOURCES += \
     lejatszas.cpp \
     main.cpp \
     gui.cpp \
+    settings.cpp \
     sockread.cpp
 
 HEADERS += \
     felvetel.h \
     gui.h \
     lejatszas.h \
+    settings.h \
     sockread.h
 
 FORMS += \
     felvetel.ui \
     gui.ui \
-    lejatszas.ui
+    lejatszas.ui \
+    settings.ui
 
 
 DISTFILES += \

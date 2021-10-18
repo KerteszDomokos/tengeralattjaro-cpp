@@ -3,6 +3,8 @@
 
 #include "felvetel.h"
 #include "lejatszas.h"
+#include <settings.h>
+
 
 #include <QDebug>
 #include <QString>
@@ -1115,11 +1117,11 @@ void GUI::cl()
     if(felvetelOpened==1){delete widget;felvetelOpened=0;}
 }
 
-
-
-
-
-
+void GUI::open_settings()
+{
+   set=new settings;
+   set->show();
+}
 
 //Szünettel elválasztott szöveget konvertál QList doubel ba
 QList<double> GUI::conv(QString str){

@@ -196,3 +196,5 @@ network{
     key_mgmt=WPA-PSK
 }
 
+169.254.15.251
+fe80::8c51:8be8:bc0e:9d81

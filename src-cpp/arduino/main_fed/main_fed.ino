@@ -103,9 +103,13 @@ long ballaszt_timer = millis();
 long ballaszt_timer2 = millis();
 int ballaszt_bal_toltottseg;
 int ballaszt_jobb_toltottseg;
-int BALLASZT_MAXPOF = 30;
+int BALLASZT_MAXPOF_L = 60;
+int BALLASZT_MAXPOF = 20;
+
 int ballasztPump = BALLASZT_MAXPOF; //max
-bool ballaszt_nyitvaB = 0;
+bool ballaszt_nyitvaB_L = 0;
+bool ballaszt_nyitvaB_F = 0;
+
 bool ballaszt_nyitvaJ = 0;
 
 
@@ -315,19 +319,19 @@ void vegrehajt()
 
 void ballaszt(int bal, int jobb) {
   //bal
-  if (ballaszt_nyitvaB == 0) {
+  if (ballaszt_nyitvaB_F==0 && ballaszt_nyitvaB_L == 0) {
     int bkul = int(bal / 10) - ballaszt_bal_toltottseg;
     if (bkul < 0) {
       //nyomás csökkentése 1-el
       digitalWrite(BALLASZT_REL_B_K, 0);
-      ballaszt_nyitvaB = 1;
+      ballaszt_nyitvaB_L = 1;
       ballaszt_timer = millis();
       ballaszt_bal_toltottseg--;
     }
     else if (bkul > 0) {
       //nyomás növelése 1-el
       digitalWrite(BALLASZT_REL_B_B, 0);
-      ballaszt_nyitvaB = 1;
+      ballaszt_nyitvaB_F = 1;
       ballaszt_timer = millis();
       ballaszt_bal_toltottseg++;
     }
@@ -336,11 +340,18 @@ void ballaszt(int bal, int jobb) {
     }
   }
 
-  if (ballaszt_nyitvaB == 1) {
+  if (ballaszt_nyitvaB_L == 1) {
+    if (millis() - ballaszt_timer > BALLASZT_MAXPOF_L) {
+      digitalWrite(BALLASZT_REL_B_K, 1);
+      digitalWrite(BALLASZT_REL_B_B, 1);
+      ballaszt_nyitvaB_L = 0;
+    }
+  }
+  if (ballaszt_nyitvaB_F == 1) {
     if (millis() - ballaszt_timer > BALLASZT_MAXPOF) {
       digitalWrite(BALLASZT_REL_B_K, 1);
       digitalWrite(BALLASZT_REL_B_B, 1);
-      ballaszt_nyitvaB = 0;
+      ballaszt_nyitvaB_F = 0;
     }
   }
 

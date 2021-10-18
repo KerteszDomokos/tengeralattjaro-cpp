@@ -13,6 +13,7 @@
 #include <QDomDocument>
 #include <felvetel.h>
 #include <lejatszas.h>
+#include <settings.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -68,6 +69,7 @@ private slots:
     void startRec();
     void msg(QString txt, int priority);//üzenet kiírása a gui konzolra - Üzenőfelület - 1:message, 2:warning, 3:error
     void cl();
+    void open_settings();
 
 
 
@@ -117,6 +119,8 @@ private:
 
     bool lejatszasOpened;
     bool felvetelOpened;
+
+    settings *set;
 
 
 

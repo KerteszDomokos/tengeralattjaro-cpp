@@ -3954,6 +3954,8 @@ background-color: rgb(170, 0, 0);
     <property name="title">
      <string>Fájl</string>
     </property>
+    <addaction name="settings"/>
+    <addaction name="separator"/>
     <addaction name="acBezaras"/>
    </widget>
    <widget class="QMenu" name="menuOpciok">
@@ -4572,6 +4574,11 @@ background-color: rgb(170, 0, 0);
     <string>Rögzítés beállításai</string>
    </property>
   </action>
+  <action name="settings">
+   <property name="text">
+    <string>Beállítások</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -4697,8 +4704,8 @@ background-color: rgb(170, 0, 0);
    <slot>motorNull()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>348</x>
-     <y>1001</y>
+     <x>357</x>
+     <y>983</y>
     </hint>
     <hint type="destinationlabel">
      <x>1000</x>
@@ -4713,8 +4720,8 @@ background-color: rgb(170, 0, 0);
    <slot>serKeres()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>740</x>
-     <y>838</y>
+     <x>749</x>
+     <y>833</y>
     </hint>
     <hint type="destinationlabel">
      <x>1340</x>
@@ -4729,8 +4736,8 @@ background-color: rgb(170, 0, 0);
    <slot>serConn()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>665</x>
-     <y>887</y>
+     <x>670</x>
+     <y>863</y>
     </hint>
     <hint type="destinationlabel">
      <x>1301</x>
@@ -4745,8 +4752,8 @@ background-color: rgb(170, 0, 0);
    <slot>serDeconn()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>726</x>
-     <y>887</y>
+     <x>735</x>
+     <y>863</y>
     </hint>
     <hint type="destinationlabel">
      <x>1305</x>
@@ -4761,8 +4768,8 @@ background-color: rgb(170, 0, 0);
    <slot>stK()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>735</x>
-     <y>552</y>
+     <x>746</x>
+     <y>487</y>
     </hint>
     <hint type="destinationlabel">
      <x>813</x>
@@ -4777,8 +4784,8 @@ background-color: rgb(170, 0, 0);
    <slot>stJ()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>736</x>
-     <y>602</y>
+     <x>747</x>
+     <y>537</y>
     </hint>
     <hint type="destinationlabel">
      <x>804</x>
@@ -4794,7 +4801,7 @@ background-color: rgb(170, 0, 0);
    <hints>
     <hint type="sourcelabel">
      <x>923</x>
-     <y>710</y>
+     <y>462</y>
     </hint>
     <hint type="destinationlabel">
      <x>818</x>
@@ -4810,7 +4817,7 @@ background-color: rgb(170, 0, 0);
    <hints>
     <hint type="sourcelabel">
      <x>1033</x>
-     <y>710</y>
+     <y>468</y>
     </hint>
     <hint type="destinationlabel">
      <x>814</x>
@@ -4825,8 +4832,8 @@ background-color: rgb(170, 0, 0);
    <slot>akksporolas()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>466</x>
-     <y>877</y>
+     <x>475</x>
+     <y>871</y>
     </hint>
     <hint type="destinationlabel">
      <x>818</x>
@@ -4842,7 +4849,7 @@ background-color: rgb(170, 0, 0);
    <hints>
     <hint type="sourcelabel">
      <x>1005</x>
-     <y>838</y>
+     <y>596</y>
     </hint>
     <hint type="destinationlabel">
      <x>1006</x>
@@ -4858,7 +4865,7 @@ background-color: rgb(170, 0, 0);
    <hints>
     <hint type="sourcelabel">
      <x>1005</x>
-     <y>967</y>
+     <y>725</y>
     </hint>
     <hint type="destinationlabel">
      <x>947</x>
@@ -4873,8 +4880,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballaszt_erzekenyseg()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>930</x>
-     <y>983</y>
+     <x>1014</x>
+     <y>750</y>
     </hint>
     <hint type="destinationlabel">
      <x>1283</x>
@@ -4889,8 +4896,8 @@ background-color: rgb(170, 0, 0);
    <slot>talca_becsuk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>397</x>
-     <y>977</y>
+     <x>406</x>
+     <y>963</y>
     </hint>
     <hint type="destinationlabel">
      <x>430</x>
@@ -4905,8 +4912,8 @@ background-color: rgb(170, 0, 0);
    <slot>talca_kinyit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>408</x>
-     <y>868</y>
+     <x>417</x>
+     <y>853</y>
     </hint>
     <hint type="destinationlabel">
      <x>408</x>
@@ -4921,8 +4928,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztBalmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>804</x>
-     <y>852</y>
+     <x>827</x>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>915</x>
@@ -4937,8 +4944,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztBalk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>809</x>
-     <y>893</y>
+     <x>827</x>
+     <y>670</y>
     </hint>
     <hint type="destinationlabel">
      <x>894</x>
@@ -4953,8 +4960,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztBalmin()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>810</x>
-     <y>959</y>
+     <x>827</x>
+     <y>724</y>
     </hint>
     <hint type="destinationlabel">
      <x>872</x>
@@ -4969,8 +4976,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztJobbmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1057</x>
-     <y>845</y>
+     <x>1087</x>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
      <x>978</x>
@@ -4985,8 +4992,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztJobbk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1069</x>
-     <y>905</y>
+     <x>1087</x>
+     <y>670</y>
     </hint>
     <hint type="destinationlabel">
      <x>1002</x>
@@ -5017,8 +5024,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztJobbmin()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1053</x>
-     <y>957</y>
+     <x>1087</x>
+     <y>724</y>
     </hint>
     <hint type="destinationlabel">
      <x>1099</x>
@@ -5033,8 +5040,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztJobbk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>897</x>
-     <y>903</y>
+     <x>1015</x>
+     <y>675</y>
     </hint>
     <hint type="destinationlabel">
      <x>932</x>
@@ -5049,8 +5056,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztBalk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>989</x>
-     <y>904</y>
+     <x>1015</x>
+     <y>675</y>
     </hint>
     <hint type="destinationlabel">
      <x>958</x>
@@ -5065,8 +5072,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztBalmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>897</x>
-     <y>957</y>
+     <x>1005</x>
+     <y>725</y>
     </hint>
     <hint type="destinationlabel">
      <x>835</x>
@@ -5081,8 +5088,8 @@ background-color: rgb(170, 0, 0);
    <slot>ballasztJobbmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>913</x>
-     <y>958</y>
+     <x>1005</x>
+     <y>725</y>
     </hint>
     <hint type="destinationlabel">
      <x>840</x>
@@ -5170,6 +5177,22 @@ background-color: rgb(170, 0, 0);
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>settings</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>open_settings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1089</x>
+     <y>538</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>closeCmd()</slot>
@@ -5200,5 +5223,6 @@ background-color: rgb(170, 0, 0);
   <slot>mentes()</slot>
   <slot>mentesDialog()</slot>
   <slot>lejatszasOpen()</slot>
+  <slot>open_settings()</slot>
  </slots>
 </ui>

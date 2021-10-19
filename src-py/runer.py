@@ -200,7 +200,10 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
                     
                         list_.append(0)
                         list_.append(0)
-                        list_[20]=ser.inWaiting()
+                        list_.append(0)
+                        list_.append(0)
+                        list_.append(0)
+                        list_[24]=ser.inWaiting()
                         prl('Soros porton olvasott adat: '+str(list_))
                         save(list_)
                     else:
@@ -274,6 +277,8 @@ def gy(serw_g,serr_g,gyro_g, udp_g,bdatas_g):
    
 
     def calc(ax,ay,az,T): # az itteni számításokat a csillagászatos füzet utolsó oldalán végeztem
+        if ax==0 or ay==0 or az==0 or T==0:
+            return
         zxc=math.sqrt(az**2+ax**2) #nyers gyorsulás adatok (ax;ay;az)
         dx=math.degrees(math.asin(az/zxc))
 
@@ -427,7 +432,7 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
     try:
         cpuR=cpu()
         lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        UDP_IP='192.168.31.171'#vevő ip címe
+        UDP_IP='169.254.62.249'#vevő ip címe
         UDP_PORT=6010
         udp = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
@@ -462,7 +467,7 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
 
 def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
     try:
-        UDP_IP='192.168.31.248'
+        UDP_IP='169.254.15.251'
         UDP_PORT=6000
         udp = socket.socket(socket.AF_INET, # Internet
                         socket.SOCK_DGRAM) # UDP

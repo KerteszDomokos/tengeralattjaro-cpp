@@ -41,7 +41,7 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):#kamera
         """
         MAX_DGRAM = 2**16
         MAX_IMAGE_DGRAM = MAX_DGRAM - 64 # extract 64 bytes in case UDP frame overflown
-        def __init__(self, sock, port, addr="192.168.31.171"): #cél ip
+        def __init__(self, sock, port, addr="169.254.62.249"): #cél ip
             self.s = sock
             self.port = port
             self.addr = addr

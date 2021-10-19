@@ -145,6 +145,7 @@ GUI::GUI(QWidget *parent)
     widget = new Felvetel;
     lejatszas=new Lejatszas;
 
+    ballaszt_erzekenyseg();
 
 
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
@@ -1016,9 +1017,6 @@ void GUI::ballaszt_erzekenyseg()
     ui->ballaszt_baltart->setMaximum(10*erz);
     ui->ballaszt_baltart->setValue(erz*(valeb/val));
     ui->ballaszt_jobbtart->setValue(erz*(valej/val2));
-
-
-
 }
 
 void GUI::talca_kinyit()
@@ -1121,6 +1119,16 @@ void GUI::open_settings()
 {
    set=new settings;
    set->show();
+}
+
+void GUI::ballasztPluszegy()
+{
+    ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->value()+1);
+}
+
+void GUI::ballasztMinuszegy()
+{
+    ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->value()-1);
 }
 
 //Szünettel elválasztott szöveget konvertál QList doubel ba

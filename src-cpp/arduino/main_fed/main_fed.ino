@@ -319,8 +319,9 @@ void vegrehajt()
 
 void ballaszt(int bal, int jobb) {
   //bal
+  bal=bal-50;
   if (ballaszt_nyitvaB_F==0 && ballaszt_nyitvaB_L == 0) {
-    int bkul = int(bal / 10) - ballaszt_bal_toltottseg;
+    int bkul = int(bal) - ballaszt_bal_toltottseg;
     if (bkul < 0) {
       //nyomás csökkentése 1-el
       digitalWrite(BALLASZT_REL_B_K, 0);

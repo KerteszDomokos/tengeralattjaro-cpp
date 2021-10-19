@@ -70,6 +70,8 @@ private slots:
     void msg(QString txt, int priority);//üzenet kiírása a gui konzolra - Üzenőfelület - 1:message, 2:warning, 3:error
     void cl();
     void open_settings();
+    void ballasztPluszegy();
+    void ballasztMinuszegy();
 
 
 

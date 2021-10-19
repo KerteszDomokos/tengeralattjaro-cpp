@@ -2465,13 +2465,21 @@ p, li { white-space: pre-wrap; }
       <property name="minimumSize">
        <size>
         <width>323</width>
+<<<<<<< HEAD
         <height>324</height>
+=======
+        <height>346</height>
+>>>>>>> fce3c23412346bb71c0225fe3523faf751abe32a
        </size>
       </property>
       <property name="maximumSize">
        <size>
         <width>11111111</width>
+<<<<<<< HEAD
         <height>228</height>
+=======
+        <height>267</height>
+>>>>>>> fce3c23412346bb71c0225fe3523faf751abe32a
        </size>
       </property>
       <property name="palette">
@@ -4011,6 +4019,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </widget>
     </item>
+<<<<<<< HEAD
     <item row="7" column="5" colspan="2">
      <spacer name="verticalSpacer_4">
       <property name="orientation">
@@ -4024,6 +4033,8 @@ p, li { white-space: pre-wrap; }
       </property>
      </spacer>
     </item>
+=======
+>>>>>>> fce3c23412346bb71c0225fe3523faf751abe32a
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -522,8 +522,8 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(ui->ballaszt_jobbtart->value()*10/szoros);//21 ballaszt jobb tartaly százalék
     idl.append(60);//22 SSH reset kérés
     idl.append(ui->talcaAktiv->isChecked());//23 Tálca érték állítható
-    idl.append(0);//24 robotkar adatok ...
-    idl.append(0);//25 robotkar adatok ...
+    idl.append(15);//24 ballaszt felpumpalas
+    idl.append(100);//25 ballaszt leeresztes
     idl.append(0);//26 robotkar adatok ...
     idl.append(0);//27 robotkar adatok ...
     idl.append(0);//28 robotkar adatok ...
@@ -1007,16 +1007,21 @@ void GUI::ballaszt_emelkedes()
 
 void GUI::ballaszt_erzekenyseg()
 {
-    int erz=ui->ballasztErz->value();
-    int val=ui->ballaszt_baltart->maximum()/10;
-    int val2=ui->ballaszt_jobbtart->maximum()/10;
-    int valeb=ui->ballaszt_baltart->value();
-    int valej=ui->ballaszt_jobbtart->value();
+//    int erz=ui->ballasztErz->value();
+//    int val=ui->ballaszt_baltart->maximum()/10;
+//    int val2=ui->ballaszt_jobbtart->maximum()/10;
+//    int valeb=ui->ballaszt_baltart->value();
+//    int valej=ui->ballaszt_jobbtart->value();
 
-    ui->ballaszt_jobbtart->setMaximum(10*erz);
-    ui->ballaszt_baltart->setMaximum(10*erz);
-    ui->ballaszt_baltart->setValue(erz*(valeb/val));
-    ui->ballaszt_jobbtart->setValue(erz*(valej/val2));
+//    ui->ballaszt_jobbtart->setMaximum(10*erz);
+//    ui->ballaszt_baltart->setMaximum(10*erz);
+//    ui->ballaszt_baltart->setValue(erz*(valeb/val));
+//    ui->ballaszt_jobbtart->setValue(erz*(valej/val2));
+
+    ui->ballaszt_baltart->setMinimum(-50);
+    ui->ballaszt_baltart->setMaximum(50);
+    ui->ballaszt_baltart->setValue(0);
+
 }
 
 void GUI::talca_kinyit()

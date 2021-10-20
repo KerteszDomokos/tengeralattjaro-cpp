@@ -2465,21 +2465,13 @@ p, li { white-space: pre-wrap; }
       <property name="minimumSize">
        <size>
         <width>323</width>
-<<<<<<< HEAD
-        <height>324</height>
-=======
         <height>346</height>
->>>>>>> fce3c23412346bb71c0225fe3523faf751abe32a
        </size>
       </property>
       <property name="maximumSize">
        <size>
         <width>11111111</width>
-<<<<<<< HEAD
-        <height>228</height>
-=======
         <height>267</height>
->>>>>>> fce3c23412346bb71c0225fe3523faf751abe32a
        </size>
       </property>
       <property name="palette">
@@ -3138,9 +3130,6 @@ background-color: rgb(170, 0, 0);
        <property name="sliderPosition">
         <number>0</number>
        </property>
-       <property name="tracking">
-        <bool>true</bool>
-       </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
@@ -3397,9 +3386,9 @@ background-color: rgb(170, 0, 0);
       <widget class="QPushButton" name="pushButton_9">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>210</x>
          <y>250</y>
-         <width>241</width>
+         <width>131</width>
          <height>21</height>
         </rect>
        </property>
@@ -3410,9 +3399,9 @@ background-color: rgb(170, 0, 0);
       <widget class="QPushButton" name="pushButton_10">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>280</y>
-         <width>241</width>
+         <x>10</x>
+         <y>250</y>
+         <width>141</width>
          <height>21</height>
         </rect>
        </property>
@@ -4019,22 +4008,6 @@ p, li { white-space: pre-wrap; }
       </widget>
      </widget>
     </item>
-<<<<<<< HEAD
-    <item row="7" column="5" colspan="2">
-     <spacer name="verticalSpacer_4">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-=======
->>>>>>> fce3c23412346bb71c0225fe3523faf751abe32a
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">

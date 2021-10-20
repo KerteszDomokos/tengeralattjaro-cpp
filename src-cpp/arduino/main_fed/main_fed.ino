@@ -122,6 +122,14 @@ bool newData = false;
 
 void setup()
 {
+    pinMode(BALLASZT_REL_B_B, OUTPUT);
+  pinMode(BALLASZT_REL_J_B, OUTPUT);
+  pinMode(BALLASZT_REL_B_K, OUTPUT);
+  pinMode(BALLASZT_REL_J_K, OUTPUT);
+  digitalWrite(BALLASZT_REL_B_B, 1); //relék kikapcsolása
+  digitalWrite(BALLASZT_REL_J_B, 1);
+  digitalWrite(BALLASZT_REL_B_K, 1);
+  digitalWrite(BALLASZT_REL_J_K, 1);
   Serial.begin(115200);
   pinMode(trig, OUTPUT); pinMode(echo, INPUT);
   pinMode(RAD_trig, OUTPUT); pinMode(RAD_echo, INPUT);
@@ -130,14 +138,7 @@ void setup()
   pinMode(OK_LED_Z, OUTPUT);
   pinMode(TALCA_SERB, OUTPUT);
   pinMode(TALCA_SERJ, OUTPUT);
-  pinMode(BALLASZT_REL_B_B, OUTPUT);
-  pinMode(BALLASZT_REL_J_B, OUTPUT);
-  pinMode(BALLASZT_REL_B_K, OUTPUT);
-  pinMode(BALLASZT_REL_J_K, OUTPUT);
-  digitalWrite(BALLASZT_REL_B_B, 1); //relék kikapcsolása
-  digitalWrite(BALLASZT_REL_J_B, 1);
-  digitalWrite(BALLASZT_REL_B_K, 1);
-  digitalWrite(BALLASZT_REL_J_K, 1);
+
 
   mb.attach(m1);
   mj.attach(m2);
@@ -162,6 +163,7 @@ void setup()
 void loop()
 {
   checkForNewData();
+  BALLASZT_MAXPOF_L=myArray[25];BALLASZT_MAXPOF=myArray[24];
   ballaszt(myArray[20], myArray[21]);
   if (newData == true) {
     newData = false;
@@ -319,7 +321,7 @@ void vegrehajt()
 
 void ballaszt(int bal, int jobb) {
   //bal
-  bal=bal-50;
+  bal=bal;
   if (ballaszt_nyitvaB_F==0 && ballaszt_nyitvaB_L == 0) {
     int bkul = int(bal) - ballaszt_bal_toltottseg;
     if (bkul < 0) {

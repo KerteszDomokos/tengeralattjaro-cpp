@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>Aqualab GUI</Name>
+    <Version>0.7</Version>
+    <Title>Aqualab - Installer</Title>
+    <Publisher>AquaLab - Kertész Domokos</Publisher>
+    <StartMenuDir>AquaLab vezerlő</StartMenuDir>
+    <TargetDir>@HomeDir@/InstallationDirectory</TargetDir>
+</Installer>

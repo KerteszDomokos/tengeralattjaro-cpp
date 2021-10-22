@@ -129,7 +129,7 @@ QLineEdit{font-size:14px;}</string>
         <item row="0" column="0">
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>Sebesség:</string>
+           <string>PH érték:</string>
           </property>
          </widget>
         </item>
@@ -139,7 +139,7 @@ QLineEdit{font-size:14px;}</string>
         <item row="1" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
-           <string>Számítógép kihasználtság:</string>
+           <string>Redoxipotenciál:</string>
           </property>
          </widget>
         </item>
@@ -149,7 +149,7 @@ QLineEdit{font-size:14px;}</string>
         <item row="2" column="0">
          <widget class="QLabel" name="label_9">
           <property name="text">
-           <string>Bal motor nyomaték:</string>
+           <string>Vezetőképesség:</string>
           </property>
          </widget>
         </item>
@@ -159,7 +159,7 @@ QLineEdit{font-size:14px;}</string>
         <item row="3" column="0">
          <widget class="QLabel" name="label_10">
           <property name="text">
-           <string>Jobb motor nyomaték:</string>
+           <string>Zavarosság:</string>
           </property>
          </widget>
         </item>
@@ -169,7 +169,7 @@ QLineEdit{font-size:14px;}</string>
         <item row="4" column="0">
          <widget class="QLabel" name="label_11">
           <property name="text">
-           <string>Mélység:</string>
+           <string>Hőmérséklet:</string>
           </property>
          </widget>
         </item>
@@ -179,7 +179,7 @@ QLineEdit{font-size:14px;}</string>
         <item row="5" column="0">
          <widget class="QLabel" name="label_12">
           <property name="text">
-           <string>Belső hőmérséklet:</string>
+           <string>Becsült áramlásseb:</string>
           </property>
          </widget>
         </item>
@@ -187,6 +187,32 @@ QLineEdit{font-size:14px;}</string>
          <widget class="QLineEdit" name="lineEdit_12"/>
         </item>
        </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>450</y>
+         <width>231</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Felvétel beállításai</string>
+       </property>
+      </widget>
+      <widget class="QQuickWidget" name="grafikon">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>20</y>
+         <width>491</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="resizeMode">
+        <enum>QQuickWidget::SizeRootObjectToView</enum>
+       </property>
       </widget>
      </widget>
     </item>

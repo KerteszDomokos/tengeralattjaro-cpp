@@ -207,11 +207,150 @@ QLineEdit{font-size:14px;}</string>
          <x>250</x>
          <y>20</y>
          <width>491</width>
-         <height>201</height>
+         <height>361</height>
         </rect>
        </property>
        <property name="resizeMode">
         <enum>QQuickWidget::SizeRootObjectToView</enum>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="grafikonXteng">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>390</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>none</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Idő</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ph érték</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Redoxipotenciál</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vezetőképesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Zavarosság</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hőmérséklet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Becsült áramlássebesség</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="grafikonYtengely">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>390</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>none</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Idő</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ph érték</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Redoxipotenciál</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vezetőképesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Zavarosság</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hőmérséklet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Becsült áramlássebesség</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>390</y>
+         <width>101</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Betöltés</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_13">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>390</y>
+         <width>16</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;x:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>365</x>
+         <y>390</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;y:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </widget>
@@ -245,7 +384,7 @@ QLineEdit{font-size:14px;}</string>
          <x>0</x>
          <y>0</y>
          <width>748</width>
-         <height>234</height>
+         <height>228</height>
         </rect>
        </property>
        <widget class="QLabel" name="elokep">

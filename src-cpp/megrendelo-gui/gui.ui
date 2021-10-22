@@ -6,24 +6,234 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1202</width>
-    <height>514</height>
+    <width>1212</width>
+    <height>913</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>GUI</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QQuickWidget" name="horizon_3">
-      <property name="resizeMode">
-       <enum>QQuickWidget::SizeRootObjectToView</enum>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>750</width>
+        <height>600</height>
+       </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>750</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Adatok</string>
+      </property>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>231</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Alapvető működési adatok</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Sebesség:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Számítógép kihasználtság:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_2"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Bal motor nyomaték:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_3"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Jobb motor nyomaték:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="lineEdit_4"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Mélység:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="lineEdit_5"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Belső hőmérséklet:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="lineEdit_6"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>231</width>
+         <height>211</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+font-size:14px;
+}
+QLineEdit{font-size:14px;}</string>
+       </property>
+       <property name="title">
+        <string>Szenzoradatok</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Sebesség:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_7"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Számítógép kihasználtság:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_8"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Bal motor nyomaték:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_9"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Jobb motor nyomaték:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="lineEdit_10"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Mélység:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="lineEdit_11"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Belső hőmérséklet:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="lineEdit_12"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QQuickWidget" name="horizon_2">
+    <item row="1" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>75</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>750</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>748</width>
+         <height>234</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="elokep">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>731</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Kép</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="1" rowspan="2">
+     <widget class="QQuickWidget" name="quickWidget">
       <property name="resizeMode">
        <enum>QQuickWidget::SizeRootObjectToView</enum>
       </property>
@@ -36,12 +246,42 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1202</width>
+     <width>1212</width>
      <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuF_jl">
+    <property name="title">
+     <string>Fájl</string>
+    </property>
+    <addaction name="actionB_ll_t_sok"/>
+    <addaction name="separator"/>
+    <addaction name="actionInform_ci"/>
+   </widget>
+   <addaction name="menuF_jl"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="actionB_ll_t_sok">
+   <property name="text">
+    <string>Beállítások</string>
+   </property>
+  </action>
+  <action name="actionInform_ci">
+   <property name="text">
+    <string>Információ</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

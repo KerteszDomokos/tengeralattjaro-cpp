@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="whatsThis">
+   <string/>
+  </property>
   <widget class="QToolBox" name="toolbox">
    <property name="geometry">
     <rect>
@@ -44,12 +47,269 @@
      </rect>
     </property>
     <attribute name="label">
-     <string>Page 1</string>
+     <string>Általános</string>
     </attribute>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>231</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Beavatkozási lehetőségek beállítása</string>
+     </property>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{background-color:red;}</string>
+      </property>
+      <property name="text">
+       <string>Alapértelmezettek visszaállítása</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>211</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A ballasztrendszer manuális vezérlésének engedélyezése. Ekkor a PÖFF számok slideren módosíthatóak.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Ballasztrendszer manuális engedélyezés</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>211</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A tesztmerülések közben adódhat, hogy a ballaszttartályt le kell ereszteni teljesen. Ez kockázatos művelet, engedélyezése nem ajánlott merülés közben.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox{color:red;}</string>
+      </property>
+      <property name="text">
+       <string>Ballaszt leeresztés engedélyezése</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>211</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A robotkar frissítésének letiltása. Ez a jobboldali grafikára vonatkozik.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Robotkar vezérelhető</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>211</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A rendszerbe épjtett parancssor adott esetben letiltható. Itt bizonyos adatok kinyerhetők, és átállíhatók.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Parancssor elérhető</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>211</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pontonhajó vezérléséne engedélyezése. A rendszerhez ez a herdver egyenlőre nincsen hozzákapcsolva. Kiküszöbölhető a véletlen átállítás, ami  a fedélzeten szükségtelen és konfliktusos beállítást eredményezhet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Pontonhajó elérhető</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>30</y>
+       <width>231</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Háttérfolyamatok beállítása</string>
+     </property>
+     <widget class="QSpinBox" name="spinBox">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>50</y>
+        <width>42</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>171</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Érkező adatok frissítési ideje (ms):</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>141</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCheckBox{color:red;}</string>
+      </property>
+      <property name="text">
+       <string>Felület frissítése</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>191</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string comment="Mi ez?">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A csatlakoztatható joystick kezeléséhez külön folyamat szükséges. Ez számítási kapacitást igényel, valamint maradványfolyamatokat hagyhat fent. Vezérlés esetén ajánlott engedélyezni.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Joystick folyamat engedélyezése</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>191</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A fedélzeti kamera képének vételéhez külön folyamat szükséges. Ez számítási kapacitást igényel, valamint maradványfolyamatokat hagyhat fent. Vezérlés esetén ajánlott engedélyezni. A kép csak a fő felületen engedélyezés után érkezik.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Kép folyamat engedélyezése</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>201</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A fedélzettel történő kommunikációt a rendszer egy másik létrehozott szálon (thread) végzi. A letiltás esetén az adatok nem fognak frissülni, valamint a küldés sem fog megfelelően működni.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Kommunikációs szál engedélyezése</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>861</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Segítség: A beállítások többségéhez hozzáadásra került a mi ez? funkció. Ekkor a jobb egérgombbal megnyitható egy rövid leírés a beállításról.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="page_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>879</width>
+      <height>348</height>
+     </rect>
+    </property>
     <attribute name="label">
-     <string>Page</string>
+     <string>Megjelenés</string>
     </attribute>
    </widget>
    <widget class="QWidget" name="page_2">
@@ -62,7 +322,7 @@
      </rect>
     </property>
     <attribute name="label">
-     <string>Page 2</string>
+     <string>Speciális beállítások</string>
     </attribute>
    </widget>
   </widget>

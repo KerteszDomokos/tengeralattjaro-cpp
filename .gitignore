@@ -13,3 +13,5 @@ src-cpp/vezerlo-gui/installer/packages/com.vendor.root/data/Qt3D/Core/
 src-cpp/vezerlo-gui/installer/packages/com.vendor.root/data/
 
 src-cpp/build-vezerlo-gui-Debug-32/
+
+src-cpp/build-vezerlo-gui-Release/

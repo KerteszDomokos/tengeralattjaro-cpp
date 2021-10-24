@@ -200,6 +200,135 @@ QLineEdit{font-size:14px;}</string>
        <property name="title">
         <string>Felvétel beállításai</string>
        </property>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>141</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Alapértelmezett mappa</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>40</y>
+          <width>61</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="whatsThis">
+         <string>A funkcióva beállítható, hogy hány mentett adat utén készítsen fájlt a rendszer Ez akkor lehet érdekes, hogyha a rendszer vagy a számítógép leáll, mivel a fájlba mentett adatok mindenképpen megmaradnak.</string>
+        </property>
+        <property name="minimum">
+         <number>10000</number>
+        </property>
+        <property name="maximum">
+         <number>100000</number>
+        </property>
+        <property name="singleStep">
+         <number>1000</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>151</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="whatsThis">
+         <string>A funkcióva beállítható, hogy hány mentett adat utén készítsen fájlt a rendszer Ez akkor lehet érdekes, hogyha a rendszer vagy a számítógép leáll, mivel a fájlba mentett adatok mindenképpen megmaradnak.</string>
+        </property>
+        <property name="text">
+         <string>Maximum esemény fájlonként:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>151</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Jelenleg bufferelt események:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="bufferelt_esemeny_label">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>60</y>
+          <width>41</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Bufferelt</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>161</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Megjegyzés az adott pillanathoz:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_13">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>191</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>110</y>
+          <width>31</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>91</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Most</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QQuickWidget" name="grafikon">
        <property name="geometry">

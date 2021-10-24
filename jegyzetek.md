@@ -159,7 +159,8 @@
 
 ## Megjegyzések
 - VSCode SSH kiterjesztés Permission denied: sudo chown -R myuser /path/to/folder 
-- A csomagösszeállításhoz a C:\Qt\QtIFW-4.1.1\bin\binarycreator.exe -c config/config.xml -p packages -f "AquaLab Installer - v0.7-1" parancs használandó
+- A csomagösszeállításhoz a C:\Qt\QtIFW-4.1.1\bin\binarycreator.exe -c config/config.xml -p packages -f "AquaLab Installer - v0.7-1" parancs használandó  
+- Markdown dokumentáció html generalas: https://markdowntohtml.com/ 
 
 ### Csatlakozási adatok
 - A Raspberry pi hostapd jelszava: Tengeralattjaro2020  
@@ -199,3 +200,8 @@ network{
 
 169.254.15.251
 fe80::8c51:8be8:bc0e:9d81
+
+### NYÁK megjegyzések
+- A kettes csatlakozókon a 2-es pin a minusz
+- Motoroknál az 1- es csatlakozón érkezik a gnd
+- 

@@ -19,14 +19,17 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     gui.cpp \
+    settings.cpp \
     sockread.cpp
 
 HEADERS += \
     gui.h \
+    settings.h \
     sockread.h
 
 FORMS += \
-    gui.ui
+    gui.ui \
+    settings.ui
 
 TRANSLATIONS += \
     megrendelo-gui_en_EN.ts

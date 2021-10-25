@@ -6,6 +6,7 @@ settings::settings(QWidget *parent) :
     ui(new Ui::settings)
 {
     ui->setupUi(this);
+    ui->qssszabvany->setOpenExternalLinks(1);
 }
 
 settings::~settings()

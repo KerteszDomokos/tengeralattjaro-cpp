@@ -14,9 +14,17 @@ class settings : public QDialog
 public:
     explicit settings(QWidget *parent = nullptr);
     ~settings();
+    bool ujTema=0;
+    QString ujfileName();
+
+private slots:
+    void chooseFile();
+signals:
+    void msg(QString dat, int pr);
 
 private:
     Ui::settings *ui;
+    QString fileName;//téma fájl
 };
 
 #endif // SETTINGS_H

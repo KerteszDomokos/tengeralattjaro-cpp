@@ -18,8 +18,9 @@ GUI::GUI(QWidget *parent)
 
 }
 
-GUI::~GUI()
+void GUI::open_beallitasok()
 {
-    delete ui;
+    set=new settings;
+    set->show();
 }
 

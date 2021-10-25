@@ -29,7 +29,7 @@ FORMS += \
     gui.ui
 
 TRANSLATIONS += \
-    megrendelo-gui_hu_HU.ts
+    megrendelo-gui_en_EN.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -39,8 +39,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 
 DISTFILES += \
+    megrendelo-gui_en_EN.ts \
     qml-files/compass.qml \
     qml-files/horizon.qml \
     qml-files/compass
 
 RESOURCES += \
+    resource.qrc

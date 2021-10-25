@@ -554,9 +554,11 @@ QLineEdit{font-size:14px;}</string>
     <property name="title">
      <string>Fájl</string>
     </property>
-    <addaction name="actionB_ll_t_sok"/>
+    <addaction name="separator"/>
+    <addaction name="beallitasok_2"/>
     <addaction name="separator"/>
     <addaction name="actionInform_ci"/>
+    <addaction name="fordtest"/>
    </widget>
    <addaction name="menuF_jl"/>
   </widget>
@@ -572,14 +574,24 @@ QLineEdit{font-size:14px;}</string>
     <bool>false</bool>
    </attribute>
   </widget>
-  <action name="actionB_ll_t_sok">
+  <action name="actionInform_ci">
+   <property name="text">
+    <string>Információ</string>
+   </property>
+  </action>
+  <action name="forditas">
+   <property name="text">
+    <string>Fordítás</string>
+   </property>
+  </action>
+  <action name="beallitasok_2">
    <property name="text">
     <string>Beállítások</string>
    </property>
   </action>
-  <action name="actionInform_ci">
+  <action name="fordtest">
    <property name="text">
-    <string>Információ</string>
+    <string>Fordítás</string>
    </property>
   </action>
  </widget>
@@ -591,5 +603,58 @@ QLineEdit{font-size:14px;}</string>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>forditas</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>forditas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>beallitasok_2</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>open_beallitasok()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>208</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fordtest</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>forditas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>forditas()</slot>
+  <slot>open_beallitasok()</slot>
+ </slots>
 </ui>

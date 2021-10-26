@@ -1,6 +1,7 @@
 #include "settings.h"
 #include "ui_settings.h"
 #include <QFileDialog>
+#include <QDebug>
 
 settings::settings(QWidget *parent) :
     QDialog(parent),
@@ -63,6 +64,20 @@ void settings::modvalasztas(QString mod)
 
     ui->temateszt->setStyleSheet(ss);
     chstyle=ss;
+}
+
+void settings::beavleh()
+{
+    qDebug()<<"Act";
+}
+
+void settings::beav_reset()
+{
+    ui->ballasztereszt->setChecked(0);
+    ui->pontonhajoelerh->setChecked(1);
+    ui->robotkaeng->setChecked(1);
+    ui->parancssor->setChecked(1);
+    ui->manbal->setChecked(1);
 }
 
 

@@ -23,6 +23,8 @@ private slots:
     void chooseFile();
     void otherThema();
     void modvalasztas(QString mod);
+    void beavleh();
+    void beav_reset();
 
 signals:
     void msg(QString dat, int pr);

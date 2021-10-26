@@ -711,7 +711,10 @@ void GUI::open_settings()
 
 void GUI::applySettings()
 {
+    this->setStyleSheet(set->getChstyle());
+
     qDebug()<<"Accepted settings: "<<1;
+    msg(tr("Beállítások alkalmazva"),1);
 }
 
 void GUI::notapplySettings()

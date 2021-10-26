@@ -20,6 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+
+
 /*-----QWidget-----*/
 QWidget
 {
@@ -981,5 +983,10 @@ QProgressBar::chunk
     width: 30px;
     margin: 0.5px;
 
+}
+
+QTextBrowser{
+    color:#00e700;
+    background-color:black;
 }
 

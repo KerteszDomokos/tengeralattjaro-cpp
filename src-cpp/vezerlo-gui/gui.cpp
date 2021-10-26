@@ -700,6 +700,26 @@ void GUI::stopFelvetel()
     msg("Mentés bezárva",1);
 }
 
+void GUI::open_settings()
+{
+   set=new settings;
+   set->show();
+   connect(set,SIGNAL(rejected()),this,SLOT(notapplySettings()));
+   connect(set,SIGNAL(accepted()),this,SLOT(applySettings()));
+
+}
+
+void GUI::applySettings()
+{
+    qDebug()<<"Accepted settings: "<<1;
+}
+
+void GUI::notapplySettings()
+{
+    qDebug()<<"Accepted settings: "<<0;
+    msg(tr("Beállítások elvetve"),2);
+}
+
 void GUI::cmdSlot()
 {
     QString readedT = ui->cmd_p->text();
@@ -1120,12 +1140,6 @@ void GUI::cl()
     if(felvetelOpened==1){delete widget;felvetelOpened=0;}
 }
 
-void GUI::open_settings()
-{
-   set=new settings;
-   set->show();
-}
-
 void GUI::ballasztPluszegy()
 {
     ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->value()+1);
@@ -1135,6 +1149,7 @@ void GUI::ballasztMinuszegy()
 {
     ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->value()-1);
 }
+
 
 //Szünettel elválasztott szöveget konvertál QList doubel ba
 QList<double> GUI::conv(QString str){

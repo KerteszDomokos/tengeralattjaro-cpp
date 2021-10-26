@@ -4647,6 +4647,9 @@ p, li { white-space: pre-wrap; }
    <property name="text">
     <string>Beállítások</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
   </action>
  </widget>
  <customwidgets>

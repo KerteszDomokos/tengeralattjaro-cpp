@@ -17,16 +17,20 @@ public:
     bool ujTema=0;
     QString ujfileName();
 
+    QString getChstyle() const;
+
 private slots:
     void chooseFile();
     void otherThema();
     void modvalasztas(QString mod);
+
 signals:
     void msg(QString dat, int pr);
 
 private:
     Ui::settings *ui;
     QString fileName;//téma fájl
+    QString chstyle;
 };
 
 #endif // SETTINGS_H

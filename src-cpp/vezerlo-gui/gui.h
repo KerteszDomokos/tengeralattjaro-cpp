@@ -72,6 +72,8 @@ private slots:
     void open_settings();
     void ballasztPluszegy();
     void ballasztMinuszegy();
+    void applySettings();
+    void notapplySettings();
 
 
 

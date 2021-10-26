@@ -62,7 +62,14 @@ void settings::modvalasztas(QString mod)
     }
 
     ui->temateszt->setStyleSheet(ss);
+    chstyle=ss;
+}
 
+
+
+QString settings::getChstyle() const
+{
+    return chstyle;
 }
 
 QString settings::ujfileName()

@@ -629,10 +629,44 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>okbox</sender>
+   <signal>accepted()</signal>
+   <receiver>settings</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>755</x>
+     <y>467</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>591</x>
+     <y>453</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>settings</sender>
+   <signal>rejected()</signal>
+   <receiver>settings</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>807</x>
+     <y>452</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>534</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>chooseFile()</slot>
   <slot>otherThema()</slot>
   <slot>modvalasztas(QString)</slot>
+  <slot>ok()</slot>
+  <slot>canc()</slot>
  </slots>
 </ui>

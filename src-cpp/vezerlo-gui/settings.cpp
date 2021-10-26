@@ -97,7 +97,3 @@ QString settings::getChstyle() const
     return chstyle;
 }
 
-QString settings::ujfileName()
-{
-    return fileName;
-}

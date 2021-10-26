@@ -80,6 +80,16 @@ void settings::beav_reset()
     ui->manbal->setChecked(1);
 }
 
+void settings::hatfoly()
+{
+
+}
+
+void settings::updatetime_reset()
+{
+    ui->updatetime->setValue(20);
+}
+
 
 
 QString settings::getChstyle() const

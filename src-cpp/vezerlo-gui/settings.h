@@ -25,6 +25,8 @@ private slots:
     void modvalasztas(QString mod);
     void beavleh();
     void beav_reset();
+    void hatfoly();
+    void updatetime_reset();
 
 signals:
     void msg(QString dat, int pr);

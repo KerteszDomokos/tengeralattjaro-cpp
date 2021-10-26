@@ -197,6 +197,15 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="minimum">
+       <number>5</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="value">
+       <number>20</number>
+      </property>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
@@ -770,6 +779,102 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>update</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>hatfoly()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>347</x>
+     <y>110</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>904</x>
+     <y>270</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>updatetime</sender>
+   <signal>editingFinished()</signal>
+   <receiver>settings</receiver>
+   <slot>hatfoly()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>135</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>905</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>updatetime_reset</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>updatetime_reset()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>442</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>902</x>
+     <y>386</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>joystickpr</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>hatfoly()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>302</x>
+     <y>159</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>902</x>
+     <y>357</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>kepudp</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>hatfoly()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>318</x>
+     <y>178</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>909</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>kommthread</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>hatfoly()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>384</x>
+     <y>202</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>908</x>
+     <y>298</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>chooseFile()</slot>
@@ -779,5 +884,7 @@ p, li { white-space: pre-wrap; }
   <slot>canc()</slot>
   <slot>beavleh()</slot>
   <slot>beav_reset()</slot>
+  <slot>hatfoly()</slot>
+  <slot>updatetime_reset()</slot>
  </slots>
 </ui>

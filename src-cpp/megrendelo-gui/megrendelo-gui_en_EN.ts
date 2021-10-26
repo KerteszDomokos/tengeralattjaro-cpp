@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en">
+<TS version="2.1" language="en" sourcelanguage="hu_HU">
 <context>
     <name>GUI</name>
     <message>
@@ -98,7 +98,7 @@
         <location filename="gui.ui" line="251"/>
         <source>A funkcióva beállítható, hogy hány mentett adat utén készítsen fájlt a rendszer Ez akkor lehet érdekes, hogyha a rendszer vagy a számítógép leáll, mivel a fájlba mentett adatok mindenképpen megmaradnak.</source>
         <translatorcomment>Átnézendő</translatorcomment>
-        <translation type="unfinished">This functon set how many saved data write to a new file.</translation>
+        <translation>This functon set how many saved data write to a new file.</translation>
     </message>
     <message>
         <location filename="gui.ui" line="254"/>

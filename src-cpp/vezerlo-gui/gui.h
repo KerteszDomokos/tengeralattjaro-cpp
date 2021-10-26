@@ -14,6 +14,7 @@
 #include <felvetel.h>
 #include <lejatszas.h>
 #include <settings.h>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -125,6 +126,9 @@ private:
     bool felvetelOpened;
 
     settings *set;
+    QSettings *sets;
+
+    QList<bool> beavdatas;
 
     void saveUserdat();
 

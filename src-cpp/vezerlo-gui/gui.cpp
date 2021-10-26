@@ -39,6 +39,8 @@
 #include <QDialog>
 #include <QDate>
 #include <QDir>
+#include <QSettings>
+#include <QVariant>
 
 SockRead sock;
 
@@ -146,7 +148,7 @@ GUI::GUI(QWidget *parent)
     lejatszas=new Lejatszas;
 
     ballaszt_erzekenyseg();
-
+    sets = new QSettings("Aqualab vezérlő", "AquaLab");
 
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
@@ -716,6 +718,18 @@ void GUI::applySettings()
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
     msg(tr("Beállítások alkalmazva"),1);
+    saveUserdat();
+    beavdatas={};
+    beavdatas.append(set->getBalereszt());//0 ballaszt kieresztés engedélyezés
+    beavdatas.append(set->getBalman());//1 balmanuális
+    beavdatas.append(set->getCmdav());//2 cmd available
+    beavdatas.append(set->getFrissonoff());//3 frissítés engedélyezés
+    beavdatas.append(set->getJoyena());//4 joystick folyamat engedélyezve
+    beavdatas.append(set->getKepena());//5 kép folyamat engedélyezve
+    beavdatas.append(set->getKomena());//6 kommunikációs thread
+    beavdatas.append(set->getPontonav());//7 ponton elérhető
+    beavdatas.append(set->getRobotkarena());//8 robotkar engedélyezése
+
 }
 
 void GUI::notapplySettings()
@@ -726,7 +740,9 @@ void GUI::notapplySettings()
 
 void GUI::saveUserdat()
 {
-
+    QVariant vals;
+    vals.setValue<QList<bool>>(beavleh);
+    sets->setValue("beavleh",0);
 }
 
 

@@ -748,16 +748,16 @@ void GUI::saveUserdat()
 {
     sets->setValue("beavleh",QVariant::fromValue(booldatas_settings));
     sets->setValue("updateTime",updatetime);
+    sets->setValue("Tema",set->getChstyle());
+    sets->setValue("modename",set->getModename());
 }
 
 void GUI::getUserdat()
 {
     QVariant val;
     QList<QVariant> v;
-    qDebug()<<v;
     booldatas_settings=sets->value("beavleh").value<QList<bool> >();
-    qDebug()<<booldatas_settings;
-    qDebug()<<sets->value("updateTime");
+    this->setStyleSheet(sets->value("Tema").toString());
 }
 
 

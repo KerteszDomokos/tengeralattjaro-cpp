@@ -1,5 +1,17 @@
 # Jegyzetek
 
+## GUI adatok, megjegyzések
+### Mentett userdata sorrend (bool)
+0: ballaszt kieresztés engedélyezés
+1: balmanuális
+2: cmd available
+3: frissítés engedélyezés
+4: joystick folyamat engedélyezve
+5: kép folyamat engedélyezve
+6: kommunikációs thread
+7: ponton elérhető
+8: robotkar engedélyezése
+
 ## A kommunikációs csatornák adatai  
 <br>
 

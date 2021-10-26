@@ -15,6 +15,7 @@ settings::settings(QWidget *parent) :
     ui->qssszabvany->setOpenExternalLinks(1);
     sets=new QSettings("Aqualab vezérlő", "AquaLab");
     getUserdat();
+    applyuserdat();
 }
 
 settings::~settings()
@@ -42,6 +43,12 @@ void settings::getUserdat()
     beavdatas=sets->value("beavleh").value<QList<bool>>();
 }
 
+void settings::applyuserdat()
+{
+    ui->temavalaszto->setCurrentText(sets->value("modename").toString());
+    modvalasztas(sets->value("modename").toString());
+}
+
 
 void settings::otherThema()
 {
@@ -66,17 +73,20 @@ void settings::modvalasztas(QString mod)
     QString ss;
     if(mod=="Világos mód"|| mod=="Light mode"){
         ss="";
+        modename="Világos mód";
     }
     else if(mod=="Sötét mód" || mod=="Dark mode"){
         QFile file(":/programs/darkmode");
         file.open(QFile::ReadOnly);
         ss = QString(file.readAll());
         file.close();
+        modename="Sötét mód";
     }
 
     ui->temateszt->setStyleSheet(ss);
     chstyle=ss;
 }
+
 
 void settings::beavleh()
 {
@@ -165,3 +175,7 @@ QString settings::getChstyle() const
     return chstyle;
 }
 
+QString settings::getModename()
+{
+    return modename;
+}

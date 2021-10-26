@@ -26,6 +26,7 @@ public:
     bool getKepena() const;
     bool getKomena() const;
     int getUptime() const;
+    QString getModename();
 
 private slots:
     void chooseFile(); // témafájl választás
@@ -50,6 +51,8 @@ private:
 
     QSettings *sets;
     QList<bool> beavdatas;
+    QString modename;
+    void applyuserdat();
 
 };
 

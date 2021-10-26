@@ -967,6 +967,9 @@ QString GUI::commands(QString comm)
         delete widget; widget=new Felvetel;
         return "Felvétel: sikeres újraindítás";
     }
+    else if(comm=="userdatPath"){
+        return "A fehasználói adatok elérhetőek a következő elérési útvonalon: "+sets->fileName();
+    }
     else if(comm=="getFelvPath"){
         if(widget->getFileName()!=""){
             return "Felvétel helye: "+widget->getFileName();

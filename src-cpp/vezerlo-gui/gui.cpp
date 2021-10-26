@@ -713,6 +713,7 @@ void GUI::applySettings()
 {
     this->setStyleSheet(set->getChstyle());
 
+    ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
     msg(tr("Beállítások alkalmazva"),1);
 }
@@ -722,6 +723,12 @@ void GUI::notapplySettings()
     qDebug()<<"Accepted settings: "<<0;
     msg(tr("Beállítások elvetve"),2);
 }
+
+void GUI::saveUserdat()
+{
+
+}
+
 
 void GUI::cmdSlot()
 {
@@ -1251,6 +1258,5 @@ QString GUI::generatePath(int id)
     QString fullPath=felvPathGyok+nam;
     return fullPath;
 }
-
 
 

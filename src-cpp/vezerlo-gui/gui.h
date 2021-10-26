@@ -126,7 +126,7 @@ private:
 
     settings *set;
 
-
+    void saveUserdat();
 
 
 

@@ -16,6 +16,7 @@ settings::settings(QWidget *parent) :
 
 settings::~settings()
 {
+    qDebug()<<"Settings deleted";
     delete ui;
 }
 

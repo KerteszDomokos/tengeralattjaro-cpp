@@ -129,7 +129,7 @@ private:
     //Settings változók és példányok
     settings *set;
     QSettings *sets;
-    QList<bool> beavdatas;
+    QList<bool> booldatas_settings;
     QList<bool> hatterdatas;
     int updatetime=20;
 

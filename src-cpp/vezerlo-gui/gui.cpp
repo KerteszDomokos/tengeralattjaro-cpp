@@ -721,16 +721,16 @@ void GUI::applySettings()
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
     msg(tr("Beállítások alkalmazva"),1);
-    beavdatas={};
-    beavdatas.append(set->getBalereszt());//0 ballaszt kieresztés engedélyezés
-    beavdatas.append(set->getBalman());//1 balmanuális
-    beavdatas.append(set->getCmdav());//2 cmd available
-    beavdatas.append(set->getFrissonoff());//3 frissítés engedélyezés
-    beavdatas.append(set->getJoyena());//4 joystick folyamat engedélyezve
-    beavdatas.append(set->getKepena());//5 kép folyamat engedélyezve
-    beavdatas.append(set->getKomena());//6 kommunikációs thread
-    beavdatas.append(set->getPontonav());//7 ponton elérhető
-    beavdatas.append(set->getRobotkarena());//8 robotkar engedélyezése
+    booldatas_settings={};
+    booldatas_settings.append(set->getBalereszt());//0 ballaszt kieresztés engedélyezés
+    booldatas_settings.append(set->getBalman());//1 balmanuális
+    booldatas_settings.append(set->getCmdav());//2 cmd available
+    booldatas_settings.append(set->getFrissonoff());//3 frissítés engedélyezés
+    booldatas_settings.append(set->getJoyena());//4 joystick folyamat engedélyezve
+    booldatas_settings.append(set->getKepena());//5 kép folyamat engedélyezve
+    booldatas_settings.append(set->getKomena());//6 kommunikációs thread
+    booldatas_settings.append(set->getPontonav());//7 ponton elérhető
+    booldatas_settings.append(set->getRobotkarena());//8 robotkar engedélyezése
 
 
 
@@ -746,7 +746,7 @@ void GUI::notapplySettings()
 
 void GUI::saveUserdat()
 {
-    sets->setValue("beavleh",QVariant::fromValue(beavdatas));
+    sets->setValue("beavleh",QVariant::fromValue(booldatas_settings));
     sets->setValue("updateTime",updatetime);
 }
 
@@ -755,8 +755,8 @@ void GUI::getUserdat()
     QVariant val;
     QList<QVariant> v;
     qDebug()<<v;
-    beavdatas=sets->value("beavleh").value<QList<bool> >();
-    qDebug()<<beavdatas;
+    booldatas_settings=sets->value("beavleh").value<QList<bool> >();
+    qDebug()<<booldatas_settings;
     qDebug()<<sets->value("updateTime");
 }
 

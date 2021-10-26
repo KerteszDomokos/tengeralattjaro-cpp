@@ -9,6 +9,8 @@ settings::settings(QWidget *parent) :
 {
     ui->setupUi(this);
     otherThema();
+    beavleh();
+    hatfoly();
     ui->qssszabvany->setOpenExternalLinks(1);
 }
 
@@ -68,7 +70,11 @@ void settings::modvalasztas(QString mod)
 
 void settings::beavleh()
 {
-    qDebug()<<"Act";
+    balman=ui->manbal->isChecked();
+    balereszt=ui->ballasztereszt->isChecked();
+    robotkarena=ui->robotkaeng->isChecked();
+    cmdav=ui->parancssor->isChecked();
+    pontonav=ui->pontonhajoelerh->isChecked();
 }
 
 void settings::beav_reset()
@@ -82,7 +88,11 @@ void settings::beav_reset()
 
 void settings::hatfoly()
 {
-
+    frissonoff=ui->update->isChecked();
+    uptime=ui->updatetime->value();
+    joyena=ui->joystickpr->isChecked();
+    komena=ui->kommthread->isChecked();
+    kepena=ui->kepudp->isChecked();
 }
 
 void settings::updatetime_reset()
@@ -90,7 +100,55 @@ void settings::updatetime_reset()
     ui->updatetime->setValue(20);
 }
 
+int settings::getUptime() const
+{
+    return uptime;
+}
 
+bool settings::getKomena() const
+{
+    return komena;
+}
+
+bool settings::getKepena() const
+{
+    return kepena;
+}
+
+bool settings::getJoyena() const
+{
+    return joyena;
+}
+
+bool settings::getFrissonoff() const
+{
+    return frissonoff;
+}
+
+bool settings::getPontonav() const
+{
+    return pontonav;
+}
+
+bool settings::getCmdav() const
+{
+    return cmdav;
+}
+
+bool settings::getRobotkarena() const
+{
+    return robotkarena;
+}
+
+bool settings::getBalereszt() const
+{
+    return balereszt;
+}
+
+bool settings::getBalman() const
+{
+    return balman;
+}
 
 QString settings::getChstyle() const
 {

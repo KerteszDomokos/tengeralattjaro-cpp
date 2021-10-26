@@ -15,6 +15,16 @@ public:
     explicit settings(QWidget *parent = nullptr);
     ~settings();
     QString getChstyle() const;//getter to chstyle
+    bool getBalman() const;
+    bool getBalereszt() const;
+    bool getRobotkarena() const;
+    bool getCmdav() const;
+    bool getPontonav() const;
+    bool getFrissonoff() const;
+    bool getJoyena() const;
+    bool getKepena() const;
+    bool getKomena() const;
+    int getUptime() const;
 
 private slots:
     void chooseFile(); // témafájl választás
@@ -32,6 +42,9 @@ private:
     Ui::settings *ui;
     QString fileName;//téma fájl elérési út
     QString chstyle;//Az új téme teljes beolvasott szövege (lásd: getter)
+    bool balman,balereszt,robotkarena,cmdav,pontonav; //a settings beavatkozási lehetőségek lekérhető változói
+    bool frissonoff,joyena,kepena,komena; //a settings háttérfolyamatok beállításának lekérhető változói
+    int uptime;//updatetime
 };
 
 #endif // SETTINGS_H

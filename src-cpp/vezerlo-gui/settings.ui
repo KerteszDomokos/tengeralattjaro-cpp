@@ -342,7 +342,7 @@
      <property name="title">
       <string>Témák</string>
      </property>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="deftema_label">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -387,7 +387,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>84</y>
+        <y>100</y>
         <width>211</width>
         <height>21</height>
        </rect>
@@ -400,13 +400,13 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>106</y>
-        <width>191</width>
+        <y>80</y>
+        <width>211</width>
         <height>19</height>
        </rect>
       </property>
       <property name="text">
-       <string>Másik téma használata</string>
+       <string>Nem alapértelmezett téma választása</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="filename_tema">
@@ -597,8 +597,42 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>masiktema</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>otherThema()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>122</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>94</x>
+     <y>457</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>temavalaszto</sender>
+   <signal>activated(QString)</signal>
+   <receiver>settings</receiver>
+   <slot>modvalasztas(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>177</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>chooseFile()</slot>
+  <slot>otherThema()</slot>
+  <slot>modvalasztas(QString)</slot>
  </slots>
 </ui>

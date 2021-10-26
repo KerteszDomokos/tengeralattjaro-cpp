@@ -19,6 +19,8 @@ public:
 
 private slots:
     void chooseFile();
+    void otherThema();
+    void modvalasztas(QString mod);
 signals:
     void msg(QString dat, int pr);
 

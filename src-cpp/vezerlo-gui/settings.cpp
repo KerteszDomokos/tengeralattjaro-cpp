@@ -47,6 +47,18 @@ void settings::applyuserdat()
 {
     ui->temavalaszto->setCurrentText(sets->value("modename").toString());
     modvalasztas(sets->value("modename").toString());
+    if (beavdatas.length()>=8){
+        ui->ballasztereszt->setChecked(beavdatas[0]);
+        ui->manbal->setChecked(beavdatas[1]);
+        ui->parancssor->setChecked(beavdatas[2]);
+        ui->update->setChecked(beavdatas[3]);
+        ui->joystickpr->setChecked(beavdatas[4]);
+        ui->kepudp->setChecked(beavdatas[5]);
+        ui->kommthread->setChecked(beavdatas[6]);
+        ui->pontonhajoelerh->setChecked(beavdatas[7]);
+        ui->robotkaeng->setChecked(beavdatas[8]);
+    }
+
 }
 
 

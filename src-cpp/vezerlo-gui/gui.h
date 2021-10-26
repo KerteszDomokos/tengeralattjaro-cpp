@@ -75,6 +75,7 @@ private slots:
     void ballasztMinuszegy();
     void applySettings();
     void notapplySettings();
+    void updateonoff();
 
 
 
@@ -95,6 +96,7 @@ private:
 
     QProcess *pr ;//joystick process cl pointer
     QProcess *pr2 ;//kép process cl pointer
+    QTimer *timer;//update függvény időzítője
     QString elozoOlv="";//előző olvasott adat összehasonlításhoz
     QString bejovoFriss="";//legfrissebb bejövő adat szövegben
     QList<double> kuldendoFriss;//a küldendő adatok listája a legfrissebb adatokkal
@@ -132,6 +134,9 @@ private:
     QList<bool> booldatas_settings;
     QList<bool> hatterdatas;
     int updatetime=20;
+    bool cmdavailable=1;
+    bool updateOn;
+    long updateID=0;//update id száma, a frissítéshez
 
 
 

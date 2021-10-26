@@ -87,6 +87,10 @@ GUI::GUI(QWidget *parent)
     , ui(new Ui::GUI)
 {
     ui->setupUi(this);
+
+    updateOn=1;
+    updateonoff(); //Userdata lekérés előtt!!
+
     sets = new QSettings("Aqualab vezérlő", "AquaLab");
     qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
     getUserdat();
@@ -103,10 +107,6 @@ GUI::GUI(QWidget *parent)
     ui->ad->setPixmap(pm);
     ui->ad->setScaledContents(false);
 
-
-    QTimer *timer = new QTimer(this);//időzítők
-    connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-    timer->start(updatetime);
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
@@ -232,6 +232,8 @@ void GUI::fps()
 void GUI::update()
 {
 
+    updateID++;
+    ui->rid_l->setText(QString::number(updateID));
     QList<double> jd=get_joystickAdatok();
     olvasott=conv(bejovoFriss);
     if(playing==1){
@@ -718,21 +720,22 @@ void GUI::applySettings()
 {
     this->setStyleSheet(set->getChstyle());
 
+    cmdavailable=set->getCmdav(); ui->acCmdOpen->setEnabled(cmdavailable);
+    updateOn=set->getFrissonoff();updateonoff();
+
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
     msg(tr("Beállítások alkalmazva"),1);
     booldatas_settings={};
     booldatas_settings.append(set->getBalereszt());//0 ballaszt kieresztés engedélyezés
     booldatas_settings.append(set->getBalman());//1 balmanuális
-    booldatas_settings.append(set->getCmdav());//2 cmd available
-    booldatas_settings.append(set->getFrissonoff());//3 frissítés engedélyezés
+    booldatas_settings.append(cmdavailable);//2 cmd available
+    booldatas_settings.append(updateOn);//3 frissítés engedélyezés
     booldatas_settings.append(set->getJoyena());//4 joystick folyamat engedélyezve
     booldatas_settings.append(set->getKepena());//5 kép folyamat engedélyezve
     booldatas_settings.append(set->getKomena());//6 kommunikációs thread
     booldatas_settings.append(set->getPontonav());//7 ponton elérhető
     booldatas_settings.append(set->getRobotkarena());//8 robotkar engedélyezése
-
-
 
     saveUserdat();
 
@@ -742,6 +745,19 @@ void GUI::notapplySettings()
 {
     qDebug()<<"Accepted settings: "<<0;
     msg(tr("Beállítások elvetve"),2);
+}
+
+void GUI::updateonoff()
+{
+    if(updateOn==1){
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
+        timer->start(updatetime);
+    }
+    else{
+        timer->stop();
+        delete timer;
+    }
 }
 
 void GUI::saveUserdat()
@@ -776,11 +792,15 @@ void GUI::cmdSlot()
 
 void GUI::openCmd()
 {
+    if (cmdavailable==1){
     qDebug()<<"cmd megnyitása";
     msg("Parancssor megnyitása",1);
     ui->cmdDock->show();
     ui->cmdDock->activateWindow();
     ui->cmd_p->cursorWordForward(1);
+    }else{
+        msg(tr("Parancssor nem elérhető"),1);
+    }
 }
 
 void GUI::closeCmd()

@@ -32,7 +32,7 @@
     <enum>QFrame::Sunken</enum>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <property name="tabSpacing">
     <number>6</number>
@@ -61,7 +61,7 @@
      <property name="title">
       <string>Beavatkozási lehetőségek beállítása</string>
      </property>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="beav_reset">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -80,7 +80,7 @@
        <string>Alapértelmezettek visszaállítása</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="manbal">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -99,7 +99,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_2">
+     <widget class="QCheckBox" name="ballasztereszt">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -118,7 +118,7 @@
        <string>Ballaszt leeresztés engedélyezése</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_3">
+     <widget class="QCheckBox" name="robotkaeng">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -137,7 +137,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_4">
+     <widget class="QCheckBox" name="parancssor">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -156,7 +156,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_5">
+     <widget class="QCheckBox" name="pontonhajoelerh">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -188,7 +188,7 @@
      <property name="title">
       <string>Háttérfolyamatok beállítása</string>
      </property>
-     <widget class="QSpinBox" name="spinBox">
+     <widget class="QSpinBox" name="updatetime">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -211,7 +211,7 @@
        <string>Érkező adatok frissítési ideje (ms):</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_6">
+     <widget class="QCheckBox" name="update">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -230,7 +230,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_7">
+     <widget class="QCheckBox" name="joystickpr">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -249,7 +249,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_8">
+     <widget class="QCheckBox" name="kepudp">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -268,7 +268,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_9">
+     <widget class="QCheckBox" name="kommthread">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -287,7 +287,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="updatetime_reset">
       <property name="geometry">
        <rect>
         <x>179</x>
@@ -565,17 +565,30 @@ p, li { white-space: pre-wrap; }
     </attribute>
    </widget>
   </widget>
-  <widget class="QDialogButtonBox" name="okbox">
+  <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>715</x>
+     <x>799</x>
      <y>460</y>
-     <width>171</width>
+     <width>101</width>
      <height>21</height>
     </rect>
    </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <property name="text">
+    <string>Mégse</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>460</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
    </property>
   </widget>
  </widget>
@@ -630,34 +643,130 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>okbox</sender>
-   <signal>accepted()</signal>
+   <sender>manbal</sender>
+   <signal>clicked()</signal>
    <receiver>settings</receiver>
-   <slot>accept()</slot>
+   <slot>beavleh()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>755</x>
-     <y>467</y>
+     <x>112</x>
+     <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>591</x>
-     <y>453</y>
+     <x>901</x>
+     <y>58</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>settings</sender>
-   <signal>rejected()</signal>
+   <sender>ballasztereszt</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>beavleh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>171</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>901</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>robotkaeng</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>beavleh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>904</x>
+     <y>126</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>parancssor</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>beavleh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>195</x>
+     <y>173</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>907</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pontonhajoelerh</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>beavleh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>146</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>908</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>beav_reset</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>beav_reset()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>178</x>
+     <y>219</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>906</x>
+     <y>212</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>807</x>
-     <y>452</y>
+     <x>831</x>
+     <y>474</y>
     </hint>
     <hint type="destinationlabel">
-     <x>534</x>
-     <y>454</y>
+     <x>617</x>
+     <y>451</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>731</x>
+     <y>466</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>632</x>
+     <y>464</y>
     </hint>
    </hints>
   </connection>
@@ -668,5 +777,7 @@ p, li { white-space: pre-wrap; }
   <slot>modvalasztas(QString)</slot>
   <slot>ok()</slot>
   <slot>canc()</slot>
+  <slot>beavleh()</slot>
+  <slot>beav_reset()</slot>
  </slots>
 </ui>

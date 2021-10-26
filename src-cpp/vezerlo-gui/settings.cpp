@@ -2,6 +2,7 @@
 #include "ui_settings.h"
 #include <QFileDialog>
 #include <QDebug>
+#include <QSettings>
 
 settings::settings(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,8 @@ settings::settings(QWidget *parent) :
     beavleh();
     hatfoly();
     ui->qssszabvany->setOpenExternalLinks(1);
+    sets=new QSettings("Aqualab vezérlő", "AquaLab");
+    getUserdat();
 }
 
 settings::~settings()
@@ -33,6 +36,12 @@ void settings::chooseFile()
     file.close();
     ui->temateszt->setStyleSheet(ss);
 }
+void settings::getUserdat()
+{
+    QVariant val;
+    beavdatas=sets->value("beavleh").value<QList<bool>>();
+}
+
 
 void settings::otherThema()
 {

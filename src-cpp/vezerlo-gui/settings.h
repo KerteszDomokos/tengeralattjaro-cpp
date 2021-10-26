@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include <QDialog>
+#include <QSettings>
 
 namespace Ui {
 class settings;
@@ -45,6 +46,11 @@ private:
     bool balman,balereszt,robotkarena,cmdav,pontonav; //a settings beavatkozási lehetőségek lekérhető változói
     bool frissonoff,joyena,kepena,komena; //a settings háttérfolyamatok beállításának lekérhető változói
     int uptime;//updatetime
+    void getUserdat();
+
+    QSettings *sets;
+    QList<bool> beavdatas;
+
 };
 
 #endif // SETTINGS_H

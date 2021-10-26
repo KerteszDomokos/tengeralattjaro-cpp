@@ -129,8 +129,10 @@ private:
     QSettings *sets;
 
     QList<bool> beavdatas;
+    int updatetime=20;
 
     void saveUserdat();
+    void getUserdat();
 
 
 

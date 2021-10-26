@@ -41,6 +41,8 @@
 #include <QDir>
 #include <QSettings>
 #include <QVariant>
+#include <QMetaType>
+
 
 SockRead sock;
 
@@ -85,7 +87,9 @@ GUI::GUI(QWidget *parent)
     , ui(new Ui::GUI)
 {
     ui->setupUi(this);
-
+    sets = new QSettings("Aqualab vezérlő", "AquaLab");
+    qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
+    getUserdat();
 
     ui->horizont->setSource(QUrl(QStringLiteral("qrc:/qml-files/horizon")));
     ui->joyh->setSource(QUrl(QStringLiteral("qrc:/qml-files/joy")));
@@ -102,7 +106,7 @@ GUI::GUI(QWidget *parent)
 
     QTimer *timer = new QTimer(this);//időzítők
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-    timer->start(20);
+    timer->start(updatetime);
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
@@ -148,7 +152,6 @@ GUI::GUI(QWidget *parent)
     lejatszas=new Lejatszas;
 
     ballaszt_erzekenyseg();
-    sets = new QSettings("Aqualab vezérlő", "AquaLab");
 
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
@@ -718,7 +721,6 @@ void GUI::applySettings()
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
     msg(tr("Beállítások alkalmazva"),1);
-    saveUserdat();
     beavdatas={};
     beavdatas.append(set->getBalereszt());//0 ballaszt kieresztés engedélyezés
     beavdatas.append(set->getBalman());//1 balmanuális
@@ -730,6 +732,10 @@ void GUI::applySettings()
     beavdatas.append(set->getPontonav());//7 ponton elérhető
     beavdatas.append(set->getRobotkarena());//8 robotkar engedélyezése
 
+
+
+    saveUserdat();
+
 }
 
 void GUI::notapplySettings()
@@ -740,9 +746,18 @@ void GUI::notapplySettings()
 
 void GUI::saveUserdat()
 {
-    QVariant vals;
-    vals.setValue<QList<bool>>(beavleh);
-    sets->setValue("beavleh",0);
+    sets->setValue("beavleh",QVariant::fromValue(beavdatas));
+    sets->setValue("updateTime",updatetime);
+}
+
+void GUI::getUserdat()
+{
+    QVariant val;
+    QList<QVariant> v;
+    qDebug()<<v;
+    beavdatas=sets->value("beavleh").value<QList<bool> >();
+    qDebug()<<beavdatas;
+    qDebug()<<sets->value("updateTime");
 }
 
 

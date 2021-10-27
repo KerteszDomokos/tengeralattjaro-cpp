@@ -734,6 +734,8 @@ void GUI::applySettings()
     joyena=set->getJoyena();commands("stopJoy");ui->startJoyb->setEnabled(joyena);
     kepena=set->getKepena();commands("stopKep");ui->startKepb->setEnabled(kepena);
     komena=set->getKomena();stopKommunikacio(komena);
+    ui->pontongroup->setEnabled(set->getPontonav());
+    ui->robotkarqmlon->setEnabled(set->getRobotkarena());
 
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;

@@ -779,11 +779,12 @@ void GUI::stopKommunikacio(bool onoff)
         stop=1;
     }
     else{
-        //szál indítása
-        stop=0;
-        std::thread ob(read);
-        kommpointer=&ob;
-        kommpointer->detach();
+        if(stop==1){
+            stop=0;
+            std::thread ob(read);
+            kommpointer=&ob;
+            kommpointer->detach();
+        }
     }
 }
 

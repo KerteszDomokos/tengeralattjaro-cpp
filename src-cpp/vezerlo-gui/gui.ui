@@ -4066,13 +4066,6 @@ p, li { white-space: pre-wrap; }
     </widget>
     <addaction name="menuCmd"/>
    </widget>
-   <widget class="QMenu" name="menuN_zet">
-    <property name="title">
-     <string>Nézet</string>
-    </property>
-    <addaction name="darkmode"/>
-    <addaction name="lightmode"/>
-   </widget>
    <widget class="QMenu" name="menuR_gz_t_s">
     <property name="title">
      <string>Rögzítés</string>
@@ -4084,7 +4077,6 @@ p, li { white-space: pre-wrap; }
    </widget>
    <addaction name="menuFajl"/>
    <addaction name="menuOpciok"/>
-   <addaction name="menuN_zet"/>
    <addaction name="menuR_gz_t_s"/>
   </widget>
   <widget class="QDockWidget" name="cmdDock">

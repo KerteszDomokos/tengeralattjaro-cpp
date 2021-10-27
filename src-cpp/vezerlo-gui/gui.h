@@ -75,7 +75,7 @@ private slots:
     void ballasztMinuszegy();
     void applySettings();
     void notapplySettings();
-    void updateonoff();
+    void updateonoff(int upt=20);
     void stopKommunikacio(bool onoff);
 
 

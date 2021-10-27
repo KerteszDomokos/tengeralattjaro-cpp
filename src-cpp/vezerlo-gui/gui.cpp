@@ -730,12 +730,15 @@ void GUI::applySettings()
     this->setStyleSheet(set->getChstyle());
 
     cmdavailable=set->getCmdav(); ui->acCmdOpen->setEnabled(cmdavailable);
-    updateOn=set->getFrissonoff();updateonoff();
     joyena=set->getJoyena();commands("stopJoy");ui->startJoyb->setEnabled(joyena);
     kepena=set->getKepena();commands("stopKep");ui->startKepb->setEnabled(kepena);
     komena=set->getKomena();stopKommunikacio(komena);
     ui->pontongroup->setEnabled(set->getPontonav());
     ui->robotkarqmlon->setEnabled(set->getRobotkarena());
+    qDebug()<<updateOn<<set->getUptime();
+    updateOn=set->getFrissonoff();
+    updateOn=0;updateonoff();updateOn=1;
+    updateonoff(set->getUptime());
 
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
@@ -761,14 +764,17 @@ void GUI::notapplySettings()
     msg(tr("Beállítások elvetve"),2);
 }
 
-void GUI::updateonoff()
+void GUI::updateonoff(int upt)
 {
     if(updateOn==1){
+        qDebug()<<"upt:"<<upt;
         timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-        timer->start(updatetime);
+        timer->start(upt);
+        updatetime=upt;
     }
     else{
+        qDebug()<<"stop";
         timer->stop();
         delete timer;
     }
@@ -801,9 +807,9 @@ void GUI::saveUserdat()
 void GUI::getUserdat()
 {
     QVariant val;
-    QList<QVariant> v;
     booldatas_settings=sets->value("beavleh").value<QList<bool> >();
     this->setStyleSheet(sets->value("Tema").toString());
+    updatetime=sets->value("updateTime").toInt();
 }
 
 

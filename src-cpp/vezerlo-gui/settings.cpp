@@ -41,6 +41,8 @@ void settings::getUserdat()
 {
     QVariant val;
     beavdatas=sets->value("beavleh").value<QList<bool>>();
+    this->setStyleSheet(sets->value("Tema").toString());
+    uptime=sets->value("updateTime").toInt();
 }
 
 void settings::applyuserdat()
@@ -58,7 +60,7 @@ void settings::applyuserdat()
         ui->pontonhajoelerh->setChecked(beavdatas[7]);
         ui->robotkaeng->setChecked(beavdatas[8]);
     }
-
+ ui->updatetime->setValue(uptime);
 }
 
 

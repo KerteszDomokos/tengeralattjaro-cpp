@@ -42,6 +42,7 @@
 #include <QSettings>
 #include <QVariant>
 #include <QMetaType>
+#include <QTextStream>
 
 
 SockRead sock;
@@ -53,13 +54,19 @@ std::mutex bejovo_mutex;
 QList<double> kuldendo={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 std::mutex kuldendo_mutex;
 
+bool stop=0;
 
 void read(){
     QString dat;
     QString elozoOlv;
     QList<double> sending; QString sendingS;
     long rsz=0;
+    qDebug()<<"Kommunikációs szál indítása";
     while(true){
+        if(stop==1){
+            qDebug()<<"Leállítás";
+            break;
+        }
         Sleep(1);
         dat=sock.readS();
         if(rsz%10==0){
@@ -138,7 +145,8 @@ GUI::GUI(QWidget *parent)
 
     //szál indítása
     std::thread ob(read);
-    ob.detach();
+    kommpointer=&ob;
+    kommpointer->detach();
 
     ui->cmdDock->setHidden(1);
 
@@ -214,12 +222,13 @@ void GUI::fps()
     //Külső folyamatok sikerességére vonatkozó adatok
     int pid=pr->processId();
     ui->joyPID->setText(QString::number(pid));
-    if (pid==0){ui->joyPID->setStyleSheet("QLineEdit {background-color: red;}");ui->startJoyb->setEnabled(true);}
-    else{ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");ui->startJoyb->setEnabled(false);}
+
+    if (pid==0){ui->joyPID->setStyleSheet("QLineEdit {background-color: red;}");if(joyena==1){ui->startJoyb->setEnabled(true);}}
+    else{ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");if(joyena==1){ui->startJoyb->setEnabled(false);}}
     pid=pr2->processId();
     ui->kepPID->setText(QString::number(pid));
-    if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");ui->startKepb->setEnabled(true);}
-    else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");ui->startKepb->setEnabled(false);}
+    if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");if(kepena==1){ui->startKepb->setEnabled(true);}}
+    else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");if(kepena==1){ui->startKepb->setEnabled(false);}}
 
 
     ui->ballaszt_balval->setText(QString::number(ui->ballaszt_baltart->value()));
@@ -722,6 +731,9 @@ void GUI::applySettings()
 
     cmdavailable=set->getCmdav(); ui->acCmdOpen->setEnabled(cmdavailable);
     updateOn=set->getFrissonoff();updateonoff();
+    joyena=set->getJoyena();commands("stopJoy");ui->startJoyb->setEnabled(joyena);
+    kepena=set->getKepena();commands("stopKep");ui->startKepb->setEnabled(kepena);
+    komena=set->getKomena();stopKommunikacio(komena);
 
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
@@ -731,9 +743,9 @@ void GUI::applySettings()
     booldatas_settings.append(set->getBalman());//1 balmanuális
     booldatas_settings.append(cmdavailable);//2 cmd available
     booldatas_settings.append(updateOn);//3 frissítés engedélyezés
-    booldatas_settings.append(set->getJoyena());//4 joystick folyamat engedélyezve
-    booldatas_settings.append(set->getKepena());//5 kép folyamat engedélyezve
-    booldatas_settings.append(set->getKomena());//6 kommunikációs thread
+    booldatas_settings.append(joyena);//4 joystick folyamat engedélyezve
+    booldatas_settings.append(kepena);//5 kép folyamat engedélyezve
+    booldatas_settings.append(komena);//6 kommunikációs thread
     booldatas_settings.append(set->getPontonav());//7 ponton elérhető
     booldatas_settings.append(set->getRobotkarena());//8 robotkar engedélyezése
 
@@ -757,6 +769,21 @@ void GUI::updateonoff()
     else{
         timer->stop();
         delete timer;
+    }
+}
+
+void GUI::stopKommunikacio(bool onoff)
+{
+    if(onoff==0){
+        msg(tr("Kommunikációs szál leállítása..."),2);
+        stop=1;
+    }
+    else{
+        //szál indítása
+        stop=0;
+        std::thread ob(read);
+        kommpointer=&ob;
+        kommpointer->detach();
     }
 }
 

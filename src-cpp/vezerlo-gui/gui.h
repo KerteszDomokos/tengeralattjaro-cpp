@@ -76,6 +76,7 @@ private slots:
     void applySettings();
     void notapplySettings();
     void updateonoff();
+    void stopKommunikacio(bool onoff);
 
 
 
@@ -137,6 +138,8 @@ private:
     bool cmdavailable=1;
     bool updateOn;
     long updateID=0;//update id száma, a frissítéshez
+    bool joyena=0,kepena=0,komena=0;
+    std::thread *kommpointer;//a kommunikáció thread objektum pointere. konstruktorban értékadás
 
 
 

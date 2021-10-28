@@ -432,6 +432,10 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
         int val=ui->slid3->value();
         ui->slid1->setValue(val);
         ui->slid2->setValue(val);
+        ui->slid3->setEnabled(1);//egyenlő motorok esetén van engedélyezve a harmadik slider
+    }
+    else{
+        ui->slid3->setEnabled(0);
     }
     //navigáció
     int bmot;
@@ -856,6 +860,7 @@ void GUI::motorNull()
     ui->slid2->setValue(0);
     ui->motegy->setChecked(0);
     ui->serplot->setChecked(0);
+    ui->slid3->setValue(0);
 }
 
 void GUI::updateKommData()

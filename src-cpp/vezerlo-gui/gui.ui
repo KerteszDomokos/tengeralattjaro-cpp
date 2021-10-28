@@ -4243,9 +4243,16 @@ p, li { white-space: pre-wrap; }
     <addaction name="separator"/>
     <addaction name="rogzites_check"/>
    </widget>
+   <widget class="QMenu" name="menuSeg_ts_g">
+    <property name="title">
+     <string>Segítség</string>
+    </property>
+    <addaction name="actionS_g"/>
+   </widget>
    <addaction name="menuFajl"/>
    <addaction name="menuOpciok"/>
    <addaction name="menuR_gz_t_s"/>
+   <addaction name="menuSeg_ts_g"/>
   </widget>
   <widget class="QDockWidget" name="cmdDock">
    <property name="minimumSize">
@@ -4837,6 +4844,11 @@ p, li { white-space: pre-wrap; }
     <string>Alt+S</string>
    </property>
   </action>
+  <action name="actionS_g">
+   <property name="text">
+    <string>Súgó</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -4962,7 +4974,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>366</x>
-     <y>917</y>
+     <y>1018</y>
     </hint>
     <hint type="destinationlabel">
      <x>1000</x>
@@ -4978,7 +4990,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>758</x>
-     <y>767</y>
+     <y>868</y>
     </hint>
     <hint type="destinationlabel">
      <x>1340</x>
@@ -4994,7 +5006,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>670</x>
-     <y>797</y>
+     <y>898</y>
     </hint>
     <hint type="destinationlabel">
      <x>1301</x>
@@ -5010,7 +5022,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>744</x>
-     <y>797</y>
+     <y>898</y>
     </hint>
     <hint type="destinationlabel">
      <x>1305</x>
@@ -5025,8 +5037,8 @@ p, li { white-space: pre-wrap; }
    <slot>stK()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>757</x>
-     <y>460</y>
+     <x>758</x>
+     <y>580</y>
     </hint>
     <hint type="destinationlabel">
      <x>813</x>
@@ -5041,8 +5053,8 @@ p, li { white-space: pre-wrap; }
    <slot>stJ()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>758</x>
-     <y>510</y>
+     <x>759</x>
+     <y>630</y>
     </hint>
     <hint type="destinationlabel">
      <x>804</x>
@@ -5058,7 +5070,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>923</x>
-     <y>435</y>
+     <y>611</y>
     </hint>
     <hint type="destinationlabel">
      <x>818</x>
@@ -5074,7 +5086,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1033</x>
-     <y>441</y>
+     <y>617</y>
     </hint>
     <hint type="destinationlabel">
      <x>814</x>
@@ -5090,7 +5102,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>484</x>
-     <y>805</y>
+     <y>906</y>
     </hint>
     <hint type="destinationlabel">
      <x>818</x>
@@ -5106,7 +5118,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1005</x>
-     <y>714</y>
+     <y>849</y>
     </hint>
     <hint type="destinationlabel">
      <x>1006</x>
@@ -5122,7 +5134,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1005</x>
-     <y>843</y>
+     <y>978</y>
     </hint>
     <hint type="destinationlabel">
      <x>947</x>
@@ -5138,7 +5150,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1014</x>
-     <y>868</y>
+     <y>1003</y>
     </hint>
     <hint type="destinationlabel">
      <x>1283</x>
@@ -5154,7 +5166,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>415</x>
-     <y>897</y>
+     <y>998</y>
     </hint>
     <hint type="destinationlabel">
      <x>430</x>
@@ -5170,7 +5182,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>425</x>
-     <y>787</y>
+     <y>888</y>
     </hint>
     <hint type="destinationlabel">
      <x>408</x>
@@ -5186,7 +5198,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>827</x>
-     <y>732</y>
+     <y>867</y>
     </hint>
     <hint type="destinationlabel">
      <x>915</x>
@@ -5202,7 +5214,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>827</x>
-     <y>788</y>
+     <y>923</y>
     </hint>
     <hint type="destinationlabel">
      <x>894</x>
@@ -5218,7 +5230,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>827</x>
-     <y>842</y>
+     <y>977</y>
     </hint>
     <hint type="destinationlabel">
      <x>872</x>
@@ -5234,7 +5246,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1087</x>
-     <y>732</y>
+     <y>867</y>
     </hint>
     <hint type="destinationlabel">
      <x>978</x>
@@ -5250,7 +5262,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1087</x>
-     <y>788</y>
+     <y>923</y>
     </hint>
     <hint type="destinationlabel">
      <x>1002</x>
@@ -5282,7 +5294,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1087</x>
-     <y>842</y>
+     <y>977</y>
     </hint>
     <hint type="destinationlabel">
      <x>1099</x>
@@ -5298,7 +5310,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1015</x>
-     <y>793</y>
+     <y>928</y>
     </hint>
     <hint type="destinationlabel">
      <x>932</x>
@@ -5314,7 +5326,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1015</x>
-     <y>793</y>
+     <y>928</y>
     </hint>
     <hint type="destinationlabel">
      <x>958</x>
@@ -5330,7 +5342,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1005</x>
-     <y>843</y>
+     <y>978</y>
     </hint>
     <hint type="destinationlabel">
      <x>835</x>
@@ -5346,7 +5358,7 @@ p, li { white-space: pre-wrap; }
    <hints>
     <hint type="sourcelabel">
      <x>1005</x>
-     <y>843</y>
+     <y>978</y>
     </hint>
     <hint type="destinationlabel">
      <x>840</x>
@@ -5457,8 +5469,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztPluszegy()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1125</x>
-     <y>943</y>
+     <x>1135</x>
+     <y>1038</y>
     </hint>
     <hint type="destinationlabel">
      <x>674</x>
@@ -5473,8 +5485,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztMinuszegy()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>935</x>
-     <y>943</y>
+     <x>1035</x>
+     <y>1038</y>
     </hint>
     <hint type="destinationlabel">
      <x>698</x>

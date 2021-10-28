@@ -136,6 +136,7 @@ void settings::hatfoly()
 void settings::updatetime_reset()
 {
     ui->updatetime->setValue(20);
+    hatfoly();
 }
 
 int settings::getUptime() const

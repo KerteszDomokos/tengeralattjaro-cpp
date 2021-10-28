@@ -2907,7 +2907,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>-9</x>
          <y>0</y>
          <width>763</width>
          <height>384</height>

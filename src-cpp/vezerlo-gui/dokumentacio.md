@@ -52,7 +52,23 @@ A magyarázat balról-jobbra, fentről-le történik
     - Az élő képet be kell jelölni abban az esetben, ha a szeretnénk hogy az élő kép küldése megkezdődjön. **Ehhez a funkcióhoz a Kép kommunikációt szükésges elindítani a vezérlési adatok box-ban**
     - A radar szkennelés egy kísérleti funkciót indít be, melyhez a megfelelő hardverek csak bizonyos tesztek esetében vannak csatlakoztatva.
 - A következő csoport a ballasztrendszer
-- A rendszerüzenetek boxban a program szöveges üzeneteit találjuk. Három szinten (info, warning, error) jelennek meg az információk, az error üzenetekre érdemes odafigyelni.
+- A rendszerüzenetek boxban a program szöveges üzeneteit találjuk. Három szinten (message, warning, error) jelennek meg az információk, az error üzenetekre nagyobb figyelmet fordítani.
 
-## 
+## Beállítási lehetőségek
+A beállításokat a felső menüből a Fájl->Beállítások útvonalon, vagy az Alt+s billentyűparancscsal érheti el. 
+A Beállítások ablak bezárás és a mégse gomb megnyomása esetén elfelejti a beállításokat, az OK megnyomásakor azonban a alkalmazza azokat.  
+Az ablak két fontos részből áll, az Általánosból, és a megjelenés és egyéb fülből.  
+Általános:
+- Beavatkozási lehetőségek csoportban a felületen elvégezhető beállításokat lehet korlátozni, illetve engedélyezni
+    - A ballasztrendszer vezérelhető csúszkával manuálisan is, ez azonban kockázatos lehet. Itt letiltható a funkció.
+    - A ballaszttartály teljes leeresztését engedélyező funkció. A teszteléseknél lehet szükség a beállításra, merülés közben nem ajánlott engedélyezni.
+    - A robotkar vezérlésének letiltásával számítási kapacitást spórolhatunk. Ha a rendszerbe nincsen beépítve, érdemes letiltani.
+    - A Parancssor elérhetővé tétele. A parancssorról bővebben is olvashatnak, itt speciális beállítások végezhetőek el, vagy belső adatok kérhetőek le.
+    - A Ponthajó nem minden esetben kerül csatlakoztatásra, így amennyiben nem elérhető érdekes lehet letiltani.
+    - Az alapértelmezettek visszaállítása a felhasználó által beállított értékeket elveti. Ez nem visszavonható.
+- A háttérfolyamatok beállításánál lehetőség van olyan beállítások elvégzésére is melyek a felhasználót közvetlenül nem érintik.
+    - A felület frissítésének kikapcsolása nem ajánlott, mivel ez garantálja, hogy a megjelenített értékek a legfrissebbek. Kikapcsolásakor a frissítés megszűnik, és az automatizmusok, és a vezérlő módosításai sem kerülnek továbbításra az eszközhöz.
+    - Az érkező adatok frissítési idejének a beállítása esetén az állítható be, hogy a felületen milyen időközönként kerülnek frissítésre és begyűjtésre az adatok. A túl alacsony érték nagyobb számítási kapacitást igényel, a nagyobb esetében pedig ritkában frissülnek az adatok. A reset gombbal visszaállíthatjuk az alapértelmezett(20) értéket. *A beállítást millisekundumban kell értelmezni. 1sec=1000microsec*
+    
+
 

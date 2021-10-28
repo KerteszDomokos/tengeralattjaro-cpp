@@ -143,6 +143,7 @@ GUI::GUI(QWidget *parent)
     ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");
     ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");
 
+
     //szál indítása
     std::thread ob(read);
     kommpointer=&ob;
@@ -1167,12 +1168,12 @@ void GUI::ballasztBalmax()
 
 void GUI::ballasztBalk()
 {
-    ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->maximum()/2);
+    ui->ballaszt_baltart->setValue(0);
 }
 
 void GUI::ballasztJobbk()
 {
-    ui->ballaszt_jobbtart->setValue(ui->ballaszt_jobbtart->maximum()/2);
+    ui->ballaszt_jobbtart->setValue(0);
 }
 
 void GUI::ballasztJobbmin()

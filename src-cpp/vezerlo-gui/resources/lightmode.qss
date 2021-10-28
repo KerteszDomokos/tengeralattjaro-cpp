@@ -255,7 +255,7 @@ QSpinBox {
 	background-color: #ffffff;
 }
 QScrollBar:horizontal {
-	max-height: 20px;
+	max-height: 15px;
 	border: 1px transparent;
 	margin: 0px 20px 0px 20px;
 }
@@ -277,7 +277,7 @@ QScrollBar::add-line:horizontal {
   	border-top-left-radius: 7px;
   	border-bottom-right-radius: 7px;
   	background: rgb(255, 255, 255);
-  	width: 20px;
+  	width: 15px;
   	subcontrol-position: right;
   	subcontrol-origin: margin;
 }

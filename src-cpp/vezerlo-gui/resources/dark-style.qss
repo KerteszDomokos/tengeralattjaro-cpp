@@ -719,9 +719,13 @@ QCheckBox::indicator:checked
 QCheckBox::indicator:unchecked:hover
 {
         border: 1px solid #b78620;
-
 }
-
+QCheckBox::hover{
+        border:1px solid rgb(255,150,60);
+	border-radius:4px;
+	padding: 1px;
+	background-color:qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(82, 45, 13), stop:1 #051a39);
+}
 
 QCheckBox::disabled
 {
@@ -832,6 +836,70 @@ QSlider::handle:horizontal:disabled
         border-radius: 3px;
 
 }
+QSlider::groove:vertical
+{
+        background-color: transparent;
+        width: 3px;
+
+}
+
+
+QSlider::sub-page:vertical
+{
+        background-color: #131313;
+
+}
+
+
+QSlider::add-page:vertical
+{
+        background-color: #b78620;
+
+}
+
+
+QSlider::handle:vertical
+{
+        background-color: #b78620;
+        height: 14px;
+        margin-left: -6px;
+        margin-right: -6px;
+        border-radius: 6px;
+
+}
+
+
+QSlider::handle:vertical:hover
+{
+        background-color: #d89e25;
+        border-radius: 6px;
+
+}
+
+
+QSlider::sub-page:vertical:disabled
+{
+        background-color: #bbb;
+        border-color: #999;
+
+}
+
+
+QSlider::add-page:vertical:disabled
+{
+        background-color: #eee;
+        border-color: #999;
+
+}
+
+
+QSlider::handle:vertical:disabled
+{
+        background-color: #eee;
+        border: 1px solid #aaa;
+        border-radius: 3px;
+
+}
 
 
 /*-----QScrollBar-----*/
@@ -849,7 +917,8 @@ QScrollBar::handle:horizontal
 {
         background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(97, 97, 97, 255),stop:1 rgba(90, 90, 90, 255));
         border: 1px solid #2d2d2d;
-    min-height: 20px;
+        min-height: 20px;
+        border-radius: 7px;
 
 }
 
@@ -858,6 +927,9 @@ QScrollBar::add-line:horizontal
 {
         background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(97, 97, 97, 255),stop:1 rgba(90, 90, 90, 255));
         border: 1px solid #2d2d2d;
+        border-top-right-radius: 7px;
+  	border-top-left-radius: 7px;
+  	border-bottom-right-radius: 7px;
     width: 15px;
     subcontrol-position: right;
     subcontrol-origin: margin;
@@ -915,6 +987,8 @@ QScrollBar::handle:vertical
 {
     background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(97, 97, 97, 255),stop:1 rgba(90, 90, 90, 255));
         border: 1px solid #2d2d2d;
+        border-radius: 7px;
+
     min-height: 20px;
 
 }

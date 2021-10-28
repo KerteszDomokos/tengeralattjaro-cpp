@@ -17,7 +17,7 @@
 
 ### Fedélzeti RPi &#8594; Vezérlőegység Rpi 
 * TCP csatorna  
-* Array, 30 elem
+* Array, 30 elem  
 
 0: kommunikáció sikeressége  
 1: belső víz magassága  

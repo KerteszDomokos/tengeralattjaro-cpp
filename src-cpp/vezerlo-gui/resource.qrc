@@ -13,6 +13,7 @@
         <file alias="joypy">python-files/joystick.py</file>
         <file alias="keppy">python-files/kep.py</file>
         <file alias="darkmode">resources/dark-style.qss</file>
+        <file alias="lightmode">resources/lightmode.qss</file>
     </qresource>
     <qresource prefix="/horizon">
         <file>resources/components/rollPitchIndicator/artGroundSky.svg</file>

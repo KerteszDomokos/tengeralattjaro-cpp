@@ -36,6 +36,7 @@ void settings::chooseFile()
     QString ss = QString(file.readAll());
     file.close();
     ui->temateszt->setStyleSheet(ss);
+    chstyle=ss;
 }
 void settings::getUserdat()
 {
@@ -86,7 +87,10 @@ void settings::modvalasztas(QString mod)
 {
     QString ss;
     if(mod=="Világos mód"|| mod=="Light mode"){
-        ss="";
+        QFile file(":/programs/lightmode");
+        file.open(QFile::ReadOnly);
+        ss = QString(file.readAll());
+        file.close();
         modename="Világos mód";
     }
     else if(mod=="Sötét mód" || mod=="Dark mode"){

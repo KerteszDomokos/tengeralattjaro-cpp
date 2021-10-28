@@ -102,6 +102,9 @@ GUI::GUI(QWidget *parent)
     qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
     getUserdat();
 
+    ui->cmdDock->setHidden(1);
+    QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
+
     ui->horizont->setSource(QUrl(QStringLiteral("qrc:/qml-files/horizon")));
     ui->joyh->setSource(QUrl(QStringLiteral("qrc:/qml-files/joy")));
     ui->magmer->setSource(QUrl(QStringLiteral("qrc:/qml-files/melyseg")));
@@ -149,7 +152,7 @@ GUI::GUI(QWidget *parent)
     kommpointer=&ob;
     kommpointer->detach();
 
-    ui->cmdDock->setHidden(1);
+
 
     mSerial = new QSerialPort(this);
 

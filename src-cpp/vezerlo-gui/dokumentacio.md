@@ -32,5 +32,27 @@ A magyarázat balról-jobbra, fentről-le történik
     - A kormányzást lehetővé tevő forgatható elem a kormánylapát állását szabályozza a pontonhajón.
 - A zöld hátterű felületen a fedélzeti robotkar vezérelhető. A kék téglalapok a kar állandő részeit jelentik, míg a forgatható elemek a motorokat. A rendszer ezek alapján állítja be a motorokat avíz alatt.
     - A szövegdobozban a robotkar adatai jelennek meg, ha a jobboldali frissítés be van kapcsolva.
+- A vezérlés csoportban az alap funkciók vezérlést tehetjük meg.
+    - A motorok csoportban az első csúszkával a baloldali motort vezérelhetjük, a másodikkal a jobboldalit. A harmadik akkor használható, ha az egyenlő motorok funkció be van kapcsolva. Ekkor a két motor ereje egyenlő lesz, és a harmadik csúszkával vezérelhetőek együtt.
+    - A második kettő csúszka a döntőmotorok vezérlésére szolgál. Ezek a tengeralattjáró farán alul és felül elhelyezett motorok, melyekkel a test dőlése szabályozható.
+    - A szövegdobozban a motorok beállított értékei találhatóak, ezek a visszacsatolást segítik.
+    - A szövegdoboz alatt található néhány kapcsoló:
+        - Hardveres Pot: A motorok vezérlésére szolgáló rendszert aktiválja, vagy deaktiválja. Ha be van kapcsolva, a csúszkák egérrel nem vezérelhetőek.
+        - DMot Joy: Akkor kapcsolható be, ha a Döntőmotorokat joystick segítségével szeretnénk vezérelni. Amennyiben nem elérhető a joystick, a legutóbbi elérhető értéket jeleníti meg.
+        - Egyenlő motorok: Amennyiben be van kapcsolva a harmadik csúszka aktív lesz, így a két motor együtt vezérelhető a harmadik csúszkával.
+        - A nullázás gomb a motorkat azonnal leállítja, az egyenlő motorokat és a hardveres vezérlést kikapcsolja
+    - A tálca felirat alatt található a test alatt elhelyezkedő tálca vezérlője. Amennyiben az aktív engedélyezve van, a tálca mozgatható a potméterrel, és a gombok segítségével. *Egyenlőre a tálca hardver nem elérhető, azonban a szoftverekben már elérhető a vezérlése*
+- Az áramellátás mellett található a fedélzeti áramellátás beállítását lehetővé tevő néhány beállítás. Az egyedüli működő funkció az erőforrásspórolás, ekkor bizonyos funkciókat letilt a rendszer (pl. kamera)
+- Az egyéb menüpontban beállítható, hogyha a testet a hátára borítjuk a motorok haladási irányhoz képest oldala megváltozik. Ez a kapcsoló elvégzi a beállítást. A hűtéshez tartozó csúszkával a hűtőventillátor erősségét állíthatjuk be.
+- A vezérlő soros kommunikáció menüpont alatt átállíthatjuk, hogy a rendszer melyik soros portra csatlakoztatott eszközzel próbáljon meg kommunikációt folytatni a motorok vezérlési adatát érzékelve. A hardveres pot funkcióhoz itt kell csatlakoztatni az elkészült eszközt (*Egyes esetekben a CH340 soros illesztő driver telepítése a külső hardveres eszközzel való kommunikációhoz. Amennyiben a funkció nincsen használatban erre nincsen szükség*)
+    - A scan gombra kattintva az elérhető soros portok frissülnek, ekkor kiválasztható a megfelelő a legördülő listából.
+    - A csatlakozás gombbal megkezdhetjük a kommunikációt. Ekkor a rendszerüzenet szövegdobozban a sikeres csatlakozásnak kell megjelennie, a soros nyers adatok boxban pedig a folyamatosan frissülő nyers adatoknak.
+    - A lecsatlakozás gombbal megszakíthatjuk a kommunikációt.
+- A fedélzeti szoftver vezérlés cím alatt a fedélzeti számítógépen és arduino-n futó kód beállításait végezhetjük el. 
+    - Az élő képet be kell jelölni abban az esetben, ha a szeretnénk hogy az élő kép küldése megkezdődjön. **Ehhez a funkcióhoz a Kép kommunikációt szükésges elindítani a vezérlési adatok box-ban**
+    - A radar szkennelés egy kísérleti funkciót indít be, melyhez a megfelelő hardverek csak bizonyos tesztek esetében vannak csatlakoztatva.
+- A következő csoport a ballasztrendszer
+- A rendszerüzenetek boxban a program szöveges üzeneteit találjuk. Három szinten (info, warning, error) jelennek meg az információk, az error üzenetekre érdemes odafigyelni.
 
+## 
 

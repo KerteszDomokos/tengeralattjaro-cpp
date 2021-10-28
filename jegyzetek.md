@@ -172,6 +172,7 @@
 ## Megjegyzések
 - VSCode SSH kiterjesztés Permission denied: sudo chown -R myuser /path/to/folder 
 - A csomagösszeállításhoz a C:\Qt\QtIFW-4.1.1\bin\binarycreator.exe -c config/config.xml -p packages -f "AquaLab Installer - v0.7-1" parancs használandó  
+- languist: lupdate -pro project.pro
 - Markdown dokumentáció html generalas: https://markdowntohtml.com/ 
 
 ### Csatlakozási adatok

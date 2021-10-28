@@ -21,5 +21,16 @@ A magyarázat balról-jobbra, fentről-le történik
         - A táblázatok alatt egy alapesetben nullákat tartalmazó szövegdoboz található. Ebben jelennek meg nyersen az olvasott adatok. Itt láthatóak lejátszás közben is az adatok. 
         - Legalul egy másik hasonló doboz található, itt a küldendő adatok jelennek meg nyersen.
         - Az UID az Update ID rövidítése. Ez a szám mutatja, hogy a felület az indítás óta hányszor frissült. Segítségével bizonyos beállítások ellenőrizhetők akkor is, ha csak ez az érték változik az egész felületen.
-    
+    - Tesztelési adatoknál elsősorban a bemeneti vezérlőeszközök tesztelésére használható
+        - A joystick gombjainak a lenyomását jeleníti meg. A joystick funkció csupán egyetlen eszközön került tesztelésre. Az adatok frissítése csak a lenti joystick teszt pipálásával történik meg.
+        - A szövegdobozban a joystick nyers adatai jelennek meg.
+        - A funkcióhoz az Érkező adatok tabon sikeresen el kell indítani a joystick folyamatot.
+    - Áramköri vizualizáció egy jelenleg még nem elérhető funkció
+- A Pontonhajó adatait tartalmazó csoport (a beállításokat ellenőrizze, ha inaktív a doboz)
+    - A bal oldali csúszka a ponton motorját képes vezérelni.
+    - A stop gombbal nulla állásba állítható a motor, a kormány egyenessel pedig a kormány állítható egyenes állásba
+    - A kormányzást lehetővé tevő forgatható elem a kormánylapát állását szabályozza a pontonhajón.
+- A zöld hátterű felületen a fedélzeti robotkar vezérelhető. A kék téglalapok a kar állandő részeit jelentik, míg a forgatható elemek a motorokat. A rendszer ezek alapján állítja be a motorokat avíz alatt.
+    - A szövegdobozban a robotkar adatai jelennek meg, ha a jobboldali frissítés be van kapcsolva.
+
 

@@ -747,6 +747,7 @@ void GUI::applySettings()
     updateOn=set->getFrissonoff();
     updateOn=0;updateonoff();updateOn=1;
     updateonoff(set->getUptime());
+    megrendeloAv=set->getUgyfelelerheto();
 
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
@@ -812,6 +813,7 @@ void GUI::saveUserdat()
     sets->setValue("modename",set->getModename());
     sets->setValue("Masiktema",set->getOthtem());
     sets->setValue("Custompath",set->getFileName());
+    sets->setValue("megrav",megrendeloAv);
 }
 
 void GUI::getUserdat()

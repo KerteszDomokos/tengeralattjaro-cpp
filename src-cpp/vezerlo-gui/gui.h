@@ -137,9 +137,11 @@ private:
     int updatetime=20;
     bool cmdavailable=1;
     bool updateOn;
+    bool megrendeloAv;
     long updateID=0;//update id száma, a frissítéshez
     bool joyena=0,kepena=0,komena=0;
     std::thread *kommpointer;//a kommunikáció thread objektum pointere. konstruktorban értékadás
+
 
 
 

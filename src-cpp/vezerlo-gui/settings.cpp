@@ -39,12 +39,18 @@ void settings::getUserdat()
     uptime=sets->value("updateTime").toInt();
 }
 
+bool settings::getUgyfelelerheto() const
+{
+    return ugyfelelerheto;
+}
+
 void settings::applyuserdat()
 {
     ui->temavalaszto->setCurrentText(sets->value("modename").toString());
     modvalasztas(sets->value("modename").toString());
     othtem=sets->value("Masiktema").toBool(); ui->masiktema->setChecked(othtem);otherThema();
     fileName=sets->value("Custompath").toString();ui->filename_tema->setText(fileName);readfile(fileName);
+    ugyfelelerheto=sets->value("megrav").toBool();ui->ugyfav->setChecked(ugyfelelerheto);
     if (beavdatas.length()>=8){
         ui->ballasztereszt->setChecked(beavdatas[0]);
         ui->manbal->setChecked(beavdatas[1]);
@@ -111,6 +117,7 @@ void settings::beavleh()
     robotkarena=ui->robotkaeng->isChecked();
     cmdav=ui->parancssor->isChecked();
     pontonav=ui->pontonhajoelerh->isChecked();
+    ugyfelelerheto=ui->ugyfav->isChecked();
 }
 
 void settings::beav_reset()

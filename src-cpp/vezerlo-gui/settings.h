@@ -29,6 +29,7 @@ public:
     QString getModename();
     bool getOthtem() const;
     QString getFileName() const;
+    bool getUgyfelelerheto() const;
 
 private slots:
     void chooseFile(); // témafájl választás
@@ -51,6 +52,7 @@ private:
     bool frissonoff,joyena,kepena,komena,othtem; //a settings háttérfolyamatok beállításának lekérhető változói
     int uptime;//updatetime
     void getUserdat();
+    bool ugyfelelerheto;
 
     QSettings *sets;
     QList<bool> beavdatas;

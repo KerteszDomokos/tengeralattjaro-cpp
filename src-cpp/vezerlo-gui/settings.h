@@ -27,6 +27,8 @@ public:
     bool getKomena() const;
     int getUptime() const;
     QString getModename();
+    bool getOthtem() const;
+    QString getFileName() const;
 
 private slots:
     void chooseFile(); // témafájl választás
@@ -36,6 +38,7 @@ private slots:
     void beav_reset(); //a beavatkozási beállítások visszaállítása
     void hatfoly(); //A háttérfolyamatok beállításakor meghívandó
     void updatetime_reset(); //Az updatetimeot reseteli 20-ra
+    void readfile(QString f);
 
 signals:
     void msg(QString dat, int pr);//a konzolüzenetek signalja
@@ -45,7 +48,7 @@ private:
     QString fileName;//téma fájl elérési út
     QString chstyle;//Az új téme teljes beolvasott szövege (lásd: getter)
     bool balman,balereszt,robotkarena,cmdav,pontonav; //a settings beavatkozási lehetőségek lekérhető változói
-    bool frissonoff,joyena,kepena,komena; //a settings háttérfolyamatok beállításának lekérhető változói
+    bool frissonoff,joyena,kepena,komena,othtem; //a settings háttérfolyamatok beállításának lekérhető változói
     int uptime;//updatetime
     void getUserdat();
 

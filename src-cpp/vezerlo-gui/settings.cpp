@@ -26,17 +26,10 @@ settings::~settings()
 
 void settings::chooseFile()
 {
-    fileName = QFileDialog::getOpenFileName(this,tr("Megnyitás"), fileName,tr("Aqualab fájlok (*.qss, *.QSS)"));
+    fileName = QFileDialog::getOpenFileName(this,tr("Megnyitás"), fileName,tr("Qt Style sheet fájlok (*.qss, *.QSS)"));
 
     ui->filename_tema->setText(fileName);
-
-    msg(tr("Lejátszásnál kiválasztott fájlnevet lekérheti a parancssorból"),1);
-    QFile file(fileName);
-    file.open(QFile::ReadOnly);
-    QString ss = QString(file.readAll());
-    file.close();
-    ui->temateszt->setStyleSheet(ss);
-    chstyle=ss;
+    readfile(fileName);
 }
 void settings::getUserdat()
 {
@@ -50,6 +43,8 @@ void settings::applyuserdat()
 {
     ui->temavalaszto->setCurrentText(sets->value("modename").toString());
     modvalasztas(sets->value("modename").toString());
+    othtem=sets->value("Masiktema").toBool(); ui->masiktema->setChecked(othtem);otherThema();
+    fileName=sets->value("Custompath").toString();ui->filename_tema->setText(fileName);readfile(fileName);
     if (beavdatas.length()>=8){
         ui->ballasztereszt->setChecked(beavdatas[0]);
         ui->manbal->setChecked(beavdatas[1]);
@@ -67,6 +62,7 @@ void settings::applyuserdat()
 
 void settings::otherThema()
 {
+    othtem=ui->masiktema->isChecked();
     if(ui->masiktema->isChecked()==1){
         ui->filename_tema->setEnabled(1);
         ui->filevalasztas->setEnabled(1);
@@ -80,6 +76,8 @@ void settings::otherThema()
         ui->qssszabvany->setEnabled(0);
         ui->temavalaszto->setEnabled(1);
         ui->deftema_label->setEnabled(1);
+        modvalasztas(ui->temavalaszto->currentText());
+
     }
 }
 
@@ -137,6 +135,27 @@ void settings::updatetime_reset()
 {
     ui->updatetime->setValue(20);
     hatfoly();
+}
+
+void settings::readfile(QString f)
+{
+    msg(tr("Lejátszásnál kiválasztott fájlnevet lekérheti a parancssorból"),1);
+    QFile file(f);
+    file.open(QFile::ReadOnly);
+    QString ss = QString(file.readAll());
+    file.close();
+    ui->temateszt->setStyleSheet(ss);
+    chstyle=ss;
+}
+
+QString settings::getFileName() const
+{
+    return fileName;
+}
+
+bool settings::getOthtem() const
+{
+    return othtem;
 }
 
 int settings::getUptime() const

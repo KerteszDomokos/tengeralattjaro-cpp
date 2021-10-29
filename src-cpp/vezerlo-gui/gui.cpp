@@ -810,6 +810,8 @@ void GUI::saveUserdat()
     sets->setValue("updateTime",updatetime);
     sets->setValue("Tema",set->getChstyle());
     sets->setValue("modename",set->getModename());
+    sets->setValue("Masiktema",set->getOthtem());
+    sets->setValue("Custompath",set->getFileName());
 }
 
 void GUI::getUserdat()

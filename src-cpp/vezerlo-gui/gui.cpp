@@ -54,12 +54,21 @@ std::mutex bejovo_mutex;
 QList<double> kuldendo={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 std::mutex kuldendo_mutex;
 
+QList<double> ugyfeladatok={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+std::mutex ugyfeladatok_mutex;
+
+bool ukAv; //ÜgyfélKommunikáció Available
+std::mutex ukAv_mutex;
+
+
 bool stop=0;
 
 void read(){
     QString dat;
     QString elozoOlv;
-    QList<double> sending; QString sendingS;
+    QList<double> sending;
+    QList<double> sendingU;
+    QString sendingS;
     long rsz=0;
     qDebug()<<"Kommunikációs szál indítása";
     while(true){
@@ -74,6 +83,12 @@ void read(){
             sending=kuldendo;
             kuldendo_mutex.unlock();
             sock.send(sending);
+        }
+        if(rsz%11==0 && ukAv==1){
+            ugyfeladatok_mutex.lock();
+            sendingU=kuldendo;
+            ugyfeladatok_mutex.unlock();
+            sock.megrSend(sendingU);
         }
         if(dat!=elozoOlv && dat!=""){
             bejovo_mutex.lock();
@@ -558,6 +573,30 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     //qDebug()<<idl;
 
 
+    if(megrendeloAv==1){
+        QList<double> us;
+
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+        us.append(0);
+    }
+
+
+
     kuldendoFriss=idl;
 
 
@@ -748,6 +787,7 @@ void GUI::applySettings()
     updateOn=0;updateonoff();updateOn=1;
     updateonoff(set->getUptime());
     megrendeloAv=set->getUgyfelelerheto();
+    ukAv_mutex.lock(); ukAv=megrendeloAv; ukAv_mutex.unlock(); //szállal közlés, hogy a kommunikáció megkezdődött
 
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;

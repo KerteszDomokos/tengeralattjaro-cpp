@@ -69,6 +69,19 @@ Az ablak két fontos részből áll, az Általánosból, és a megjelenés és e
 - A háttérfolyamatok beállításánál lehetőség van olyan beállítások elvégzésére is melyek a felhasználót közvetlenül nem érintik.
     - A felület frissítésének kikapcsolása nem ajánlott, mivel ez garantálja, hogy a megjelenített értékek a legfrissebbek. Kikapcsolásakor a frissítés megszűnik, és az automatizmusok, és a vezérlő módosításai sem kerülnek továbbításra az eszközhöz.
     - Az érkező adatok frissítési idejének a beállítása esetén az állítható be, hogy a felületen milyen időközönként kerülnek frissítésre és begyűjtésre az adatok. A túl alacsony érték nagyobb számítási kapacitást igényel, a nagyobb esetében pedig ritkában frissülnek az adatok. A reset gombbal visszaállíthatjuk az alapértelmezett(20) értéket. *A beállítást millisekundumban kell értelmezni. 1sec=1000microsec*
-    
+    - A joystick és a kép folyamat letiltása esetén a kérdéses folyamat leáll, és csak a beállítás visszakapcsolása esetén indítható el manuálisan újra.
+    - A kommunikációs rész másik módszert használ a párhuzamos futás biztosításához, a szálakat (thread). Ennek engedélyezése esetén automatikusan újraindul a folyamat.
+- A Megjelenés és egyéb fülön jelenleg a felület megjelenését állíthatjuk be. A funkciók az alábbiak:
+    - Az alapértelmezett témák alatt a legördülő menüből választható ki a kívánt beállítás. Az előzetes képe a Stílus példa mezőben megjelenik (itt adódhatnak hibás megjelenítések)
+    - Amennyiben a nem alapértelmezett téma választása be van jelölve, aktívvá válik az egyéb témák. Itt kiválaszthatunk egy szabványos QT style sheet fájlt. Ez azt jelenti, hogy a css-hez hasonló formátumu fájl kiválasztása után az abban megadottak kerülnek aktiválásra.
+
+## A rögzítés beállításai ablak
+Az ablak a Rögzítés menüpontból a felvétel beállítása gombra kattintva érhető el. Itt adhatjuk meg a merülés során keletkezett adatok mentésének beállításait.
+- Az első oszlopban beállíthatjuk azt, hogy milyen adatokat mentsen a rendszer.
+- A középső ablakban megjelenik, hogy a kiválasztott mappában milyen szabványos elnevezésű fájlok találhatóak.
+- Az utolsó oszlopban azt állíthatjuk be, hogy hány mentett adatcsomag után jelenjen meg figyelmeztetés, és mikor kezdjen a rendszer új fájlba. A fájlokba 30000-nél több adatot nem érdemes menteni, mivel ekkor a betöltéskor jelentkezhetnek hibák. 
+- A mentés gyakoriságánál beállíthatjuk, hogy minden megjelenített adatot szerenénk-e meneteni, vagy elég csupán minden x.-et
+- A sorszám és a következő fájlnév helyre kerülnek azok az adatok, melyek a kiválasztás után automatikusan keletkeznek: ha kiválasztunk egy mappát és már van benne szabványos nevű .al (AquaLab) fájl, akkor a rendszer automatikusan számozza a fájlt. Ez átállítható, de nem ajánlott.
+- A mentés és felvétel gomb esetén a bezáráskor a felvétel rögtön elindul, a mentés felvétel nélkül választása esetén a rögzítés menüpontban a rögzítést bepipálva indíthatunk felvételt a megadott beállításokkal. A mégse választása eseténa beállítások elvetésre kerülnek.
 
 

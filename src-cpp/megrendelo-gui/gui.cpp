@@ -56,6 +56,9 @@ GUI::GUI(QWidget *parent)
     ui->setupUi(this);
     forditas("English");
 
+    QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
+
+
     kommdatUpdate();
 
     QTimer *kt = new QTimer(this);
@@ -75,6 +78,21 @@ GUI::GUI(QWidget *parent)
 GUI::~GUI()
 {
     delete ui;
+}
+
+void GUI::upd()
+{
+    if(olvasottNat!=""){ olvasottList=conv(olvasottNat);}
+
+
+    if(olvasottList.length()>15){
+        ui->balmot->setText(QString::number(olvasottList[9]));
+        ui->jobbmot->setText(QString::number(olvasottList[10]));
+        ui->bhom->setText(QString::number(olvasottList[7]));
+    }
+    UID++;
+    ui->uid->setText(QString::number(UID));
+
 }
 
 void GUI::forditas(QString lang)
@@ -105,18 +123,6 @@ void GUI::kommdatUpdate()
     bejovo_mutex.unlock();
 }
 
-void GUI::upd()
-{
-    if(olvasottNat!=""){ olvasottList=conv(olvasottNat);}
-
-
-    if(olvasottList.length()>15){
-        ui->balmot->setText(QString::number(olvasottList[0]));
-        ui->jobbmot->setText(QString::number(olvasottList[1]));
-        ui->bhom->setText(QString::number(olvasottList[3]));
-    }
-
-}
 
 //Szünettel elválasztott szöveget konvertál QList doubel ba
 QList<double> GUI::conv(QString str){
@@ -128,4 +134,10 @@ QList<double> GUI::conv(QString str){
         array.append(number);
     }
     return array;
+}
+
+void GUI::kommentMost()
+{
+    ui->mostID->setText(QString::number(UID));
+    commentID=UID;
 }

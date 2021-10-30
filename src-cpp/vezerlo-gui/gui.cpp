@@ -575,23 +575,25 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     QList<double> us;
 
     if(megrendeloAv==1 && olvasott.length()>25){
-        us.append(bmot);//0 - motor bal
-        us.append(jmot);//1 - motor jobb
-        us.append(0);//2 - sebesség
-        us.append(olvasott[7]);//3 - homerseklet
-        us.append(0);//4 - mélység (nyomasbar/10)
-        us.append(0);//5 -
-        us.append(0);//6 -
-        us.append(0);//7 -
-        us.append(0);//8 -
-        us.append(0);//9 -
-        us.append(0);//10 -
-        us.append(0);//11 -
-        us.append(0);//12 -
-        us.append(0);//13 -
-        us.append(0);//14 -
-        us.append(0);//15 -
-        us.append(0);//16 -
+//        us.append(bmot);//0 - motor bal
+//        us.append(jmot);//1 - motor jobb
+//        us.append(0);//2 - sebesség
+//        us.append(olvasott[7]);//3 - homerseklet
+//        us.append(0);//4 - mélység (nyomasbar/10)
+//        us.append(0);//5 -
+//        us.append(0);//6 -
+//        us.append(0);//7 -
+//        us.append(0);//8 -
+//        us.append(0);//9 -
+//        us.append(0);//10 -
+//        us.append(0);//11 -
+//        us.append(0);//12 -
+//        us.append(0);//13 -
+//        us.append(0);//14 -
+//        us.append(0);//15 -
+//        us.append(0);//16 -
+
+        us=olvasott;
     }
 
 

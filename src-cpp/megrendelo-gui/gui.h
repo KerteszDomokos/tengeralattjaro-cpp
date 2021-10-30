@@ -24,6 +24,7 @@ private slots:
     void kommdatUpdate();
     void upd();
     QList<double> conv(QString str);
+    void kommentMost();
 
 private:
     Ui::GUI *ui;
@@ -31,6 +32,7 @@ private:
     std::thread *kommpointer;
     QList<double> olvasott; QString olvasottNat;
     QList<double> olvasottList;
+    long UID=0; long commentID; long felIDnull;
 
 
 };

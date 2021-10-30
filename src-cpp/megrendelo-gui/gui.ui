@@ -285,12 +285,12 @@ QLineEdit{font-size:14px;}</string>
          <rect>
           <x>10</x>
           <y>90</y>
-          <width>161</width>
+          <width>101</width>
           <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>Megjegyzés az adott pillanathoz:</string>
+         <string>Megjegyzés most:</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="lineEdit_13">
@@ -327,6 +327,19 @@ QLineEdit{font-size:14px;}</string>
         </property>
         <property name="text">
          <string>Most</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="mostID">
+        <property name="geometry">
+         <rect>
+          <x>106</x>
+          <y>90</y>
+          <width>61</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>
@@ -480,6 +493,32 @@ QLineEdit{font-size:14px;}</string>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;y:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="uid">
+       <property name="geometry">
+        <rect>
+         <x>700</x>
+         <y>580</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>UID</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="uid_2">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>580</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Frissítés ID:</string>
        </property>
       </widget>
      </widget>
@@ -652,9 +691,26 @@ QLineEdit{font-size:14px;}</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>kommentMost()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>816</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>401</x>
+     <y>871</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>forditas()</slot>
   <slot>open_beallitasok()</slot>
+  <slot>kommentMost()</slot>
  </slots>
 </ui>

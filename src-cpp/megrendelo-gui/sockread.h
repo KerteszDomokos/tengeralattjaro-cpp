@@ -8,7 +8,6 @@ class SockRead : public QObject{
     public:
         SockRead();
         QString readS();
-        bool send(QList<double> dat);
         QByteArray readKep();
         void resetSettings();
         void applySettings();
@@ -17,8 +16,7 @@ class SockRead : public QObject{
         QUdpSocket *socket;
         QUdpSocket *socketSend;
         QUdpSocket *socketKep;
-        QString kuldoIP="169.254.15.251";
-        QString vevoIP="169.254.62.249";
+        QString vevoIP="127.0.0.1";
 
 };
 

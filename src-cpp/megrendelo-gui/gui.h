@@ -23,12 +23,15 @@ private slots:
     void open_beallitasok();
     void kommdatUpdate();
     void upd();
+    QList<double> conv(QString str);
 
 private:
     Ui::GUI *ui;
     settings *set;
     std::thread *kommpointer;
     QList<double> olvasott; QString olvasottNat;
+    QList<double> olvasottList;
+
 
 };
 #endif // GUI_H

@@ -56,10 +56,9 @@ void SockRead::megrSend(QList<double> dat)
         datS += " " ;
     }
 
-    datS+="]";
     QTextStream in(&datS);
     byts=datS.toUtf8();
-    socketSend->write(byts);
+    sockMegr->write(byts);
 }
 
 QByteArray SockRead::readKep()

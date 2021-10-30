@@ -89,7 +89,6 @@ void read(){
             sendingU=ugyfeladatok;
             ugyfeladatok_mutex.unlock();
             sock.megrSend(sendingU);
-            qDebug()<<sendingU;
         }
         if(dat!=elozoOlv && dat!=""){
             bejovo_mutex.lock();
@@ -573,10 +572,9 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
     //qDebug()<<idl;
 
+    QList<double> us;
 
     if(megrendeloAv==1 && olvasott.length()>25){
-        QList<double> us;
-
         us.append(bmot);//0 - motor bal
         us.append(jmot);//1 - motor jobb
         us.append(0);//2 - sebesség
@@ -599,6 +597,8 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
 
     kuldendoFriss=idl;
+    ugyfelFriss=us;
+
 
 
     if(playing==1){
@@ -920,6 +920,10 @@ void GUI::updateKommData()
     kuldendo_mutex.lock();
     kuldendo=kuldendoFriss;
     kuldendo_mutex.unlock();
+
+    ugyfeladatok_mutex.lock();
+    ugyfeladatok=ugyfelFriss;
+    ugyfeladatok_mutex.unlock();
 
 }
 

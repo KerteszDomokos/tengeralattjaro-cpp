@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <settings.h>
 
+#include <thread>
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
 QT_END_NAMESPACE
@@ -24,6 +27,7 @@ private slots:
 private:
     Ui::GUI *ui;
     settings *set;
+    std::thread *kommpointer;
 
 
 

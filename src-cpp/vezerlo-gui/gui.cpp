@@ -86,9 +86,10 @@ void read(){
         }
         if(rsz%11==0 && ukAv==1){
             ugyfeladatok_mutex.lock();
-            sendingU=kuldendo;
+            sendingU=ugyfeladatok;
             ugyfeladatok_mutex.unlock();
             sock.megrSend(sendingU);
+            qDebug()<<sendingU;
         }
         if(dat!=elozoOlv && dat!=""){
             bejovo_mutex.lock();
@@ -573,26 +574,26 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     //qDebug()<<idl;
 
 
-    if(megrendeloAv==1){
+    if(megrendeloAv==1 && olvasott.length()>25){
         QList<double> us;
 
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
-        us.append(0);
+        us.append(bmot);//0 - motor bal
+        us.append(jmot);//1 - motor jobb
+        us.append(0);//2 - sebesség
+        us.append(olvasott[7]);//3 - homerseklet
+        us.append(0);//4 - mélység (nyomasbar/10)
+        us.append(0);//5 -
+        us.append(0);//6 -
+        us.append(0);//7 -
+        us.append(0);//8 -
+        us.append(0);//9 -
+        us.append(0);//10 -
+        us.append(0);//11 -
+        us.append(0);//12 -
+        us.append(0);//13 -
+        us.append(0);//14 -
+        us.append(0);//15 -
+        us.append(0);//16 -
     }
 
 
@@ -862,6 +863,9 @@ void GUI::getUserdat()
     booldatas_settings=sets->value("beavleh").value<QList<bool> >();
     this->setStyleSheet(sets->value("Tema").toString());
     updatetime=sets->value("updateTime").toInt();
+    ukAv_mutex.lock();
+    ukAv=sets->value("megrav").toBool();
+    ukAv_mutex.unlock();
 }
 
 

@@ -21,17 +21,14 @@ public:
 private slots:
     void forditas(QString lang="Magyar");
     void open_beallitasok();
-
-
+    void kommdatUpdate();
+    void upd();
 
 private:
     Ui::GUI *ui;
     settings *set;
     std::thread *kommpointer;
-
-
-
-
+    QList<double> olvasott; QString olvasottNat;
 
 };
 #endif // GUI_H

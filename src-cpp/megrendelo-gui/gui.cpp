@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <thread>
 #include <mutex>
+#include <QTimer>
 
 #include <settings.h>
 
@@ -55,6 +56,17 @@ GUI::GUI(QWidget *parent)
     ui->setupUi(this);
     forditas("English");
 
+
+    QTimer *kt = new QTimer(this);
+    connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::upd));
+    kt->start(30);
+
+    QTimer *friss = new QTimer(this);
+    connect(friss, &QTimer::timeout, this, QOverload<>::of(&GUI::kommdatUpdate));
+    friss->start(2);
+
+
+
     std::thread ob(kommunikacio);
     kommpointer=&ob;
     kommpointer->detach();
@@ -86,5 +98,17 @@ void GUI::open_beallitasok()
 {
     set=new settings;
     set->show();
+}
+
+void GUI::kommdatUpdate()
+{
+    bejovo_mutex.lock();
+    olvasottNat=bejovo;
+    bejovo_mutex.unlock();
+}
+
+void GUI::upd()
+{
+
 }
 

@@ -40,6 +40,16 @@
       <height>22</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>Magyar</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>English</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -80,7 +90,7 @@
    <property name="title">
     <string>Háttérfolyamatok beállítása</string>
    </property>
-   <widget class="QSpinBox" name="spinBox">
+   <widget class="QSpinBox" name="uptime">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -128,7 +138,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="diagrambuff">
+   <widget class="QCheckBox" name="diagramonoff">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -207,7 +217,7 @@
      <string>Reset</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_2">
+   <widget class="QSpinBox" name="diagrambuff">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -607,7 +617,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>spinBox</sender>
+   <sender>uptime</sender>
    <signal>editingFinished()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
@@ -671,7 +681,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>diagrambuff</sender>
+   <sender>diagramonoff</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
@@ -687,7 +697,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>spinBox_2</sender>
+   <sender>diagrambuff</sender>
    <signal>editingFinished()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>

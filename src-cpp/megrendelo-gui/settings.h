@@ -35,6 +35,7 @@ private slots:
     void temavalaszt();
     void masikThema();
     void chooseFile();
+    void ford();
 
 
 private:

@@ -154,7 +154,6 @@ void GUI::loadGraf()
 
 void GUI::forditas(QString lang)
 {
-    qDebug()<<"Meghívva";
     if(lang=="English"){
         QTranslator translator;
         qDebug()<<translator.load(":/languages/megrendelo-gui_en_EN.qm");

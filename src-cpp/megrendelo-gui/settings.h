@@ -25,6 +25,7 @@ public:
     bool getMasiktema() const;
     QString getFileName() const;
     QString getLanguage() const;
+    QString getSt() const;
 
 private slots:
     void hatfoly();
@@ -44,6 +45,7 @@ private:
     bool masiktema;
     QString fileName;
     QString language;
+    QString st;
 
 
 };

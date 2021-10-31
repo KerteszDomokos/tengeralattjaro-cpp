@@ -48,3 +48,58 @@ void settings::chooseFile()
 {
 
 }
+
+QString settings::getSt() const
+{
+    return st;
+}
+
+QString settings::getLanguage() const
+{
+    return language;
+}
+
+QString settings::getFileName() const
+{
+    return fileName;
+}
+
+bool settings::getMasiktema() const
+{
+    return masiktema;
+}
+
+int settings::getDiagrammax() const
+{
+    return diagrammax;
+}
+
+int settings::getUptime() const
+{
+    return uptime;
+}
+
+bool settings::getGrid() const
+{
+    return grid;
+}
+
+bool settings::getDiagram() const
+{
+    return diagram;
+}
+
+bool settings::getKomm() const
+{
+    return komm;
+}
+
+bool settings::getKep() const
+{
+    return kep;
+}
+
+bool settings::getFrissites() const
+{
+    return frissites;
+}

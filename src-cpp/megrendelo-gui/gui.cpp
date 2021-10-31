@@ -10,6 +10,11 @@
 #include <thread>
 #include <mutex>
 #include <QTimer>
+#include <QtCharts>
+#include <QChartView>
+#include <QLineSeries>
+#include <QSizePolicy>
+#include <QList>
 
 #include <settings.h>
 
@@ -63,7 +68,7 @@ GUI::GUI(QWidget *parent)
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::upd));
-    kt->start(30);
+    kt->start(uptime);
 
     QTimer *friss = new QTimer(this);
     connect(friss, &QTimer::timeout, this, QOverload<>::of(&GUI::kommdatUpdate));
@@ -92,6 +97,36 @@ void GUI::upd()
     }
     UID++;
     ui->uid->setText(QString::number(UID));
+
+}
+
+
+void GUI::loadGraf()
+{
+    qDebug()<<"loadGraf()";
+    QLineSeries *series=new QLineSeries();
+
+    for (int i=0; i<50 && i<xteng.length()-1 && i<yteng.length()-1;i++){
+        series->append(xteng[i],yteng[i]);
+    }
+
+
+    QChart *chart = new QChart();
+    //chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Grafikon");
+
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignCenter);
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setParent(ui->graf);
+    chartView->setMaximumSize(ui->graf->size());
+    chartView->setMinimumSize(ui->graf->size());
+    chartView->maximumSize();
+    chartView->show();
 
 }
 

@@ -25,6 +25,7 @@ private slots:
     void upd();
     QList<double> conv(QString str);
     void kommentMost();
+    void loadGraf();
 
 private:
     Ui::GUI *ui;
@@ -33,6 +34,10 @@ private:
     QList<double> olvasott; QString olvasottNat;
     QList<double> olvasottList;
     long UID=0; long commentID; long felIDnull;
+    QList<double> xteng; QList<double> yteng;
+    QList<double> motatlag;
+    QList<double> ido;
+    int uptime=30;//updatetime
 
 
 };

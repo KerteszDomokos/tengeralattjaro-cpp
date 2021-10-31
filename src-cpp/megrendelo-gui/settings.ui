@@ -16,6 +16,18 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>735</width>
+    <height>584</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>735</width>
+    <height>584</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -479,7 +491,7 @@
      <string>Fájl kiválasztása</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_5">
+   <widget class="QGroupBox" name="temateszt">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -596,6 +608,32 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Használhatóak egyéb témák is, ehhez ki kell választani egy szabványos .qss fájlt. Szabványos fájlokat kereshet az interneten. &lt;a href=&quot;https://doc.qt.io/qt-5/stylesheet-syntax.html&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline; color:#007af4;&quot;&gt;A qss szabványról&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>10</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>40</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mégse</string>
+   </property>
   </widget>
  </widget>
  <resources/>
@@ -812,7 +850,7 @@ p, li { white-space: pre-wrap; }
    <sender>masiktema</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
-   <slot>masikThema()</slot>
+   <slot>masikTema()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>112</x>
@@ -840,6 +878,38 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>703</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>710</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>662</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>689</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>hatfoly()</slot>
@@ -847,7 +917,7 @@ p, li { white-space: pre-wrap; }
   <slot>nyelvvalaszto()</slot>
   <slot>grafset()</slot>
   <slot>temavalaszt()</slot>
-  <slot>masikThema()</slot>
+  <slot>masikTema()</slot>
   <slot>chooseFile()</slot>
  </slots>
 </ui>

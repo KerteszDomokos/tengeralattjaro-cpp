@@ -15,6 +15,16 @@ public:
     explicit settings(QWidget *parent = nullptr);
     ~settings();
 
+    bool getFrissites() const;
+    bool getKep() const;
+    bool getKomm() const;
+    bool getDiagram() const;
+    bool getGrid() const;
+    int getUptime() const;
+    int getDiagrammax() const;
+    bool getMasiktema() const;
+    QString getFileName() const;
+    QString getLanguage() const;
 
 private slots:
     void hatfoly();
@@ -25,21 +35,17 @@ private slots:
     void masikThema();
     void chooseFile();
 
+
 private:
     Ui::settings *ui;
+
+    bool frissites, kep,komm,diagram,grid;
+    int uptime, diagrammax;
+    bool masiktema;
+    QString fileName;
+    QString language;
+
+
 };
-
-/*
-
-  <slot>hatfoly()</slot>
-  <slot>resetUpt()</slot>
-  <slot>nyelvvalaszto()</slot>
-  <slot>grafset()</slot>
-  <slot>temavalaszt()</slot>
-  <slot>masikThema()</slot>
-  <slot>chooseFile()</slot>
-
-*/
-
 
 #endif // SETTINGS_H

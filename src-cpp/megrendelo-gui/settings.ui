@@ -25,7 +25,7 @@
    <property name="title">
     <string>Language</string>
    </property>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="nyelvvalaszto">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -103,7 +103,7 @@
      <string>Érkező adatok frissítési ideje (ms):</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_6">
+   <widget class="QCheckBox" name="updateOnoff">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -122,7 +122,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_7">
+   <widget class="QCheckBox" name="diagrambuff">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -141,7 +141,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_8">
+   <widget class="QCheckBox" name="kep">
     <property name="enabled">
      <bool>false</bool>
     </property>
@@ -166,7 +166,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_9">
+   <widget class="QCheckBox" name="komm">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -236,7 +236,7 @@
      <string>Diagramokon megjelenítendő:</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="grid">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -247,6 +247,9 @@
     </property>
     <property name="text">
      <string>Diagram háttérháló (grid)</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -262,7 +265,7 @@
    <property name="title">
     <string>Grafikonok beállításai</string>
    </property>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="vonaldiagram">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -281,7 +284,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_3">
+   <widget class="QCheckBox" name="oszlopdiagram">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -300,7 +303,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_4">
+   <widget class="QCheckBox" name="pontdiagram">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -374,7 +377,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Alapértelmezett témák&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QComboBox" name="temavalaszto">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -415,7 +418,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Egyéb témák&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_10">
+   <widget class="QCheckBox" name="masiktema">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -428,7 +431,7 @@
      <string>Másik téma használata</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="path">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -438,7 +441,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="choose">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -573,7 +576,7 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections>
   <connection>
-   <sender>checkBox_6</sender>
+   <sender>updateOnoff</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
@@ -621,7 +624,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_8</sender>
+   <sender>kep</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
@@ -637,7 +640,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_9</sender>
+   <sender>komm</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
@@ -653,7 +656,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_7</sender>
+   <sender>diagrambuff</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
@@ -685,7 +688,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_2</sender>
+   <sender>grid</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
@@ -701,7 +704,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>comboBox</sender>
+   <sender>nyelvvalaszto</sender>
    <signal>currentTextChanged(QString)</signal>
    <receiver>settings</receiver>
    <slot>nyelvvalaszto()</slot>
@@ -717,7 +720,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox</sender>
+   <sender>vonaldiagram</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>grafset()</slot>
@@ -733,7 +736,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_3</sender>
+   <sender>oszlopdiagram</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>grafset()</slot>
@@ -749,7 +752,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_4</sender>
+   <sender>pontdiagram</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>grafset()</slot>
@@ -765,7 +768,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>comboBox_2</sender>
+   <sender>temavalaszto</sender>
    <signal>currentIndexChanged(QString)</signal>
    <receiver>settings</receiver>
    <slot>temavalaszt()</slot>
@@ -781,7 +784,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>checkBox_10</sender>
+   <sender>masiktema</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>masikThema()</slot>
@@ -797,7 +800,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_4</sender>
+   <sender>choose</sender>
    <signal>clicked()</signal>
    <receiver>settings</receiver>
    <slot>chooseFile()</slot>

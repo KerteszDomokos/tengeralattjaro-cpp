@@ -89,22 +89,45 @@ void GUI::upd()
 {
     if(olvasottNat!=""){ olvasottList=conv(olvasottNat);}
 
-
+    double bmot=0;
+    double jmot=0;
     if(olvasottList.length()>15){
-        ui->balmot->setText(QString::number(olvasottList[9]));
-        ui->jobbmot->setText(QString::number(olvasottList[10]));
+        bmot=olvasottList[9];
+        jmot=olvasottList[10];
+        ui->balmot->setText(QString::number(bmot));
+        ui->jobbmot->setText(QString::number(jmot));
         ui->bhom->setText(QString::number(olvasottList[7]));
     }
     UID++;
     ui->uid->setText(QString::number(UID));
 
-}
+    if(ido.length()<100){
+        ido.append(double(UID)/(1000/uptime));//másodperc
+    }else{
+        for (int i=0;i<99;i++){
+           ido[i]=ido[i+1];
+        }
+        ido[99]=double(UID)/(1000/uptime);
+        qDebug()<<ido[99];
+    }
+    if(motatlag.length()<100){
+        motatlag.append((bmot+jmot)/2);//átlag
+    }else{
+        for (int i=0;i<99;i++){
+            motatlag[i]=motatlag[i+1];
+        }
+        motatlag[99]=(bmot+jmot)/2;
+    }
 
+}
 
 void GUI::loadGraf()
 {
     qDebug()<<"loadGraf()";
     QLineSeries *series=new QLineSeries();
+
+    xteng=ido;
+    yteng=motatlag;
 
     for (int i=0; i<50 && i<xteng.length()-1 && i<yteng.length()-1;i++){
         series->append(xteng[i],yteng[i]);

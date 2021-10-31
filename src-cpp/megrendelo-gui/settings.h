@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include <QDialog>
+#include <QSettings>
 
 namespace Ui {
 class settings;
@@ -33,9 +34,12 @@ private slots:
     void nyelvvalaszto();
     void grafset();
     void temavalaszt();
-    void masikThema();
+    void masikTema();
     void chooseFile();
     void ford();
+    void readfile(QString f);
+    void getUserdata();
+
 
 
 private:
@@ -46,7 +50,8 @@ private:
     bool masiktema;
     QString fileName;
     QString language;
-    QString st;
+    QString st, modename;
+    QSettings *sets;
 
 
 };

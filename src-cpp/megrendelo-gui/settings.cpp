@@ -13,3 +13,38 @@ settings::~settings()
 {
     delete ui;
 }
+
+void settings::hatfoly()
+{
+
+}
+
+void settings::resetUpt()
+{
+
+}
+
+void settings::nyelvvalaszto()
+{
+
+}
+
+void settings::grafset()
+{
+
+}
+
+void settings::temavalaszt()
+{
+
+}
+
+void settings::masikThema()
+{
+
+}
+
+void settings::chooseFile()
+{
+
+}

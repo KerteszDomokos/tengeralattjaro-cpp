@@ -108,7 +108,6 @@ void GUI::upd()
            ido[i]=ido[i+1];
         }
         ido[99]=double(UID)/(1000/uptime);
-        qDebug()<<ido[99];
     }
     if(motatlag.length()<100){
         motatlag.append((bmot+jmot)/2);//átlag

@@ -5,6 +5,7 @@
 #include <settings.h>
 
 #include <thread>
+#include <QSettings>
 
 
 QT_BEGIN_NAMESPACE
@@ -26,8 +27,13 @@ private slots:
     QList<double> conv(QString str);
     void kommentMost();
     void loadGraf();
+    void applyUserdat();
+    void notapplyUserdat();
 
 private:
+
+    void getUserdata();
+
     Ui::GUI *ui;
     settings *set;
     std::thread *kommpointer;
@@ -38,6 +44,7 @@ private:
     QList<double> motatlag;
     QList<double> ido;
     int uptime=30;//updatetime
+    QSettings *sets;
 
 
 };

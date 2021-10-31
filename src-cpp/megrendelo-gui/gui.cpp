@@ -15,6 +15,7 @@
 #include <QLineSeries>
 #include <QSizePolicy>
 #include <QList>
+#include <QSettings>
 
 #include <settings.h>
 
@@ -60,9 +61,13 @@ GUI::GUI(QWidget *parent)
 {
     ui->setupUi(this);
     forditas("English");
+    sets = new QSettings("Aqualab megrendelő", "AquaLab");
+    qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
+    getUserdata();
 
     QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
 
+    set=new settings;
 
     kommdatUpdate();
 
@@ -152,6 +157,23 @@ void GUI::loadGraf()
 
 }
 
+void GUI::applyUserdat()
+{
+    qDebug()<<"apply";
+
+}
+
+void GUI::notapplyUserdat()
+{
+    qDebug()<<"notapply";
+
+}
+
+void GUI::getUserdata()
+{
+qDebug()<<"Getuserdat";
+}
+
 void GUI::forditas(QString lang)
 {
     if(lang=="English"){
@@ -162,14 +184,18 @@ void GUI::forditas(QString lang)
         ui->retranslateUi(this);
     }
     if(lang=="Magyar"){
+        qDebug()<<"Magyar";
     ui->retranslateUi(this);
     }
 }
 
 void GUI::open_beallitasok()
 {
+    delete set;
     set=new settings;
     set->show();
+    connect(set,SIGNAL(accepted()),this,SLOT(applyUserdat()));
+    connect(set,SIGNAL(rejected()),this,SLOT(notapplyUserdat()));
 }
 
 void GUI::kommdatUpdate()

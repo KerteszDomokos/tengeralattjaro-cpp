@@ -27,6 +27,7 @@ public:
     QString getFileName() const;
     QString getLanguage() const;
     QString getSt() const;
+    QString getIp() const;
 
 private slots:
     void hatfoly();
@@ -39,6 +40,8 @@ private slots:
     void ford();
     void readfile(QString f);
     void getUserdata();
+    void ipupd();
+    void ipedit();
 
 
 
@@ -52,6 +55,7 @@ private:
     QString language;
     QString st, modename;
     QSettings *sets;
+    QString ip;
 
 
 };

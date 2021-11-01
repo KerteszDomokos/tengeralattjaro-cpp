@@ -4,6 +4,10 @@
 #include <QDebug>
 #include <QTranslator>
 #include <QFileDialog>
+#include <QHostAddress>
+#include <QNetworkInterface>
+#include <QAbstractSocket>
+
 
 settings::settings(QWidget *parent) :
     QDialog(parent),
@@ -11,6 +15,14 @@ settings::settings(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->qssszabvany->setOpenExternalLinks(1);
+
+    const QHostAddress &localhost = QHostAddress(QHostAddress::LocalHost);
+    for (const QHostAddress &address: QNetworkInterface::allAddresses()) {
+        if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost)
+             ui->ipvalaszto->addItem(address.toString());
+    }
+ui->ipcim->setText(ui->ipvalaszto->currentText());
+
 }
 
 settings::~settings()
@@ -95,7 +107,29 @@ void settings::readfile(QString f){
 
 void settings::getUserdata()
 {
+}
 
+void settings::ipupd()
+{
+    ui->ipcim->setText(ui->ipvalaszto->currentText());
+    ipedit();
+}
+
+void settings::ipedit()
+{
+    ip=ui->ipcim->text();
+    QHostAddress i=QHostAddress(ip);
+    qDebug()<<i;
+    if(i.protocol()==QAbstractSocket::IPv4Protocol){
+        ui->ipcim->setStyleSheet("QLineEdit{background-color:#5cf054;}");
+    }else{
+        ui->ipcim->setStyleSheet("QLineEdit{background-color:#ff3d3d;}");
+    }
+}
+
+QString settings::getIp() const
+{
+    return ip;
 }
 
 void settings::ford()

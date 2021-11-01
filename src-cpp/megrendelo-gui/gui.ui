@@ -584,6 +584,9 @@ QLineEdit{font-size:14px;}</string>
           <height>221</height>
          </rect>
         </property>
+        <property name="whatsThis">
+         <string comment="miez?">Élő kép helye</string>
+        </property>
         <property name="text">
          <string>Kép</string>
         </property>
@@ -646,6 +649,9 @@ QLineEdit{font-size:14px;}</string>
   <action name="beallitasok_2">
    <property name="text">
     <string>Beállítások</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
    </property>
   </action>
   <action name="fordtest">

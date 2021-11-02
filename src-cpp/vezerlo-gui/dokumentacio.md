@@ -84,4 +84,12 @@ Az ablak a Rögzítés menüpontból a felvétel beállítása gombra kattintva 
 - A sorszám és a következő fájlnév helyre kerülnek azok az adatok, melyek a kiválasztás után automatikusan keletkeznek: ha kiválasztunk egy mappát és már van benne szabványos nevű .al (AquaLab) fájl, akkor a rendszer automatikusan számozza a fájlt. Ez átállítható, de nem ajánlott.
 - A mentés és felvétel gomb esetén a bezáráskor a felvétel rögtön elindul, a mentés felvétel nélkül választása esetén a rögzítés menüpontban a rögzítést bepipálva indíthatunk felvételt a megadott beállításokkal. A mégse választása eseténa beállítások elvetésre kerülnek.
 
-
+## Lejátszási ablak
+- Legfelül kiválaszthatjuk a lejátszandó fájlt, melyet a rögzítés használatával tudunk létrehozni, kiterjesztése pedig .al
+- A fájl betöltésére kattintva a rendszer felméri és betölti a fájlt. *Amennyiben túl nagy a fájl, nem a teljeset tölti be, csupán az első száz rekordot. Ez azt jelenti, hogy száz adatcsomag szerepel a gyorsítótárban, ennyit lehet azonnal lejátszani, atöbbi adathoz szükség van a betöltésre*
+- A megjelenítési beállítáok egyenlőre nem elérhetőek, csak az összes adat lejátszására van lehetőség.
+- Az XML fájl fülön böngészhetünk  a nyers fájlban
+- Legalul a rekordok számát láthatjuk, ez a fájlban található mentett események száma.
+- Az idővonalon a fájlban navigálhatunk előre, hátra, a betöltött adatok ilyenkor folyamatosan változnak a kívént tartományon belül. *A betöltéskor a lejátszásban kis megakadás az újab adatok betöltésekor várható*
+- A lejátszás sebessége funkció egyenlőre nem elérhető.
+- A play ikonnal ellátott gombra kattintva elindul a történésekkel egy sebességben. A vizualizációk ilyenkor is elérhetőek

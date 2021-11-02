@@ -91,8 +91,6 @@ void Lejatszas::startPlay()
         }
 
         ui->xmladatok->setText(txt);
-        ui->toolBox->setCurrentIndex(1);
-
 
     play();
     connect(this,SIGNAL(xmlReload()),this,SLOT(getElements()));

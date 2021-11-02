@@ -10,7 +10,7 @@ class SockRead : public QObject{
         QString readS();
         QByteArray readKep();
         void resetSettings();
-        void applySettings();
+        void applySettings(QString ip);
 
     private:
         QUdpSocket *socket;

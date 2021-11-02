@@ -43,7 +43,7 @@ void SockRead::resetSettings()
 
 }
 
-void SockRead::applySettings()
+void SockRead::applySettings(QString ip)
 {
     delete socket;
 

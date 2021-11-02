@@ -16,6 +16,9 @@ settings::settings(QWidget *parent) :
     ui->setupUi(this);
     ui->qssszabvany->setOpenExternalLinks(1);
 
+    sets = new QSettings("Aqualab megrendelő", "AquaLab");
+    qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
+
     const QHostAddress &localhost = QHostAddress(QHostAddress::LocalHost);
     for (const QHostAddress &address: QNetworkInterface::allAddresses()) {
         if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost)
@@ -125,6 +128,11 @@ void settings::ipedit()
     }else{
         ui->ipcim->setStyleSheet("QLineEdit{background-color:#ff3d3d;}");
     }
+}
+
+QString settings::getModename() const
+{
+    return modename;
 }
 
 QString settings::getIp() const

@@ -141,7 +141,7 @@
      </rect>
     </property>
     <property name="whatsThis">
-     <string comment="Mi ez?">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A GUI frissítésének letiltiltása. Ebben az esetben nem láthatóak az érkező adatok.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A GUI frissítésének letiltiltása. Ebben az esetben nem láthatóak az érkező adatok.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QCheckBox{color:red;}</string>
@@ -710,7 +710,7 @@ p, li { white-space: pre-wrap; }
  <connections>
   <connection>
    <sender>updateOnoff</sender>
-   <signal>clicked()</signal>
+   <signal>stateChanged(int)</signal>
    <receiver>settings</receiver>
    <slot>hatfoly()</slot>
    <hints>

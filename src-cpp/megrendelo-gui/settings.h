@@ -28,6 +28,7 @@ public:
     QString getLanguage() const;
     QString getSt() const;
     QString getIp() const;
+    QString getModename() const;
 
 private slots:
     void hatfoly();

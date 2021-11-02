@@ -33,6 +33,8 @@ private slots:
 private:
 
     void getUserdata();
+    void saveUserdat();
+    void kommst();
 
     Ui::GUI *ui;
     settings *set;
@@ -45,6 +47,18 @@ private:
     QList<double> ido;
     int uptime=30;//updatetime
     QSettings *sets;
+
+
+    bool frissites, kep,komm,diagram,grid;
+    int diagrammax;
+    bool masiktema;
+    QString fileName;
+    QString language;
+    QString st, modename;
+    QString ip;
+    bool settingsOpened=0;
+    QList<bool> bdats;
+
 
 
 };

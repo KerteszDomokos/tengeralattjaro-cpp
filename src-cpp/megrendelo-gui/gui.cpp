@@ -2,13 +2,14 @@
 #include "ui_gui.h"
 
 #include "sockread.h"
+#include <settings.h>
 
+#include <thread>
+#include <mutex>
 #include <QLocale>
 #include <QTranslator>
 #include <QString>
 #include <QDebug>
-#include <thread>
-#include <mutex>
 #include <QTimer>
 #include <QtCharts>
 #include <QChartView>
@@ -17,7 +18,6 @@
 #include <QList>
 #include <QSettings>
 
-#include <settings.h>
 
 bool stop=0;
 
@@ -46,7 +46,6 @@ void kommunikacio(){
             bejovo=dat;
             bejovo_mutex.unlock();
             elozoOlv=dat;
-            qDebug()<<dat;
         }
     rsz++;
     if (rsz>2147483600){rsz=0;}
@@ -78,10 +77,8 @@ GUI::GUI(QWidget *parent)
     QTimer *friss = new QTimer(this);
     connect(friss, &QTimer::timeout, this, QOverload<>::of(&GUI::kommdatUpdate));
     friss->start(2);
-
-    std::thread ob(kommunikacio);
-    kommpointer=&ob;
-    kommpointer->detach();
+    komm=1;
+    kommst();
 
 }
 
@@ -136,8 +133,6 @@ void GUI::loadGraf()
     for (int i=0; i<50 && i<xteng.length()-1 && i<yteng.length()-1;i++){
         series->append(xteng[i],yteng[i]);
     }
-
-
     QChart *chart = new QChart();
     //chart->legend()->hide();
     chart->addSeries(series);
@@ -159,19 +154,70 @@ void GUI::loadGraf()
 
 void GUI::applyUserdat()
 {
-    qDebug()<<"apply";
 
+    settingsOpened=0;
+    frissites=set->getFrissites();
+    kep=set->getKep();
+    komm=set->getKomm();kommst();
+    masiktema=set->getMasiktema();
+    grid=set->getGrid();
+    diagram=set->getDiagram();
+    diagrammax=set->getDiagrammax();
+    fileName=set->getFileName();
+    language=set->getLanguage();
+    ip=set->getIp();
+    st=set->getSt();
+    modename=set->getModename();
+
+    //Mentendő adatok
+    bdats={};
+    bdats.append(frissites);//0
+    bdats.append(kep);//1
+    bdats.append(komm);//2
+    bdats.append(komm);//3
+    bdats.append(diagram);//4
+    bdats.append(grid);//5
+    bdats.append(masiktema);//6
+
+    saveUserdat();
+}
+
+void GUI::saveUserdat(){
+    sets->setValue("booldatas",QVariant::fromValue(bdats));
+    sets->setValue("diagrammax",diagrammax);
+    sets->setValue("fileName",fileName);
+    sets->setValue("lang",language);
+    sets->setValue("ip",ip);
+    sets->setValue("Style",st);
+}
+
+void GUI::kommst()
+{
+    if(komm==0){
+        stop=1;
+    }else{
+        if(stop==1){
+            stop=0;
+            std::thread ob(kommunikacio);
+            kommpointer=&ob;
+            kommpointer->detach();
+        }
+    }
 }
 
 void GUI::notapplyUserdat()
 {
     qDebug()<<"notapply";
-
+    settingsOpened=0;
 }
 
 void GUI::getUserdata()
 {
-qDebug()<<"Getuserdat";
+    diagrammax=sets->value("diagrammax").toInt();
+    fileName=sets->value("fileName").toString();
+    language=sets->value("lang").toString();
+    ip=sets->value("ip").toString();
+    st=sets->value("Style").toString();
 }
 
 void GUI::forditas(QString lang)
@@ -191,11 +237,16 @@ void GUI::forditas(QString lang)
 
 void GUI::open_beallitasok()
 {
-    delete set;
-    set=new settings;
-    set->show();
-    connect(set,SIGNAL(accepted()),this,SLOT(applyUserdat()));
-    connect(set,SIGNAL(rejected()),this,SLOT(notapplyUserdat()));
+    if(settingsOpened==1){
+        set->activateWindow();
+    }else{
+        delete set;
+        set=new settings;
+        settingsOpened=1;
+        set->show();
+        connect(set,SIGNAL(accepted()),this,SLOT(applyUserdat()));
+        connect(set,SIGNAL(rejected()),this,SLOT(notapplyUserdat()));
+    }
 }
 
 void GUI::kommdatUpdate()

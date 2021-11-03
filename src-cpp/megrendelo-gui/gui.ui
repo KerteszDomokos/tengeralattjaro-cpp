@@ -352,6 +352,9 @@ QLineEdit{font-size:14px;}</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Itt válaszhatjuk ki az x tengelyen elhelyezhető adatokat.&lt;/p&gt;&lt;p&gt;A lista a továbbiakban bővülni fog.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <item>
         <property name="text">
          <string>Idő</string>
@@ -360,36 +363,6 @@ QLineEdit{font-size:14px;}</string>
        <item>
         <property name="text">
          <string>Motor átlagnyomaték</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Ph érték</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Redoxipotenciál</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Vezetőképesség</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Zavarosság</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Hőmérséklet</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Becsült áramlássebesség</string>
         </property>
        </item>
       </widget>
@@ -402,14 +375,12 @@ QLineEdit{font-size:14px;}</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Itt válaszhatjuk ki az y tengelyen elhelyezhető adatokat.&lt;/p&gt;&lt;p&gt;A lista a továbbiakban bővülni fog.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <item>
         <property name="text">
          <string>none</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Motor átlagnyomaték</string>
         </property>
        </item>
        <item>
@@ -419,32 +390,7 @@ QLineEdit{font-size:14px;}</string>
        </item>
        <item>
         <property name="text">
-         <string>Ph érték</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Redoxipotenciál</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Vezetőképesség</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Zavarosság</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Hőmérséklet</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Becsült áramlássebesség</string>
+         <string>Motor átlagnyomaték</string>
         </property>
        </item>
       </widget>
@@ -622,7 +568,16 @@ QLineEdit{font-size:14px;}</string>
     <addaction name="actionInform_ci"/>
     <addaction name="fordtest"/>
    </widget>
+   <widget class="QMenu" name="menuR_gz_t_s">
+    <property name="title">
+     <string>Rögzítés</string>
+    </property>
+    <addaction name="actionLej_tsz_s"/>
+    <addaction name="separator"/>
+    <addaction name="play"/>
+   </widget>
    <addaction name="menuF_jl"/>
+   <addaction name="menuR_gz_t_s"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -657,6 +612,19 @@ QLineEdit{font-size:14px;}</string>
   <action name="fordtest">
    <property name="text">
     <string>Fordítás</string>
+   </property>
+  </action>
+  <action name="actionLej_tsz_s">
+   <property name="text">
+    <string>Lejátszás</string>
+   </property>
+  </action>
+  <action name="play">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Rögzítés</string>
    </property>
   </action>
  </widget>

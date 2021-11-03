@@ -3,6 +3,7 @@
 
 #include "sockread.h"
 #include <settings.h>
+#include <lejatszas.h>
 
 #include <thread>
 #include <mutex>
@@ -80,6 +81,9 @@ GUI::GUI(QWidget *parent)
     friss->start(2);
     komm=1;
     kommst();
+    loadGraf();
+
+    lejatszas=new Lejatszas;
 
 }
 
@@ -105,12 +109,7 @@ void GUI::upd()
     ui->uid->setText(QString::number(UID));
 
     if(ido.length()<100){
-        ido.append(double(UID)/(1000/uptime));//másodperc
-    }else{
-        for (int i=0;i<99;i++){
-           ido[i]=ido[i+1];
-        }
-        ido[99]=double(UID)/(1000/uptime);
+        ido.append(UID);//másodperc
     }
     if(motatlag.length()<100){
         motatlag.append((bmot+jmot)/2);//átlag
@@ -125,20 +124,26 @@ void GUI::upd()
 
 void GUI::loadGraf()
 {
-    qDebug()<<"loadGraf()";
     QLineSeries *series=new QLineSeries();
+    if(ui->grafikonXteng->currentText()==tr("Idő")){
+        xteng=ido;
+    } if(ui->grafikonXteng->currentText()==tr("Motor átlagnyomaték")){
+        xteng=motatlag;
+    }
 
-    xteng=ido;
-    yteng=motatlag;
+    if(ui->grafikonYtengely->currentText()==tr("Idő")){
+        yteng=ido;
+    } if(ui->grafikonYtengely->currentText()==tr("Motor átlagnyomaték")){
+        yteng=motatlag;
+    }
 
-    for (int i=0; i<50 && i<xteng.length()-1 && i<yteng.length()-1;i++){
+    for (int i=0; i<diagrammax && i<xteng.length()-1 && i<yteng.length()-1;i++){
         series->append(xteng[i],yteng[i]);
     }
     QChart *chart = new QChart();
-    //chart->legend()->hide();
     chart->addSeries(series);
     chart->createDefaultAxes();
-    chart->setTitle("Grafikon");
+    chart->setTitle(ui->grafikonXteng->currentText()+" - "+ui->grafikonYtengely->currentText()+tr(" grafikon"));
 
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignCenter);
@@ -183,6 +188,8 @@ void GUI::applyUserdat()
 
     qApp->setStyleSheet(st);
 
+    forditas(language);
+
     saveUserdat();
 }
 
@@ -193,7 +200,7 @@ void GUI::saveUserdat(){
     sets->setValue("lang",language);
     sets->setValue("ip",ip);
     sets->setValue("Style",st);
-    sets->setValue("curst",currst);
+    sets->setValue("curs",currst);
 }
 
 void GUI::kommst()
@@ -216,6 +223,21 @@ void GUI::notapplyUserdat()
     settingsOpened=0;
 }
 
+void GUI::openLejatszas()
+{
+    lejatszas->show();
+    connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
+    connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
+}
+void GUI::goPlay(){
+
+}
+
+void GUI::stopPlay(){
+
+}
+
+
 void GUI::getUserdata()
 {
     bdats=sets->value("booldatas").value<QList<bool>>();
@@ -232,11 +254,9 @@ void GUI::forditas(QString lang)
         QTranslator translator;
         qDebug()<<translator.load(":/languages/megrendelo-gui_en_EN.qm");
         qApp-> QCoreApplication::installTranslator(&translator);
-        qDebug()<<"Angol";
         ui->retranslateUi(this);
     }
     if(lang=="Magyar"){
-        qDebug()<<"Magyar";
     ui->retranslateUi(this);
     }
 }

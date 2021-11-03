@@ -20,16 +20,19 @@ SOURCES += \
     main.cpp \
     gui.cpp \
     settings.cpp \
-    sockread.cpp
+    sockread.cpp\
+    lejatszas.cpp
 
 HEADERS += \
     gui.h \
     settings.h \
-    sockread.h
+    sockread.h \
+    lejatszas.h
 
 FORMS += \
     gui.ui \
-    settings.ui
+    settings.ui \
+    lejatszas.ui
 
 TRANSLATIONS += \
     megrendelo-gui_en_EN.ts

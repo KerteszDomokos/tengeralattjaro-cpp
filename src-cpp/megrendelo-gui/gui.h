@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <settings.h>
+#include <lejatszas.h>
 
 #include <thread>
 #include <QSettings>
@@ -29,12 +30,15 @@ private slots:
     void loadGraf();
     void applyUserdat();
     void notapplyUserdat();
+    void openLejatszas();
+    void goPlay();
+    void stopPlay();
 
 private:
-
     void getUserdata();
     void saveUserdat();
     void kommst();
+
 
     Ui::GUI *ui;
     settings *set;
@@ -59,6 +63,8 @@ private:
     QString ip;
     bool settingsOpened=0;
     QList<bool> bdats;
+
+    Lejatszas *lejatszas;
 
 
 

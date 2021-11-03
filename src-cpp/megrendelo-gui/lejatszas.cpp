@@ -188,19 +188,9 @@ void Lejatszas::next_steps()
     ui->idovonal->setValue(ui->idovonal->value()+1);
 }
 
-QString Lejatszas::getNowJoystick() const
-{
-    return nowJoystick;
-}
-
 QString Lejatszas::getNowOlvasott() const
 {
     return nowOlvasott;
-}
-
-QString Lejatszas::getNowKuldendo() const
-{
-    return nowKuldendo;
 }
 
 long Lejatszas::getNowID() const

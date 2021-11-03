@@ -54,6 +54,7 @@ private:
     bool masiktema;
     QString fileName;
     QString language;
+    QString currst;
     QString st, modename;
     QString ip;
     bool settingsOpened=0;

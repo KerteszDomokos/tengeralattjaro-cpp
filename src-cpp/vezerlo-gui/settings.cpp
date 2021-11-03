@@ -39,11 +39,6 @@ void settings::getUserdat()
     uptime=sets->value("updateTime").toInt();
 }
 
-bool settings::getUgyfelelerheto() const
-{
-    return ugyfelelerheto;
-}
-
 void settings::applyuserdat()
 {
     ui->temavalaszto->setCurrentText(sets->value("modename").toString());
@@ -223,4 +218,9 @@ QString settings::getChstyle() const
 QString settings::getModename()
 {
     return modename;
+}
+
+bool settings::getUgyfelelerheto() const
+{
+    return ugyfelelerheto;
 }

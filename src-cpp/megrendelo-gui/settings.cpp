@@ -26,6 +26,8 @@ settings::settings(QWidget *parent) :
     }
 ui->ipcim->setText(ui->ipvalaszto->currentText());
 
+getUserdat();
+
 }
 
 settings::~settings()
@@ -41,6 +43,33 @@ void settings::hatfoly()
     grid=ui->grid->isChecked();
     uptime=ui->uptime->value();
     diagrammax=ui->diagrambuff->value();
+}
+
+void settings::getUserdat(){
+    bdats=sets->value("booldatas").value<QList<bool>>();
+    diagrammax=sets->value("diagrammax").toInt();
+    fileName=sets->value("fileName").toString();
+    language=sets->value("lang").toString();
+    ip=sets->value("ip").toString();
+    st=sets->value("Style").toString();
+    currtem = sets->value("curs").toString();
+    applySets();
+}
+
+void settings::applySets()
+{
+    ui->diagrambuff->setValue(diagrammax);
+    ui->path->setText(fileName);
+    ui->nyelvvalaszto->setCurrentText(language);
+    ui->ipvalaszto->setCurrentText(ip);
+    ui->ipcim->setText(ip);
+    ui->temavalaszto->setCurrentText(currtem);
+
+}
+
+QString settings::getCurrtem() const
+{
+    return currtem;
 }
 
 void settings::resetUpt()
@@ -108,9 +137,7 @@ void settings::readfile(QString f){
     st=ss;
 }
 
-void settings::getUserdata()
-{
-}
+
 
 void settings::ipupd()
 {

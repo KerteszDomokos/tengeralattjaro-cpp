@@ -29,6 +29,7 @@ public:
     QString getSt() const;
     QString getIp() const;
     QString getModename() const;
+    QString getCurrtem() const;
 
 private slots:
     void hatfoly();
@@ -40,9 +41,10 @@ private slots:
     void chooseFile();
     void ford();
     void readfile(QString f);
-    void getUserdata();
     void ipupd();
     void ipedit();
+    void getUserdat();
+    void applySets();
 
 
 
@@ -54,9 +56,11 @@ private:
     bool masiktema;
     QString fileName;
     QString language;
+    QString currtem;
     QString st, modename;
     QSettings *sets;
     QString ip;
+    QList<bool> bdats;
 
 
 };

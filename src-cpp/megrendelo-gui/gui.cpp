@@ -63,6 +63,7 @@ GUI::GUI(QWidget *parent)
     sets = new QSettings("Aqualab megrendelő", "AquaLab");
     qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
     getUserdata();
+    qApp->setStyleSheet(st);
 
     QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
 
@@ -168,16 +169,19 @@ void GUI::applyUserdat()
     ip=set->getIp();
     st=set->getSt();
     modename=set->getModename();
+    currst=set->getCurrtem();
 
     //Mentendő adatok
     bdats={};
-    bdats.append(frissites);//0
-    bdats.append(kep);//1
-    bdats.append(komm);//2
-    bdats.append(komm);//3
-    bdats.append(diagram);//4
-    bdats.append(grid);//5
-    bdats.append(masiktema);//6
+    bdats.append(frissites);//0 frissítés
+    bdats.append(kep);//1 kép
+    bdats.append(komm);//2 kommunikáció
+    bdats.append(komm);//3 ??
+    bdats.append(diagram);//4 diagram
+    bdats.append(grid);//5 grafion háló
+    bdats.append(masiktema);//6 másik téma aktív
+
+    qApp->setStyleSheet(st);
 
     saveUserdat();
 }
@@ -189,6 +193,7 @@ void GUI::saveUserdat(){
     sets->setValue("lang",language);
     sets->setValue("ip",ip);
     sets->setValue("Style",st);
+    sets->setValue("curst",currst);
 }
 
 void GUI::kommst()
@@ -213,6 +218,7 @@ void GUI::notapplyUserdat()
 
 void GUI::getUserdata()
 {
+    bdats=sets->value("booldatas").value<QList<bool>>();
     diagrammax=sets->value("diagrammax").toInt();
     fileName=sets->value("fileName").toString();
     language=sets->value("lang").toString();

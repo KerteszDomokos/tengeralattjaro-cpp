@@ -60,7 +60,6 @@ GUI::GUI(QWidget *parent)
     , ui(new Ui::GUI)
 {
     ui->setupUi(this);
-    forditas("English");
     sets = new QSettings("Aqualab megrendelő", "AquaLab");
     qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
     getUserdata();

@@ -53,7 +53,11 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="seb"/>
+         <widget class="QLineEdit" name="seb">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
@@ -63,7 +67,11 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="kihasznaltsag"/>
+         <widget class="QLineEdit" name="kihasznaltsag">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_3">
@@ -73,7 +81,11 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="balmot"/>
+         <widget class="QLineEdit" name="balmot">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_4">
@@ -83,7 +95,11 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="jobbmot"/>
+         <widget class="QLineEdit" name="jobbmot">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_5">
@@ -93,7 +109,11 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="melyseg"/>
+         <widget class="QLineEdit" name="melyseg">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_6">
@@ -103,7 +123,11 @@
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="bhom"/>
+         <widget class="QLineEdit" name="bhom">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -134,7 +158,11 @@ QLineEdit{font-size:14px;}</string>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="phval"/>
+         <widget class="QLineEdit" name="phval">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_8">
@@ -144,7 +172,11 @@ QLineEdit{font-size:14px;}</string>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="redoxi"/>
+         <widget class="QLineEdit" name="redoxi">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_9">
@@ -154,7 +186,11 @@ QLineEdit{font-size:14px;}</string>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="vezetok"/>
+         <widget class="QLineEdit" name="vezetok">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_10">
@@ -164,7 +200,11 @@ QLineEdit{font-size:14px;}</string>
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="zavarossag"/>
+         <widget class="QLineEdit" name="zavarossag">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_11">
@@ -174,7 +214,11 @@ QLineEdit{font-size:14px;}</string>
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="homerseklet"/>
+         <widget class="QLineEdit" name="homerseklet">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_12">
@@ -184,7 +228,11 @@ QLineEdit{font-size:14px;}</string>
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="aramlasseb"/>
+         <widget class="QLineEdit" name="aramlasseb">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

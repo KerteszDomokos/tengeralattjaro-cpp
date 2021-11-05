@@ -92,7 +92,7 @@ void settings::temavalaszt()
 {
     QString mod = ui->temavalaszto->currentText();
     QString ss;
-    if(mod=="Világos mód"|| mod=="Light mode"){
+    if(mod=="Világos mód" || mod=="Light mode"){
         QFile file(":/resources/lightmode");
         file.open(QFile::ReadOnly);
         ss = QString(file.readAll());

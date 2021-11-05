@@ -84,6 +84,8 @@ GUI::GUI(QWidget *parent)
 
     lejatszas=new Lejatszas;
 
+    ui->grafika->setSource(QUrl(":/3d"));
+
 }
 
 GUI::~GUI()

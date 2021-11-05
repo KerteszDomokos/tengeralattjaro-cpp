@@ -48,7 +48,8 @@ DISTFILES += \
     megrendelo-gui_en_EN.ts \
     qml-files/compass.qml \
     qml-files/horizon.qml \
-    qml-files/compass
+    qml-files/compass \
+    3d.qml
 
 RESOURCES += \
     resource.qrc

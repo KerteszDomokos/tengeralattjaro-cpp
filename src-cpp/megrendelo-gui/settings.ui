@@ -902,7 +902,7 @@ p, li { white-space: pre-wrap; }
   </connection>
   <connection>
    <sender>temavalaszto</sender>
-   <signal>currentIndexChanged(QString)</signal>
+   <signal>currentIndexChanged(int)</signal>
    <receiver>settings</receiver>
    <slot>temavalaszt()</slot>
    <hints>

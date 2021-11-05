@@ -10,4 +10,7 @@
         <file>resources/play.ico</file>
         <file alias="ico">resources/program-icon.ico</file>
     </qresource>
+    <qresource prefix="/">
+        <file alias="3d">3d.qml</file>
+    </qresource>
 </RCC>

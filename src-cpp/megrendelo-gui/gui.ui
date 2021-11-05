@@ -589,7 +589,7 @@ QLineEdit{font-size:14px;}</string>
      </widget>
     </item>
     <item row="1" column="1" rowspan="2">
-     <widget class="QQuickWidget" name="quickWidget">
+     <widget class="QQuickWidget" name="grafika">
       <property name="resizeMode">
        <enum>QQuickWidget::SizeRootObjectToView</enum>
       </property>

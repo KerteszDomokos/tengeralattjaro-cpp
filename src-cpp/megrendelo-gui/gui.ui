@@ -461,30 +461,32 @@ QLineEdit{font-size:14px;}</string>
        </item>
        <item>
         <property name="text">
-         <string>Motor átlagnyomaték</string>
-        </property>
-       </item>
-      </widget>
-      <widget class="QComboBox" name="grafikonYtengely">
-       <property name="geometry">
-        <rect>
-         <x>390</x>
-         <y>390</y>
-         <width>111</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="whatsThis">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Itt válaszhatjuk ki az y tengelyen elhelyezhető adatokat.&lt;/p&gt;&lt;p&gt;A lista a továbbiakban bővülni fog.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <item>
-        <property name="text">
-         <string>none</string>
+         <string>Redoxipotenciál</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Idő</string>
+         <string>Vezetőképesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ph</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Zavarosság</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hőmérséklet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Áramlássebesség</string>
         </property>
        </item>
        <item>
@@ -496,7 +498,7 @@ QLineEdit{font-size:14px;}</string>
       <widget class="QPushButton" name="pushButton">
        <property name="geometry">
         <rect>
-         <x>530</x>
+         <x>520</x>
          <y>390</y>
          <width>101</width>
          <height>22</height>
@@ -584,6 +586,77 @@ QLineEdit{font-size:14px;}</string>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="grafikonYtengely">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>390</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Itt válaszhatjuk ki az x tengelyen elhelyezhető adatokat.&lt;/p&gt;&lt;p&gt;A lista a továbbiakban bővülni fog.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>none</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Idő</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Redoxipotenciál</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vezetőképesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ph</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Zavarosság</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hőmérséklet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Áramlássebesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Motor átlagnyomaték</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>390</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Mentés képként</string>
        </property>
       </widget>
      </widget>
@@ -812,6 +885,22 @@ QLineEdit{font-size:14px;}</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>saveGraf()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>707</x>
+     <y>668</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>774</x>
+     <y>871</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>forditas()</slot>
@@ -819,5 +908,6 @@ QLineEdit{font-size:14px;}</string>
   <slot>kommentMost()</slot>
   <slot>loadGraf()</slot>
   <slot>openLejatszas()</slot>
+  <slot>saveGraf()</slot>
  </slots>
 </ui>

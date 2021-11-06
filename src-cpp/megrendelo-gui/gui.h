@@ -7,6 +7,7 @@
 
 #include <thread>
 #include <QSettings>
+#include <QChartView>
 
 
 QT_BEGIN_NAMESPACE
@@ -47,7 +48,7 @@ private:
     QList<double> olvasottList;
     long UID=0; long commentID; long felIDnull;
     QList<double> xteng; QList<double> yteng;
-    QList<double> motatlag;
+    QList<double> motatlag,homat,zavat,phat,redat,vezat,arsat;
     QList<double> ido;
     int uptime=30;//updatetime
     QSettings *sets;

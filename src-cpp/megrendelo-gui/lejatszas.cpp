@@ -111,6 +111,8 @@ void Lejatszas::lejatszas_idozito()
 
 void Lejatszas::getElements(long beg)
 {
+    int l=0;
+    ui->load->setValue(l);
     QString txt;
     Child=Component.firstChild().toElement();
     tag = "Event";
@@ -131,7 +133,8 @@ void Lejatszas::getElements(long beg)
        }
        for(int i = beg; i < nodes.count() && i<beg+200; i++)
        {
-           ui->load->setValue(i+1);
+           l++;
+           ui->load->setValue(l);
            QDomNode elm = nodes.at(i);
            if(elm.isElement())
            {
@@ -145,6 +148,7 @@ void Lejatszas::getElements(long beg)
            }
        }
        ui->xmladatok->setText(txt);
+       ui->load->setValue(100);
 
 }
 

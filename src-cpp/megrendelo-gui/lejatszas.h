@@ -43,6 +43,7 @@ private slots:
     void lejatszas_idozito();
     void slidMove();
     void next_steps();
+    void getElements(long beg);
 
 
 private:
@@ -71,7 +72,6 @@ private:
     QDomElement root;
     QDomElement Component;
 
-    void getElements(long beg);
     long lastLoad=0;
     QTimer *timer;
 

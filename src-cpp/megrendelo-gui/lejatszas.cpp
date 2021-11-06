@@ -6,6 +6,7 @@
 #include <QIcon>
 #include <QDomDocument>
 #include <QTimer>
+#include <QTranslator>
 
 Lejatszas::Lejatszas(QWidget *parent) :
     QDialog(parent),
@@ -156,7 +157,18 @@ void Lejatszas::msg(QString t, int p)
 {
     message(t,p);
 }
-
+void Lejatszas::forditas(QString lang)
+{
+    if(lang=="English"){
+        QTranslator translator;
+        translator.load(":/languages/megrendelo-gui_en_EN.qm");
+        qApp-> QCoreApplication::installTranslator(&translator);
+        ui->retranslateUi(this);
+    }
+    if(lang=="Magyar"){
+    ui->retranslateUi(this);
+    }
+}
 void Lejatszas::updateNow()
 {
     long id=0;

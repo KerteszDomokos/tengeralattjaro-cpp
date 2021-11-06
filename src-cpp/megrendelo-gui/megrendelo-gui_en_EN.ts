@@ -165,8 +165,8 @@
     <message>
         <location filename="gui.ui" line="459"/>
         <location filename="gui.ui" line="610"/>
-        <location filename="gui.cpp" line="209"/>
-        <location filename="gui.cpp" line="234"/>
+        <location filename="gui.cpp" line="210"/>
+        <location filename="gui.cpp" line="235"/>
         <source>Idő</source>
         <translation>Time</translation>
     </message>
@@ -177,32 +177,32 @@
     <message>
         <location filename="gui.ui" line="464"/>
         <location filename="gui.ui" line="615"/>
-        <location filename="gui.cpp" line="215"/>
-        <location filename="gui.cpp" line="240"/>
+        <location filename="gui.cpp" line="216"/>
+        <location filename="gui.cpp" line="241"/>
         <source>Redoxipotenciál</source>
         <translation>Redox potential</translation>
     </message>
     <message>
         <location filename="gui.ui" line="469"/>
         <location filename="gui.ui" line="620"/>
-        <location filename="gui.cpp" line="221"/>
-        <location filename="gui.cpp" line="246"/>
+        <location filename="gui.cpp" line="222"/>
+        <location filename="gui.cpp" line="247"/>
         <source>Vezetőképesség</source>
         <translation>Conductivity</translation>
     </message>
     <message>
         <location filename="gui.ui" line="479"/>
         <location filename="gui.ui" line="630"/>
-        <location filename="gui.cpp" line="224"/>
-        <location filename="gui.cpp" line="249"/>
+        <location filename="gui.cpp" line="225"/>
+        <location filename="gui.cpp" line="250"/>
         <source>Zavarosság</source>
         <translation>Turbidity</translation>
     </message>
     <message>
         <location filename="gui.ui" line="484"/>
         <location filename="gui.ui" line="635"/>
-        <location filename="gui.cpp" line="227"/>
-        <location filename="gui.cpp" line="252"/>
+        <location filename="gui.cpp" line="228"/>
+        <location filename="gui.cpp" line="253"/>
         <source>Hőmérséklet</source>
         <translation>Temperature</translation>
     </message>
@@ -249,24 +249,24 @@
     <message>
         <location filename="gui.ui" line="474"/>
         <location filename="gui.ui" line="625"/>
-        <location filename="gui.cpp" line="218"/>
-        <location filename="gui.cpp" line="243"/>
+        <location filename="gui.cpp" line="219"/>
+        <location filename="gui.cpp" line="244"/>
         <source>Ph</source>
         <translation>Ph</translation>
     </message>
     <message>
         <location filename="gui.ui" line="489"/>
         <location filename="gui.ui" line="640"/>
-        <location filename="gui.cpp" line="230"/>
-        <location filename="gui.cpp" line="255"/>
+        <location filename="gui.cpp" line="231"/>
+        <location filename="gui.cpp" line="256"/>
         <source>Áramlássebesség</source>
         <translation></translation>
     </message>
     <message>
         <location filename="gui.ui" line="494"/>
         <location filename="gui.ui" line="645"/>
-        <location filename="gui.cpp" line="212"/>
-        <location filename="gui.cpp" line="237"/>
+        <location filename="gui.cpp" line="213"/>
+        <location filename="gui.cpp" line="238"/>
         <source>Motor átlagnyomaték</source>
         <translation>Motor avarage speed</translation>
     </message>
@@ -318,17 +318,17 @@
         <translation>About</translation>
     </message>
     <message>
-        <location filename="gui.cpp" line="267"/>
+        <location filename="gui.cpp" line="268"/>
         <source> grafikon</source>
         <translation>Graph</translation>
     </message>
     <message>
-        <location filename="gui.cpp" line="383"/>
+        <location filename="gui.cpp" line="384"/>
         <source>Mentés</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="gui.cpp" line="383"/>
+        <location filename="gui.cpp" line="384"/>
         <source>Képek (*.png *.PNG *.jpg)</source>
         <translation>Images (*.png *.PNG *.jpg)</translation>
     </message>
@@ -421,12 +421,12 @@
         <translation>Speed of playing:</translation>
     </message>
     <message>
-        <location filename="lejatszas.cpp" line="30"/>
+        <location filename="lejatszas.cpp" line="31"/>
         <source>Megnyitás</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="lejatszas.cpp" line="30"/>
+        <location filename="lejatszas.cpp" line="31"/>
         <source>Aqualab fájlok (*.al, *.AL, *.*)</source>
         <translation>Aqualab files (*.al, *.AL, *.*)</translation>
     </message>
@@ -595,7 +595,8 @@
     <message>
         <location filename="settings.ui" line="450"/>
         <source>Világos mód</source>
-        <translation></translation>
+        <comment>darkmode</comment>
+        <translation>Light mode</translation>
     </message>
     <message>
         <location filename="settings.ui" line="455"/>
@@ -619,7 +620,7 @@
     </message>
     <message>
         <location filename="settings.ui" line="510"/>
-        <location filename="settings.ui" line="756"/>
+        <location filename="settings.ui" line="746"/>
         <source>Fájl kiválasztása</source>
         <translation>Choose file</translation>
     </message>
@@ -702,37 +703,37 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Automatical scanned IPs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settings.ui" line="744"/>
+        <location filename="settings.ui" line="734"/>
         <source>Felvétel bállításai</source>
         <translation>Record settings</translation>
     </message>
     <message>
-        <location filename="settings.ui" line="779"/>
+        <location filename="settings.ui" line="769"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Mentés  helye (automatikus számozás)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Default save path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settings.ui" line="792"/>
+        <location filename="settings.ui" line="782"/>
         <source>kovfile</source>
         <translation>nextfile</translation>
     </message>
     <message>
-        <location filename="settings.ui" line="805"/>
+        <location filename="settings.ui" line="795"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Következő fájlnév:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Next file:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settings.cpp" line="72"/>
+        <location filename="settings.cpp" line="74"/>
         <source>Felvétel megnyitása</source>
         <translation>Open a record file</translation>
     </message>
     <message>
-        <location filename="settings.cpp" line="173"/>
+        <location filename="settings.cpp" line="186"/>
         <source>Megnyitás</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="settings.cpp" line="173"/>
+        <location filename="settings.cpp" line="186"/>
         <source>Qt Style sheet fájlok (*.qss, *.QSS)</source>
         <translation>Qt style sheets (*.qss, *.QSS)</translation>
     </message>

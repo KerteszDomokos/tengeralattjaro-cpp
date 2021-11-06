@@ -89,6 +89,7 @@ GUI::GUI(QWidget *parent)
     ui->grafika->setSource(QUrl("qrc:/3d"));
     ui->grafika->show();
     ui->grafika->setStyleSheet(st);
+    forditas(language);
 
 }
 
@@ -283,7 +284,7 @@ void GUI::loadGraf()
 
 void GUI::applyUserdat()
 {
-
+    set->getall();
     settingsOpened=0;
     frissites=set->getFrissites();
     kep=set->getKep();
@@ -399,13 +400,15 @@ void GUI::forditas(QString lang)
 {
     if(lang=="English"){
         QTranslator translator;
-        qDebug()<<translator.load(":/languages/megrendelo-gui_en_EN.qm");
+        translator.load(":/languages/megrendelo-gui_en_EN.qm");
         qApp-> QCoreApplication::installTranslator(&translator);
         ui->retranslateUi(this);
     }
     if(lang=="Magyar"){
     ui->retranslateUi(this);
     }
+    lejatszas->forditas(lang);
+    set->forditas(lang);
 }
 
 void GUI::open_beallitasok()

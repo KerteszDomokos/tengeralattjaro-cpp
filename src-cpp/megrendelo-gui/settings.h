@@ -31,6 +31,9 @@ public:
     QString getModename() const;
     QString getCurrtem() const;
     QString getMentespath() const;
+    void getall();
+    void forditas(QString lang);
+
 
 private slots:
     void hatfoly();

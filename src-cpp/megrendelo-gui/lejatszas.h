@@ -30,6 +30,7 @@ public:
     long getNowID() const;
     QString getNowOlvasott() const;
     void updateNow();
+    void forditas(QString lang);
 
 
 signals:

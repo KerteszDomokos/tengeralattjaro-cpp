@@ -8,6 +8,7 @@
 #include <QNetworkInterface>
 #include <QAbstractSocket>
 #include <QDate>
+#include <QTranslator>
 
 
 settings::settings(QWidget *parent) :
@@ -28,6 +29,7 @@ settings::settings(QWidget *parent) :
 ui->ipcim->setText(ui->ipvalaszto->currentText());
 
 getUserdat();
+forditas(language);
 
 }
 
@@ -64,7 +66,7 @@ void settings::applySets()
     ui->nyelvvalaszto->setCurrentText(language);
     ui->ipvalaszto->setCurrentText(ip);
     ui->ipcim->setText(ip);
-    ui->temavalaszto->setCurrentText(tr(currtem.toLatin1()));
+    ui->temavalaszto->setCurrentText(currtem.toLatin1());
 }
 
 void settings::chooseMentes()
@@ -110,6 +112,11 @@ QString settings::getMentespath() const
     return mentespath;
 }
 
+void settings::getall()
+{
+    hatfoly();
+}
+
 QString settings::getCurrtem() const
 {
     return currtem;
@@ -153,7 +160,18 @@ void settings::temavalaszt()
     ui->temateszt->setStyleSheet(ss);
     st=ss;
 }
-
+void settings::forditas(QString lang)
+{
+    if(lang=="English"){
+        QTranslator translator;
+        translator.load(":/languages/megrendelo-gui_en_EN.qm");
+        qApp-> QCoreApplication::installTranslator(&translator);
+        ui->retranslateUi(this);
+    }
+    if(lang=="Magyar"){
+    ui->retranslateUi(this);
+    }
+}
 void settings::masikTema()
 {
     bool c=ui->masiktema->isChecked();

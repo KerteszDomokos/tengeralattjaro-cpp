@@ -149,7 +149,6 @@ void settings::ipedit()
 {
     ip=ui->ipcim->text();
     QHostAddress i=QHostAddress(ip);
-    qDebug()<<i;
     if(i.protocol()==QAbstractSocket::IPv4Protocol){
         ui->ipcim->setStyleSheet("QLineEdit{background-color:#5cf054;}");
     }else{
@@ -171,13 +170,10 @@ void settings::ford()
 {
     if(language=="English"){
         QTranslator translator;
-        qDebug()<<translator.load(":/languages/megrendelo-gui_en_EN.qm");
         qApp-> QCoreApplication::installTranslator(&translator);
-        qDebug()<<"Angol";
         ui->retranslateUi(this);
     }
     if(language=="Magyar"){
-        qDebug()<<"Magyar";
         ui->retranslateUi(this);
     }
 }

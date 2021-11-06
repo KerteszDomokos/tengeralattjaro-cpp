@@ -15,6 +15,57 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>75</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>750</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>750</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>748</width>
+         <height>228</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="elokep">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>731</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <property name="whatsThis">
+         <string comment="miez?">Élő kép helye</string>
+        </property>
+        <property name="text">
+         <string>Kép</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
     <item row="2" column="0">
      <widget class="QGroupBox" name="groupBox">
       <property name="minimumSize">
@@ -248,22 +299,6 @@ QLineEdit{font-size:14px;}</string>
        <property name="title">
         <string>Felvétel beállításai</string>
        </property>
-       <widget class="QCheckBox" name="checkBox">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>141</width>
-          <height>19</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Alapértelmezett mappa</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
        <widget class="QSpinBox" name="spinBox">
         <property name="geometry">
          <rect>
@@ -388,6 +423,19 @@ QLineEdit{font-size:14px;}</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>211</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Mentés helyének megváltoztatás</string>
         </property>
        </widget>
       </widget>
@@ -537,59 +585,20 @@ QLineEdit{font-size:14px;}</string>
       </widget>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>75</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+    <item row="1" column="1" rowspan="2">
+     <widget class="QQuickWidget" name="grafika">
       <property name="minimumSize">
        <size>
-        <width>750</width>
+        <width>0</width>
         <height>0</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>750</width>
+        <width>16777215</width>
         <height>16777215</height>
        </size>
       </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>748</width>
-         <height>228</height>
-        </rect>
-       </property>
-       <widget class="QLabel" name="elokep">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>731</width>
-          <height>221</height>
-         </rect>
-        </property>
-        <property name="whatsThis">
-         <string comment="miez?">Élő kép helye</string>
-        </property>
-        <property name="text">
-         <string>Kép</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-    </item>
-    <item row="1" column="1" rowspan="2">
-     <widget class="QQuickWidget" name="grafika">
       <property name="resizeMode">
        <enum>QQuickWidget::SizeRootObjectToView</enum>
       </property>
@@ -762,6 +771,22 @@ QLineEdit{font-size:14px;}</string>
     <hint type="destinationlabel">
      <x>5</x>
      <y>631</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>open_beallitasok()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>137</x>
+     <y>742</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>867</y>
     </hint>
    </hints>
   </connection>

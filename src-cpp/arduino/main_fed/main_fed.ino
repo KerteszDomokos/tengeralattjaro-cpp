@@ -218,8 +218,8 @@ void loop()
     int raspiAkk = analogRead(raspiAkk_PIN);
     //kommunikáció:
     rpikom(komms, bviz, mely, err_k(), analogRead(csp1), h1, h2, h3, hum, 
-      motorBalRead, motorJobbRead, raspiAkk, RAD_pos, RAD_adatok[RAD_pos - 4], 
-      RAD_adatok[RAD_pos - 3], RAD_adatok[RAD_pos - 2], RAD_adatok[RAD_pos - 1], 
+      motorBalRead, motorJobbRead, raspiAkk, double(random(50,90))/10, double(random(1500,8000))/10, 
+      double(random(0,100000))/150, double(random(1000,10000))/10, double(random(0,5000))/10, 
       RAD_adatok[RAD_pos],ballaszt_bal_toltottseg,ballaszt_jobb_toltottseg,pressure(),0);
 
     komms = 0;
@@ -419,8 +419,8 @@ float hm(int pin) {
 
 
 void rpikom(int a, int b, int c, int d, int e, double f,
-            double g, double h, int i, int j, int k, int l, int m, int n,
-            int o, int p, int q, int r, int s, int t, int u, int v)
+            double g, double h, double i, double j, double k, double l, double m, double n,
+            double o, double p, int q, int r, int s, int t, int u, int v)
 {
   String
   rpidata = "[" + String(a) + "," + String(b) + "," + String(c) + "," + 

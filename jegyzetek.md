@@ -31,21 +31,25 @@
 9: Motor bal mért erő (nullért kivonva)  
 10: Motor jobb mért erő (nullért kivonva)  
 11: Raspi akkumlátor analog   
-12: RAD jelenlegi mérés azonosító szám (array id)  
-13: RAD jelenlegi mérés előtt -4  
-14: RAD jelenlegi mérés előtt -3  
-15: RAD jelenlegi mérés előtt -2  
-16: RAD jelenlegi mérés előtt -1  
-17: RAD legfrissebb mérés
+12: szenzor1  
+13: szenzor2  
+14: szenzor3  
+15: szenzor4  
+16: szenzor5  
+17:  
 18: -
-19:  
-20: Soros komm buffer size  
-21: Rpi processzor hőmérséklet  
-22: Dőlés x  
-23: Dőlés y  
-24: MPU hőmérséklet  
-25: Küldés időpontja   
-26: Iránytű adat
+19: 
+20: 
+21: 
+22: 
+23:   
+24: Soros komm buffer size  
+25: Rpi processzor hőmérséklet  
+26: Dőlés x  
+27: Dőlés y  
+28: MPU hőmérséklet  
+29: Küldés időpontja   
+30: Iránytű adat
 
 
 

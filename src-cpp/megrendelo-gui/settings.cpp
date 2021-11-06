@@ -7,6 +7,7 @@
 #include <QHostAddress>
 #include <QNetworkInterface>
 #include <QAbstractSocket>
+#include <QDate>
 
 
 settings::settings(QWidget *parent) :
@@ -63,8 +64,50 @@ void settings::applySets()
     ui->nyelvvalaszto->setCurrentText(language);
     ui->ipvalaszto->setCurrentText(ip);
     ui->ipcim->setText(ip);
-    ui->temavalaszto->setCurrentText(currtem);
+    ui->temavalaszto->setCurrentText(tr(currtem.toLatin1()));
+}
 
+void settings::chooseMentes()
+{
+    fileName = QFileDialog::getExistingDirectory(this,tr("Felvétel megnyitása"), fileName);
+    ui->mentespath->setText(fileName);
+    int runID=0;
+    QList<QString> fn;
+    QDir d(fileName);
+    QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
+    foreach(QString filename, files) {
+        fn.append(filename);
+        }
+    for (int i=0; i<fn.length();i++){
+        QString del = fn[i].replace(0,16,"").replace(2,3,"");
+        for (int da=0; da<100;da++){
+            QString c;
+            if(da<10){c="0";}
+            c=c+QString::number(da);
+            if(del==c){
+                runID=da+1;
+            }
+        }
+    }
+rid=runID;
+generatePath(runID);
+
+}
+
+void settings::generatePath(int id)
+{
+    QString p=QDate::currentDate().QDate::toString("yy-MM-dd");
+    QString nam="/merules"+p+"-";
+    if(id<10){nam=nam+"0";}
+    nam=nam+QString::number(id)+".al";
+    ui->kovfile->setText("..."+nam);
+
+    mentespath=fileName+nam;
+}
+
+QString settings::getMentespath() const
+{
+    return mentespath;
 }
 
 QString settings::getCurrtem() const

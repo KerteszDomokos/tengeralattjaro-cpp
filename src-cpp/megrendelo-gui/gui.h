@@ -7,8 +7,9 @@
 
 #include <thread>
 #include <QSettings>
+#include <QtCharts>
 #include <QChartView>
-
+#include <QLineSeries>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -34,6 +35,7 @@ private slots:
     void openLejatszas();
     void goPlay();
     void stopPlay();
+    void saveGraf();
 
 private:
     void getUserdata();
@@ -68,6 +70,7 @@ private:
     Lejatszas *lejatszas;
     bool play=0;
     bool playopen=0;
+    QChartView *chartView;
 
 
 

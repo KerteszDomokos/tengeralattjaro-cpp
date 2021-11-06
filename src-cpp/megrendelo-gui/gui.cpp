@@ -18,6 +18,8 @@
 #include <QSizePolicy>
 #include <QList>
 #include <QSettings>
+#include <QPixmap>
+#include <QFileDialog>
 
 
 bool stop=0;
@@ -265,10 +267,10 @@ void GUI::loadGraf()
         chart->setTitle(ui->grafikonXteng->currentText()+" - "+ui->grafikonYtengely->currentText()+tr(" grafikon"));
     }
 
-    chart->legend()->setVisible(true);
-    chart->legend()->setAlignment(Qt::AlignCenter);
+    chart->legend()->setVisible(false);
+//    chart->legend()->setAlignment(Qt::AlignCenter);
 
-    QChartView *chartView = new QChartView(chart);
+    chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
     chartView->setParent(ui->graf);
     chartView->setMaximumSize(ui->graf->size());
@@ -371,6 +373,15 @@ void GUI::goPlay(){
 void GUI::stopPlay(){
     play=0;
     playopen=0;
+}
+
+void GUI::saveGraf()
+{
+    QPixmap p(chartView->size());
+    p=chartView->grab();
+//    chartView->render(&p);
+    QString graffila = QFileDialog::getSaveFileName(this,tr("Mentés"), "./grafikon.png",tr("Képek (*.png *.PNG *.jpg)"));
+    p.save(graffila,"png");
 }
 
 

@@ -106,12 +106,18 @@ void GUI::upd()
 
     double bmot=0;
     double jmot=0;
-    if(olvasottList.length()>15){
+    if(olvasottList.length()>17){
         bmot=olvasottList[9];
         jmot=olvasottList[10];
         ui->balmot->setText(QString::number(bmot));
         ui->jobbmot->setText(QString::number(jmot));
         ui->bhom->setText(QString::number(olvasottList[7]));
+
+        ui->phval->setText(QString::number(olvasottList[12]));
+        ui->redoxi->setText(QString::number(olvasottList[13]));
+        ui->vezetok->setText(QString::number(olvasottList[14]));
+        ui->zavarossag->setText(QString::number(olvasottList[15]));
+        ui->aramlasseb->setText(QString::number(olvasottList[16]));
     }
     UID++;
     ui->uid->setText(QString::number(UID));

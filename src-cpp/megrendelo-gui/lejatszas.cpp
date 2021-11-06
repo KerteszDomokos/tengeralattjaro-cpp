@@ -148,7 +148,7 @@ void Lejatszas::getElements(long beg)
            }
        }
        ui->xmladatok->setText(txt);
-       ui->load->setValue(100);
+       ui->load->setValue(200);
 
 }
 

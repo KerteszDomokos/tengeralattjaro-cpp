@@ -434,6 +434,9 @@ QLineEdit{font-size:14px;}</string>
           <height>16</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{font-size:5 px;}</string>
+        </property>
         <property name="text">
          <string>Mentés helyének megváltoztatás</string>
         </property>

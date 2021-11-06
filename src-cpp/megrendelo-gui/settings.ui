@@ -704,6 +704,91 @@ p, li { white-space: pre-wrap; }
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Automatikus szkennelésű IP-k&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QDateEdit" name="dateEdit">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>80</y>
+      <width>110</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_6">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>440</y>
+     <width>471</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Felvétel bállításai</string>
+   </property>
+   <widget class="QPushButton" name="choose_save">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>40</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fájl kiválasztása</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="mentespath">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>361</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>451</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Mentés  helye (automatikus számozás)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="kovfile">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>90</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>kovfile</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>90</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Következő fájlnév:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
@@ -902,7 +987,7 @@ p, li { white-space: pre-wrap; }
   </connection>
   <connection>
    <sender>temavalaszto</sender>
-   <signal>currentIndexChanged(int)</signal>
+   <signal>activated(QString)</signal>
    <receiver>settings</receiver>
    <slot>temavalaszt()</slot>
    <hints>
@@ -1012,6 +1097,22 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>choose_save</sender>
+   <signal>clicked()</signal>
+   <receiver>settings</receiver>
+   <slot>chooseMentes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>665</x>
+     <y>491</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>675</x>
+     <y>408</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>hatfoly()</slot>
@@ -1023,5 +1124,6 @@ p, li { white-space: pre-wrap; }
   <slot>chooseFile()</slot>
   <slot>ipedit()</slot>
   <slot>ipupd()</slot>
+  <slot>chooseMentes()</slot>
  </slots>
 </ui>

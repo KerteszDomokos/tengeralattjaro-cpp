@@ -84,7 +84,9 @@ GUI::GUI(QWidget *parent)
 
     lejatszas=new Lejatszas;
 
-    ui->grafika->setSource(QUrl(":/3d"));
+    ui->grafika->setSource(QUrl("qrc:/3d"));
+    ui->grafika->show();
+    ui->grafika->setStyleSheet(st);
 
 }
 
@@ -190,6 +192,15 @@ void GUI::applyUserdat()
     qApp->setStyleSheet(st);
 
     forditas(language);
+
+   if(modename=="Sötét mód" || modename=="Darkmode"){
+       ui->grafika->setProperty("col", "#212121");
+       qDebug()<<"Darkmode";
+   }
+   if(modename=="Világos mód" || modename=="Lightmode"){
+       ui->grafika->setProperty("col", "#d4d4d4");
+       qDebug()<<"Lightmode";
+   }
 
     saveUserdat();
 }

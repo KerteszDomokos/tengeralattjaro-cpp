@@ -65,6 +65,8 @@ private:
     QList<bool> bdats;
 
     Lejatszas *lejatszas;
+    bool play=0;
+    bool playopen=0;
 
 
 

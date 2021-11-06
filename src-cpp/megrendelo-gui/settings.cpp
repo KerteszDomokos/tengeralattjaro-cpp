@@ -77,7 +77,7 @@ void settings::chooseMentes()
     QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
     foreach(QString filename, files) {
         fn.append(filename);
-        }
+    }
     for (int i=0; i<fn.length();i++){
         QString del = fn[i].replace(0,16,"").replace(2,3,"");
         for (int da=0; da<100;da++){

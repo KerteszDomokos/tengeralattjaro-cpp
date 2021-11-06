@@ -97,7 +97,12 @@ GUI::~GUI()
 
 void GUI::upd()
 {
+
     if(olvasottNat!=""){ olvasottList=conv(olvasottNat);}
+    if(play==1){
+        lejatszas->updateNow();
+        olvasottList=conv(lejatszas->getNowOlvasott());
+    }
 
     double bmot=0;
     double jmot=0;
@@ -111,16 +116,16 @@ void GUI::upd()
     UID++;
     ui->uid->setText(QString::number(UID));
 
-    if(ido.length()<100){
+    if(ido.length()<101){
         ido.append(UID);//másodperc
     }
-    if(motatlag.length()<100){
+    if(motatlag.length()<101){
         motatlag.append((bmot+jmot)/2);//átlag
     }else{
-        for (int i=0;i<99;i++){
+        for (int i=0;i<100;i++){
             motatlag[i]=motatlag[i+1];
         }
-        motatlag[99]=(bmot+jmot)/2;
+        motatlag[100]=(bmot+jmot)/2;
     }
 
 }
@@ -146,7 +151,9 @@ void GUI::loadGraf()
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->createDefaultAxes();
-    chart->setTitle(ui->grafikonXteng->currentText()+" - "+ui->grafikonYtengely->currentText()+tr(" grafikon"));
+    if(ui->grafikonXteng->currentText()!="none" && ui->grafikonYtengely->currentText()!="none"){
+        chart->setTitle(ui->grafikonXteng->currentText()+" - "+ui->grafikonYtengely->currentText()+tr(" grafikon"));
+    }
 
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignCenter);
@@ -237,16 +244,22 @@ void GUI::notapplyUserdat()
 
 void GUI::openLejatszas()
 {
-    lejatszas->show();
-    connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
-    connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
+    if(playopen==0){
+        lejatszas->show();
+        connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
+        connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
+        playopen=1;
+    }else{
+        lejatszas->activateWindow();
+    }
 }
 void GUI::goPlay(){
-
+    play=1;
 }
 
 void GUI::stopPlay(){
-
+    play=0;
+    playopen=0;
 }
 
 

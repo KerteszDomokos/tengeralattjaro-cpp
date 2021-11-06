@@ -632,7 +632,7 @@ QLineEdit{font-size:14px;}</string>
     <property name="title">
      <string>Rögzítés</string>
     </property>
-    <addaction name="actionLej_tsz_s"/>
+    <addaction name="lejatszas"/>
     <addaction name="separator"/>
     <addaction name="play"/>
    </widget>
@@ -674,9 +674,12 @@ QLineEdit{font-size:14px;}</string>
     <string>Fordítás</string>
    </property>
   </action>
-  <action name="actionLej_tsz_s">
+  <action name="lejatszas">
    <property name="text">
     <string>Lejátszás</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
    </property>
   </action>
   <action name="play">
@@ -793,11 +796,28 @@ QLineEdit{font-size:14px;}</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>lejatszas</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>openLejatszas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>forditas()</slot>
   <slot>open_beallitasok()</slot>
   <slot>kommentMost()</slot>
   <slot>loadGraf()</slot>
+  <slot>openLejatszas()</slot>
  </slots>
 </ui>

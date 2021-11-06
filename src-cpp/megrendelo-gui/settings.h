@@ -30,6 +30,7 @@ public:
     QString getIp() const;
     QString getModename() const;
     QString getCurrtem() const;
+    QString getMentespath() const;
 
 private slots:
     void hatfoly();
@@ -45,6 +46,8 @@ private slots:
     void ipedit();
     void getUserdat();
     void applySets();
+    void chooseMentes();
+    void generatePath(int id);
 
 
 
@@ -61,6 +64,8 @@ private:
     QSettings *sets;
     QString ip;
     QList<bool> bdats;
+    QString mentespath;
+    int rid;
 
 
 };

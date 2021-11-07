@@ -45,6 +45,7 @@ void SockRead::resetSettings()
 
 void SockRead::applySettings(QString ip)
 {
+    vevoIP=ip;
     delete socket;
 
     socket = new QUdpSocket(this);

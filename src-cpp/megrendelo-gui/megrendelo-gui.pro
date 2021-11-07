@@ -53,3 +53,6 @@ DISTFILES += \
 
 RESOURCES += \
     resource.qrc
+
+
+win32: RC_ICONS = resources/program-icon.ico

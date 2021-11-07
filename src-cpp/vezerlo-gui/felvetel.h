@@ -30,6 +30,7 @@ public:
     QString getFullPath() const;
     int getMaxdat() const;
     void setMaxdat(int value);
+    void valaszt();
 
 signals:
     void recStart();

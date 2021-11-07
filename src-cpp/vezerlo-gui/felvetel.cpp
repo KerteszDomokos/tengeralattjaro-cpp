@@ -26,29 +26,7 @@ void Felvetel::chooseFile()
 {
     message("Fájl választása",1);
     fileName = QFileDialog::getExistingDirectory(this,tr("Felvétel megnyitása"), fileName);
-    ui->filenametxt->setText(fileName);
-    int runID=0;
-    QList<QString> fn;
-    QDir d(fileName);
-    QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
-    foreach(QString filename, files) {
-        ui->fajlok->setText(ui->fajlok->toPlainText()+filename+"\n");
-        fn.append(filename);
-        }
-    for (int i=0; i<fn.length();i++){
-        QString del = fn[i].replace(0,16,"").replace(2,3,"");
-        for (int da=0; da<100;da++){
-            QString c;
-            if(da<10){c="0";}
-            c=c+QString::number(da);
-            if(del==c){
-                runID=da+1;
-            }
-        }
-    }
-rid=runID;
-generateFilename(runID);
-
+    valaszt();
 }
 
 
@@ -110,6 +88,33 @@ void Felvetel::generateFilename(int id)
         ui->sorszam->setStyleSheet("");
     }
     fullPath=fileName+nam;
+}
+
+void Felvetel::valaszt()
+{
+    ui->filenametxt->setText(fileName);
+    int runID=0;
+    QList<QString> fn;
+    QDir d(fileName);
+    QStringList files=d.entryList(QStringList()<<"*.al"<<"*.AL",QDir::Files);
+    foreach(QString filename, files) {
+        ui->fajlok->setText(ui->fajlok->toPlainText()+filename+"\n");
+        fn.append(filename);
+        }
+    for (int i=0; i<fn.length();i++){
+        QString del = fn[i].replace(0,16,"").replace(2,3,"");
+        for (int da=0; da<100;da++){
+            QString c;
+            if(da<10){c="0";}
+            c=c+QString::number(da);
+            if(del==c){
+                runID=da+1;
+            }
+        }
+    }
+rid=runID;
+generateFilename(runID);
+
 }
 
 void Felvetel::setMaxdat(int value)

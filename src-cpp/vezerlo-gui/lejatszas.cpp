@@ -17,6 +17,7 @@ Lejatszas::Lejatszas(QWidget *parent) :
 
     timer = new QTimer(this);//időzítők
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&Lejatszas::next_steps));
+    ui->filenametxt->setText(fileName);
 }
 
 Lejatszas::~Lejatszas()
@@ -202,6 +203,11 @@ QString Lejatszas::getFileName() const
 void Lejatszas::setFileName(const QString &value)
 {
     fileName = value;
+}
+
+void Lejatszas::valaszt()
+{
+    ui->filenametxt->setText(fileName);
 }
 
 QString Lejatszas::getNowJoystick() const

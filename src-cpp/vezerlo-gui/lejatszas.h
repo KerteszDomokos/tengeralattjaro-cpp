@@ -35,6 +35,7 @@ public:
     void setDats(QString style);
     QString getFileName() const;
     void setFileName(const QString &value);
+    void valaszt(); //előző beállított fájl kiírása és azonnali betölthetősége
 
 signals:
     void play();

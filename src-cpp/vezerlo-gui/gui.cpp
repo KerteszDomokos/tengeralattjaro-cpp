@@ -709,6 +709,7 @@ void GUI::mentesDialog()
         widget->setDats(st);
         widget->setMaxdat(mentmax);
         widget->setFileName(felvPathGyok);
+        widget->valaszt();
         connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
         connect(widget,SIGNAL(recStart()),this,SLOT(startRec()));
         connect(widget,SIGNAL(rejected()),this,SLOT(stopFelvetel()));
@@ -751,6 +752,7 @@ void GUI::lejatszasOpen()
         lejatszas->show();
         lejatszas->setStyleSheet(st);
         lejatszas->setFileName(playpath);
+        lejatszas->valaszt();
         connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
         connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
         connect(lejatszas,SIGNAL(message(QString, int)),this,SLOT(msg(QString, int)));

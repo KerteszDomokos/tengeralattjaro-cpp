@@ -17,3 +17,9 @@ src-cpp/build-vezerlo-gui-Debug-32/
 src-cpp/build-vezerlo-gui-Release/
 
 src-cpp/build-megrendeloi-gui_x64MinGW/
+
+src-cpp/installer/packages/
+
+*.exe
+
+*.dll

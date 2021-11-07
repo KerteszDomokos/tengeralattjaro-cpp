@@ -110,11 +110,30 @@ void Felvetel::generateFilename(int id)
     fullPath=fileName+nam;
 }
 
+void Felvetel::setMaxdat(int value)
+{
+    maxdat = value;
+    ui->ujfile->setValue(maxdat);
+}
+
+int Felvetel::getMaxdat() const
+{
+    return maxdat;
+}
+void Felvetel::mods()
+{
+    maxdat=ui->ujfile->value();
+}
 
 
 bool Felvetel::getDefPathIN() const
 {
     return defPathIN;
+}
+
+void Felvetel::setDats(QString style)
+{
+    this->setStyleSheet(style);
 }
 
 bool Felvetel::getKepIN() const

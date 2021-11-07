@@ -32,6 +32,7 @@ public:
     QString getNowOlvasott() const;
     QString getNowJoystick() const;
     void updateNow();
+    void setDats(QString style);
 
 
 signals:

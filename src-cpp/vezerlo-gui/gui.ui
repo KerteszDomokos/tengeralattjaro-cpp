@@ -2907,7 +2907,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <property name="geometry">
         <rect>
-         <x>-9</x>
+         <x>0</x>
          <y>0</y>
          <width>763</width>
          <height>384</height>
@@ -3670,7 +3670,7 @@ p, li { white-space: pre-wrap; }
          <x>5</x>
          <y>20</y>
          <width>600</width>
-         <height>302</height>
+         <height>300</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -5402,7 +5402,7 @@ p, li { white-space: pre-wrap; }
    <sender>rogzites_check</sender>
    <signal>triggered()</signal>
    <receiver>GUI</receiver>
-   <slot>mentes()</slot>
+   <slot>mentesGo()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -5521,11 +5521,12 @@ p, li { white-space: pre-wrap; }
   <slot>ballasztJobbk()</slot>
   <slot>set_darkmode()</slot>
   <slot>set_lightmode()</slot>
-  <slot>mentes()</slot>
+  <slot>mentes(int)</slot>
   <slot>mentesDialog()</slot>
   <slot>lejatszasOpen()</slot>
   <slot>open_settings()</slot>
   <slot>ballasztPluszegy()</slot>
   <slot>ballasztMinuszegy()</slot>
+  <slot>mentesGo()</slot>
  </slots>
 </ui>

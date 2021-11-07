@@ -174,6 +174,11 @@ void Lejatszas::updateNow()
     }
 }
 
+void Lejatszas::setDats(QString style)
+{
+    this->setStyleSheet(style);
+}
+
 void Lejatszas::slidMove()
 {
     long pos=ui->idovonal->value();

@@ -571,11 +571,44 @@ color:black;
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>gyakorisag</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Felvetel</receiver>
+   <slot>mod()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>491</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>616</x>
+     <y>135</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ujfile</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>Felvetel</receiver>
+   <slot>mods()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>479</x>
+     <y>74</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>608</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>chooseFile()</slot>
   <slot>filenameUpdate()</slot>
   <slot>acceptRec()</slot>
   <slot>elvet()</slot>
+  <slot>mods()</slot>
  </slots>
 </ui>

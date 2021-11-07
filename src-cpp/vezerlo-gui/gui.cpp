@@ -47,6 +47,7 @@
 
 SockRead sock;
 
+int test=0;
 
 QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
@@ -128,12 +129,12 @@ GUI::GUI(QWidget *parent)
     ui->compass->setSource(QUrl(QStringLiteral("qrc:/qml-files/compass")));
     ui->radarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/radar")));
     ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
+    if(test==1){
 
-
-    QPixmap pm = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
-    ui->ad->setPixmap(pm);
-    ui->ad->setScaledContents(false);
-
+        QPixmap pm = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
+        ui->ad->setPixmap(pm);
+        ui->ad->setScaledContents(false);
+    }
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
@@ -206,6 +207,7 @@ GUI::~GUI()
 
 void GUI::fps()
 {
+    if(test==1){
     QPixmap pm2 = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
     if (pm2.isNull()!=1){//ha a kép létezik:
         QImage img = pm2.toImage();//érvényes kép
@@ -228,6 +230,7 @@ void GUI::fps()
         msg("Kép betöltés sikertelen",2);
     }
     //Külső folyamatok sikerességére vonatkozó adatok
+    }
     int pid=pr->processId();
     ui->joyPID->setText(QString::number(pid));
 

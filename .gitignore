@@ -23,3 +23,5 @@ src-cpp/installer/packages/
 *.exe
 
 *.dll
+
+src-cpp/installer/def dll-s/

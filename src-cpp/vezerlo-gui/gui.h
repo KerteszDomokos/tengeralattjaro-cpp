@@ -60,7 +60,8 @@ private slots:
     void ballasztJobbmax();
     void set_darkmode();
     void set_lightmode();
-    void mentes();
+    void mentes(int id);
+    void mentesGo();
     void mentesDialog();
     void felvAccept();
     void lejatszasOpen();
@@ -111,6 +112,7 @@ private:
     int kepHiba;
     bool mentes_onoff=0;
     ulong mentid=0;
+    int mentmax=500;//maximum rekord egy mentésben
     QDomDocument *ment_doc;
     QTextStream *xmlContent;
     QFile *xmlFile;
@@ -142,6 +144,7 @@ private:
     bool joyena=0,kepena=0,komena=0;
     std::thread *kommpointer;//a kommunikáció thread objektum pointere. konstruktorban értékadás
     QList<double> ugyfelFriss;
+    QString st;
 
 
 

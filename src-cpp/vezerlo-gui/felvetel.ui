@@ -208,7 +208,7 @@
      <number>500</number>
     </property>
     <property name="maximum">
-     <number>20000</number>
+     <number>29000</number>
     </property>
     <property name="singleStep">
      <number>100</number>
@@ -269,7 +269,7 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>20000</number>
+     <number>5000</number>
     </property>
     <property name="maximum">
      <number>30000</number>
@@ -278,7 +278,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20000</number>
+     <number>10000</number>
     </property>
     <property name="displayIntegerBase">
      <number>10</number>
@@ -575,7 +575,7 @@ color:black;
    <sender>gyakorisag</sender>
    <signal>valueChanged(int)</signal>
    <receiver>Felvetel</receiver>
-   <slot>mod()</slot>
+   <slot>mods()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>491</x>
@@ -600,6 +600,22 @@ color:black;
     <hint type="destinationlabel">
      <x>608</x>
      <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ujfile</sender>
+   <signal>editingFinished()</signal>
+   <receiver>Felvetel</receiver>
+   <slot>mods()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>462</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>612</x>
+     <y>40</y>
     </hint>
    </hints>
   </connection>

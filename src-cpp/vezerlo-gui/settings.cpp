@@ -150,6 +150,11 @@ void settings::readfile(QString f)
     chstyle=ss;
 }
 
+int settings::getMaxxsave() const
+{
+    return maxxsave;
+}
+
 QString settings::getFileName() const
 {
     return fileName;

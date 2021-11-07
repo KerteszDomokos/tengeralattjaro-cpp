@@ -34,8 +34,6 @@ public:
 signals:
     void recStart();
     void message(QString, int);
-    void mods();
-
 private slots:
     void chooseFile();
     void apply();
@@ -43,6 +41,8 @@ private slots:
     void ok();
     void filenameUpdate();
     void acceptRec();
+    void mods();
+
 
 
 private:

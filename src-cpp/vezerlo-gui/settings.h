@@ -30,6 +30,7 @@ public:
     bool getOthtem() const;
     QString getFileName() const;
     bool getUgyfelelerheto() const;
+    int getMaxxsave() const;
 
 private slots:
     void chooseFile(); // témafájl választás
@@ -50,7 +51,7 @@ private:
     QString chstyle;//Az új téme teljes beolvasott szövege (lásd: getter)
     bool balman,balereszt,robotkarena,cmdav,pontonav; //a settings beavatkozási lehetőségek lekérhető változói
     bool frissonoff,joyena,kepena,komena,othtem; //a settings háttérfolyamatok beállításának lekérhető változói
-    int uptime;//updatetime
+    int uptime,maxxsave;//updatetime
     void getUserdat();
     bool ugyfelelerheto;
 

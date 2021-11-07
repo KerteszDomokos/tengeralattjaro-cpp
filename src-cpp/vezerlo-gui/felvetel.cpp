@@ -84,6 +84,8 @@ void Felvetel::filenameUpdate()
 
 void Felvetel::acceptRec()
 {
+    mods();
+    qDebug()<<maxdat;
     recStart();
     accept();
 }
@@ -120,11 +122,6 @@ int Felvetel::getMaxdat() const
 {
     return maxdat;
 }
-void Felvetel::mods()
-{
-    maxdat=ui->ujfile->value();
-}
-
 
 bool Felvetel::getDefPathIN() const
 {
@@ -134,6 +131,10 @@ bool Felvetel::getDefPathIN() const
 void Felvetel::setDats(QString style)
 {
     this->setStyleSheet(style);
+}
+
+void Felvetel::mods(){
+    maxdat=ui->ujfile->value();
 }
 
 bool Felvetel::getKepIN() const

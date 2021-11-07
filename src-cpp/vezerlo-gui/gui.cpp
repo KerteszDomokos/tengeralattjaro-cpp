@@ -115,6 +115,8 @@ GUI::GUI(QWidget *parent)
 
     sets = new QSettings("Aqualab vezérlő", "AquaLab");
     qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
+    widget = new Felvetel;
+    lejatszas=new Lejatszas;
     getUserdat();
 
     ui->cmdDock->setHidden(1);
@@ -175,8 +177,7 @@ GUI::GUI(QWidget *parent)
             this, &GUI::serkom);
 
     ballaszt_manualis_click();
-    widget = new Felvetel;
-    lejatszas=new Lejatszas;
+
 
     ballaszt_erzekenyseg();
 
@@ -197,19 +198,7 @@ GUI::~GUI()
     if(mentes_onoff==1){
         mentes_onoff=0;
         mentid=0;
-        xmlFile=new QFile ("../mentett.xml");
-        if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
-           {
-               msg("Sikertelen fájl nyitás",2);
-               qDebug()<<"Hibás fájlnyitás";
-               xmlFile->close();
-           }
-        else{
-            xmlContent= new QTextStream(xmlFile);
-            QTextStream stream(xmlFile);
-            stream << ment_doc->toString();
-        }
-
+        mentes(2);
     }
 
 }
@@ -621,24 +610,39 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     ui->nyersIrando->setText(string);
 
     if (mentes_onoff==1){
-        QDomElement l = ment_doc->createElement("Event");
-        l.setAttribute("id",QString::number(mentid));
+        if(int(mentid)==mentmax-150){
+            msg("Hamarosan új fájl kezdés. Eddigi rekordok: "+QString::number(mentid),1);
+        }
+        if(int(mentid)>mentmax){
+            mentes(2);
+            mentes(3);
+            msg("Új fájl kezdése automatikusan",1);
+        }else{
+            QDomElement l = ment_doc->createElement("Event");
+            l.setAttribute("id",QString::number(mentid));
 
-        l.setAttribute("joystick",listToStr(joystickAdatok));
-        l.setAttribute("olvasott",listToStr(olvasott));
-        l.setAttribute("kuldendo",listToStr(idl));
+            l.setAttribute("joystick",listToStr(joystickAdatok));
+            l.setAttribute("olvasott",listToStr(olvasott));
+            l.setAttribute("kuldendo",listToStr(idl));
 
-        root_xml->appendChild(l);
-        mentid++;
-
+            root_xml->appendChild(l);
+            mentid++;
+        }
     }
 
 }
-void GUI::mentes()
+void GUI::mentes(int id=0)
 {
 
+    if(id==2){
+        ui->rogzites_check->setChecked(0);
+    }
+    if(id==3){
+        ui->rogzites_check->setChecked(1);
+    }
+
     if(ui->rogzites_check->isChecked()==1){
-        msg("Mentés kezdése",1);
+        msg("Mentés kezdése, max rekordszám: "+QString::number(mentmax),1);
         ment_doc=new QDomDocument;
         //make the root element
         root_xml = new QDomElement(ment_doc->createElement("Merules"));
@@ -692,10 +696,18 @@ void GUI::mentes()
     }
 }
 
+void GUI::mentesGo()
+{
+    mentes(0);
+}
+
+
 void GUI::mentesDialog()
 {
     if(felvetelOpened==0){
         widget->open();
+        widget->setDats(st);
+        widget->setMaxdat(mentmax);
         connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
         connect(widget,SIGNAL(recStart()),this,SLOT(startRec()));
         connect(widget,SIGNAL(rejected()),this,SLOT(stopFelvetel()));
@@ -712,10 +724,13 @@ void GUI::startRec()
 {
     felvAccept();
     ui->rogzites_check->setChecked(1);
+    mentmax=widget->getMaxdat();
+    mentes();
 }
 
 void GUI::felvAccept()
 {
+    mentmax=widget->getMaxdat();
     joyIN = widget->getJoyIN();
     konzIN = widget->getKonzIN();
     olvIN = widget->getOlvIN();
@@ -724,13 +739,13 @@ void GUI::felvAccept()
     kepIN = widget->getKepIN();
     felvPath = widget->getFullPath();
     felvPathGyok=widget->getFileName();
-    delete widget;
 }
 
 void GUI::lejatszasOpen()
 {
     if(lejatszasOpened==0){
         lejatszas->show();
+        lejatszas->setStyleSheet(st);
         connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
         connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
         connect(lejatszas,SIGNAL(message(QString, int)),this,SLOT(msg(QString, int)));
@@ -778,6 +793,7 @@ void GUI::open_settings()
 void GUI::applySettings()
 {
     this->setStyleSheet(set->getChstyle());
+    qApp->setStyleSheet(set->getChstyle());
 
     cmdavailable=set->getCmdav(); ui->acCmdOpen->setEnabled(cmdavailable);
     joyena=set->getJoyena();commands("stopJoy");ui->startJoyb->setEnabled(joyena);
@@ -791,6 +807,7 @@ void GUI::applySettings()
     updateonoff(set->getUptime());
     megrendeloAv=set->getUgyfelelerheto();
     ukAv_mutex.lock(); ukAv=megrendeloAv; ukAv_mutex.unlock(); //szállal közlés, hogy a kommunikáció megkezdődött
+    st=set->getChstyle();
 
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
@@ -857,6 +874,7 @@ void GUI::saveUserdat()
     sets->setValue("Masiktema",set->getOthtem());
     sets->setValue("Custompath",set->getFileName());
     sets->setValue("megrav",megrendeloAv);
+    sets->setValue("Maxment",mentmax);
 }
 
 void GUI::getUserdat()
@@ -868,6 +886,8 @@ void GUI::getUserdat()
     ukAv_mutex.lock();
     ukAv=sets->value("megrav").toBool();
     ukAv_mutex.unlock();
+    st=sets->value("Tema").toString();
+    mentmax=sets->value("Maxment").toInt();
 }
 
 

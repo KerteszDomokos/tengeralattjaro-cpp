@@ -194,6 +194,16 @@ void Lejatszas::next_steps()
     ui->idovonal->setValue(ui->idovonal->value()+1);
 }
 
+QString Lejatszas::getFileName() const
+{
+    return fileName;
+}
+
+void Lejatszas::setFileName(const QString &value)
+{
+    fileName = value;
+}
+
 QString Lejatszas::getNowJoystick() const
 {
     return nowJoystick;

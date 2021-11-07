@@ -33,7 +33,8 @@ public:
     QString getNowJoystick() const;
     void updateNow();
     void setDats(QString style);
-
+    QString getFileName() const;
+    void setFileName(const QString &value);
 
 signals:
     void play();

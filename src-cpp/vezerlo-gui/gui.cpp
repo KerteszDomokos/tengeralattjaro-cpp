@@ -708,6 +708,7 @@ void GUI::mentesDialog()
         widget->open();
         widget->setDats(st);
         widget->setMaxdat(mentmax);
+        widget->setFileName(felvPathGyok);
         connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
         connect(widget,SIGNAL(recStart()),this,SLOT(startRec()));
         connect(widget,SIGNAL(rejected()),this,SLOT(stopFelvetel()));
@@ -739,6 +740,9 @@ void GUI::felvAccept()
     kepIN = widget->getKepIN();
     felvPath = widget->getFullPath();
     felvPathGyok=widget->getFileName();
+    sets->setValue("Maxment",mentmax);
+    sets->setValue("FelvPath",felvPathGyok);
+    sets->setValue("PlayPath",playpath);
 }
 
 void GUI::lejatszasOpen()
@@ -746,6 +750,7 @@ void GUI::lejatszasOpen()
     if(lejatszasOpened==0){
         lejatszas->show();
         lejatszas->setStyleSheet(st);
+        lejatszas->setFileName(playpath);
         connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
         connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
         connect(lejatszas,SIGNAL(message(QString, int)),this,SLOT(msg(QString, int)));
@@ -765,6 +770,10 @@ void GUI::goPlay()
     joydat_play=lejatszas->getJoy();
     guiupdate_play=lejatszas->getGuiUpdate();
     msg("Lejátszandó fájl sikeresen betöltve",1);
+    playpath=lejatszas->getFileName();
+    sets->setValue("Maxment",mentmax);
+    sets->setValue("FelvPath",felvPathGyok);
+    sets->setValue("PlayPath",playpath);
 }
 
 void GUI::stopPlay()
@@ -808,6 +817,7 @@ void GUI::applySettings()
     megrendeloAv=set->getUgyfelelerheto();
     ukAv_mutex.lock(); ukAv=megrendeloAv; ukAv_mutex.unlock(); //szállal közlés, hogy a kommunikáció megkezdődött
     st=set->getChstyle();
+
 
     ui->ballaszt_manualis->setEnabled(set->getBalman());
     qDebug()<<"Accepted settings: "<<1;
@@ -875,6 +885,8 @@ void GUI::saveUserdat()
     sets->setValue("Custompath",set->getFileName());
     sets->setValue("megrav",megrendeloAv);
     sets->setValue("Maxment",mentmax);
+    sets->setValue("FelvPath",felvPathGyok);
+    sets->setValue("PlayPath",playpath);
 }
 
 void GUI::getUserdat()
@@ -888,6 +900,8 @@ void GUI::getUserdat()
     ukAv_mutex.unlock();
     st=sets->value("Tema").toString();
     mentmax=sets->value("Maxment").toInt();
+    felvPathGyok=sets->value("FelvPath").toString();
+    playpath=sets->value("PlayPath").toString();
 }
 
 

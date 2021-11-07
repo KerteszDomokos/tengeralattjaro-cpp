@@ -145,6 +145,7 @@ private:
     std::thread *kommpointer;//a kommunikáció thread objektum pointere. konstruktorban értékadás
     QList<double> ugyfelFriss;
     QString st;
+    QString playpath;
 
 
 

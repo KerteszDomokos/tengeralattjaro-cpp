@@ -12,11 +12,6 @@
 <context>
     <name>GUI</name>
     <message>
-        <location filename="gui.ui" line="14"/>
-        <source>GUI</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="gui.ui" line="60"/>
         <source>Élő kép helye</source>
         <comment>miez?</comment>
@@ -103,9 +98,14 @@
         <translation>Recorder settings</translation>
     </message>
     <message>
+        <location filename="gui.ui" line="605"/>
+        <source>none</source>
+        <translation>none</translation>
+    </message>
+    <message>
         <location filename="gui.ui" line="742"/>
         <source>Alt+S</source>
-        <translation></translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <location filename="gui.ui" line="752"/>
@@ -115,7 +115,7 @@
     <message>
         <location filename="gui.ui" line="755"/>
         <source>P</source>
-        <translation></translation>
+        <translation>P</translation>
     </message>
     <message>
         <source>Alapértelmezett mappa</source>
@@ -156,11 +156,6 @@
         <location filename="gui.ui" line="412"/>
         <source>Most</source>
         <translation>Now</translation>
-    </message>
-    <message>
-        <location filename="gui.ui" line="605"/>
-        <source>none</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="gui.ui" line="459"/>
@@ -229,6 +224,11 @@
         <location filename="gui.ui" line="63"/>
         <source>Kép</source>
         <translation>Image</translation>
+    </message>
+    <message>
+        <location filename="gui.ui" line="14"/>
+        <source>GUI</source>
+        <translation>GUI</translation>
     </message>
     <message>
         <location filename="gui.ui" line="376"/>
@@ -545,7 +545,7 @@
         <location filename="settings.ui" line="334"/>
         <location filename="settings.ui" line="356"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A beállítás egyenlőre nem elérhető.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This settings isn&apos;t available.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="settings.ui" line="315"/>
@@ -632,27 +632,27 @@
     <message>
         <location filename="settings.ui" line="548"/>
         <source>Button</source>
-        <translation></translation>
+        <translation>Button</translation>
     </message>
     <message>
         <location filename="settings.ui" line="561"/>
         <source>CheckBox</source>
-        <translation></translation>
+        <translation>CheckBox</translation>
     </message>
     <message>
         <location filename="settings.ui" line="575"/>
         <source>New Row</source>
-        <translation></translation>
+        <translation>nr</translation>
     </message>
     <message>
         <location filename="settings.ui" line="585"/>
         <source>New Column</source>
-        <translation></translation>
+        <translation>nc</translation>
     </message>
     <message>
         <location filename="settings.ui" line="609"/>
         <source>Label</source>
-        <translation></translation>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="settings.ui" line="623"/>
@@ -678,6 +678,10 @@ p, li { white-space: pre-wrap; }
         <translation>Cancel</translation>
     </message>
     <message>
+        <source> grafikon</source>
+        <translation type="vanished"> graph</translation>
+    </message>
+    <message>
         <location filename="settings.ui" line="667"/>
         <source>Kommunikációs beállítások</source>
         <translation>Communicaton settings</translation>
@@ -695,7 +699,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="settings.ui" line="706"/>
         <source>127.0.0.1</source>
-        <translation></translation>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="settings.ui" line="720"/>

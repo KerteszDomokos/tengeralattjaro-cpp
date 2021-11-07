@@ -130,7 +130,7 @@ void settings::resetUpt()
 void settings::nyelvvalaszto()
 {
     language=ui->nyelvvalaszto->currentText();
-    ford();
+    forditas(language);
 }
 
 void settings::grafset()

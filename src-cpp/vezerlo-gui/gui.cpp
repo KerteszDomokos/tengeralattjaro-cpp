@@ -186,7 +186,7 @@ GUI::GUI(QWidget *parent)
 
     ballaszt_erzekenyseg();
 
-    p="D:/MerulesDat/"+QDate::currentDate().QDate::toString("yy-MM-dd-")+QTime::currentTime().toString("hh-mm-ss");
+    p="F:/Merulesek/"+QDate::currentDate().QDate::toString("yy-MM-dd-")+QTime::currentTime().toString("hh-mm-ss");
     QDir().mkdir(p);
 
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");

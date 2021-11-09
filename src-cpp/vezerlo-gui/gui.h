@@ -146,6 +146,8 @@ private:
     QList<double> ugyfelFriss;
     QString st;
     QString playpath;
+    long fpsID=0;
+    QString p;
 
 
 

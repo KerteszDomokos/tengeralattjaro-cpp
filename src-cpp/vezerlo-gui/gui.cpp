@@ -47,7 +47,9 @@
 
 SockRead sock;
 
-int test=0;
+
+
+int test=1;
 
 QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
@@ -103,7 +105,9 @@ void read(){
 
 }
 
-
+void kepment(QPixmap img,QString path){
+    img.save(path,"jpg");
+}
 
 GUI::GUI(QWidget *parent)
     : QMainWindow(parent)
@@ -182,6 +186,9 @@ GUI::GUI(QWidget *parent)
 
     ballaszt_erzekenyseg();
 
+    p="D:/MerulesDat/"+QDate::currentDate().QDate::toString("yy-MM-dd-")+QTime::currentTime().toString("hh-mm-ss");
+    QDir().mkdir(p);
+
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
 }
@@ -223,6 +230,11 @@ void GUI::fps()
                 kepHiba=0;
                 ui->ad->setPixmap(pm2);
                 ui->ad->setScaledContents(false);
+                if(fpsID%5==0 && ui->kepment->isChecked()==1){
+                    QString pt=p+"/"+"img"+QString::number(updateID)+".jpg";
+                    std::thread save(kepment,pm2,pt);
+                    save.detach();
+                }
             }
         }
     else{
@@ -244,7 +256,7 @@ void GUI::fps()
 
     ui->ballaszt_balval->setText(QString::number(ui->ballaszt_baltart->value()));
     ui->ballaszt_jobbval->setText(QString::number(ui->ballaszt_jobbtart->value()));
-
+fpsID++;
 }
 
 
@@ -354,9 +366,9 @@ ui->foadatok_3->setItem(0,2, i = new QTableWidgetItem(QString::number(olvasott[8
 ui->foadatok_3->setItem(0,3, i = new QTableWidgetItem(QString::number(olvasott[1])));//belső víz
     if(olvasott[1]> 20){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_3->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[21+4])));//rpi proc
-    if(olvasott[21]> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+    if(olvasott[21+4]> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_3->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[20+4])));// serbuff fedélzet
-    if(olvasott[20]> 1000){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+    if(olvasott[20+4]> 1000){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,0, i = new QTableWidgetItem(QString::number(olvasott[11])));//5vakk1 raspi akku
     if(olvasott[11]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,1, i = new QTableWidgetItem(QString::number(olvasott[13])));//12vakku1 motor
@@ -1240,8 +1252,8 @@ void GUI::ballaszt_erzekenyseg()
 //    ui->ballaszt_baltart->setValue(erz*(valeb/val));
 //    ui->ballaszt_jobbtart->setValue(erz*(valej/val2));
 
-    ui->ballaszt_baltart->setMinimum(-50);
-    ui->ballaszt_baltart->setMaximum(50);
+    ui->ballaszt_baltart->setMinimum(-150);
+    ui->ballaszt_baltart->setMaximum(150);
     ui->ballaszt_baltart->setValue(0);
 
 }

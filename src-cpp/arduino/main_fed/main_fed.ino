@@ -11,7 +11,7 @@
 //pinek és konstansok definiálása
 #define krittav 60 //cm
 #define motorNull 1490
-#define WSens 15
+#define WSens 8
 #define trig 30
 #define echo 31
 #define RAD_trig 35

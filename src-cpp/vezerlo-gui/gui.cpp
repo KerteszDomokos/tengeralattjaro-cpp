@@ -644,6 +644,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
             mentid++;
         }
     }
+    ui->mentesid->setText(QString::number(mentid));
 
 }
 void GUI::mentes(int id=0)

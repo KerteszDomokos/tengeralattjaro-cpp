@@ -3170,7 +3170,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-20</y>
+          <y>0</y>
           <width>575</width>
           <height>344</height>
          </rect>
@@ -4308,7 +4308,7 @@ background-color: rgb(170, 0, 0);
     <property name="title">
      <string>Segítség</string>
     </property>
-    <addaction name="actionS_g"/>
+    <addaction name="sugo"/>
    </widget>
    <addaction name="menuFajl"/>
    <addaction name="menuOpciok"/>
@@ -4905,7 +4905,7 @@ background-color: rgb(170, 0, 0);
     <string>Alt+S</string>
    </property>
   </action>
-  <action name="actionS_g">
+  <action name="sugo">
    <property name="text">
     <string>Súgó</string>
    </property>
@@ -5098,8 +5098,8 @@ background-color: rgb(170, 0, 0);
    <slot>stK()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>758</x>
-     <y>580</y>
+     <x>761</x>
+     <y>628</y>
     </hint>
     <hint type="destinationlabel">
      <x>813</x>
@@ -5114,8 +5114,8 @@ background-color: rgb(170, 0, 0);
    <slot>stJ()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>759</x>
-     <y>630</y>
+     <x>761</x>
+     <y>678</y>
     </hint>
     <hint type="destinationlabel">
      <x>804</x>
@@ -5131,7 +5131,7 @@ background-color: rgb(170, 0, 0);
    <hints>
     <hint type="sourcelabel">
      <x>923</x>
-     <y>611</y>
+     <y>635</y>
     </hint>
     <hint type="destinationlabel">
      <x>818</x>
@@ -5147,7 +5147,7 @@ background-color: rgb(170, 0, 0);
    <hints>
     <hint type="sourcelabel">
      <x>1033</x>
-     <y>617</y>
+     <y>641</y>
     </hint>
     <hint type="destinationlabel">
      <x>814</x>
@@ -5555,6 +5555,22 @@ background-color: rgb(170, 0, 0);
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>sugo</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>openDocumentation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1192</x>
+     <y>535</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>closeCmd()</slot>
@@ -5589,5 +5605,6 @@ background-color: rgb(170, 0, 0);
   <slot>ballasztPluszegy()</slot>
   <slot>ballasztMinuszegy()</slot>
   <slot>mentesGo()</slot>
+  <slot>openDocumentation()</slot>
  </slots>
 </ui>

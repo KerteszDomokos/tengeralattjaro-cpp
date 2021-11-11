@@ -36,4 +36,8 @@
         <file alias="play">resources/play.ico</file>
         <file alias="pause">resources/pause.ico</file>
     </qresource>
+    <qresource prefix="/dok">
+        <file>documentation/dokumentacio.md</file>
+        <file>documentation/dokumentacio.html</file>
+    </qresource>
 </RCC>

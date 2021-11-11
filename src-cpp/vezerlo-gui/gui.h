@@ -78,6 +78,7 @@ private slots:
     void notapplySettings();
     void updateonoff(int upt=20);
     void stopKommunikacio(bool onoff);
+    void openDocumentation();
 
 
 

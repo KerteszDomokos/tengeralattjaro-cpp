@@ -43,6 +43,7 @@
 #include <QVariant>
 #include <QMetaType>
 #include <QTextStream>
+#include <QDesktopServices>
 
 
 SockRead sock;
@@ -891,6 +892,11 @@ void GUI::stopKommunikacio(bool onoff)
             kommpointer->detach();
         }
     }
+}
+
+void GUI::openDocumentation()
+{
+    QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokumentacio.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
 }
 
 void GUI::saveUserdat()

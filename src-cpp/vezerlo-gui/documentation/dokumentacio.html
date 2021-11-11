@@ -1,0 +1,154 @@
+<style>
+    body {
+        color: #ffe6a1;
+        background-color:#1a1918;
+        font-size: 18px;
+        line-height: 26px; /* 4px +12px + 4px */
+        width: 80%;
+        margin:0 auto;
+    }    
+    h1{
+        text-align: center;
+        line-height: 70px;
+    }
+</style>
+
+
+<h1 id="robot-tengeralattj-r-vez-rl-fel-let-dokument-ci-">Robot tengeralattjáró vezérlőfelület dokumentáció</h1>
+<p>A grafikus felületet az 1920 x 1080 pixeles monitorokra készült, így más méreteken a legnagyobb figyelem ellenére előfordulhat, hogy az egyes elemek egymásra csúsznak.
+<br>
+<br></p>
+<h2 id="telep-t-s">Telepítés</h2>
+<p><strong>A telepítő futtatásához szükséges lehet a windows defender felugró figyelmezető ablakát bezárni. A programban nincsenek rosszindulatú kódok.</strong>
+A telepítéshez kövesse a telepítő utasításait! A rendszer telepítője létrehoz asztai ikont, és a start menüből is elérhetővé válik a program.<br>Amennyiben szeretné eltávolítani, úgy törölheti a telepítési mappát, vagy futtathatja a windows eltávolító eszközét. </p>
+<h2 id="kompatibilit-s">Kompatibilitás</h2>
+<p>A programok az alábbi rendszereken kerültek tesztelésre:</p>
+<ul>
+<li>Windows 10 Pro (10.0.19042.1288)</li>
+<li>Windows 10 Home  <br>
+<em>Az összes számítógép x64-es architektúrájú processzorral rendelkezik</em></li>
+</ul>
+<p>A program kompatibilis továbbá:</p>
+<ul>
+<li>Windows 8.1</li>
+<li>További Universal Windows Platform 10 részét képező operációs rendszerek<br><br>
+Fordítási adatok: Qt 5.15.2 MinGW 64 bit</li>
+</ul>
+<h2 id="f-fel-let-elemei">Fő felület elemei</h2>
+<p>A program megnyitása után megjelenő számos grafikai megjelenítő és vezérlő elem funkcióinak magyarázata.<br>A magyarázat balról-jobbra, fentről-le történik</p>
+<ul>
+<li>Alap grafikák box <ul>
+<li>A kamera élő képe (első futtatáskor ide a várakozás kép kerül, később pedig az utolsó rögzített kép)</li>
+<li>A műhorizont a dőlést jeleníti meg mind X mind Y tengely mentén. Amennyiben nem érkeznek adatok (felvételből vagy a robottól) 90°-os elfordulást mutat a képe</li>
+</ul>
+</li>
+<li>A mélységérzékelő a adatai megjelenítő grafika átmenettel képes megjeleníteni a mélységet</li>
+<li>Az iránytő a fedélzeti mágnesérzékelő adatait jeleníti meg</li>
+<li>A radar adatai megjelenítő kísérleti felület, ez azonban sajnos nem működik megfelelően.</li>
+<li>A következő csoportban egy több ablakos felület található.<ul>
+<li>Érkező adatok  <ul>
+<li>A vezérlési adatok csoportban táblázatok találhatóak az érkező adatokkal. Itt a jó adatok zöld, a rosszak pedig piros hátérrel rendelkeznek. Ezek az adatokkal együtt frissülnek.</li>
+<li>Jobb oldalon a képi kommunikáció és az alatta lévő piros vagy zöld hátterű, számot tartalmazó mezőben a fedélzeti egységről érkező képeket feldolgozó program adatai jelennek meg. A színes sávban a folyamat azonosítója (Process ID) található, a start gombbal pedig elindítható a folyamat.</li>
+<li>A joystick kezelése is külön folyamatban történik, ezért a itt is -nél elérhetőek a képnél már megmagyarázott funkciók</li>
+<li>Ezalatt egy szövegdoboz található, ahol a kísérleti radar adatai jelennek meg. Ezt a normál, stabilműködésnél figyelmen kívül lehet hagyni.</li>
+<li>A táblázatok alatt egy alapesetben nullákat tartalmazó szövegdoboz található. Ebben jelennek meg nyersen az olvasott adatok. Itt láthatóak lejátszás közben is az adatok. </li>
+<li>Legalul egy másik hasonló doboz található, itt a küldendő adatok jelennek meg nyersen.</li>
+<li>Az UID az Update ID rövidítése. Ez a szám mutatja, hogy a felület az indítás óta hányszor frissült. Segítségével bizonyos beállítások ellenőrizhetők akkor is, ha csak ez az érték változik az egész felületen.</li>
+</ul>
+</li>
+<li>Tesztelési adatoknál elsősorban a bemeneti vezérlőeszközök tesztelésére használható<ul>
+<li>A joystick gombjainak a lenyomását jeleníti meg. A joystick funkció csupán egyetlen eszközön került tesztelésre. Az adatok frissítése csak a lenti joystick teszt pipálásával történik meg.</li>
+<li>A szövegdobozban a joystick nyers adatai jelennek meg.</li>
+<li>A funkcióhoz az Érkező adatok tabon sikeresen el kell indítani a joystick folyamatot.</li>
+</ul>
+</li>
+<li>Áramköri vizualizáció egy jelenleg még nem elérhető funkció</li>
+</ul>
+</li>
+<li>A Pontonhajó adatait tartalmazó csoport (a beállításokat ellenőrizze, ha inaktív a doboz)<ul>
+<li>A bal oldali csúszka a ponton motorját képes vezérelni.</li>
+<li>A stop gombbal nulla állásba állítható a motor, a kormány egyenessel pedig a kormány állítható egyenes állásba</li>
+<li>A kormányzást lehetővé tevő forgatható elem a kormánylapát állását szabályozza a pontonhajón.</li>
+</ul>
+</li>
+<li>A zöld hátterű felületen a fedélzeti robotkar vezérelhető. A kék téglalapok a kar állandő részeit jelentik, míg a forgatható elemek a motorokat. A rendszer ezek alapján állítja be a motorokat avíz alatt.<ul>
+<li>A szövegdobozban a robotkar adatai jelennek meg, ha a jobboldali frissítés be van kapcsolva.</li>
+</ul>
+</li>
+<li>A vezérlés csoportban az alap funkciók vezérlést tehetjük meg.<ul>
+<li>A motorok csoportban az első csúszkával a baloldali motort vezérelhetjük, a másodikkal a jobboldalit. A harmadik akkor használható, ha az egyenlő motorok funkció be van kapcsolva. Ekkor a két motor ereje egyenlő lesz, és a harmadik csúszkával vezérelhetőek együtt.</li>
+<li>A második kettő csúszka a döntőmotorok vezérlésére szolgál. Ezek a tengeralattjáró farán alul és felül elhelyezett motorok, melyekkel a test dőlése szabályozható.</li>
+<li>A szövegdobozban a motorok beállított értékei találhatóak, ezek a visszacsatolást segítik.</li>
+<li>A szövegdoboz alatt található néhány kapcsoló:<ul>
+<li>Hardveres Pot: A motorok vezérlésére szolgáló rendszert aktiválja, vagy deaktiválja. Ha be van kapcsolva, a csúszkák egérrel nem vezérelhetőek.</li>
+<li>DMot Joy: Akkor kapcsolható be, ha a Döntőmotorokat joystick segítségével szeretnénk vezérelni. Amennyiben nem elérhető a joystick, a legutóbbi elérhető értéket jeleníti meg.</li>
+<li>Egyenlő motorok: Amennyiben be van kapcsolva a harmadik csúszka aktív lesz, így a két motor együtt vezérelhető a harmadik csúszkával.</li>
+<li>A nullázás gomb a motorkat azonnal leállítja, az egyenlő motorokat és a hardveres vezérlést kikapcsolja</li>
+</ul>
+</li>
+<li>A tálca felirat alatt található a test alatt elhelyezkedő tálca vezérlője. Amennyiben az aktív engedélyezve van, a tálca mozgatható a potméterrel, és a gombok segítségével. <em>Egyenlőre a tálca hardver nem elérhető, azonban a szoftverekben már elérhető a vezérlése</em></li>
+</ul>
+</li>
+<li>Az áramellátás mellett található a fedélzeti áramellátás beállítását lehetővé tevő néhány beállítás. Az egyedüli működő funkció az erőforrásspórolás, ekkor bizonyos funkciókat letilt a rendszer (pl. kamera)</li>
+<li>Az egyéb menüpontban beállítható, hogyha a testet a hátára borítjuk a motorok haladási irányhoz képest oldala megváltozik. Ez a kapcsoló elvégzi a beállítást. A hűtéshez tartozó csúszkával a hűtőventillátor erősségét állíthatjuk be.</li>
+<li>A vezérlő soros kommunikáció menüpont alatt átállíthatjuk, hogy a rendszer melyik soros portra csatlakoztatott eszközzel próbáljon meg kommunikációt folytatni a motorok vezérlési adatát érzékelve. A hardveres pot funkcióhoz itt kell csatlakoztatni az elkészült eszközt (<em>Egyes esetekben a CH340 soros illesztő driver telepítése a külső hardveres eszközzel való kommunikációhoz. Amennyiben a funkció nincsen használatban erre nincsen szükség</em>)<ul>
+<li>A scan gombra kattintva az elérhető soros portok frissülnek, ekkor kiválasztható a megfelelő a legördülő listából.</li>
+<li>A csatlakozás gombbal megkezdhetjük a kommunikációt. Ekkor a rendszerüzenet szövegdobozban a sikeres csatlakozásnak kell megjelennie, a soros nyers adatok boxban pedig a folyamatosan frissülő nyers adatoknak.</li>
+<li>A lecsatlakozás gombbal megszakíthatjuk a kommunikációt.</li>
+</ul>
+</li>
+<li>A fedélzeti szoftver vezérlés cím alatt a fedélzeti számítógépen és arduino-n futó kód beállításait végezhetjük el. <ul>
+<li>Az élő képet be kell jelölni abban az esetben, ha a szeretnénk hogy az élő kép küldése megkezdődjön. <strong>Ehhez a funkcióhoz a Kép kommunikációt szükésges elindítani a vezérlési adatok box-ban</strong></li>
+<li>A radar szkennelés egy kísérleti funkciót indít be, melyhez a megfelelő hardverek csak bizonyos tesztek esetében vannak csatlakoztatva.</li>
+</ul>
+</li>
+<li>A következő csoport a ballasztrendszer</li>
+<li>A rendszerüzenetek boxban a program szöveges üzeneteit találjuk. Három szinten (message, warning, error) jelennek meg az információk, az error üzenetekre nagyobb figyelmet fordítani.</li>
+</ul>
+<h2 id="be-ll-t-si-lehet-s-gek">Beállítási lehetőségek</h2>
+<p>A beállításokat a felső menüből a Fájl-&gt;Beállítások útvonalon, vagy az Alt+s billentyűparancscsal érheti el. 
+A Beállítások ablak bezárás és a mégse gomb megnyomása esetén elfelejti a beállításokat, az OK megnyomásakor azonban a alkalmazza azokat.<br>Az ablak két fontos részből áll, az Általánosból, és a megjelenés és egyéb fülből.<br>Általános:</p>
+<ul>
+<li>Beavatkozási lehetőségek csoportban a felületen elvégezhető beállításokat lehet korlátozni, illetve engedélyezni<ul>
+<li>A ballasztrendszer vezérelhető csúszkával manuálisan is, ez azonban kockázatos lehet. Itt letiltható a funkció.</li>
+<li>A ballaszttartály teljes leeresztését engedélyező funkció. A teszteléseknél lehet szükség a beállításra, merülés közben nem ajánlott engedélyezni.</li>
+<li>A robotkar vezérlésének letiltásával számítási kapacitást spórolhatunk. Ha a rendszerbe nincsen beépítve, érdemes letiltani.</li>
+<li>A Parancssor elérhetővé tétele. A parancssorról bővebben is olvashatnak, itt speciális beállítások végezhetőek el, vagy belső adatok kérhetőek le.</li>
+<li>A Ponthajó nem minden esetben kerül csatlakoztatásra, így amennyiben nem elérhető érdekes lehet letiltani.</li>
+<li>Az alapértelmezettek visszaállítása a felhasználó által beállított értékeket elveti. Ez nem visszavonható.</li>
+</ul>
+</li>
+<li>A háttérfolyamatok beállításánál lehetőség van olyan beállítások elvégzésére is melyek a felhasználót közvetlenül nem érintik.<ul>
+<li>A felület frissítésének kikapcsolása nem ajánlott, mivel ez garantálja, hogy a megjelenített értékek a legfrissebbek. Kikapcsolásakor a frissítés megszűnik, és az automatizmusok, és a vezérlő módosításai sem kerülnek továbbításra az eszközhöz.</li>
+<li>Az érkező adatok frissítési idejének a beállítása esetén az állítható be, hogy a felületen milyen időközönként kerülnek frissítésre és begyűjtésre az adatok. A túl alacsony érték nagyobb számítási kapacitást igényel, a nagyobb esetében pedig ritkában frissülnek az adatok. A reset gombbal visszaállíthatjuk az alapértelmezett(20) értéket. <em>A beállítást millisekundumban kell értelmezni. 1sec=1000microsec</em></li>
+<li>A joystick és a kép folyamat letiltása esetén a kérdéses folyamat leáll, és csak a beállítás visszakapcsolása esetén indítható el manuálisan újra.</li>
+<li>A kommunikációs rész másik módszert használ a párhuzamos futás biztosításához, a szálakat (thread). Ennek engedélyezése esetén automatikusan újraindul a folyamat.</li>
+</ul>
+</li>
+<li>A Megjelenés és egyéb fülön jelenleg a felület megjelenését állíthatjuk be. A funkciók az alábbiak:<ul>
+<li>Az alapértelmezett témák alatt a legördülő menüből választható ki a kívánt beállítás. Az előzetes képe a Stílus példa mezőben megjelenik (itt adódhatnak hibás megjelenítések)</li>
+<li>Amennyiben a nem alapértelmezett téma választása be van jelölve, aktívvá válik az egyéb témák. Itt kiválaszthatunk egy szabványos QT style sheet fájlt. Ez azt jelenti, hogy a css-hez hasonló formátumu fájl kiválasztása után az abban megadottak kerülnek aktiválásra.</li>
+</ul>
+</li>
+</ul>
+<h2 id="a-r-gz-t-s-be-ll-t-sai-ablak">A rögzítés beállításai ablak</h2>
+<p>Az ablak a Rögzítés menüpontból a felvétel beállítása gombra kattintva érhető el. Itt adhatjuk meg a merülés során keletkezett adatok mentésének beállításait.</p>
+<ul>
+<li>Az első oszlopban beállíthatjuk azt, hogy milyen adatokat mentsen a rendszer.</li>
+<li>A középső ablakban megjelenik, hogy a kiválasztott mappában milyen szabványos elnevezésű fájlok találhatóak.</li>
+<li>Az utolsó oszlopban azt állíthatjuk be, hogy hány mentett adatcsomag után jelenjen meg figyelmeztetés, és mikor kezdjen a rendszer új fájlba. A fájlokba 30000-nél több adatot nem érdemes menteni, mivel ekkor a betöltéskor jelentkezhetnek hibák. </li>
+<li>A mentés gyakoriságánál beállíthatjuk, hogy minden megjelenített adatot szerenénk-e meneteni, vagy elég csupán minden x.-et</li>
+<li>A sorszám és a következő fájlnév helyre kerülnek azok az adatok, melyek a kiválasztás után automatikusan keletkeznek: ha kiválasztunk egy mappát és már van benne szabványos nevű .al (AquaLab) fájl, akkor a rendszer automatikusan számozza a fájlt. Ez átállítható, de nem ajánlott.</li>
+<li>A mentés és felvétel gomb esetén a bezáráskor a felvétel rögtön elindul, a mentés felvétel nélkül választása esetén a rögzítés menüpontban a rögzítést bepipálva indíthatunk felvételt a megadott beállításokkal. A mégse választása eseténa beállítások elvetésre kerülnek.</li>
+</ul>
+<h2 id="lej-tsz-si-ablak">Lejátszási ablak</h2>
+<ul>
+<li>Legfelül kiválaszthatjuk a lejátszandó fájlt, melyet a rögzítés használatával tudunk létrehozni, kiterjesztése pedig .al</li>
+<li>A fájl betöltésére kattintva a rendszer felméri és betölti a fájlt. <em>Amennyiben túl nagy a fájl, nem a teljeset tölti be, csupán az első száz rekordot. Ez azt jelenti, hogy száz adatcsomag szerepel a gyorsítótárban, ennyit lehet azonnal lejátszani, atöbbi adathoz szükség van a betöltésre</em></li>
+<li>A megjelenítési beállítáok egyenlőre nem elérhetőek, csak az összes adat lejátszására van lehetőség.</li>
+<li>Az XML fájl fülön böngészhetünk  a nyers fájlban</li>
+<li>Legalul a rekordok számát láthatjuk, ez a fájlban található mentett események száma.</li>
+<li>Az idővonalon a fájlban navigálhatunk előre, hátra, a betöltött adatok ilyenkor folyamatosan változnak a kívént tartományon belül. <em>A betöltéskor a lejátszásban kis megakadás az újab adatok betöltésekor várható</em></li>
+<li>A lejátszás sebessége funkció egyenlőre nem elérhető.</li>
+<li>A play ikonnal ellátott gombra kattintva elindul a történésekkel egy sebességben. A vizualizációk ilyenkor is elérhetőek, és valós adatokat mutatnak.</li>
+</ul>

@@ -1,7 +1,25 @@
 # Robot tengeralattjáró vezérlőfelület dokumentáció
-A grafikus felületet az 1920 x 1080 pixeles monitorokra készült, így más méreteken a legnagyobb figyelem ellenére előfordulhatnak az egymásracsúszások.
+A grafikus felületet az 1920 x 1080 pixeles monitorokra készült, így más méreteken a legnagyobb figyelem ellenére előfordulhat, hogy az egyes elemek egymásra csúsznak.
 <br>
 <br>
+
+## Telepítés  
+
+**A telepítő futtatásához szükséges lehet a windows defender felugró figyelmezető ablakát bezárni. A programban nincsenek rosszindulatú kódok.**
+A telepítéshez kövesse a telepítő utasításait! A rendszer telepítője létrehoz asztai ikont, és a start menüből is elérhetővé válik a program.  
+Amennyiben szeretné eltávolítani, úgy törölheti a telepítési mappát, vagy futtathatja a windows eltávolító eszközét. 
+## Kompatibilitás
+
+A programok az alábbi rendszereken kerültek tesztelésre:
+- Windows 10 Pro (10.0.19042.1288)
+- Windows 10 Home  <br>
+*Az összes számítógép x64-es architektúrájú processzorral rendelkezik*
+
+A program kompatibilis továbbá:
+- Windows 8.1
+- További Universal Windows Platform 10 részét képező operációs rendszerek  
+<br>
+Fordítási adatok: Qt 5.15.2 MinGW 64 bit
 
 ## Fő felület elemei
 A program megnyitása után megjelenő számos grafikai megjelenítő és vezérlő elem funkcióinak magyarázata.  
@@ -92,4 +110,5 @@ Az ablak a Rögzítés menüpontból a felvétel beállítása gombra kattintva 
 - Legalul a rekordok számát láthatjuk, ez a fájlban található mentett események száma.
 - Az idővonalon a fájlban navigálhatunk előre, hátra, a betöltött adatok ilyenkor folyamatosan változnak a kívént tartományon belül. *A betöltéskor a lejátszásban kis megakadás az újab adatok betöltésekor várható*
 - A lejátszás sebessége funkció egyenlőre nem elérhető.
-- A play ikonnal ellátott gombra kattintva elindul a történésekkel egy sebességben. A vizualizációk ilyenkor is elérhetőek
+- A play ikonnal ellátott gombra kattintva elindul a történésekkel egy sebességben. A vizualizációk ilyenkor is elérhetőek, és valós adatokat mutatnak.
+

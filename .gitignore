@@ -25,3 +25,4 @@ src-cpp/installer/packages/
 *.dll
 
 src-cpp/installer/def dll-s/
+src-cpp/.vs/

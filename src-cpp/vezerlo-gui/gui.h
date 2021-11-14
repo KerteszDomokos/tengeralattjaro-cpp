@@ -58,8 +58,6 @@ private slots:
     void ballasztJobbk();
     void ballasztJobbmin();
     void ballasztJobbmax();
-    void set_darkmode();
-    void set_lightmode();
     void mentes(int id);
     void mentesGo();
     void mentesDialog();

@@ -5428,38 +5428,6 @@ background-color: rgb(170, 0, 0);
    </hints>
   </connection>
   <connection>
-   <sender>darkmode</sender>
-   <signal>triggered()</signal>
-   <receiver>GUI</receiver>
-   <slot>set_darkmode()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1089</x>
-     <y>538</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lightmode</sender>
-   <signal>triggered()</signal>
-   <receiver>GUI</receiver>
-   <slot>set_lightmode()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1089</x>
-     <y>538</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>rogzites_check</sender>
    <signal>triggered()</signal>
    <receiver>GUI</receiver>
@@ -5596,8 +5564,6 @@ background-color: rgb(170, 0, 0);
   <slot>ballasztJobbmax()</slot>
   <slot>ballasztJobbmin()</slot>
   <slot>ballasztJobbk()</slot>
-  <slot>set_darkmode()</slot>
-  <slot>set_lightmode()</slot>
   <slot>mentes(int)</slot>
   <slot>mentesDialog()</slot>
   <slot>lejatszasOpen()</slot>

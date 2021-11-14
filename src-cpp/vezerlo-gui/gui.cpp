@@ -120,10 +120,21 @@ GUI::GUI(QWidget *parent)
     updateonoff(); //Userdata lekérés előtt!!
 
     sets = new QSettings("Aqualab vezérlő", "AquaLab");
+    QStringList keys=sets->allKeys();
+    if(keys.isEmpty()==1){
+        QFile styleFile( ":/programs/lightmode" );
+        styleFile.open( QFile::ReadOnly );
+
+        QString style( styleFile.readAll() );
+        styleFile.close();
+        st=style;
+    }else{
+        getUserdat();
+    }
     qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
     widget = new Felvetel;
     lejatszas=new Lejatszas;
-    getUserdat();
+
 
     ui->cmdDock->setHidden(1);
     QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
@@ -1304,29 +1315,6 @@ void GUI::ballasztJobbmin()
 void GUI::ballasztJobbmax()
 {
     ui->ballaszt_jobbtart->setValue(ui->ballaszt_jobbtart->maximum());
-}
-
-void GUI::set_darkmode()
-{
-    QFile styleFile( ":/programs/resources/dark-style.qss" );
-    styleFile.open( QFile::ReadOnly );
-
-    // Apply the loaded stylesheet
-    QString style( styleFile.readAll() );
-    styleFile.close();
-
-    QString st="QWidget{background: black;color:rgb(0, 255, 0);}";
-    ui->centralwidget->setStyleSheet(style);
-    ui->darkmode->setChecked(1);
-    ui->lightmode->setChecked(0);
-}
-
-void GUI::set_lightmode()
-{
-    QString st="QWidget{background: black;color:rgb(0, 255, 0);}";
-    ui->centralwidget->setStyleSheet("");
-    ui->darkmode->setChecked(0);
-    ui->lightmode->setChecked(1);
 }
 
 

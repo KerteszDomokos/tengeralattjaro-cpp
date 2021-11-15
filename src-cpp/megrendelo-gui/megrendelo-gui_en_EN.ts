@@ -4,7 +4,7 @@
 <context>
     <name>3d</name>
     <message>
-        <location filename="3d.qml" line="16"/>
+        <location filename="3d.qml" line="17"/>
         <source>Grafika - fejlesztés alatt</source>
         <translation>Graphics are in develop</translation>
     </message>
@@ -12,134 +12,149 @@
 <context>
     <name>GUI</name>
     <message>
-        <location filename="gui.ui" line="60"/>
+        <location filename="gui.ui" line="64"/>
         <source>Élő kép helye</source>
         <comment>miez?</comment>
         <translation>The container of live image</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="84"/>
+        <location filename="gui.ui" line="88"/>
         <source>Adatok</source>
         <translation>Datas</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="96"/>
+        <location filename="gui.ui" line="100"/>
         <source>Alapvető működési adatok</source>
         <translation>Default datas</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="102"/>
+        <location filename="gui.ui" line="106"/>
         <source>Sebesség:</source>
         <translation>Speed:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="116"/>
+        <location filename="gui.ui" line="120"/>
         <source>Számítógép kihasználtság:</source>
         <translation>Computer utilization:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="130"/>
+        <location filename="gui.ui" line="134"/>
         <source>Bal motor nyomaték:</source>
         <translation>Left motor speed:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="144"/>
+        <location filename="gui.ui" line="148"/>
         <source>Jobb motor nyomaték:</source>
         <translation>Right motor speed:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="158"/>
+        <location filename="gui.ui" line="162"/>
         <source>Mélység:</source>
         <translation>Depth:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="172"/>
+        <location filename="gui.ui" line="176"/>
         <source>Belső hőmérséklet:</source>
         <translation>Onboard temperature:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="201"/>
+        <location filename="gui.ui" line="205"/>
         <source>Szenzoradatok</source>
         <translation>Sensor datas</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="207"/>
+        <location filename="gui.ui" line="211"/>
         <source>PH érték:</source>
         <translation>PH value:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="221"/>
+        <location filename="gui.ui" line="225"/>
         <source>Redoxipotenciál:</source>
         <translation>Redox potential</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="235"/>
+        <location filename="gui.ui" line="239"/>
         <source>Vezetőképesség:</source>
         <translation>Conductivity</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="249"/>
+        <location filename="gui.ui" line="253"/>
         <source>Zavarosság:</source>
         <translation>Turbidity:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="263"/>
+        <location filename="gui.ui" line="267"/>
         <source>Hőmérséklet:</source>
         <translation>Temperature (water):</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="277"/>
+        <location filename="gui.ui" line="281"/>
         <source>Becsült áramlásseb:</source>
         <translation>Flow speed:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="300"/>
+        <location filename="gui.ui" line="304"/>
         <source>Felvétel beállításai</source>
         <translation>Recorder settings</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="605"/>
+        <location filename="gui.ui" line="604"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="gui.ui" line="622"/>
         <source>none</source>
         <translation>none</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="742"/>
+        <location filename="gui.ui" line="731"/>
+        <source>Segítség</source>
+        <translation>Help</translation>
+    </message>
+    <message>
+        <location filename="gui.ui" line="766"/>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="752"/>
+        <location filename="gui.ui" line="776"/>
         <source>Lejátszás</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="755"/>
+        <location filename="gui.ui" line="779"/>
         <source>P</source>
         <translation>P</translation>
+    </message>
+    <message>
+        <location filename="gui.ui" line="792"/>
+        <source>Súgó</source>
+        <translation>Documentation</translation>
     </message>
     <message>
         <source>Alapértelmezett mappa</source>
         <translation type="vanished">Default save directory</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="312"/>
-        <location filename="gui.ui" line="334"/>
+        <location filename="gui.ui" line="316"/>
+        <location filename="gui.ui" line="338"/>
         <source>A funkcióva beállítható, hogy hány mentett adat utén készítsen fájlt a rendszer Ez akkor lehet érdekes, hogyha a rendszer vagy a számítógép leáll, mivel a fájlba mentett adatok mindenképpen megmaradnak.</source>
         <translatorcomment>Átnézendő</translatorcomment>
         <translation>This functon set how many saved data write to a new file.</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="337"/>
+        <location filename="gui.ui" line="341"/>
         <source>Maximum esemény fájlonként:</source>
         <translation>Maximum events per file:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="350"/>
+        <location filename="gui.ui" line="354"/>
         <source>Jelenleg bufferelt események:</source>
         <translation>Buffered events:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="363"/>
+        <location filename="gui.ui" line="367"/>
         <source>Bufferelt</source>
         <translation>Buff</translation>
     </message>
@@ -148,20 +163,20 @@
         <translation type="vanished">Comment to this moment:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="399"/>
+        <location filename="gui.ui" line="403"/>
         <source>Add</source>
         <translation>Add</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="412"/>
+        <location filename="gui.ui" line="416"/>
         <source>Most</source>
         <translation>Now</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="459"/>
-        <location filename="gui.ui" line="610"/>
-        <location filename="gui.cpp" line="210"/>
-        <location filename="gui.cpp" line="235"/>
+        <location filename="gui.ui" line="463"/>
+        <location filename="gui.ui" line="627"/>
+        <location filename="gui.cpp" line="220"/>
+        <location filename="gui.cpp" line="245"/>
         <source>Idő</source>
         <translation>Time</translation>
     </message>
@@ -170,34 +185,34 @@
         <translation type="vanished">PH value</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="464"/>
-        <location filename="gui.ui" line="615"/>
-        <location filename="gui.cpp" line="216"/>
-        <location filename="gui.cpp" line="241"/>
+        <location filename="gui.ui" line="468"/>
+        <location filename="gui.ui" line="632"/>
+        <location filename="gui.cpp" line="226"/>
+        <location filename="gui.cpp" line="251"/>
         <source>Redoxipotenciál</source>
         <translation>Redox potential</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="469"/>
-        <location filename="gui.ui" line="620"/>
-        <location filename="gui.cpp" line="222"/>
-        <location filename="gui.cpp" line="247"/>
+        <location filename="gui.ui" line="473"/>
+        <location filename="gui.ui" line="637"/>
+        <location filename="gui.cpp" line="232"/>
+        <location filename="gui.cpp" line="257"/>
         <source>Vezetőképesség</source>
         <translation>Conductivity</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="479"/>
-        <location filename="gui.ui" line="630"/>
-        <location filename="gui.cpp" line="225"/>
-        <location filename="gui.cpp" line="250"/>
+        <location filename="gui.ui" line="483"/>
+        <location filename="gui.ui" line="647"/>
+        <location filename="gui.cpp" line="235"/>
+        <location filename="gui.cpp" line="260"/>
         <source>Zavarosság</source>
         <translation>Turbidity</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="484"/>
-        <location filename="gui.ui" line="635"/>
-        <location filename="gui.cpp" line="228"/>
-        <location filename="gui.cpp" line="253"/>
+        <location filename="gui.ui" line="488"/>
+        <location filename="gui.ui" line="652"/>
+        <location filename="gui.cpp" line="238"/>
+        <location filename="gui.cpp" line="263"/>
         <source>Hőmérséklet</source>
         <translation>Temperature</translation>
     </message>
@@ -206,22 +221,22 @@
         <translation type="vanished">Flow speed</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="508"/>
+        <location filename="gui.ui" line="512"/>
         <source>Betöltés</source>
         <translation>Load</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="521"/>
+        <location filename="gui.ui" line="525"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;x:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;x:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="534"/>
+        <location filename="gui.ui" line="538"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;y:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;y:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="63"/>
+        <location filename="gui.ui" line="67"/>
         <source>Kép</source>
         <translation>Image</translation>
     </message>
@@ -231,104 +246,104 @@
         <translation>GUI</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="376"/>
+        <location filename="gui.ui" line="380"/>
         <source>Megjegyzés most:</source>
         <translation>Comment now</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="441"/>
+        <location filename="gui.ui" line="445"/>
         <source>Mentés helyének megváltoztatás</source>
         <translation>Record saving path edit</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="455"/>
-        <location filename="gui.ui" line="601"/>
+        <location filename="gui.ui" line="459"/>
+        <location filename="gui.ui" line="618"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Itt válaszhatjuk ki az x tengelyen elhelyezhető adatokat.&lt;/p&gt;&lt;p&gt;A lista a továbbiakban bővülni fog.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Here is the datas of X axis&lt;/p&gt;&lt;p&gt;The list is not fine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="474"/>
-        <location filename="gui.ui" line="625"/>
-        <location filename="gui.cpp" line="219"/>
-        <location filename="gui.cpp" line="244"/>
+        <location filename="gui.ui" line="478"/>
+        <location filename="gui.ui" line="642"/>
+        <location filename="gui.cpp" line="229"/>
+        <location filename="gui.cpp" line="254"/>
         <source>Ph</source>
         <translation>Ph</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="489"/>
-        <location filename="gui.ui" line="640"/>
-        <location filename="gui.cpp" line="231"/>
-        <location filename="gui.cpp" line="256"/>
+        <location filename="gui.ui" line="493"/>
+        <location filename="gui.ui" line="657"/>
+        <location filename="gui.cpp" line="241"/>
+        <location filename="gui.cpp" line="266"/>
         <source>Áramlássebesség</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="gui.ui" line="494"/>
-        <location filename="gui.ui" line="645"/>
-        <location filename="gui.cpp" line="213"/>
-        <location filename="gui.cpp" line="238"/>
+        <location filename="gui.ui" line="498"/>
+        <location filename="gui.ui" line="662"/>
+        <location filename="gui.cpp" line="223"/>
+        <location filename="gui.cpp" line="248"/>
         <source>Motor átlagnyomaték</source>
         <translation>Motor avarage speed</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="547"/>
+        <location filename="gui.ui" line="551"/>
         <source>UID</source>
         <translation>UID</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="560"/>
+        <location filename="gui.ui" line="564"/>
         <source>Frissítés ID:</source>
         <translation>Update ID:</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="659"/>
+        <location filename="gui.ui" line="676"/>
         <source>Mentés képként</source>
         <translation>Save as Image</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="696"/>
+        <location filename="gui.ui" line="713"/>
         <source>Fájl</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="706"/>
-        <location filename="gui.ui" line="763"/>
+        <location filename="gui.ui" line="723"/>
+        <location filename="gui.ui" line="787"/>
         <source>Rögzítés</source>
         <translation>Record</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="718"/>
+        <location filename="gui.ui" line="742"/>
         <source>toolBar</source>
         <translation>toolBar</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="734"/>
-        <location filename="gui.ui" line="747"/>
+        <location filename="gui.ui" line="758"/>
+        <location filename="gui.ui" line="771"/>
         <source>Fordítás</source>
         <translation>Translate</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="739"/>
+        <location filename="gui.ui" line="763"/>
         <source>Beállítások</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="gui.ui" line="729"/>
+        <location filename="gui.ui" line="753"/>
         <source>Információ</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="gui.cpp" line="268"/>
+        <location filename="gui.cpp" line="278"/>
         <source> grafikon</source>
         <translation>Graph</translation>
     </message>
     <message>
-        <location filename="gui.cpp" line="384"/>
+        <location filename="gui.cpp" line="394"/>
         <source>Mentés</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="gui.cpp" line="384"/>
+        <location filename="gui.cpp" line="394"/>
         <source>Képek (*.png *.PNG *.jpg)</source>
         <translation>Images (*.png *.PNG *.jpg)</translation>
     </message>

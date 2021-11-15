@@ -1,16 +1,16 @@
-import QtQuick 2.0
+import QtQuick 2.1
 
 Item {
-    property string col: "#212121" //jó fekete szín
+    property string col: "black" //jó fekete szín
 Rectangle{
-    color:col
     height: parent.height
     width: parent.width
+    color:col
 
     anchors.centerIn: parent.Center
     Text {
         id: txt
-        color: "white"
+        color: "#fff"
         height: parent.height
         width: parent.width
         text: qsTr("Grafika - fejlesztés alatt")

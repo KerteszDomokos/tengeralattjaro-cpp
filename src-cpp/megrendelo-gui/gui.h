@@ -36,6 +36,7 @@ private slots:
     void goPlay();
     void stopPlay();
     void saveGraf();
+    void openDoc();
 
 private:
     void getUserdata();
@@ -52,7 +53,7 @@ private:
     QList<double> xteng; QList<double> yteng;
     QList<double> motatlag,homat,zavat,phat,redat,vezat,arsat;
     QList<double> ido;
-    int uptime=30;//updatetime
+    int uptime=50;//updatetime
     QSettings *sets;
 
 

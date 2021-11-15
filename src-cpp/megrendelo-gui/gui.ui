@@ -726,8 +726,15 @@ QLineEdit{font-size:14px;}</string>
     <addaction name="separator"/>
     <addaction name="play"/>
    </widget>
+   <widget class="QMenu" name="menuSeg_ts_g">
+    <property name="title">
+     <string>Segítség</string>
+    </property>
+    <addaction name="actionS_g"/>
+   </widget>
    <addaction name="menuF_jl"/>
    <addaction name="menuR_gz_t_s"/>
+   <addaction name="menuSeg_ts_g"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -780,6 +787,11 @@ QLineEdit{font-size:14px;}</string>
     <string>Rögzítés</string>
    </property>
   </action>
+  <action name="actionS_g">
+   <property name="text">
+    <string>Súgó</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -815,8 +827,8 @@ QLineEdit{font-size:14px;}</string>
    <slot>open_beallitasok()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>208</x>
-     <y>41</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>605</x>

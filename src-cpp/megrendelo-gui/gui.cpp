@@ -64,7 +64,17 @@ GUI::GUI(QWidget *parent)
     ui->setupUi(this);
     sets = new QSettings("Aqualab megrendelő", "AquaLab");
     qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
-    getUserdata();
+    QStringList keys=sets->allKeys();
+    if(keys.isEmpty()==1){
+        QFile styleFile( ":/resources/lightmode" );
+        styleFile.open( QFile::ReadOnly );
+
+        QString style( styleFile.readAll() );
+        styleFile.close();
+        st=style;
+    }else{
+        getUserdata();
+    }
     qApp->setStyleSheet(st);
 
     QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
@@ -383,6 +393,11 @@ void GUI::saveGraf()
 //    chartView->render(&p);
     QString graffila = QFileDialog::getSaveFileName(this,tr("Mentés"), "./grafikon.png",tr("Képek (*.png *.PNG *.jpg)"));
     p.save(graffila,"png");
+}
+
+void GUI::openDoc()
+{
+    QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokumentacio.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
 }
 
 

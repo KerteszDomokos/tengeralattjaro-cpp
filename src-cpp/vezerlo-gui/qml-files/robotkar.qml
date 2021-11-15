@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 
 Item {
     id: item1
-    height: 300
+    height: 325
     width: 600
     property int alapV: alap.value
     property int pot2V: pot2.value
@@ -13,17 +13,17 @@ Item {
     Rectangle {
         id: rectangle1
         x: 0
-        y: 0
+        y: -1
         width: parent.width
-        height: parent.height
+        height: 325
         anchors.centerIn: parent.Center
         color: "#95f170"
 
         Dial {
             id: alap
             objectName: "alap"
-            x: 271
-            y: 257
+            x: 300
+            y: 290
             width: 58
             height: 35
             value: 90
@@ -33,15 +33,15 @@ Item {
 
         Rectangle {
             id: kar1
-            x: 290
-            y: 154
+            x: 324
+            y: 206
             width: 10
             height: 45
             color: "#350abe"
             transformOrigin: Item.Bottom
             rotation: alap.angle
             anchors.bottom: alap.top
-            anchors.bottomMargin: 3
+            anchors.bottomMargin: 6
 
 
 
@@ -117,6 +117,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;height:300;width:600}
+    D{i:0;formeditorZoom:0.75;height:325;width:600}
 }
 ##^##*/

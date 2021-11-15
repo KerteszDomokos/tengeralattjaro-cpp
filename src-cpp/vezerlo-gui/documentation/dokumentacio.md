@@ -30,7 +30,7 @@ A magyarázat balról-jobbra, fentről-le történik
 - A mélységérzékelő a adatai megjelenítő grafika átmenettel képes megjeleníteni a mélységet
 - Az iránytő a fedélzeti mágnesérzékelő adatait jeleníti meg
 - A radar adatai megjelenítő kísérleti felület, ez azonban sajnos nem működik megfelelően.
-- A következő csoportban egy több ablakos felület található.
+- A következő csoportban egy több ablakos felület található, mely egy görgethető boxon belül helyezkedik el. A számítógép monitor méretétől függően érhető el a görgetés
     - Érkező adatok  
         - A vezérlési adatok csoportban táblázatok találhatóak az érkező adatokkal. Itt a jó adatok zöld, a rosszak pedig piros hátérrel rendelkeznek. Ezek az adatokkal együtt frissülnek.
         - Jobb oldalon a képi kommunikáció és az alatta lévő piros vagy zöld hátterű, számot tartalmazó mezőben a fedélzeti egységről érkező képeket feldolgozó program adatai jelennek meg. A színes sávban a folyamat azonosítója (Process ID) található, a start gombbal pedig elindítható a folyamat.
@@ -39,11 +39,11 @@ A magyarázat balról-jobbra, fentről-le történik
         - A táblázatok alatt egy alapesetben nullákat tartalmazó szövegdoboz található. Ebben jelennek meg nyersen az olvasott adatok. Itt láthatóak lejátszás közben is az adatok. 
         - Legalul egy másik hasonló doboz található, itt a küldendő adatok jelennek meg nyersen.
         - Az UID az Update ID rövidítése. Ez a szám mutatja, hogy a felület az indítás óta hányszor frissült. Segítségével bizonyos beállítások ellenőrizhetők akkor is, ha csak ez az érték változik az egész felületen.
+        - Az MID a Mentés ID rövidítése. Ez a szám megmutatja hogy rendszer hányadik rekord mentésénél tart.
     - Tesztelési adatoknál elsősorban a bemeneti vezérlőeszközök tesztelésére használható
         - A joystick gombjainak a lenyomását jeleníti meg. A joystick funkció csupán egyetlen eszközön került tesztelésre. Az adatok frissítése csak a lenti joystick teszt pipálásával történik meg.
         - A szövegdobozban a joystick nyers adatai jelennek meg.
         - A funkcióhoz az Érkező adatok tabon sikeresen el kell indítani a joystick folyamatot.
-    - Áramköri vizualizáció egy jelenleg még nem elérhető funkció
 - A Pontonhajó adatait tartalmazó csoport (a beállításokat ellenőrizze, ha inaktív a doboz)
     - A bal oldali csúszka a ponton motorját képes vezérelni.
     - A stop gombbal nulla állásba állítható a motor, a kormány egyenessel pedig a kormány állítható egyenes állásba

@@ -12,9 +12,9 @@
         line-height: 70px;
     }
 </style>
+<title>Dokumentáció</title>
 
-
-<h1 id="robot-tengeralattj-r-vez-rl-fel-let-dokument-ci-">Robot tengeralattjáró vezérlőfelület dokumentáció</h1>
+<h1 id="aqualab-robot-tengeralattj-r-vez-rl-fel-let-dokument-ci-">AquaLab - Robot tengeralattjáró vezérlőfelület dokumentáció</h1>
 <p>A grafikus felületet az 1920 x 1080 pixeles monitorokra készült, így más méreteken a legnagyobb figyelem ellenére előfordulhat, hogy az egyes elemek egymásra csúsznak.
 <br>
 <br></p>
@@ -32,7 +32,7 @@ A telepítéshez kövesse a telepítő utasításait! A rendszer telepítője l�
 <ul>
 <li>Windows 8.1</li>
 <li>További Universal Windows Platform 10 részét képező operációs rendszerek<br><br>
-Fordítási adatok: Qt 5.15.2 MinGW 64 bit</li>
+Fordítási adatok: Qt 5.15.2 MinGW 64 bit<br>Verziószám: v0.8-FULL-2</li>
 </ul>
 <h2 id="f-fel-let-elemei">Fő felület elemei</h2>
 <p>A program megnyitása után megjelenő számos grafikai megjelenítő és vezérlő elem funkcióinak magyarázata.<br>A magyarázat balról-jobbra, fentről-le történik</p>
@@ -45,7 +45,7 @@ Fordítási adatok: Qt 5.15.2 MinGW 64 bit</li>
 <li>A mélységérzékelő a adatai megjelenítő grafika átmenettel képes megjeleníteni a mélységet</li>
 <li>Az iránytő a fedélzeti mágnesérzékelő adatait jeleníti meg</li>
 <li>A radar adatai megjelenítő kísérleti felület, ez azonban sajnos nem működik megfelelően.</li>
-<li>A következő csoportban egy több ablakos felület található.<ul>
+<li>A következő csoportban egy több ablakos felület található, mely egy görgethető boxon belül helyezkedik el. A számítógép monitor méretétől függően érhető el a görgetés<ul>
 <li>Érkező adatok  <ul>
 <li>A vezérlési adatok csoportban táblázatok találhatóak az érkező adatokkal. Itt a jó adatok zöld, a rosszak pedig piros hátérrel rendelkeznek. Ezek az adatokkal együtt frissülnek.</li>
 <li>Jobb oldalon a képi kommunikáció és az alatta lévő piros vagy zöld hátterű, számot tartalmazó mezőben a fedélzeti egységről érkező képeket feldolgozó program adatai jelennek meg. A színes sávban a folyamat azonosítója (Process ID) található, a start gombbal pedig elindítható a folyamat.</li>
@@ -54,6 +54,7 @@ Fordítási adatok: Qt 5.15.2 MinGW 64 bit</li>
 <li>A táblázatok alatt egy alapesetben nullákat tartalmazó szövegdoboz található. Ebben jelennek meg nyersen az olvasott adatok. Itt láthatóak lejátszás közben is az adatok. </li>
 <li>Legalul egy másik hasonló doboz található, itt a küldendő adatok jelennek meg nyersen.</li>
 <li>Az UID az Update ID rövidítése. Ez a szám mutatja, hogy a felület az indítás óta hányszor frissült. Segítségével bizonyos beállítások ellenőrizhetők akkor is, ha csak ez az érték változik az egész felületen.</li>
+<li>Az MID a Mentés ID rövidítése. Ez a szám megmutatja hogy rendszer hányadik rekord mentésénél tart.</li>
 </ul>
 </li>
 <li>Tesztelési adatoknál elsősorban a bemeneti vezérlőeszközök tesztelésére használható<ul>
@@ -62,7 +63,6 @@ Fordítási adatok: Qt 5.15.2 MinGW 64 bit</li>
 <li>A funkcióhoz az Érkező adatok tabon sikeresen el kell indítani a joystick folyamatot.</li>
 </ul>
 </li>
-<li>Áramköri vizualizáció egy jelenleg még nem elérhető funkció</li>
 </ul>
 </li>
 <li>A Pontonhajó adatait tartalmazó csoport (a beállításokat ellenőrizze, ha inaktív a doboz)<ul>

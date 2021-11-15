@@ -1,4 +1,4 @@
-# Robot tengeralattjáró vezérlőfelület dokumentáció
+# AquaLab - Robot tengeralattjáró vezérlőfelület dokumentáció
 A grafikus felületet az 1920 x 1080 pixeles monitorokra készült, így más méreteken a legnagyobb figyelem ellenére előfordulhat, hogy az egyes elemek egymásra csúsznak.
 <br>
 <br>
@@ -19,7 +19,8 @@ A program kompatibilis továbbá:
 - Windows 8.1
 - További Universal Windows Platform 10 részét képező operációs rendszerek  
 <br>
-Fordítási adatok: Qt 5.15.2 MinGW 64 bit
+Fordítási adatok: Qt 5.15.2 MinGW 64 bit  
+Verziószám: v0.8-FULL-2
 
 ## Fő felület elemei
 A program megnyitása után megjelenő számos grafikai megjelenítő és vezérlő elem funkcióinak magyarázata.  

@@ -907,7 +907,7 @@ void GUI::stopKommunikacio(bool onoff)
 
 void GUI::openDocumentation()
 {
-    QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokumentacio.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
+    QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokvez.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
 }
 
 void GUI::saveUserdat()

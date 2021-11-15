@@ -730,7 +730,7 @@ QLineEdit{font-size:14px;}</string>
     <property name="title">
      <string>Segítség</string>
     </property>
-    <addaction name="actionS_g"/>
+    <addaction name="sugo"/>
    </widget>
    <addaction name="menuF_jl"/>
    <addaction name="menuR_gz_t_s"/>
@@ -787,7 +787,7 @@ QLineEdit{font-size:14px;}</string>
     <string>Rögzítés</string>
    </property>
   </action>
-  <action name="actionS_g">
+  <action name="sugo">
    <property name="text">
     <string>Súgó</string>
    </property>
@@ -932,6 +932,22 @@ QLineEdit{font-size:14px;}</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>sugo</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>openDoc()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>forditas()</slot>
@@ -940,5 +956,6 @@ QLineEdit{font-size:14px;}</string>
   <slot>loadGraf()</slot>
   <slot>openLejatszas()</slot>
   <slot>saveGraf()</slot>
+  <slot>openDoc()</slot>
  </slots>
 </ui>

@@ -397,7 +397,7 @@ void GUI::saveGraf()
 
 void GUI::openDoc()
 {
-    QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokumentacio.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
+    QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokmeg.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
 }
 
 

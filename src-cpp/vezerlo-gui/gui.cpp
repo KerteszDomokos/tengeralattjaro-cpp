@@ -136,6 +136,7 @@ GUI::GUI(QWidget *parent)
     lejatszas=new Lejatszas;
 
 
+
     ui->cmdDock->setHidden(1);
     QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
 
@@ -203,6 +204,7 @@ GUI::GUI(QWidget *parent)
 
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
+    lejatszasOpened=0;
 }
 
 GUI::~GUI()
@@ -1137,7 +1139,7 @@ QString GUI::commands(QString comm)
         return "Rögzítés ablak megnyitása sikeres";
     }
     else if(comm=="openPlay"){
-        widget->show(); lejatszasOpened=1;
+        lejatszasOpen();
         return "Lejátszás ablak megnyitása sikeres";
     }
     else if(comm=="reloadFelv"){
@@ -1345,7 +1347,7 @@ void GUI::msg(QString txt, int priority=1)
 
 void GUI::cl()
 {
-    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;}
+    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;lejatszas=new Lejatszas;}
     if(felvetelOpened==1){delete widget;felvetelOpened=0;}
 }
 

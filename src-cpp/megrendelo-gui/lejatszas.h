@@ -45,6 +45,7 @@ private slots:
     void slidMove();
     void next_steps();
     void getElements(long beg);
+    void getElements();
 
 
 private:
@@ -52,7 +53,7 @@ private:
     QString fileName;
     bool kuld,olv,joy,guiUpdate;
     QTimer *standard_speed;
-    bool playing;
+    bool playing=1;
 
     QDomDocument *xml;
     QDomElement *node;

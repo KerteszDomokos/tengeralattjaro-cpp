@@ -18,6 +18,8 @@ Lejatszas::Lejatszas(QWidget *parent) :
 
     timer = new QTimer(this);//időzítők
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&Lejatszas::next_steps));
+    playing=1;
+    lejatszas_idozito();
 }
 
 Lejatszas::~Lejatszas()
@@ -99,13 +101,13 @@ void Lejatszas::startPlay()
 void Lejatszas::lejatszas_idozito()
 {
     if(playing==1){//Lejátszás
-        ui->playgomb->setIcon(QIcon(":/resources/playico"));
+        ui->playgomb->setIcon(QIcon(":/resources/resources/play.ico"));
         playing=0;
         timer->stop();
     }else{
         ui->playgomb->setIcon(QIcon(":/resources/pauseico"));
         playing=1;
-        timer->start(5);
+        timer->start(15);
         msg("Lejátszási időzítő indítása",1);
     }
 }
@@ -151,6 +153,11 @@ void Lejatszas::getElements(long beg)
        ui->xmladatok->setText(txt);
        ui->load->setValue(200);
 
+}
+
+void Lejatszas::getElements()
+{
+    getElements(0);
 }
 
 void Lejatszas::msg(QString t, int p)

@@ -20,9 +20,5 @@ src-cpp/build-megrendeloi-gui_x64MinGW/
 
 src-cpp/installer/packages/
 
-*.exe
-
-*.dll
-
 src-cpp/installer/def dll-s/
 src-cpp/.vs/

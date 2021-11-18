@@ -7,7 +7,7 @@
         <file alias="darkmode">resources/dark-style.qss</file>
         <file alias="lightmode">resources/lightmode.qss</file>
         <file alias="pauseico">resources/pause.ico</file>
-        <file>resources/play.ico</file>
+        <file alias="playico">resources/play.ico</file>
         <file alias="ico">resources/program-icon.ico</file>
     </qresource>
     <qresource prefix="/">

@@ -126,12 +126,12 @@ void GUI::upd()
         ph=olvasottList[12];
         red=olvasottList[13];
         vez=olvasottList[14];
-        vez=olvasottList[15];
+        zav=olvasottList[15];
         ar=olvasottList[16];
         hom=olvasottList[7];
 
-        ui->balmot->setText(QString::number(bmot));
-        ui->jobbmot->setText(QString::number(jmot));
+        ui->balmot->setText(QString::number(bmot-1490));
+        ui->jobbmot->setText(QString::number(jmot-1490));
         ui->bhom->setText(QString::number(hom));
 
         ui->phval->setText(QString::number(ph));

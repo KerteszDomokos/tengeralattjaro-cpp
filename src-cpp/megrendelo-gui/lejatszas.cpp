@@ -99,11 +99,11 @@ void Lejatszas::startPlay()
 void Lejatszas::lejatszas_idozito()
 {
     if(playing==1){//Lejátszás
-        ui->playgomb->setIcon(QIcon(":/icons/play"));
+        ui->playgomb->setIcon(QIcon(":/resources/playico"));
         playing=0;
         timer->stop();
     }else{
-        ui->playgomb->setIcon(QIcon(":/icons/pause"));
+        ui->playgomb->setIcon(QIcon(":/resources/pauseico"));
         playing=1;
         timer->start(5);
         msg("Lejátszási időzítő indítása",1);

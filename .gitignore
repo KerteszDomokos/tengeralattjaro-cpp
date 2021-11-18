@@ -18,10 +18,10 @@ src-cpp/build-vezerlo-gui-Release/
 
 src-cpp/build-megrendeloi-gui_x64MinGW/
 
-<<<<<<< HEAD
-=======
 src-cpp/installer/packages/
->>>>>>> main
+
+!/src-cpp/installer/packages/com.megrendelo/meta
+!/src-cpp/installer/packages/com.vezerlo/meta
 
 src-cpp/installer/def dll-s/
 src-cpp/.vs/

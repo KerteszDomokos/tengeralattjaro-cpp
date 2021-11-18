@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Megrendelői felület</DisplayName>
+    <Description>A merülések megrendelőinek készült felület, ahol vizualizálhatóak az adatok</Description>
+    <Version>0.8</Version>
+    <ReleaseDate>2021-11-18</ReleaseDate>
+    <Licenses>
+        <License name="Aqualab licence" file="license.txt" />
+    </Licenses>
+    <Script>installscript.qs</Script>
+    <Default>true</Default>
+</Package>

@@ -210,7 +210,7 @@ GUI::GUI(QWidget *parent)
 GUI::~GUI()
 {
     mSerial->close();
-    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;}
+    if(lejatszasOpened==1){lejatszas->close(); lejatszasOpened=0;}
     if(felvetelOpened==1){delete widget;felvetelOpened=0;}
     delete ui;
 
@@ -779,6 +779,7 @@ void GUI::felvAccept()
 void GUI::lejatszasOpen()
 {
     if(lejatszasOpened==0){
+
         lejatszas->show();
         lejatszas->setStyleSheet(st);
         lejatszas->setFileName(playpath);
@@ -812,7 +813,7 @@ void GUI::stopPlay()
 {
     playing=0;
     msg("Lejátszás befejezve",1);
-    delete lejatszas;
+    lejatszas->close();
     lejatszasOpened=0;
     motorNull();
 }
@@ -1347,7 +1348,7 @@ void GUI::msg(QString txt, int priority=1)
 
 void GUI::cl()
 {
-    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;lejatszas=new Lejatszas;}
+    if(lejatszasOpened==1){lejatszas->close(); lejatszasOpened=0;lejatszas=new Lejatszas;}
     if(felvetelOpened==1){delete widget;felvetelOpened=0;}
 }
 

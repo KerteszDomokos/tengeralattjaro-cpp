@@ -5,7 +5,7 @@
     <Version>0.8</Version>
     <ReleaseDate>2021-11-18</ReleaseDate>
     <Licenses>
-        <License name="Aqualab licence" file="license.txt" />
+        <License name="Aqualab licence" file="licence.txt" />
     </Licenses>
     <Script>installscript.qs</Script>
     <Default>true</Default>

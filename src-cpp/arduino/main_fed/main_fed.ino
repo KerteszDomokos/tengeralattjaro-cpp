@@ -1,3 +1,4 @@
+
 /*
    A fájl a GitLab lerakatban található
    A fájlhoz a ../build-vezerlo-gui vezérlőfelülete tartozik
@@ -65,7 +66,7 @@ Servo talcaBal;
 Servo talcaJobb;
 
 
-DHT dht(DHTPIN, DHT11); //pin, type
+dht11 dht; //pin, type
 
 String rpidata;
 long kommill = -10;
@@ -149,7 +150,6 @@ void setup()
 
   myArray[3] = 1;
 
-  dht.begin();
   digitalWrite(OK_LED_Z, 0);
   //motorReset=1;
 }
@@ -188,8 +188,13 @@ void loop()
     //hő, és páratartalom mérés
     h1 = hm(TPIN1); //12-es hm
     h2 = hm(TPIN2); //13-as hm
-    hum = dht.readHumidity(0); //páratartalom
-    h3 = dht.readTemperature(0); // dht hőmérője
+    
+    ////////////////DHT////////////////
+    int chk = dht.read(DHTPIN);
+
+  hum=dht.humidity;
+  h3=dht.temperature;
+  
     if (hum == NAN) {
       hum = 0;
     }

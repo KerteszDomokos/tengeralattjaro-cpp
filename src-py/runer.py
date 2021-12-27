@@ -110,7 +110,7 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):#kamera
 
         fs = FrameSegment(s, port)
         #indexelés, for, próbálgat cap.isOpened() al
-        print(udp_readed_u[:])
+        print("UDP-readed",udp_readed_u[:])
         cap=cv2.VideoCapture(10)
         try:
             while True:
@@ -161,7 +161,7 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
 
     try:
         #ser=serial.Serial(baudrate='115200', timeout=.1, port='com8')#Windows
-        ser=serial.Serial(timeout=.15, port='/dev/ttyUSB0', baudrate='115200')#linux
+        ser=serial.Serial(timeout=.15, port='/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55037313337351A08290-if00', baudrate='115200')#linux
         prl('Sikeres port nyitás',1)
         ena=1
     except:
@@ -364,7 +364,7 @@ def gy(serw_g,serr_g,gyro_g, udp_g,bdatas_g):
             ex=1
             break
         except OSError:
-            pre("I/O error")
+            # pre("I/O error")
             time.sleep(.1)
         except:
             time.sleep(.1)
@@ -381,7 +381,7 @@ def gy(serw_g,serr_g,gyro_g, udp_g,bdatas_g):
                 temp=read_raw_data(TEMP_OUT)
                 gyro_g[3]=calcCom()
             except OSError:
-                pre('MPU6050 csatlakozóhiba')
+                # pre('MPU6050 csatlakozóhiba')
                 errlist.append(4)
                 serr_g[3]=4
                 break
@@ -409,6 +409,7 @@ def gy(serw_g,serr_g,gyro_g, udp_g,bdatas_g):
                 break
             except:
                 pre('Iránytű hiba'+str(sys.exc_info()))
+                
             #print ("Gx=%.2f" %Gx, u'\u00b0'+ "/s", "\tGy=%.2f" %Gy, u'\u00b0'+ "/s", "\tGz=%.2f" %Gz, u'\u00b0'+ "/s", "\tAx=%.2f g" %Ax, "\tAy=%.2f g" %Ay, "\tAz=%.2f g" %Az) 	
             #prl(str(gyro_g[:]),1)
             time.sleep(.01)
@@ -433,10 +434,12 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
         cpuR=cpu()
         lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         UDP_IP='169.254.62.249'#vevő ip címe
-        UDP_PORT=6010
+        UDP_PORT=6011
         udp = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
         v=0
+        udp.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        prl("UDP kuldoegyseg OK",1)
     except:
         pre('UDP port nyitás sikertelen'+str(sys.exc_info()))
         v=1
@@ -468,11 +471,14 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
 def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
     try:
         UDP_IP='169.254.15.251'
-        UDP_PORT=6000
+        UDP_PORT=6001
+        MAX_DATA_SIZE=512
+
         udp = socket.socket(socket.AF_INET, # Internet
                         socket.SOCK_DGRAM) # UDP
-        MAX_DATA_SIZE=512
         udp.bind((UDP_IP, UDP_PORT))
+        udp.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        prl("UDP olvasoegysegOK",1)
     except:
         pre('UDP olvasóegységnél hiba!'+str(sys.exc_info()))
     while True:
@@ -483,7 +489,6 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
                 dat2=dat1.replace("b'","")
                 dat3=dat2[:-1]
                 vegso=ast.literal_eval(dat3)
-                # print(vegso)
                 
             except:
                 pre('Konvertálás sikertelen'+str(sys.exc_info()))
@@ -524,7 +529,7 @@ if __name__=="__main__":
         p1.start()
         p2.start()
         p3.start()
-        p4.start()
+        # p4.start()
         p5.start()
         p6.start()
         p6.join()

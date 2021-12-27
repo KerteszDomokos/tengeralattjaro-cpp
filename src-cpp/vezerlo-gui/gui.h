@@ -14,6 +14,7 @@
 #include <felvetel.h>
 #include <lejatszas.h>
 #include <settings.h>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GUI; }
@@ -57,9 +58,8 @@ private slots:
     void ballasztJobbk();
     void ballasztJobbmin();
     void ballasztJobbmax();
-    void set_darkmode();
-    void set_lightmode();
-    void mentes();
+    void mentes(int id);
+    void mentesGo();
     void mentesDialog();
     void felvAccept();
     void lejatszasOpen();
@@ -72,6 +72,11 @@ private slots:
     void open_settings();
     void ballasztPluszegy();
     void ballasztMinuszegy();
+    void applySettings();
+    void notapplySettings();
+    void updateonoff(int upt=20);
+    void stopKommunikacio(bool onoff);
+    void openDocumentation();
 
 
 
@@ -86,10 +91,13 @@ private:
     QString listToStr(QList<double> l);
     QString listToStr(QList<int> l);
     QString generatePath(int id);
+    void saveUserdat();//a settings ablakban megadott beállítások mentése
+    void getUserdat();//a settings ablakból elmentett adatok lekérése
 
 
     QProcess *pr ;//joystick process cl pointer
     QProcess *pr2 ;//kép process cl pointer
+    QTimer *timer;//update függvény időzítője
     QString elozoOlv="";//előző olvasott adat összehasonlításhoz
     QString bejovoFriss="";//legfrissebb bejövő adat szövegben
     QList<double> kuldendoFriss;//a küldendő adatok listája a legfrissebb adatokkal
@@ -103,35 +111,51 @@ private:
     int kepHiba;
     bool mentes_onoff=0;
     ulong mentid=0;
+    int mentmax=500;//maximum rekord egy mentésben
     QDomDocument *ment_doc;
     QTextStream *xmlContent;
     QFile *xmlFile;
     QDomElement *root_xml;
+    //felvétel változók és példányok
     Felvetel *widget;
     bool joyIN, olvIN,kuldIN, konzIN,defPathIN,kepIN;
     QString felvPath;
     QString felvPathGyok;
-
+    //Lejátszás vált és péld
     Lejatszas *lejatszas;
     bool playing=0;
     bool joydat_play;
     bool kuld_play;
     bool olv_play;
     bool guiupdate_play;
-
     bool lejatszasOpened;
     bool felvetelOpened;
-
+    //Settings változók és példányok
     settings *set;
+    QSettings *sets;
+    QList<bool> booldatas_settings;
+    QList<bool> hatterdatas;
+    int updatetime=20;
+    bool cmdavailable=1;
+    bool updateOn;
+    bool megrendeloAv;
+    long updateID=0;//update id száma, a frissítéshez
+    bool joyena=0,kepena=0,komena=0;
+    std::thread *kommpointer;//a kommunikáció thread objektum pointere. konstruktorban értékadás
+    QList<double> ugyfelFriss;
+    QString st;
+    QString playpath;
+    long fpsID=0;
+    QString p;
 
 
 
 
 
 
-public: //hösszú szöveges változók
+public: //hosszú szöveges változók
     //a parancssor helptxt-je:
-    QString comH="comm - teszt parancs\nexit - program bezárása és kilépés\nPID(joy/kep) - kép vagy joy folyamat PID\nstop(Joy/Kep) - kép vagy joy folyamat megölése\ngetJoy - joystick adatai lekérése adott pillanatban\nstart(Kep/Joy) - elindítja a folyamatot ha az még nem fut\n";
+    QString comH="comm - teszt parancs\nexit - program bezárása és kilépés\nuserdatPath - A felhasználó mentett beállításainak az elérési útvonala\nPID(joy/kep) - kép vagy joy folyamat PID\nstop(Joy/Kep) - kép vagy joy folyamat megölése\ngetJoy - joystick adatai lekérése adott pillanatban\nstart(Kep/Joy) - elindítja a folyamatot ha az még nem fut\n";
     QString joypath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\joystick.py";
     QString keppath="G:\\Privát adatok\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\kep.py";
     QString pypath="C:/Users/Gábor/AppData/Local/Programs/Python/Python38-32/python.exe";

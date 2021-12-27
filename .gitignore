@@ -6,3 +6,29 @@ src-cpp/vezerlo-gui/teszt.qml
 src-cpp/vezerlo-gui/program-datas/joystick.txt
 src-cpp/vezerlo-gui/program-datas/live.jpg
 
+
+src-cpp/vezerlo-gui/mentesek/
+
+src-cpp/vezerlo-gui/installer/packages/com.vendor.root/data/Qt3D/Core/
+src-cpp/vezerlo-gui/installer/packages/com.vendor.root/data/
+
+src-cpp/build-vezerlo-gui-Debug-32/
+
+src-cpp/build-vezerlo-gui-Release/
+
+src-cpp/build-megrendeloi-gui_x64MinGW/
+
+<<<<<<< HEAD
+src-cpp/installer/packages/
+
+!/src-cpp/installer/packages/com.megrendelo/meta
+!/src-cpp/installer/packages/com.vezerlo/meta
+=======
+<<<<<<< HEAD
+=======
+src-cpp/installer/packages/
+>>>>>>> main
+>>>>>>> main
+
+src-cpp/installer/def dll-s/
+src-cpp/.vs/

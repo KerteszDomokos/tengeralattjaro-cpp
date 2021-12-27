@@ -26,8 +26,12 @@ public:
     bool getJoyIN() const;
     bool getKepIN() const;
     bool getDefPathIN() const;
-
+    void setDats(QString style);
     QString getFullPath() const;
+    int getMaxdat() const;
+    void setMaxdat(int value);
+    void valaszt();
+
 signals:
     void recStart();
     void message(QString, int);
@@ -38,6 +42,8 @@ private slots:
     void ok();
     void filenameUpdate();
     void acceptRec();
+    void mods();
+
 
 
 private:
@@ -48,6 +54,7 @@ private:
     bool joyIN, olvIN,kuldIN, konzIN,defPathIN,kepIN;
     void generateFilename(int id);
     int rid;
+    int maxdat=7000;
 };
 
 #endif // FELVETEL_H

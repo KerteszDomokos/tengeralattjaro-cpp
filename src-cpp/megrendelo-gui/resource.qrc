@@ -1,24 +1,16 @@
 <RCC>
-    <qresource prefix="/qml-files">
-        <file alias="compass">qml-files/compass.qml</file>
-        <file alias="horizon">qml-files/horizon.qml</file>
-        <file alias="melyseg">qml-files/magassag.qml</file>
+    <qresource prefix="/languages">
+        <file>megrendelo-gui_en_EN.ts</file>
+        <file>megrendelo-gui_en_EN.qm</file>
     </qresource>
-    <qresource prefix="/horizon">
-        <file>resources/components/rollPitchIndicator/artGroundSky.svg</file>
-        <file>resources/components/rollPitchIndicator/background.png</file>
-        <file>resources/components/rollPitchIndicator/background_old.png</file>
-        <file>resources/components/rollPitchIndicator/compass.svg</file>
-        <file>resources/components/rollPitchIndicator/compassIndicator.svg</file>
-        <file>resources/components/rollPitchIndicator/crossHair.svg</file>
-        <file>resources/components/rollPitchIndicator/needle.png</file>
-        <file>resources/components/rollPitchIndicator/needle_shadow.png</file>
-        <file>resources/components/rollPitchIndicator/overlay.png</file>
-        <file>resources/components/rollPitchIndicator/pitchGraticule.png</file>
-        <file>resources/components/rollPitchIndicator/quit.png</file>
-        <file>resources/components/rollPitchIndicator/rollGraticule.svg</file>
-        <file>resources/components/rollPitchIndicator/rollPointer.svg</file>
-        <file>resources/compass.svg</file>
-        <file>resources/compass-nyil.png</file>
+    <qresource prefix="/resources">
+        <file alias="darkmode">resources/dark-style.qss</file>
+        <file alias="lightmode">resources/lightmode.qss</file>
+        <file alias="pauseico">resources/pause.ico</file>
+        <file>resources/play.ico</file>
+        <file alias="ico">resources/program-icon.ico</file>
+    </qresource>
+    <qresource prefix="/">
+        <file alias="3d">3d.qml</file>
     </qresource>
 </RCC>

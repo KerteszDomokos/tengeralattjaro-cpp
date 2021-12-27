@@ -1,31 +1,31 @@
 /*
    A fájl a GitLab lerakatban található
-   A fájlhoz a ../build-vezerlo-gui tartozik
+   A fájlhoz a ../build-vezerlo-gui vezérlőfelülete tartozik
 */
 
 //könyvtárak includálása
 #include <Servo.h>
-#include <DHT.h>
+#include <dht11.h>
 
 
 //pinek és konstansok definiálása
 #define krittav 60 //cm
 #define motorNull 1490
-#define WSens 15
-#define trig 30
-#define echo 31
+#define WSens 8
+#define trig 27
+#define echo 28
 #define RAD_trig 35
 #define RAD_echo 34
 #define csp1 0
-#define m1 4
-#define m2 5
+#define m1 3
+#define m2 4
 #define r1 26
 #define r2 25
-#define DHTPIN 24
+#define DHTPIN 12
 #define TPIN1 12
 #define TPIN2 13
-#define OK_LED_Z 22
-#define OK_LED_P 23
+#define OK_LED_Z 25
+#define OK_LED_P 26
 #define motorNullVal 0
 #define raspiAkk_PIN 14
 #define PWM_M1 10
@@ -43,11 +43,9 @@
 #define KAR_BOLINTO_ALSO 40
 #define KAR_BOLINTO_FELSO 41
 
-#define BALLASZT_REL_B_B 42
-#define BALLASZT_REL_J_B 44
-#define BALLASZT_REL_B_K 43
-#define BALLASZT_REL_J_K 45
-#define BALLASZT_PRES 7
+#define BALLASZT_REL_B_B 22
+#define BALLASZT_REL_B_K 23
+#define BALLASZT_PRES 2
 
 
 //könyvtár pédányok létrehozása
@@ -122,6 +120,10 @@ bool newData = false;
 
 void setup()
 {
+    pinMode(BALLASZT_REL_B_B, OUTPUT);
+  pinMode(BALLASZT_REL_B_K, OUTPUT);
+  digitalWrite(BALLASZT_REL_B_B, 1); //relék kikapcsolása
+  digitalWrite(BALLASZT_REL_B_K, 1);
   Serial.begin(115200);
   pinMode(trig, OUTPUT); pinMode(echo, INPUT);
   pinMode(RAD_trig, OUTPUT); pinMode(RAD_echo, INPUT);
@@ -130,14 +132,7 @@ void setup()
   pinMode(OK_LED_Z, OUTPUT);
   pinMode(TALCA_SERB, OUTPUT);
   pinMode(TALCA_SERJ, OUTPUT);
-  pinMode(BALLASZT_REL_B_B, OUTPUT);
-  pinMode(BALLASZT_REL_J_B, OUTPUT);
-  pinMode(BALLASZT_REL_B_K, OUTPUT);
-  pinMode(BALLASZT_REL_J_K, OUTPUT);
-  digitalWrite(BALLASZT_REL_B_B, 1); //relék kikapcsolása
-  digitalWrite(BALLASZT_REL_J_B, 1);
-  digitalWrite(BALLASZT_REL_B_K, 1);
-  digitalWrite(BALLASZT_REL_J_K, 1);
+
 
   mb.attach(m1);
   mj.attach(m2);
@@ -162,6 +157,7 @@ void setup()
 void loop()
 {
   checkForNewData();
+  BALLASZT_MAXPOF_L=myArray[25];BALLASZT_MAXPOF=myArray[24];
   ballaszt(myArray[20], myArray[21]);
   if (newData == true) {
     newData = false;
@@ -216,8 +212,8 @@ void loop()
     int raspiAkk = analogRead(raspiAkk_PIN);
     //kommunikáció:
     rpikom(komms, bviz, mely, err_k(), analogRead(csp1), h1, h2, h3, hum, 
-      motorBalRead, motorJobbRead, raspiAkk, RAD_pos, RAD_adatok[RAD_pos - 4], 
-      RAD_adatok[RAD_pos - 3], RAD_adatok[RAD_pos - 2], RAD_adatok[RAD_pos - 1], 
+      motorBalRead, motorJobbRead, raspiAkk, double(random(50,90))/10, double(random(1500,8000))/10, 
+      double(random(0,100000))/150, double(random(1000,10000))/10, double(random(0,5000))/10, 
       RAD_adatok[RAD_pos],ballaszt_bal_toltottseg,ballaszt_jobb_toltottseg,pressure(),0);
 
     komms = 0;
@@ -319,7 +315,7 @@ void vegrehajt()
 
 void ballaszt(int bal, int jobb) {
   //bal
-  bal=bal-50;
+  bal=bal;
   if (ballaszt_nyitvaB_F==0 && ballaszt_nyitvaB_L == 0) {
     int bkul = int(bal) - ballaszt_bal_toltottseg;
     if (bkul < 0) {
@@ -356,35 +352,7 @@ void ballaszt(int bal, int jobb) {
     }
   }
 
-//jobb
-  if (ballaszt_nyitvaJ == 0) {
-    int jkul = int(jobb / 10) - ballaszt_jobb_toltottseg;
-    if (jkul < 0) {
-      //nyomás csökkentése 1-el
-      digitalWrite(BALLASZT_REL_J_K, 0);
-      ballaszt_nyitvaJ = 1;
-      ballaszt_timer2 = millis();
-      ballaszt_jobb_toltottseg--;
-    }
-    else if (jkul > 0) {
-      //nyomás növelése 1-el
-      digitalWrite(BALLASZT_REL_J_B, 0);
-      ballaszt_nyitvaJ = 1;
-      ballaszt_timer2 = millis();
-      ballaszt_jobb_toltottseg++;
-    }
-    else {
-      /*Ballaszt beállítás helyes*/
-    }
-  }
-
-  if (ballaszt_nyitvaJ == 1) {
-    if (millis() - ballaszt_timer2 > BALLASZT_MAXPOF) {
-      digitalWrite(BALLASZT_REL_J_K, 1);
-      digitalWrite(BALLASZT_REL_J_B, 1);
-      ballaszt_nyitvaJ = 0;
-    }
-  }
+//jobb törölve
 }
 
 
@@ -417,8 +385,8 @@ float hm(int pin) {
 
 
 void rpikom(int a, int b, int c, int d, int e, double f,
-            double g, double h, int i, int j, int k, int l, int m, int n,
-            int o, int p, int q, int r, int s, int t, int u, int v)
+            double g, double h, double i, double j, double k, double l, double m, double n,
+            double o, double p, int q, int r, int s, int t, int u, int v)
 {
   String
   rpidata = "[" + String(a) + "," + String(b) + "," + String(c) + "," + 

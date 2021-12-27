@@ -1,4 +1,12 @@
-QT       += core gui
+QT += core gui
+QT += quickwidgets
+QT += concurrent
+QT += core
+QT += network
+QT += serialport
+QT += charts
+QT += xml
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,16 +18,24 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    gui.cpp
+    gui.cpp \
+    settings.cpp \
+    sockread.cpp\
+    lejatszas.cpp
 
 HEADERS += \
-    gui.h
+    gui.h \
+    settings.h \
+    sockread.h \
+    lejatszas.h
 
 FORMS += \
-    gui.ui
+    gui.ui \
+    settings.ui \
+    lejatszas.ui
 
 TRANSLATIONS += \
-    megrendelo-gui_hu_HU.ts
+    megrendelo-gui_en_EN.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -29,9 +45,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 
 DISTFILES += \
+    megrendelo-gui_en_EN.ts \
     qml-files/compass.qml \
     qml-files/horizon.qml \
-    qml-files/compass
+    qml-files/compass \
+    3d.qml
 
 RESOURCES += \
     resource.qrc
+
+
+win32: RC_ICONS = resources/program-icon.ico

@@ -6,6 +6,7 @@
 #include <QIcon>
 #include <QDomDocument>
 #include <QTimer>
+#include <QTranslator>
 
 Lejatszas::Lejatszas(QWidget *parent) :
     QDialog(parent),
@@ -17,7 +18,8 @@ Lejatszas::Lejatszas(QWidget *parent) :
 
     timer = new QTimer(this);//időzítők
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&Lejatszas::next_steps));
-    ui->filenametxt->setText(fileName);
+    playing=1;
+    lejatszas_idozito();
 }
 
 Lejatszas::~Lejatszas()
@@ -32,7 +34,6 @@ void Lejatszas::chooseFile()
 
     ui->filenametxt->setText(fileName);
 
-    msg("Lejátszásnál kiválasztott fájlnevet lekérheti a parancssorból",1);
 }
 
 void Lejatszas::startPlay()
@@ -100,19 +101,21 @@ void Lejatszas::startPlay()
 void Lejatszas::lejatszas_idozito()
 {
     if(playing==1){//Lejátszás
-        ui->playgomb->setIcon(QIcon(":/icons/play"));
+        ui->playgomb->setIcon(QIcon(":/resources/resources/play.ico"));
         playing=0;
         timer->stop();
     }else{
-        ui->playgomb->setIcon(QIcon(":/icons/pause"));
+        ui->playgomb->setIcon(QIcon(":/resources/pauseico"));
         playing=1;
-        timer->start(5);
+        timer->start(15);
         msg("Lejátszási időzítő indítása",1);
     }
 }
 
 void Lejatszas::getElements(long beg)
 {
+    int l=0;
+    ui->load->setValue(l);
     QString txt;
     Child=Component.firstChild().toElement();
     tag = "Event";
@@ -133,7 +136,8 @@ void Lejatszas::getElements(long beg)
        }
        for(int i = beg; i < nodes.count() && i<beg+200; i++)
        {
-           ui->load->setValue(i+1);
+           l++;
+           ui->load->setValue(l);
            QDomNode elm = nodes.at(i);
            if(elm.isElement())
            {
@@ -147,14 +151,31 @@ void Lejatszas::getElements(long beg)
            }
        }
        ui->xmladatok->setText(txt);
+       ui->load->setValue(200);
 
+}
+
+void Lejatszas::getElements()
+{
+    getElements(0);
 }
 
 void Lejatszas::msg(QString t, int p)
 {
     message(t,p);
 }
-
+void Lejatszas::forditas(QString lang)
+{
+    if(lang=="English"){
+        QTranslator translator;
+        translator.load(":/languages/megrendelo-gui_en_EN.qm");
+        qApp-> QCoreApplication::installTranslator(&translator);
+        ui->retranslateUi(this);
+    }
+    if(lang=="Magyar"){
+    ui->retranslateUi(this);
+    }
+}
 void Lejatszas::updateNow()
 {
     long id=0;
@@ -175,11 +196,6 @@ void Lejatszas::updateNow()
     }
 }
 
-void Lejatszas::setDats(QString style)
-{
-    this->setStyleSheet(style);
-}
-
 void Lejatszas::slidMove()
 {
     long pos=ui->idovonal->value();
@@ -195,34 +211,9 @@ void Lejatszas::next_steps()
     ui->idovonal->setValue(ui->idovonal->value()+1);
 }
 
-QString Lejatszas::getFileName() const
-{
-    return fileName;
-}
-
-void Lejatszas::setFileName(const QString &value)
-{
-    fileName = value;
-}
-
-void Lejatszas::valaszt()
-{
-    ui->filenametxt->setText(fileName);
-}
-
-QString Lejatszas::getNowJoystick() const
-{
-    return nowJoystick;
-}
-
 QString Lejatszas::getNowOlvasott() const
 {
     return nowOlvasott;
-}
-
-QString Lejatszas::getNowKuldendo() const
-{
-    return nowKuldendo;
 }
 
 long Lejatszas::getNowID() const

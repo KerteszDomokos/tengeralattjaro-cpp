@@ -8,21 +8,15 @@ class SockRead : public QObject{
     public:
         SockRead();
         QString readS();
-        bool send(QList<double> dat);
         QByteArray readKep();
         void resetSettings();
-        void applySettings();
-        void megrSend(QList<double> dat);
+        void applySettings(QString ip);
 
     private:
         QUdpSocket *socket;
         QUdpSocket *socketSend;
         QUdpSocket *socketKep;
-        QUdpSocket *sockMegr;
-        QString kuldoIP="169.254.15.251";
-        QString vevoIP="169.254.62.249";
-        QString megrendeloIP="127.0.0.1";
-        QString megrendeloKuldo="127.0.0.1";
+        QString vevoIP="127.0.0.1";
 
 };
 

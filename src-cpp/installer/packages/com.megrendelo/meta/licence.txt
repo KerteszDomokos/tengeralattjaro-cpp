@@ -1,0 +1,5 @@
+AquaLab licence
+A projekthez tartozó bináris és forráskód fájlok közlése, felhasználása
+tilos, a kódok és a fordítások szellemi tulajdont képeznek.
+A programokhoz való hozzáférés esetén nem jogosult harmadik fél rendelkezésére 
+bocsátani, ezt csak az AquaLabon keresztül teheti meg.

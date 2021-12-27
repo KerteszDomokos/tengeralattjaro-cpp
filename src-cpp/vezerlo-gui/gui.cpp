@@ -39,9 +39,18 @@
 #include <QDialog>
 #include <QDate>
 #include <QDir>
+#include <QSettings>
+#include <QVariant>
+#include <QMetaType>
+#include <QTextStream>
+#include <QDesktopServices>
+
 
 SockRead sock;
 
+
+
+int test=1;
 
 QString bejovo="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
 std::mutex bejovo_mutex;
@@ -49,13 +58,28 @@ std::mutex bejovo_mutex;
 QList<double> kuldendo={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 std::mutex kuldendo_mutex;
 
+QList<double> ugyfeladatok={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+std::mutex ugyfeladatok_mutex;
+
+bool ukAv; //ÜgyfélKommunikáció Available
+std::mutex ukAv_mutex;
+
+
+bool stop=0;
 
 void read(){
     QString dat;
     QString elozoOlv;
-    QList<double> sending; QString sendingS;
+    QList<double> sending;
+    QList<double> sendingU;
+    QString sendingS;
     long rsz=0;
+    qDebug()<<"Kommunikációs szál indítása";
     while(true){
+        if(stop==1){
+            qDebug()<<"Leállítás";
+            break;
+        }
         Sleep(1);
         dat=sock.readS();
         if(rsz%10==0){
@@ -63,6 +87,12 @@ void read(){
             sending=kuldendo;
             kuldendo_mutex.unlock();
             sock.send(sending);
+        }
+        if(rsz%11==0 && ukAv==1){
+            ugyfeladatok_mutex.lock();
+            sendingU=ugyfeladatok;
+            ugyfeladatok_mutex.unlock();
+            sock.megrSend(sendingU);
         }
         if(dat!=elozoOlv && dat!=""){
             bejovo_mutex.lock();
@@ -76,7 +106,9 @@ void read(){
 
 }
 
-
+void kepment(QPixmap img,QString path){
+    img.save(path,"jpg");
+}
 
 GUI::GUI(QWidget *parent)
     : QMainWindow(parent)
@@ -84,6 +116,29 @@ GUI::GUI(QWidget *parent)
 {
     ui->setupUi(this);
 
+    updateOn=1;
+    updateonoff(); //Userdata lekérés előtt!!
+
+    sets = new QSettings("Aqualab vezérlő", "AquaLab");
+    QStringList keys=sets->allKeys();
+    if(keys.isEmpty()==1){
+        QFile styleFile( ":/programs/lightmode" );
+        styleFile.open( QFile::ReadOnly );
+
+        QString style( styleFile.readAll() );
+        styleFile.close();
+        st=style;
+    }else{
+        getUserdat();
+    }
+    qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
+    widget = new Felvetel;
+    lejatszas=new Lejatszas;
+
+
+
+    ui->cmdDock->setHidden(1);
+    QApplication::setEffectEnabled(Qt::UI_AnimateCombo, false);
 
     ui->horizont->setSource(QUrl(QStringLiteral("qrc:/qml-files/horizon")));
     ui->joyh->setSource(QUrl(QStringLiteral("qrc:/qml-files/joy")));
@@ -91,16 +146,12 @@ GUI::GUI(QWidget *parent)
     ui->compass->setSource(QUrl(QStringLiteral("qrc:/qml-files/compass")));
     ui->radarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/radar")));
     ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
+    if(test==1){
 
-
-    QPixmap pm = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
-    ui->ad->setPixmap(pm);
-    ui->ad->setScaledContents(false);
-
-
-    QTimer *timer = new QTimer(this);//időzítők
-    connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
-    timer->start(20);
+        QPixmap pm = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
+        ui->ad->setPixmap(pm);
+        ui->ad->setScaledContents(false);
+    }
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
@@ -130,11 +181,13 @@ GUI::GUI(QWidget *parent)
     ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");
     ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");
 
+
     //szál indítása
     std::thread ob(read);
-    ob.detach();
+    kommpointer=&ob;
+    kommpointer->detach();
 
-    ui->cmdDock->setHidden(1);
+
 
     mSerial = new QSerialPort(this);
 
@@ -142,20 +195,22 @@ GUI::GUI(QWidget *parent)
             this, &GUI::serkom);
 
     ballaszt_manualis_click();
-    widget = new Felvetel;
-    lejatszas=new Lejatszas;
+
 
     ballaszt_erzekenyseg();
 
+    p="F:/Merulesek/"+QDate::currentDate().QDate::toString("yy-MM-dd-")+QTime::currentTime().toString("hh-mm-ss");
+    QDir().mkdir(p);
 
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
+    lejatszasOpened=0;
 }
 
 GUI::~GUI()
 {
     mSerial->close();
-    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;}
+    if(lejatszasOpened==1){lejatszas->close(); lejatszasOpened=0;}
     if(felvetelOpened==1){delete widget;felvetelOpened=0;}
     delete ui;
 
@@ -165,19 +220,7 @@ GUI::~GUI()
     if(mentes_onoff==1){
         mentes_onoff=0;
         mentid=0;
-        xmlFile=new QFile ("../mentett.xml");
-        if (!xmlFile->open(QFile::WriteOnly | QFile::Text ))
-           {
-               msg("Sikertelen fájl nyitás",2);
-               qDebug()<<"Hibás fájlnyitás";
-               xmlFile->close();
-           }
-        else{
-            xmlContent= new QTextStream(xmlFile);
-            QTextStream stream(xmlFile);
-            stream << ment_doc->toString();
-        }
-
+        mentes(2);
     }
 
 }
@@ -185,6 +228,7 @@ GUI::~GUI()
 
 void GUI::fps()
 {
+    if(test==1){
     QPixmap pm2 = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
     if (pm2.isNull()!=1){//ha a kép létezik:
         QImage img = pm2.toImage();//érvényes kép
@@ -200,6 +244,11 @@ void GUI::fps()
                 kepHiba=0;
                 ui->ad->setPixmap(pm2);
                 ui->ad->setScaledContents(false);
+                if(fpsID%5==0 && ui->kepment->isChecked()==1){
+                    QString pt=p+"/"+"img"+QString::number(updateID)+".jpg";
+                    std::thread save(kepment,pm2,pt);
+                    save.detach();
+                }
             }
         }
     else{
@@ -207,19 +256,21 @@ void GUI::fps()
         msg("Kép betöltés sikertelen",2);
     }
     //Külső folyamatok sikerességére vonatkozó adatok
+    }
     int pid=pr->processId();
     ui->joyPID->setText(QString::number(pid));
-    if (pid==0){ui->joyPID->setStyleSheet("QLineEdit {background-color: red;}");ui->startJoyb->setEnabled(true);}
-    else{ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");ui->startJoyb->setEnabled(false);}
+
+    if (pid==0){ui->joyPID->setStyleSheet("QLineEdit {background-color: red;}");if(joyena==1){ui->startJoyb->setEnabled(true);}}
+    else{ui->joyPID->setStyleSheet("QLineEdit {background-color: green;}");if(joyena==1){ui->startJoyb->setEnabled(false);}}
     pid=pr2->processId();
     ui->kepPID->setText(QString::number(pid));
-    if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");ui->startKepb->setEnabled(true);}
-    else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");ui->startKepb->setEnabled(false);}
+    if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");if(kepena==1){ui->startKepb->setEnabled(true);}}
+    else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");if(kepena==1){ui->startKepb->setEnabled(false);}}
 
 
     ui->ballaszt_balval->setText(QString::number(ui->ballaszt_baltart->value()));
     ui->ballaszt_jobbval->setText(QString::number(ui->ballaszt_jobbtart->value()));
-
+fpsID++;
 }
 
 
@@ -227,6 +278,8 @@ void GUI::fps()
 void GUI::update()
 {
 
+    updateID++;
+    ui->rid_l->setText(QString::number(updateID));
     QList<double> jd=get_joystickAdatok();
     olvasott=conv(bejovoFriss);
     if(playing==1){
@@ -327,9 +380,9 @@ ui->foadatok_3->setItem(0,2, i = new QTableWidgetItem(QString::number(olvasott[8
 ui->foadatok_3->setItem(0,3, i = new QTableWidgetItem(QString::number(olvasott[1])));//belső víz
     if(olvasott[1]> 20){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_3->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[21+4])));//rpi proc
-    if(olvasott[21]> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+    if(olvasott[21+4]> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_3->setItem(0,5, i = new QTableWidgetItem(QString::number(olvasott[20+4])));// serbuff fedélzet
-    if(olvasott[20]> 1000){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+    if(olvasott[20+4]> 1000){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,0, i = new QTableWidgetItem(QString::number(olvasott[11])));//5vakk1 raspi akku
     if(olvasott[11]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,1, i = new QTableWidgetItem(QString::number(olvasott[13])));//12vakku1 motor
@@ -412,6 +465,10 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
         int val=ui->slid3->value();
         ui->slid1->setValue(val);
         ui->slid2->setValue(val);
+        ui->slid3->setEnabled(1);//egyenlő motorok esetén van engedélyezve a harmadik slider
+    }
+    else{
+        ui->slid3->setEnabled(0);
     }
     //navigáció
     int bmot;
@@ -522,8 +579,8 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(ui->ballaszt_jobbtart->value()*10/szoros);//21 ballaszt jobb tartaly százalék
     idl.append(60);//22 SSH reset kérés
     idl.append(ui->talcaAktiv->isChecked());//23 Tálca érték állítható
-    idl.append(0);//24 robotkar adatok ...
-    idl.append(0);//25 robotkar adatok ...
+    idl.append(15);//24 ballaszt felpumpalas
+    idl.append(100);//25 ballaszt leeresztes
     idl.append(0);//26 robotkar adatok ...
     idl.append(0);//27 robotkar adatok ...
     idl.append(0);//28 robotkar adatok ...
@@ -533,8 +590,35 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
 
     //qDebug()<<idl;
 
+    QList<double> us;
+
+    if(megrendeloAv==1 && olvasott.length()>25){
+//        us.append(bmot);//0 - motor bal
+//        us.append(jmot);//1 - motor jobb
+//        us.append(0);//2 - sebesség
+//        us.append(olvasott[7]);//3 - homerseklet
+//        us.append(0);//4 - mélység (nyomasbar/10)
+//        us.append(0);//5 -
+//        us.append(0);//6 -
+//        us.append(0);//7 -
+//        us.append(0);//8 -
+//        us.append(0);//9 -
+//        us.append(0);//10 -
+//        us.append(0);//11 -
+//        us.append(0);//12 -
+//        us.append(0);//13 -
+//        us.append(0);//14 -
+//        us.append(0);//15 -
+//        us.append(0);//16 -
+
+        us=olvasott;
+    }
+
+
 
     kuldendoFriss=idl;
+    ugyfelFriss=us;
+
 
 
     if(playing==1){
@@ -555,24 +639,40 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     ui->nyersIrando->setText(string);
 
     if (mentes_onoff==1){
-        QDomElement l = ment_doc->createElement("Event");
-        l.setAttribute("id",QString::number(mentid));
+        if(int(mentid)==mentmax-150){
+            msg("Hamarosan új fájl kezdés. Eddigi rekordok: "+QString::number(mentid),1);
+        }
+        if(int(mentid)>mentmax){
+            mentes(2);
+            mentes(3);
+            msg("Új fájl kezdése automatikusan",1);
+        }else{
+            QDomElement l = ment_doc->createElement("Event");
+            l.setAttribute("id",QString::number(mentid));
 
-        l.setAttribute("joystick",listToStr(joystickAdatok));
-        l.setAttribute("olvasott",listToStr(olvasott));
-        l.setAttribute("kuldendo",listToStr(idl));
+            l.setAttribute("joystick",listToStr(joystickAdatok));
+            l.setAttribute("olvasott",listToStr(olvasott));
+            l.setAttribute("kuldendo",listToStr(idl));
 
-        root_xml->appendChild(l);
-        mentid++;
-
+            root_xml->appendChild(l);
+            mentid++;
+        }
     }
+    ui->mentesid->setText(QString::number(mentid));
 
 }
-void GUI::mentes()
+void GUI::mentes(int id=0)
 {
 
+    if(id==2){
+        ui->rogzites_check->setChecked(0);
+    }
+    if(id==3){
+        ui->rogzites_check->setChecked(1);
+    }
+
     if(ui->rogzites_check->isChecked()==1){
-        msg("Mentés kezdése",1);
+        msg("Mentés kezdése, max rekordszám: "+QString::number(mentmax),1);
         ment_doc=new QDomDocument;
         //make the root element
         root_xml = new QDomElement(ment_doc->createElement("Merules"));
@@ -626,10 +726,20 @@ void GUI::mentes()
     }
 }
 
+void GUI::mentesGo()
+{
+    mentes(0);
+}
+
+
 void GUI::mentesDialog()
 {
     if(felvetelOpened==0){
         widget->open();
+        widget->setDats(st);
+        widget->setMaxdat(mentmax);
+        widget->setFileName(felvPathGyok);
+        widget->valaszt();
         connect(widget,SIGNAL(accepted()),this,SLOT(felvAccept()));
         connect(widget,SIGNAL(recStart()),this,SLOT(startRec()));
         connect(widget,SIGNAL(rejected()),this,SLOT(stopFelvetel()));
@@ -646,10 +756,13 @@ void GUI::startRec()
 {
     felvAccept();
     ui->rogzites_check->setChecked(1);
+    mentmax=widget->getMaxdat();
+    mentes();
 }
 
 void GUI::felvAccept()
 {
+    mentmax=widget->getMaxdat();
     joyIN = widget->getJoyIN();
     konzIN = widget->getKonzIN();
     olvIN = widget->getOlvIN();
@@ -658,13 +771,19 @@ void GUI::felvAccept()
     kepIN = widget->getKepIN();
     felvPath = widget->getFullPath();
     felvPathGyok=widget->getFileName();
-    delete widget;
+    sets->setValue("Maxment",mentmax);
+    sets->setValue("FelvPath",felvPathGyok);
+    sets->setValue("PlayPath",playpath);
 }
 
 void GUI::lejatszasOpen()
 {
     if(lejatszasOpened==0){
+
         lejatszas->show();
+        lejatszas->setStyleSheet(st);
+        lejatszas->setFileName(playpath);
+        lejatszas->valaszt();
         connect(lejatszas,SIGNAL(play()),this,SLOT(goPlay()));
         connect(lejatszas,SIGNAL(rejected()),this,SLOT(stopPlay()));
         connect(lejatszas,SIGNAL(message(QString, int)),this,SLOT(msg(QString, int)));
@@ -684,13 +803,17 @@ void GUI::goPlay()
     joydat_play=lejatszas->getJoy();
     guiupdate_play=lejatszas->getGuiUpdate();
     msg("Lejátszandó fájl sikeresen betöltve",1);
+    playpath=lejatszas->getFileName();
+    sets->setValue("Maxment",mentmax);
+    sets->setValue("FelvPath",felvPathGyok);
+    sets->setValue("PlayPath",playpath);
 }
 
 void GUI::stopPlay()
 {
     playing=0;
     msg("Lejátszás befejezve",1);
-    delete lejatszas;
+    lejatszas->close();
     lejatszasOpened=0;
     motorNull();
 }
@@ -699,6 +822,126 @@ void GUI::stopFelvetel()
 {
     msg("Mentés bezárva",1);
 }
+
+void GUI::open_settings()
+{
+   set=new settings;
+   set->show();
+   connect(set,SIGNAL(rejected()),this,SLOT(notapplySettings()));
+   connect(set,SIGNAL(accepted()),this,SLOT(applySettings()));
+
+}
+
+void GUI::applySettings()
+{
+    this->setStyleSheet(set->getChstyle());
+    qApp->setStyleSheet(set->getChstyle());
+
+    cmdavailable=set->getCmdav(); ui->acCmdOpen->setEnabled(cmdavailable);
+    joyena=set->getJoyena();commands("stopJoy");ui->startJoyb->setEnabled(joyena);
+    kepena=set->getKepena();commands("stopKep");ui->startKepb->setEnabled(kepena);
+    komena=set->getKomena();stopKommunikacio(komena);
+    ui->pontongroup->setEnabled(set->getPontonav());
+    ui->robotkarqmlon->setEnabled(set->getRobotkarena());
+    qDebug()<<updateOn<<set->getUptime();
+    updateOn=set->getFrissonoff();
+    updateOn=0;updateonoff();updateOn=1;
+    updateonoff(set->getUptime());
+    megrendeloAv=set->getUgyfelelerheto();
+    ukAv_mutex.lock(); ukAv=megrendeloAv; ukAv_mutex.unlock(); //szállal közlés, hogy a kommunikáció megkezdődött
+    st=set->getChstyle();
+
+
+    ui->ballaszt_manualis->setEnabled(set->getBalman());
+    qDebug()<<"Accepted settings: "<<1;
+    msg(tr("Beállítások alkalmazva"),1);
+    booldatas_settings={};
+    booldatas_settings.append(set->getBalereszt());//0 ballaszt kieresztés engedélyezés
+    booldatas_settings.append(set->getBalman());//1 balmanuális
+    booldatas_settings.append(cmdavailable);//2 cmd available
+    booldatas_settings.append(updateOn);//3 frissítés engedélyezés
+    booldatas_settings.append(joyena);//4 joystick folyamat engedélyezve
+    booldatas_settings.append(kepena);//5 kép folyamat engedélyezve
+    booldatas_settings.append(komena);//6 kommunikációs thread
+    booldatas_settings.append(set->getPontonav());//7 ponton elérhető
+    booldatas_settings.append(set->getRobotkarena());//8 robotkar engedélyezése
+
+    saveUserdat();
+
+}
+
+void GUI::notapplySettings()
+{
+    qDebug()<<"Accepted settings: "<<0;
+    msg(tr("Beállítások elvetve"),2);
+}
+
+void GUI::updateonoff(int upt)
+{
+    if(updateOn==1){
+        qDebug()<<"upt:"<<upt;
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, QOverload<>::of(&GUI::update));
+        timer->start(upt);
+        updatetime=upt;
+    }
+    else{
+        qDebug()<<"stop";
+        timer->stop();
+        delete timer;
+    }
+}
+
+void GUI::stopKommunikacio(bool onoff)
+{
+    if(onoff==0){
+        msg(tr("Kommunikációs szál leállítása..."),2);
+        stop=1;
+    }
+    else{
+        if(stop==1){
+            stop=0;
+            std::thread ob(read);
+            kommpointer=&ob;
+            kommpointer->detach();
+        }
+    }
+}
+
+void GUI::openDocumentation()
+{
+    QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokvez.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
+}
+
+void GUI::saveUserdat()
+{
+    sets->setValue("beavleh",QVariant::fromValue(booldatas_settings));
+    sets->setValue("updateTime",updatetime);
+    sets->setValue("Tema",set->getChstyle());
+    sets->setValue("modename",set->getModename());
+    sets->setValue("Masiktema",set->getOthtem());
+    sets->setValue("Custompath",set->getFileName());
+    sets->setValue("megrav",megrendeloAv);
+    sets->setValue("Maxment",mentmax);
+    sets->setValue("FelvPath",felvPathGyok);
+    sets->setValue("PlayPath",playpath);
+}
+
+void GUI::getUserdat()
+{
+    QVariant val;
+    booldatas_settings=sets->value("beavleh").value<QList<bool> >();
+    this->setStyleSheet(sets->value("Tema").toString());
+    updatetime=sets->value("updateTime").toInt();
+    ukAv_mutex.lock();
+    ukAv=sets->value("megrav").toBool();
+    ukAv_mutex.unlock();
+    st=sets->value("Tema").toString();
+    mentmax=sets->value("Maxment").toInt();
+    felvPathGyok=sets->value("FelvPath").toString();
+    playpath=sets->value("PlayPath").toString();
+}
+
 
 void GUI::cmdSlot()
 {
@@ -715,11 +958,15 @@ void GUI::cmdSlot()
 
 void GUI::openCmd()
 {
+    if (cmdavailable==1){
     qDebug()<<"cmd megnyitása";
     msg("Parancssor megnyitása",1);
     ui->cmdDock->show();
     ui->cmdDock->activateWindow();
     ui->cmd_p->cursorWordForward(1);
+    }else{
+        msg(tr("Parancssor nem elérhető"),1);
+    }
 }
 
 void GUI::closeCmd()
@@ -735,6 +982,7 @@ void GUI::motorNull()
     ui->slid2->setValue(0);
     ui->motegy->setChecked(0);
     ui->serplot->setChecked(0);
+    ui->slid3->setValue(0);
 }
 
 void GUI::updateKommData()
@@ -746,6 +994,10 @@ void GUI::updateKommData()
     kuldendo_mutex.lock();
     kuldendo=kuldendoFriss;
     kuldendo_mutex.unlock();
+
+    ugyfeladatok_mutex.lock();
+    ugyfeladatok=ugyfelFriss;
+    ugyfeladatok_mutex.unlock();
 
 }
 
@@ -888,7 +1140,7 @@ QString GUI::commands(QString comm)
         return "Rögzítés ablak megnyitása sikeres";
     }
     else if(comm=="openPlay"){
-        widget->show(); lejatszasOpened=1;
+        lejatszasOpen();
         return "Lejátszás ablak megnyitása sikeres";
     }
     else if(comm=="reloadFelv"){
@@ -905,6 +1157,9 @@ QString GUI::commands(QString comm)
         widget->close(); lejatszasOpened=0;
         delete widget; widget=new Felvetel;
         return "Felvétel: sikeres újraindítás";
+    }
+    else if(comm=="userdatPath"){
+        return "A fehasználói adatok elérhetőek a következő elérési útvonalon: "+sets->fileName();
     }
     else if(comm=="getFelvPath"){
         if(widget->getFileName()!=""){
@@ -1007,16 +1262,21 @@ void GUI::ballaszt_emelkedes()
 
 void GUI::ballaszt_erzekenyseg()
 {
-    int erz=ui->ballasztErz->value();
-    int val=ui->ballaszt_baltart->maximum()/10;
-    int val2=ui->ballaszt_jobbtart->maximum()/10;
-    int valeb=ui->ballaszt_baltart->value();
-    int valej=ui->ballaszt_jobbtart->value();
+//    int erz=ui->ballasztErz->value();
+//    int val=ui->ballaszt_baltart->maximum()/10;
+//    int val2=ui->ballaszt_jobbtart->maximum()/10;
+//    int valeb=ui->ballaszt_baltart->value();
+//    int valej=ui->ballaszt_jobbtart->value();
 
-    ui->ballaszt_jobbtart->setMaximum(10*erz);
-    ui->ballaszt_baltart->setMaximum(10*erz);
-    ui->ballaszt_baltart->setValue(erz*(valeb/val));
-    ui->ballaszt_jobbtart->setValue(erz*(valej/val2));
+//    ui->ballaszt_jobbtart->setMaximum(10*erz);
+//    ui->ballaszt_baltart->setMaximum(10*erz);
+//    ui->ballaszt_baltart->setValue(erz*(valeb/val));
+//    ui->ballaszt_jobbtart->setValue(erz*(valej/val2));
+
+    ui->ballaszt_baltart->setMinimum(-150);
+    ui->ballaszt_baltart->setMaximum(150);
+    ui->ballaszt_baltart->setValue(0);
+
 }
 
 void GUI::talca_kinyit()
@@ -1042,12 +1302,12 @@ void GUI::ballasztBalmax()
 
 void GUI::ballasztBalk()
 {
-    ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->maximum()/2);
+    ui->ballaszt_baltart->setValue(0);
 }
 
 void GUI::ballasztJobbk()
 {
-    ui->ballaszt_jobbtart->setValue(ui->ballaszt_jobbtart->maximum()/2);
+    ui->ballaszt_jobbtart->setValue(0);
 }
 
 void GUI::ballasztJobbmin()
@@ -1058,29 +1318,6 @@ void GUI::ballasztJobbmin()
 void GUI::ballasztJobbmax()
 {
     ui->ballaszt_jobbtart->setValue(ui->ballaszt_jobbtart->maximum());
-}
-
-void GUI::set_darkmode()
-{
-    QFile styleFile( ":/programs/resources/dark-style.qss" );
-    styleFile.open( QFile::ReadOnly );
-
-    // Apply the loaded stylesheet
-    QString style( styleFile.readAll() );
-    styleFile.close();
-
-    QString st="QWidget{background: black;color:rgb(0, 255, 0);}";
-    ui->centralwidget->setStyleSheet(style);
-    ui->darkmode->setChecked(1);
-    ui->lightmode->setChecked(0);
-}
-
-void GUI::set_lightmode()
-{
-    QString st="QWidget{background: black;color:rgb(0, 255, 0);}";
-    ui->centralwidget->setStyleSheet("");
-    ui->darkmode->setChecked(0);
-    ui->lightmode->setChecked(1);
 }
 
 
@@ -1111,14 +1348,8 @@ void GUI::msg(QString txt, int priority=1)
 
 void GUI::cl()
 {
-    if(lejatszasOpened==1){delete lejatszas; lejatszasOpened=0;}
+    if(lejatszasOpened==1){lejatszas->close(); lejatszasOpened=0;lejatszas=new Lejatszas;}
     if(felvetelOpened==1){delete widget;felvetelOpened=0;}
-}
-
-void GUI::open_settings()
-{
-   set=new settings;
-   set->show();
 }
 
 void GUI::ballasztPluszegy()
@@ -1130,6 +1361,7 @@ void GUI::ballasztMinuszegy()
 {
     ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->value()-1);
 }
+
 
 //Szünettel elválasztott szöveget konvertál QList doubel ba
 QList<double> GUI::conv(QString str){
@@ -1228,6 +1460,5 @@ QString GUI::generatePath(int id)
     QString fullPath=felvPathGyok+nam;
     return fullPath;
 }
-
 
 

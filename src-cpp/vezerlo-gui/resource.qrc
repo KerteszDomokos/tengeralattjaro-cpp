@@ -12,7 +12,8 @@
     <qresource prefix="/programs">
         <file alias="joypy">python-files/joystick.py</file>
         <file alias="keppy">python-files/kep.py</file>
-        <file>resources/dark-style.qss</file>
+        <file alias="darkmode">resources/dark-style.qss</file>
+        <file alias="lightmode">resources/lightmode.qss</file>
     </qresource>
     <qresource prefix="/horizon">
         <file>resources/components/rollPitchIndicator/artGroundSky.svg</file>
@@ -34,5 +35,9 @@
     <qresource prefix="/icons">
         <file alias="play">resources/play.ico</file>
         <file alias="pause">resources/pause.ico</file>
+    </qresource>
+    <qresource prefix="/dok">
+        <file>documentation/dokumentacio.md</file>
+        <file>documentation/dokumentacio.html</file>
     </qresource>
 </RCC>

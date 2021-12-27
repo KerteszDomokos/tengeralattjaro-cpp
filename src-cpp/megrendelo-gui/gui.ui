@@ -6,24 +6,692 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1202</width>
-    <height>514</height>
+    <width>1212</width>
+    <height>913</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>GUI</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/resources/ico</normaloff>:/resources/ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QQuickWidget" name="horizon_3">
-      <property name="resizeMode">
-       <enum>QQuickWidget::SizeRootObjectToView</enum>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>75</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>750</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>750</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>748</width>
+         <height>228</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="elokep">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>731</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <property name="whatsThis">
+         <string comment="miez?">Élő kép helye</string>
+        </property>
+        <property name="text">
+         <string>Kép</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QQuickWidget" name="horizon_2">
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>750</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>750</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Adatok</string>
+      </property>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>231</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Alapvető működési adatok</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Sebesség:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="seb">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Számítógép kihasználtság:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="kihasznaltsag">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Bal motor nyomaték:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="balmot">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Jobb motor nyomaték:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="jobbmot">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Mélység:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="melyseg">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Belső hőmérséklet:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="bhom">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>231</width>
+         <height>211</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+font-size:14px;
+}
+QLineEdit{font-size:14px;}</string>
+       </property>
+       <property name="title">
+        <string>Szenzoradatok</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>PH érték:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="phval">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Redoxipotenciál:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="redoxi">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Vezetőképesség:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="vezetok">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Zavarosság:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="zavarossag">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Hőmérséklet:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="homerseklet">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Becsült áramlásseb:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="aramlasseb">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>450</y>
+         <width>231</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Felvétel beállításai</string>
+       </property>
+       <widget class="QSpinBox" name="spinBox">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>40</y>
+          <width>61</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="whatsThis">
+         <string>A funkcióva beállítható, hogy hány mentett adat utén készítsen fájlt a rendszer Ez akkor lehet érdekes, hogyha a rendszer vagy a számítógép leáll, mivel a fájlba mentett adatok mindenképpen megmaradnak.</string>
+        </property>
+        <property name="minimum">
+         <number>10000</number>
+        </property>
+        <property name="maximum">
+         <number>100000</number>
+        </property>
+        <property name="singleStep">
+         <number>1000</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>151</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="whatsThis">
+         <string>A funkcióva beállítható, hogy hány mentett adat utén készítsen fájlt a rendszer Ez akkor lehet érdekes, hogyha a rendszer vagy a számítógép leáll, mivel a fájlba mentett adatok mindenképpen megmaradnak.</string>
+        </property>
+        <property name="text">
+         <string>Maximum esemény fájlonként:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>151</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Jelenleg bufferelt események:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="bufferelt_esemeny_label">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>60</y>
+          <width>41</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Bufferelt</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>101</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Megjegyzés most:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_13">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>191</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>110</y>
+          <width>31</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>91</y>
+          <width>51</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Most</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="mostID">
+        <property name="geometry">
+         <rect>
+          <x>106</x>
+          <y>90</y>
+          <width>61</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>211</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{font-size:5 px;}</string>
+        </property>
+        <property name="text">
+         <string>Mentés helyének megváltoztatás</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QComboBox" name="grafikonXteng">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>390</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Itt válaszhatjuk ki az x tengelyen elhelyezhető adatokat.&lt;/p&gt;&lt;p&gt;A lista a továbbiakban bővülni fog.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Idő</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Redoxipotenciál</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vezetőképesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ph</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Zavarosság</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hőmérséklet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Áramlássebesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Motor átlagnyomaték</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>390</y>
+         <width>101</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Betöltés</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_13">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>390</y>
+         <width>16</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;x:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>365</x>
+         <y>390</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;y:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="uid">
+       <property name="geometry">
+        <rect>
+         <x>700</x>
+         <y>580</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>UID</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="uid_2">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>580</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Frissítés ID:</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="graf">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>40</y>
+         <width>491</width>
+         <height>341</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>491</width>
+         <height>341</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>491</width>
+         <height>341</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QToolButton" name="toolButton">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>330</y>
+          <width>26</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QComboBox" name="grafikonYtengely">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>390</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Itt válaszhatjuk ki az x tengelyen elhelyezhető adatokat.&lt;/p&gt;&lt;p&gt;A lista a továbbiakban bővülni fog.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>none</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Idő</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Redoxipotenciál</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vezetőképesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ph</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Zavarosság</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hőmérséklet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Áramlássebesség</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Motor átlagnyomaték</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>390</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Mentés képként</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="1" rowspan="2">
+     <widget class="QQuickWidget" name="grafika">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="resizeMode">
        <enum>QQuickWidget::SizeRootObjectToView</enum>
       </property>
@@ -36,12 +704,94 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1202</width>
+     <width>1212</width>
      <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuF_jl">
+    <property name="title">
+     <string>Fájl</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="beallitasok_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionInform_ci"/>
+    <addaction name="fordtest"/>
+   </widget>
+   <widget class="QMenu" name="menuR_gz_t_s">
+    <property name="title">
+     <string>Rögzítés</string>
+    </property>
+    <addaction name="lejatszas"/>
+    <addaction name="separator"/>
+    <addaction name="play"/>
+   </widget>
+   <widget class="QMenu" name="menuSeg_ts_g">
+    <property name="title">
+     <string>Segítség</string>
+    </property>
+    <addaction name="sugo"/>
+   </widget>
+   <addaction name="menuF_jl"/>
+   <addaction name="menuR_gz_t_s"/>
+   <addaction name="menuSeg_ts_g"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="actionInform_ci">
+   <property name="text">
+    <string>Információ</string>
+   </property>
+  </action>
+  <action name="forditas">
+   <property name="text">
+    <string>Fordítás</string>
+   </property>
+  </action>
+  <action name="beallitasok_2">
+   <property name="text">
+    <string>Beállítások</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
+   </property>
+  </action>
+  <action name="fordtest">
+   <property name="text">
+    <string>Fordítás</string>
+   </property>
+  </action>
+  <action name="lejatszas">
+   <property name="text">
+    <string>Lejátszás</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
+   </property>
+  </action>
+  <action name="play">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Rögzítés</string>
+   </property>
+  </action>
+  <action name="sugo">
+   <property name="text">
+    <string>Súgó</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -50,6 +800,162 @@
    <header location="global">QtQuickWidgets/QQuickWidget</header>
   </customwidget>
  </customwidgets>
- <resources/>
- <connections/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>forditas</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>forditas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>beallitasok_2</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>open_beallitasok()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fordtest</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>forditas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>kommentMost()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>816</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>401</x>
+     <y>871</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>loadGraf()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>577</x>
+     <y>669</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>631</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>open_beallitasok()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>137</x>
+     <y>742</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>867</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lejatszas</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>openLejatszas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>saveGraf()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>707</x>
+     <y>668</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>774</x>
+     <y>871</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sugo</sender>
+   <signal>triggered()</signal>
+   <receiver>GUI</receiver>
+   <slot>openDoc()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>605</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>forditas()</slot>
+  <slot>open_beallitasok()</slot>
+  <slot>kommentMost()</slot>
+  <slot>loadGraf()</slot>
+  <slot>openLejatszas()</slot>
+  <slot>saveGraf()</slot>
+  <slot>openDoc()</slot>
+ </slots>
 </ui>

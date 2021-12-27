@@ -1,0 +1,101 @@
+
+<style>
+    body {
+        color: #ffe6a1;
+        background-color:#1a1918;
+        font-size: 18px;
+        line-height: 26px; /* 4px +12px + 4px */
+        width: 80%;
+        margin:0 auto;
+    }    
+    h1{
+        text-align: center;
+        line-height: 70px;
+    }
+</style>
+
+<title>Dokumentáció</title>
+
+
+<h1 id="aqualab-robot-tengeralattj-r-gyf-l-fel-let-dokument-ci-">AquaLab - Robot tengeralattjáró ügyfél felület dokumentáció</h1>
+<p>A program a legtöbb monitor típust támogatja, a legtöbb windows operációs rendszerrel együtt. A rendszer beépített angol nyelvet tartalmaz, mely a beállításokból elérhető.</p>
+<h2 id="telep-t-s">Telepítés</h2>
+<p><strong>A telepítő futtatásához szükséges lehet a windows defender felugró figyelmezető ablakát bezárni. A programban nincsenek rosszindulatú kódok.</strong>
+A telepítéshez kövesse a telepítő utasításait! A rendszer telepítője létrehoz asztai ikont, és a start menüből is elérhetővé válik a program.<br>Amennyiben szeretné eltávolítani, úgy törölheti a telepítési mappát, vagy futtathatja a windows eltávolító eszközét. </p>
+<h2 id="kompatibilit-s">Kompatibilitás</h2>
+<p>A programok az alábbi rendszereken kerültek tesztelésre:</p>
+<ul>
+<li>Windows 10 Pro (10.0.19042.1288)</li>
+<li>Windows 10 Home  <br>
+<em>Az összes számítógép x64-es architektúrájú processzorral rendelkezik</em></li>
+</ul>
+<p>A program kompatibilis továbbá:</p>
+<ul>
+<li>Windows 8.1</li>
+<li>További Universal Windows Platform 10 részét képező operációs rendszerek<br><br>
+Fordítási adatok: Qt 5.15.2 MinGW 64 bit</li>
+</ul>
+<h2 id="f-fel-let-elemei">Fő felület elemei</h2>
+<ul>
+<li>A bal felső sarokban találhatjuk az élő kamerakép helyét, ez azonban nem visszajátszható felvétel fájlból, mivel így túl nagy lenne a fájlok mérete.</li>
+<li>A felület jobb oldalán található fehér részen jelennek majd meg a grafikai elemek, és 3D-s animációk. Jelenleg technikai okokból nem tudunk a QtQuick3D modullal dolgozni.</li>
+<li><p>Az adatok boxban találhatóak meg a legfontosabb adatok.</p>
+<ul>
+<li>Az alapvető működési adatok a fedélzeti adatokat tartalmazzák:<ul>
+<li>A számítógép kihasználtság százalékban mutatja meg, hogy mekkora a fedélzeti számítógép RAM és CPU használata.</li>
+<li>A mélység az ultrahangos távolságmérővel végzett mélységmérés eredménye. (A szenzor nem minden merülésnél van bekötve az elektronikai rendszerbe)</li>
+<li>A belső hőmérséklet adatból megtudhatjuk hogy a fedélzeten, a testen belül mekkora a hőmérséklet.</li>
+</ul>
+</li>
+<li>A Szenzoradatok között találjuk azokat az értékeket, melyek a vízminőség adatokból érhetőek el. A rendszer itt mérési zajt jelenít meg (azok közül csak a reális értékeket)</li>
+<li><p>A felvétel beállításainál megadhatjuk hogy az élő adatokat hova mentse a rendszer. A rögzítést a menüszalag Rögzítés -&gt; rögzítés pipálható funkcióval kapcsolhatjuk be.</p>
+<ul>
+<li>A mentés helyének megváltoztatása gombbal megnyithatók a beállítások</li>
+<li>A maximum esemény beállításokor meghatározhatjuk, hogy hány rekord menthető a egy mentési fájlba</li>
+<li>A megjegyzés most-al szembeni Most gomb a megnyomsá pillanatában hozzáfűzi a felvételhez a szövegbeviteli helyre írt üzenetet, melyet az Add gombbal fűzhetünk hozzá</li>
+</ul>
+</li>
+<li><p>A betöltéskor üres grafikonon tetszőleges adatokat jeleníthatünk meg</p>
+<ul>
+<li>Az x és y tengelyhez egyaránt kiválaszthatjuk a kívánt adatokat, ahol a beállításokban megadott mennyiségű adatot megjeleníti.</li>
+<li>A betöltés gombbal jeleníthetjük meg a kiválasztott értékeket</li>
+<li>A mentés képként funkcióval egy tetszőleges helyre menthetjük képként a grafikont.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A kép alján található Frissítés ID a felület frissítésének számát jeleníti meg.</li>
+</ul>
+<h2 id="be-ll-t-si-lehet-s-gek">Beállítási lehetőségek</h2>
+<p>A beállításokat a felső menüből a Fájl-&gt;Beállítások útvonalon, vagy az Alt+s billentyűparancscsal érheti el. 
+A Beállítások ablak bezárás és a mégse gomb megnyomása esetén elfelejti a beállításokat, az OK megnyomásakor azonban a alkalmazza azokat.  </p>
+<ul>
+<li>A háttérfolyamatok beállításánál lehetőség van olyan beállítások elvégzésére is melyek a felhasználót közvetlenül nem érintik.<ul>
+<li>A felület frissítésének kikapcsolása nem ajánlott, mivel ez garantálja, hogy a megjelenített értékek a legfrissebbek. Kikapcsolásakor a frissítés megszűnik, és az automatizmusok, és a vezérlő módosításai sem kerülnek továbbításra az eszközhöz.</li>
+<li>Az érkező adatok frissítési idejének a beállítása esetén az állítható be, hogy a felületen milyen időközönként kerülnek frissítésre és begyűjtésre az adatok. A túl alacsony érték nagyobb számítási kapacitást igényel, a nagyobb esetében pedig ritkában frissülnek az adatok. A reset gombbal visszaállíthatjuk az alapértelmezett(20) értéket. <em>A beállítást millisekundumban kell értelmezni. 1sec=1000microsec</em></li>
+<li>A kép folyamat letiltása esetén a folyamat leáll, bekapcsolás esetén elindul.</li>
+<li>A kommunikációs rész másik módszert használ a párhuzamos futás biztosításához, a szálakat (thread). Ennek engedélyezése esetén automatikusan újraindul a folyamat.</li>
+<li>A Diagram grid kikapcsolása jelenleg még nem elérhető, de ezzel a diagramot lehet személyreszabni.</li>
+</ul>
+</li>
+<li>A Megjelenés és egyéb fülön jelenleg a felület megjelenését állíthatjuk be. A funkciók az alábbiak:<ul>
+<li>Az alapértelmezett témák alatt a legördülő menüből választható ki a kívánt beállítás. Az előzetes képe a Stílus példa mezőben megjelenik (itt adódhatnak hibás megjelenítések)</li>
+<li>Amennyiben a nem alapértelmezett téma választása be van jelölve, aktívvá válik az egyéb témák. Itt kiválaszthatunk egy szabványos QT style sheet fájlt. Ez azt jelenti, hogy a css-hez hasonló formátumu fájl kiválasztása után az abban megadottak kerülnek aktiválásra.</li>
+</ul>
+</li>
+<li>A kommunikáció beállításoknál lehetőségünk van beállítani a számítógép IP címét. Az automatikus szkennelések esetén a számítógép elérhető kaposolatait találjuk</li>
+<li>A felvétel beállításai boxban a mentés helyét állíthatjuk be.</li>
+<li>Nyelvi beállításoknál kivaálszthatjuk a felület angol fordítását is.
+<strong>A beállítésok többségénél elérhető a What&#39;s this funkció, amivel elérhetjük a rövid leírását a funkciónak</strong></li>
+</ul>
+<h2 id="lej-tsz-si-ablak">Lejátszási ablak</h2>
+<ul>
+<li>Legfelül kiválaszthatjuk a lejátszandó fájlt, melyet a rögzítés használatával tudunk létrehozni, kiterjesztése pedig .al</li>
+<li>A fájl betöltésére kattintva a rendszer felméri és betölti a fájlt. <em>Amennyiben túl nagy a fájl, nem a teljeset tölti be, csupán az első száz rekordot. Ez azt jelenti, hogy száz adatcsomag szerepel a gyorsítótárban, ennyit lehet azonnal lejátszani, atöbbi adathoz szükség van a betöltésre. Ezt a program automatikusan elvégzi</em></li>
+<li>A megjelenítési beállítáok egyenlőre nem elérhetőek, csak az összes adat lejátszására van lehetőség.</li>
+<li>Az XML fájl fülön böngészhetünk  a nyers fájlban</li>
+<li>Legalul a rekordok számát láthatjuk, ez a fájlban található mentett események száma.</li>
+<li>Az idővonalon a fájlban navigálhatunk előre, hátra, a betöltött adatok ilyenkor folyamatosan változnak a kívént tartományon belül. <em>A betöltéskor a lejátszásban kis megakadás az újab adatok betöltésekor várható</em></li>
+<li>A lejátszás sebessége funkció egyenlőre nem elérhető.</li>
+<li>A play ikonnal ellátott gombra kattintva elindul a történésekkel egy sebességben. A grafikonok ilyenkor is elérhetőek, és valós adatokat mutatnak.</li>
+</ul>

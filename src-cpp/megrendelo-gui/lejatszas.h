@@ -28,14 +28,10 @@ public:
     QList<QString> *getJoystickp() const;
 
     long getNowID() const;
-    QString getNowKuldendo() const;
     QString getNowOlvasott() const;
-    QString getNowJoystick() const;
     void updateNow();
-    void setDats(QString style);
-    QString getFileName() const;
-    void setFileName(const QString &value);
-    void valaszt(); //előző beállított fájl kiírása és azonnali betölthetősége
+    void forditas(QString lang);
+
 
 signals:
     void play();
@@ -48,6 +44,8 @@ private slots:
     void lejatszas_idozito();
     void slidMove();
     void next_steps();
+    void getElements(long beg);
+    void getElements();
 
 
 private:
@@ -55,7 +53,7 @@ private:
     QString fileName;
     bool kuld,olv,joy,guiUpdate;
     QTimer *standard_speed;
-    bool playing;
+    bool playing=1;
 
     QDomDocument *xml;
     QDomElement *node;
@@ -76,7 +74,6 @@ private:
     QDomElement root;
     QDomElement Component;
 
-    void getElements(long beg);
     long lastLoad=0;
     QTimer *timer;
 

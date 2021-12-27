@@ -1,11 +1,23 @@
 # Jegyzetek
 
+## GUI adatok, megjegyzések
+### Mentett userdata sorrend (bool)
+0: ballaszt kieresztés engedélyezés
+1: balmanuális
+2: cmd available
+3: frissítés engedélyezés
+4: joystick folyamat engedélyezve
+5: kép folyamat engedélyezve
+6: kommunikációs thread
+7: ponton elérhető
+8: robotkar engedélyezése
+
 ## A kommunikációs csatornák adatai  
 <br>
 
 ### Fedélzeti RPi &#8594; Vezérlőegység Rpi 
 * TCP csatorna  
-* Array, 30 elem
+* Array, 30 elem  
 
 0: kommunikáció sikeressége  
 1: belső víz magassága  
@@ -19,21 +31,25 @@
 9: Motor bal mért erő (nullért kivonva)  
 10: Motor jobb mért erő (nullért kivonva)  
 11: Raspi akkumlátor analog   
-12: RAD jelenlegi mérés azonosító szám (array id)  
-13: RAD jelenlegi mérés előtt -4  
-14: RAD jelenlegi mérés előtt -3  
-15: RAD jelenlegi mérés előtt -2  
-16: RAD jelenlegi mérés előtt -1  
-17: RAD legfrissebb mérés
+12: szenzor1  
+13: szenzor2  
+14: szenzor3  
+15: szenzor4  
+16: szenzor5  
+17:  
 18: -
-19:  
-20: Soros komm buffer size  
-21: Rpi processzor hőmérséklet  
-22: Dőlés x  
-23: Dőlés y  
-24: MPU hőmérséklet  
-25: Küldés időpontja   
-26: Iránytű adat
+19: 
+20: 
+21: 
+22: 
+23:   
+24: Soros komm buffer size  
+25: Rpi processzor hőmérséklet  
+26: Dőlés x  
+27: Dőlés y  
+28: MPU hőmérséklet  
+29: Küldés időpontja   
+30: Iránytű adat
 
 
 
@@ -159,6 +175,10 @@
 
 ## Megjegyzések
 - VSCode SSH kiterjesztés Permission denied: sudo chown -R myuser /path/to/folder 
+- A csomagösszeállításhoz a C:\Qt\QtIFW-4.1.1\bin\binarycreator.exe -c config/config.xml -p packages -f "AquaLab Installer - v0.7-1" parancs használandó  
+- DLL összeállításhoz használandó: windeployqt path-to-app-binary
+- languist: lupdate -pro project.pro
+- Markdown dokumentáció html generalas: https://markdowntohtml.com/ 
 
 ### Csatlakozási adatok
 - A Raspberry pi hostapd jelszava: Tengeralattjaro2020  
@@ -198,3 +218,8 @@ network{
 
 169.254.15.251
 fe80::8c51:8be8:bc0e:9d81
+
+### NYÁK megjegyzések
+- A kettes csatlakozókon a 2-es pin a minusz
+- Motoroknál az 1- es csatlakozón érkezik a gnd
+- 

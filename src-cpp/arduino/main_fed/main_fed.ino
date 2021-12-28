@@ -12,7 +12,7 @@
 //pinek és konstansok definiálása
 #define krittav 60 //cm
 #define motorNull 1490
-#define WSens 8
+#define WSens 0
 #define trig 27
 #define echo 28
 #define RAD_trig 35
@@ -20,10 +20,10 @@
 #define csp1 0
 #define m1 3
 #define m2 4
-#define r1 26
-#define r2 25
+#define r1 22
+#define r2 23
 #define DHTPIN 12
-#define TPIN1 12
+#define TPIN1 13
 #define TPIN2 13
 #define OK_LED_Z 25
 #define OK_LED_P 26

@@ -145,10 +145,10 @@ GUI::GUI(QWidget *parent)
     ui->magmer->setSource(QUrl(QStringLiteral("qrc:/qml-files/melyseg")));
     ui->compass->setSource(QUrl(QStringLiteral("qrc:/qml-files/compass")));
     ui->radarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/radar")));
-    ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
+//    ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
     if(test==1){
 
-        QPixmap pm = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
+        QPixmap pm = QPixmap("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
         ui->ad->setPixmap(pm);
         ui->ad->setScaledContents(false);
     }
@@ -229,7 +229,7 @@ GUI::~GUI()
 void GUI::fps()
 {
     if(test==1){
-    QPixmap pm2 = QPixmap("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
+    QPixmap pm2 = QPixmap("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
     if (pm2.isNull()!=1){//ha a kép létezik:
         QImage img = pm2.toImage();//érvényes kép
             if(  img.pixel(img.width()-1,img.height()-1 )  ==  4286611584   &&  img.pixel(img.width()/2,img.height()-1 )  ==  4286611584  &&  img.pixel(0,img.height()-1 )  ==  4286611584  )
@@ -1391,7 +1391,7 @@ void GUI::joydat()
 {
     QList<double> array;
 
-    QFile file("G:/Privát adatok/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/joystick.txt");
+    QFile file("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/joystick.txt");
 
     if (!file.open(QIODevice::ReadOnly)){
         qDebug()<<"Error in file read";

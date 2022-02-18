@@ -13,40 +13,40 @@
 #define krittav 60 //cm
 #define motorNull 1490
 #define WSens 0
-#define trig 27
-#define echo 28
-#define RAD_trig 35
-#define RAD_echo 34
-#define csp1 0
-#define m1 3
-#define m2 4
+#define trig -1
+#define echo -1
+#define RAD_trig -1
+#define RAD_echo -1
+#define csp1 .1
+#define m1 2
+#define m2 3
 #define r1 22
 #define r2 23
-#define DHTPIN 12
-#define TPIN1 13
-#define TPIN2 13
+#define DHTPIN 5
+#define TPIN1 -1
+#define TPIN2 -1
 #define OK_LED_Z 40
 #define OK_LED_P 42
 #define motorNullVal 0
-#define raspiAkk_PIN 14
-#define PWM_M1 10
-#define PWM_M2 11
-#define RAD_servop 2
-#define PONTON_MOTOR 6
-#define PONTON_KORMANY 7
+#define raspiAkk_PIN -1
+#define PWM_M1 -1
+#define PWM_M2 -1
+#define RAD_servop -1
+#define PONTON_MOTOR 4
+#define PONTON_KORMANY -1
 #define TALCA_SERB 8
 #define TALCA_SERJ 9
 
 
 
-#define KAR_ALSO 6
-#define KAR_FORGATO 7
-#define KAR_BOLINTO_ALSO 0
-#define KAR_BOLINTO_FELSO 0
+#define KAR_ALSO -1
+#define KAR_FORGATO -1
+#define KAR_BOLINTO_ALSO -1
+#define KAR_BOLINTO_FELSO -1
 
-#define BALLASZT_REL_B_B 22
-#define BALLASZT_REL_B_K 23
-#define BALLASZT_PRES 2
+#define BALLASZT_REL_B_B -1
+#define BALLASZT_REL_B_K -1
+#define BALLASZT_PRES -1
 
 
 //könyvtár pédányok létrehozása

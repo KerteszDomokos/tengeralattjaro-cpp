@@ -20,6 +20,9 @@
   <property name="windowTitle">
    <string>Tengeralattjáró vezérlőfelület</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -108,7 +111,7 @@
          <x>0</x>
          <y>0</y>
          <width>768</width>
-         <height>408</height>
+         <height>404</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -3592,8 +3595,8 @@ background-color: rgb(170, 0, 0);
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>791</width>
-         <height>423</height>
+         <width>788</width>
+         <height>438</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -4178,7 +4181,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>2385</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFajl">

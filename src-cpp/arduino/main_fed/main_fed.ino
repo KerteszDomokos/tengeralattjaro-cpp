@@ -25,8 +25,8 @@
 #define DHTPIN 12
 #define TPIN1 13
 #define TPIN2 13
-#define OK_LED_Z 25
-#define OK_LED_P 26
+#define OK_LED_Z 40
+#define OK_LED_P 42
 #define motorNullVal 0
 #define raspiAkk_PIN 14
 #define PWM_M1 10
@@ -41,8 +41,8 @@
 
 #define KAR_ALSO 6
 #define KAR_FORGATO 7
-#define KAR_BOLINTO_ALSO 40
-#define KAR_BOLINTO_FELSO 41
+#define KAR_BOLINTO_ALSO 0
+#define KAR_BOLINTO_FELSO 0
 
 #define BALLASZT_REL_B_B 22
 #define BALLASZT_REL_B_K 23

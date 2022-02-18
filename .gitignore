@@ -32,3 +32,15 @@ src-cpp/installer/packages/
 
 src-cpp/installer/def dll-s/
 src-cpp/.vs/
+
+*.o
+
+src-cpp/build-vezerlo-gui-Desktop_Qt_5_12_5_MinGW_64_bit-Debug/
+
+src-cpp/build-megrendelo-gui-Desktop_Qt_5_12_5_MinGW_64_bit-Debug/
+
+src-cpp/build-vezerlo-gui-Desktop_Qt_5_12_5_MinGW_32_bit-Debug/
+
+src-cpp/vezerlo-gui/vezerlo-gui.pro.qtds
+
+src-cpp/megrendelo-gui/megrendelo-gui.pro.qtds

@@ -20,8 +20,8 @@
 #define csp1 .1
 #define m1 2
 #define m2 3
-#define r1 22
-#define r2 23
+#define r1 -1
+#define r2 -1
 #define DHTPIN 5
 #define TPIN1 -1
 #define TPIN2 -1
@@ -44,8 +44,8 @@
 #define KAR_BOLINTO_ALSO -1
 #define KAR_BOLINTO_FELSO -1
 
-#define BALLASZT_REL_B_B -1
-#define BALLASZT_REL_B_K -1
+#define BALLASZT_REL_B_B 23
+#define BALLASZT_REL_B_K 22
 #define BALLASZT_PRES -1
 
 

@@ -19,8 +19,8 @@ class SockRead : public QObject{
         QUdpSocket *socketSend;
         QUdpSocket *socketKep;
         QUdpSocket *sockMegr;
-        QString kuldoIP="169.254.15.251";
-        QString vevoIP="169.254.62.249";
+        QString kuldoIP="192.168.31.247";
+        QString vevoIP="192.168.31.242";
 
         QString megrendeloIP="127.0.0.1";
         QString megrendeloKuldo="127.0.0.1";

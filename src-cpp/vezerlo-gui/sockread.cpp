@@ -11,8 +11,9 @@ socketKep = new QUdpSocket(this);
 sockMegr = new QUdpSocket(this);
 
 //socket->connectToHost(6010);
-socket->bind(QHostAddress(vevoIP),6011);//vevő ezen eszköz ip címe
-socketSend->connectToHost(QHostAddress(kuldoIP),6001);//küldő ip
+socket->bind(QHostAddress(vevoIP),6010);//vevő ezen eszköz ip címe
+socketSend->connectToHost(QHostAddress(kuldoIP),6000);//küldő ip
+
 sockMegr->connectToHost(QHostAddress(megrendeloKuldo),7000);
 }
 QString SockRead::readS()

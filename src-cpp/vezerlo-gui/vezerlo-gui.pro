@@ -39,10 +39,10 @@ FORMS += \
 
 DISTFILES += \
     qml-files/3dview.qml \
+    qml-files/comp-horizon.qml \
+    qml-files/comp-magassag.qml \
     qml-files/compass.qml \
-    qml-files/horizon.qml \
     qml-files/joy.qml \
-    qml-files/magassag.qml \
     qml-files/map.qml \
     qml-files/teszt.qml \
     qml-files/radar.qml \

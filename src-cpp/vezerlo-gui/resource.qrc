@@ -1,13 +1,13 @@
 <RCC>
     <qresource prefix="/qml-files">
-        <file alias="3d">qml-files/3dview.qml</file>
         <file alias="compass">qml-files/compass.qml</file>
-        <file alias="horizon">qml-files/horizon.qml</file>
         <file alias="joy">qml-files/joy.qml</file>
-        <file alias="melyseg">qml-files/magassag.qml</file>
-        <file alias="map">qml-files/map.qml</file>
         <file alias="radar">qml-files/radar.qml</file>
         <file alias="robotkar">qml-files/robotkar.qml</file>
+        <file alias="chorizon">qml-files/comp-horizon.qml</file>
+        <file alias="cmagassag">qml-files/comp-magassag.qml</file>
+        <file alias="horizon">qml-files/horizon.qml</file>
+        <file alias="melyseg">qml-files/magassag.qml</file>
     </qresource>
     <qresource prefix="/programs">
         <file alias="joypy">python-files/joystick.py</file>

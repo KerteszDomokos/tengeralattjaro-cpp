@@ -103,7 +103,6 @@ void read(){
     rsz++;
     if (rsz>2147483600){rsz=0;}
     }
-
 }
 
 void kepment(QPixmap img,QString path){

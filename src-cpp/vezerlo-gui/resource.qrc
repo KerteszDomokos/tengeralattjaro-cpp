@@ -8,6 +8,7 @@
         <file alias="cmagassag">qml-files/comp-magassag.qml</file>
         <file alias="horizon">qml-files/horizon.qml</file>
         <file alias="melyseg">qml-files/magassag.qml</file>
+        <file alias="crobotkar">qml-files/crobotkar.qml</file>
     </qresource>
     <qresource prefix="/programs">
         <file alias="joypy">python-files/joystick.py</file>

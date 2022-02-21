@@ -6,6 +6,8 @@ QT += network
 QT += serialport
 QT += charts
 QT += xml
+QT += quickcontrols2
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -41,12 +43,12 @@ DISTFILES += \
     qml-files/comp-horizon.qml \
     qml-files/comp-magassag.qml \
     qml-files/compass.qml \
+    qml-files/crobotkar.qml \
     qml-files/horizon.qml \
     qml-files/joy.qml \
     qml-files/magassag.qml \
-    qml-files/teszt.qml \
-    qml-files/radar.qml \
-    qml-files/robotkar.qml
+    qml-files/robotkar.qml \
+    qml-files/teszt.qml
 
 
 win32: RC_ICONS = resources/program-icon.ico

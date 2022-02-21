@@ -44,7 +44,7 @@
 #include <QMetaType>
 #include <QTextStream>
 #include <QDesktopServices>
-
+#include <QDateTime>
 
 SockRead sock;
 
@@ -115,6 +115,9 @@ GUI::GUI(QWidget *parent)
 {
     ui->setupUi(this);
 
+    QDateTime date = QDateTime::currentDateTime();
+    tm = date.toString("yyyy-MM-dd-hh-mm-ss");
+
     updateOn=1;
     updateonoff(); //Userdata lekérés előtt!!
 
@@ -143,8 +146,8 @@ GUI::GUI(QWidget *parent)
     ui->joyh->setSource(QUrl(QStringLiteral("qrc:/qml-files/joy")));
     ui->magmer->setSource(QUrl(QStringLiteral("qrc:/qml-files/melyseg")));
     ui->compass->setSource(QUrl(QStringLiteral("qrc:/qml-files/compass")));
-    ui->radarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/radar")));
-//    ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
+//    ui->radarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/radar")));
+    ui->robotkarG->setSource(QUrl(QStringLiteral("qrc:/qml-files/robotkar")));
     if(test==1){
 
         QPixmap pm = QPixmap("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
@@ -244,7 +247,7 @@ void GUI::fps()
                 ui->ad->setPixmap(pm2);
                 ui->ad->setScaledContents(false);
                 if(fpsID%5==0 && ui->kepment->isChecked()==1){
-                    QString pt=p+"/"+"img"+QString::number(updateID)+".jpg";
+                    QString pt=p+tm+"/"+"img"+QString::number(updateID)+".jpg";
                     std::thread save(kepment,pm2,pt);
                     save.detach();
                 }

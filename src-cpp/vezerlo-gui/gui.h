@@ -146,7 +146,7 @@ private:
     QString st;
     QString playpath;
     long fpsID=0;
-    QString p;
+    QString tm;
 
 
 
@@ -159,7 +159,7 @@ public: //hosszú szöveges változók
     QString joypath="C:\\Users\\Kertész Domokos\\Desktop\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\joystick.py";
     QString keppath="C:\\Users\\Kertész Domokos\\Desktop\\.Programozás\\Projektek\\Tengeralattjáró\\v1 - Github\\tengeralattjaro-cpp\\src-cpp\\vezerlo-gui\\python-files\\kep.py";
     QString pypath="C:\\Users\\Kertész Domokos\\AppData\\Local\\Programs\\Python\\Python310\\python.exe";
-
+    QString p="C:/Users/Kertész Domokos/Desktop/Programozás/Projektek/Tengeralattjáró/Merülés közbeni információk/videos/";//beállítási lehetőség szükséges
 
 
 };

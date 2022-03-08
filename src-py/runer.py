@@ -4,6 +4,7 @@ import os
 import multiprocessing
 from multiprocessing import Array, Value
 import inspect
+import signal
 
 import ast
 import socket
@@ -41,7 +42,7 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):#kamera
         """
         MAX_DGRAM = 2**16
         MAX_IMAGE_DGRAM = MAX_DGRAM - 64 # extract 64 bytes in case UDP frame overflown
-        def __init__(self, sock, port, addr="169.254.62.249"): #cél ip
+        def __init__(self, sock, port, addr="192.168.31.242"): #cél ip
             self.s = sock
             self.port = port
             self.addr = addr
@@ -132,7 +133,8 @@ def udp(serw_u,serr_u,gyro_u, udp_readed_u,bdatas_u):#kamera
                         if i>maxImg:
                         # saveVid()
                             i=0
-                    time.sleep(.1)
+                    uot=10 if udp_readed_u[26]==0 else udp_readed_u[26] #zero division error javítás
+                    time.sleep(1/uot)
                     i=i+1
                 cap.release()
         except KeyboardInterrupt:
@@ -161,7 +163,7 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
 
     try:
         #ser=serial.Serial(baudrate='115200', timeout=.1, port='com8')#Windows
-        ser=serial.Serial(timeout=.15, port='/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_55037313337351A08290-if00', baudrate='115200')#linux
+        ser=serial.Serial(timeout=.15, port='/dev/ttyUSB0', baudrate='115200')#linux
         prl('Sikeres port nyitás',1)
         ena=1
     except:
@@ -177,6 +179,7 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
             li[:]=udp_s[:]
             #time.sleep(.0004)
             # prl('Küldendő adat:'+str(l),1)
+            # print(li)
             if len(li)<30:
                 i=len(li)
                 while i<31:
@@ -204,11 +207,11 @@ def ser(serw_s, serr_s,gyro_s, udp_s,bdatas_s):
                         list_.append(0)
                         list_.append(0)
                         list_[24]=ser.inWaiting()
-                        prl('Soros porton olvasott adat: '+str(list_))
+                        # print('Soros porton olvasott adat: '+str(list_))
                         save(list_)
                     else:
                         ser.flushInput()
-                        pre('Delete input buffer - dat==')
+                        # pre('Delete input buffer - dat==')
                     
                     if ser.inWaiting()>6000:
                         ser.flushInput()
@@ -325,11 +328,11 @@ def gy(serw_g,serr_g,gyro_g, udp_g,bdatas_g):
         bus.write_byte_data(MPU_Address, SMPLRT_DIV, 7)
         bus.write_byte_data(MPU_Address, PWR_MGMT_1, 1)
         bus.write_byte_data(MPU_Address, CONFIG, 0)
-        bus.write_byte_data(MPU_Address, GYRO_CONFIG, 0)
-        bus.write_byte_data(MPU_Address, ACCEL_CONFIG, 0)
+        bus.write_byte_data(MPU_Address, GYRO_CONFIG, 24)
+        bus.write_byte_data(MPU_Address, ACCEL_CONFIG, 1)
         bus.write_byte_data(MPU_Address, INT_ENABLE, 1)
 
-    def read_raw_data(addr):
+    def read_raw_data(addr): 
         high = bus.read_byte_data(MPU_Address, addr)
         low = bus.read_byte_data(MPU_Address, addr+1)
         value = ((high << 8) | low)
@@ -433,8 +436,8 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
     try:
         cpuR=cpu()
         lista=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        UDP_IP='169.254.62.249'#vevő ip címe
-        UDP_PORT=6011
+        UDP_IP='192.168.31.242'#vevő ip címe
+        UDP_PORT=6010
         udp = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
         v=0
@@ -464,14 +467,15 @@ def udp_send(serw_us, serr_us,gyro_us, udp_us,bdatas_us):
         try:
             prl('UDP küldés'+str(irando))
             udp.sendto(bytes(irando, 'utf-8'), (UDP_IP, UDP_PORT))
+            # print(irando)
         except:
             pre('UDP send error'+str(sys.exc_info()))
         time.sleep(0.08)
 
 def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
     try:
-        UDP_IP='169.254.15.251'
-        UDP_PORT=6001
+        UDP_IP='192.168.31.247'
+        UDP_PORT=6000
         MAX_DATA_SIZE=512
 
         udp = socket.socket(socket.AF_INET, # Internet
@@ -489,7 +493,7 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
                 dat2=dat1.replace("b'","")
                 dat3=dat2[:-1]
                 vegso=ast.literal_eval(dat3)
-                
+#                print(vegso)
             except:
                 pre('Konvertálás sikertelen'+str(sys.exc_info()))
             try:
@@ -508,7 +512,7 @@ def udp_t(serw_ut, serr_ut, gyro_ut, udp_ut,bdatas_ut): #olvasás
 
 
 
-
+pids=[]
 if __name__=="__main__":
     l=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     l2=[0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -525,28 +529,29 @@ if __name__=="__main__":
         p4 = multiprocessing.Process(target=gy, args=(serw,serr,gyro,udp_readed,bdatas))
         p5 = multiprocessing.Process(target=udp_t, args=(serw,serr,gyro,udp_readed,bdatas))
         p6 = multiprocessing.Process(target=udp_send, args=(serw,serr,gyro,udp_readed,bdatas))
-
-        p1.start()
+        p1.start()        
         p2.start()
         p3.start()
         # p4.start()
         p5.start()
         p6.start()
+        pids.append(p1.pid)
+        pids.append(p2.pid)
+        pids.append(p3.pid)
+        # pids.append(p4.pid)
+        pids.append(p5.pid)
+        pids.append(p6.pid)
         p6.join()
-        p2.kill()
-        p3.kill()
-        p4.kill()
-        p5.kill()
-        p6.kill()
 
     except:
         pre('Kilépés; hiba'+str(sys.exc_info()))
-        p1.kill()
-        p2.kill()
-        p3.kill()
-        p4.kill()
-        p5.kill()
-        p6.kill()
+
+print("Kill all process")
+for i in pids:
+    try:
+        os.kill(i, signal.SIGTERM)
+    except:
+        pass
 
 
 

@@ -45,3 +45,7 @@ src-cpp/vezerlo-gui/vezerlo-gui.pro.qtds
 
 src-cpp/megrendelo-gui/megrendelo-gui.pro.qtds
 src-cpp/build-vezerlo-gui-Desktop_Qt_5_12_5_MinGW_32_bit-Release/
+
+src-cpp/build-vezerlo-gui-Desktop_Qt_5_12_5_MinGW_64_bit-Release/
+
+src-cpp/build-vezerlo-gui-Desktop_Qt_5_12_5_MinGW_64_bit-Profile/

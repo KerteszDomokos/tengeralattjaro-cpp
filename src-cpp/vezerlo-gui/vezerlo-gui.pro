@@ -51,7 +51,7 @@ DISTFILES += \
     qml-files/teszt.qml
 
 
-win32: RC_ICONS = resources/program-icon.ico
+#RC_ICONS = resources/program-icon.ico
 
 RESOURCES += \
     resource.qrc

@@ -18,9 +18,7 @@
    </size>
   </property>
   <property name="font">
-   <font>
-    <family>Calibri</family>
-   </font>
+   <font/>
   </property>
   <property name="windowTitle">
    <string>Tengeralattjáró vezérlőfelület</string>
@@ -702,7 +700,6 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="font">
               <font>
-               <family>Calibri</family>
                <pointsize>10</pointsize>
               </font>
              </property>
@@ -725,7 +722,6 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="font">
               <font>
-               <family>Calibri</family>
                <pointsize>6</pointsize>
               </font>
              </property>
@@ -744,7 +740,6 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="font">
               <font>
-               <family>Calibri</family>
                <pointsize>6</pointsize>
               </font>
              </property>
@@ -887,7 +882,6 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="font">
        <font>
-        <family>Calibri</family>
         <pointsize>10</pointsize>
         <bold>true</bold>
        </font>
@@ -962,7 +956,6 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font">
         <font>
-         <family>Calibri</family>
          <pointsize>8</pointsize>
          <bold>false</bold>
         </font>
@@ -982,7 +975,6 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font">
         <font>
-         <family>Calibri</family>
          <pointsize>9</pointsize>
          <bold>false</bold>
         </font>
@@ -1687,7 +1679,6 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="font">
          <font>
-          <family>Calibri</family>
           <pointsize>10</pointsize>
          </font>
         </property>
@@ -3086,7 +3077,7 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="cursor" stdset="0">
-       <cursorShape>PointingHandCursor</cursorShape>
+       <cursorShape>CrossCursor</cursorShape>
       </property>
       <property name="contextMenuPolicy">
        <enum>Qt::DefaultContextMenu</enum>
@@ -4713,7 +4704,6 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="font">
       <font>
-       <family>Calibri</family>
        <pointsize>10</pointsize>
       </font>
      </property>
@@ -4745,7 +4735,6 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="font">
       <font>
-       <family>Calibri</family>
        <pointsize>11</pointsize>
        <bold>true</bold>
       </font>

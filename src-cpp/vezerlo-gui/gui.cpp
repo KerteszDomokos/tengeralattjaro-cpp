@@ -106,7 +106,8 @@ void read(){
 }
 
 void kepment(QPixmap img,QString path){
-    img.save(path,"jpg");
+    img.save(path,"JPG");
+    qDebug()<<path;
 }
 
 GUI::GUI(QWidget *parent)
@@ -117,6 +118,8 @@ GUI::GUI(QWidget *parent)
 
     QDateTime date = QDateTime::currentDateTime();
     tm = date.toString("yyyy-MM-dd-hh-mm-ss");
+    QDir().mkdir(p+"\\"+tm);
+qDebug()<<p+tm;
 
     updateOn=1;
     updateonoff(); //Userdata lekérés előtt!!
@@ -200,10 +203,6 @@ GUI::GUI(QWidget *parent)
 
 
     ballaszt_erzekenyseg();
-
-    p="F:/Merulesek/"+QDate::currentDate().QDate::toString("yy-MM-dd-")+QTime::currentTime().toString("hh-mm-ss");
-    QDir().mkdir(p);
-
 //    qDebug()<<QDate::currentDate().QDate::toString("yy-M-d");
 //    connect(this, SIGNAL(releaseMouse()),this,SLOT(cl()));
     lejatszasOpened=0;
@@ -247,7 +246,7 @@ void GUI::fps()
                 ui->ad->setPixmap(pm2);
                 ui->ad->setScaledContents(false);
                 if(fpsID%5==0 && ui->kepment->isChecked()==1){
-                    QString pt=p+tm+"/"+"img"+QString::number(updateID)+".jpg";
+                    QString pt=p+"\\"+tm+"\\img"+QString::number(updateID)+".jpg";
                     std::thread save(kepment,pm2,pt);
                     save.detach();
                 }
@@ -583,7 +582,7 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     idl.append(ui->talcaAktiv->isChecked());//23 Tálca érték állítható
     idl.append(15);//24 ballaszt felpumpalas
     idl.append(100);//25 ballaszt leeresztes
-    idl.append(0);//26 robotkar adatok ...
+    idl.append(streamFps);//26 robotkar adatok ...
     idl.append(0);//27 robotkar adatok ...
     idl.append(0);//28 robotkar adatok ...
     idl.append(0);//29 robotkar adatok ...

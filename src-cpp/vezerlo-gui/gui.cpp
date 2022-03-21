@@ -232,6 +232,7 @@ void GUI::fps()
     int hatar=20;
     if(kepHiba%hatar==0 && kepHiba!=0){
         msg("Kép egymás után "+QString::number(hatar)+"-szer hibás",3);
+        kepHiba++;
     }
     if (ui->kameraon->isChecked()==1){
     if(test==1){
@@ -254,7 +255,7 @@ void GUI::fps()
         }
     else{
        // if(sz<5){goto ujraproba;}
-        msg("Kép betöltés sikertelen",2);
+//        msg("Kép betöltés sikertelen",2);
         kepHiba++;
     }
     //Külső folyamatok sikerességére vonatkozó adatok

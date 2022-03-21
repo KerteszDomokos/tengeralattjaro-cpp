@@ -44,8 +44,8 @@
 #define KAR_BOLINTO_ALSO -1
 #define KAR_BOLINTO_FELSO -1
 
-#define BALLASZT_REL_B_B 31 //23
-#define BALLASZT_REL_B_K 22
+#define BALLASZT_REL_B_B 30 //23
+#define BALLASZT_REL_B_K 23
 #define BALLASZT_PRES -1
 
 #define relON 1

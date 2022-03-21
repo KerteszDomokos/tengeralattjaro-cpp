@@ -108,7 +108,7 @@ private:
     QList<QSerialPortInfo> mSerialPorts; //elérhető soros portok, nem a legfrissebbek, scan gomb
     QList<double> elozoOlvasottList;//előző olvasott adatcsomag listában
     QList<double> olvasott;//legfrissebb olvasott adatcsomag listában
-    int kepHiba;
+    int kepHiba=0;
     bool mentes_onoff=0;
     ulong mentid=0;
     int mentmax=500;//maximum rekord egy mentésben
@@ -147,7 +147,7 @@ private:
     QString playpath;
     long fpsID=0;
     QString tm;
-    int streamFps=40;
+    int streamFps=30;
 
 
 

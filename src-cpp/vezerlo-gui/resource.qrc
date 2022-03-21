@@ -36,6 +36,7 @@
     <qresource prefix="/icons">
         <file alias="play">resources/play.ico</file>
         <file alias="pause">resources/pause.ico</file>
+        <file alias="logo">resources/aqualab-logo-v0.1.png</file>
     </qresource>
     <qresource prefix="/dok">
         <file>documentation/dokumentacio.md</file>

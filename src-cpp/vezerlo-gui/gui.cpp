@@ -160,7 +160,7 @@ qDebug()<<p+tm;
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
-    kt->start(50);
+    kt->start(1000/streamFps);
 
     QTimer *friss = new QTimer(this);
     connect(friss, &QTimer::timeout, this, QOverload<>::of(&GUI::updateKommData));
@@ -229,20 +229,20 @@ GUI::~GUI()
 
 void GUI::fps()
 {
+    int hatar=20;
+    if(kepHiba%hatar==0 && kepHiba!=0){
+        msg("Kép egymás után "+QString::number(hatar)+"-szer hibás",3);
+    }
+    if (ui->kameraon->isChecked()==1){
     if(test==1){
     QPixmap pm2 = QPixmap("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/program-datas/live.jpg"); // <- path to image file
     if (pm2.isNull()!=1){//ha a kép létezik:
         QImage img = pm2.toImage();//érvényes kép
             if(  img.pixel(img.width()-1,img.height()-1 )  ==  4286611584   &&  img.pixel(img.width()/2,img.height()-1 )  ==  4286611584  &&  img.pixel(0,img.height()-1 )  ==  4286611584  )
             {
-                int hatar=5;
                 kepHiba++;
-                if(kepHiba>=hatar){
-                    msg("Kép egymás után "+QString::number(hatar)+"-szer hibás",3);
-                }
             }
             else{
-                kepHiba=0;
                 ui->ad->setPixmap(pm2);
                 ui->ad->setScaledContents(false);
                 if(fpsID%5==0 && ui->kepment->isChecked()==1){
@@ -255,6 +255,7 @@ void GUI::fps()
     else{
        // if(sz<5){goto ujraproba;}
         msg("Kép betöltés sikertelen",2);
+        kepHiba++;
     }
     //Külső folyamatok sikerességére vonatkozó adatok
     }
@@ -271,7 +272,13 @@ void GUI::fps()
 
     ui->ballaszt_balval->setText(QString::number(ui->ballaszt_baltart->value()));
     ui->ballaszt_jobbval->setText(QString::number(ui->ballaszt_jobbtart->value()));
-fpsID++;
+    }else{
+        QPixmap pm2 = QPixmap("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/resources/aqualab-logo-v0.1.png"); // <- path to image file
+        ui->ad->setPixmap(pm2);
+        ui->ad->setScaledContents(true);
+    }
+    fpsID++;
+
 }
 
 
@@ -1161,6 +1168,9 @@ QString GUI::commands(QString comm)
     }
     else if(comm=="userdatPath"){
         return "A fehasználói adatok elérhetőek a következő elérési útvonalon: "+sets->fileName();
+    }
+    else if(comm=="imgError"){
+        return "A kép betöltése során " + QString::number(kepHiba) + " hiba fordult elő";
     }
     else if(comm=="getFelvPath"){
         if(widget->getFileName()!=""){

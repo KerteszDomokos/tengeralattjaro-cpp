@@ -25,8 +25,8 @@
 #define DHTPIN 5
 #define TPIN1 -1
 #define TPIN2 -1
-#define OK_LED_Z 40
-#define OK_LED_P 42
+#define OK_LED_Z 42
+#define OK_LED_P 40
 #define motorNullVal 0
 #define raspiAkk_PIN -1
 #define PWM_M1 -1
@@ -44,9 +44,12 @@
 #define KAR_BOLINTO_ALSO -1
 #define KAR_BOLINTO_FELSO -1
 
-#define BALLASZT_REL_B_B 23
+#define BALLASZT_REL_B_B 31 //23
 #define BALLASZT_REL_B_K 22
 #define BALLASZT_PRES -1
+
+#define relON 1
+#define relOFF 0
 
 
 //könyvtár pédányok létrehozása
@@ -123,8 +126,8 @@ void setup()
 {
     pinMode(BALLASZT_REL_B_B, OUTPUT);
   pinMode(BALLASZT_REL_B_K, OUTPUT);
-  digitalWrite(BALLASZT_REL_B_B, 1); //relék kikapcsolása
-  digitalWrite(BALLASZT_REL_B_K, 1);
+  digitalWrite(BALLASZT_REL_B_B, relOFF); //relék kikapcsolása
+  digitalWrite(BALLASZT_REL_B_K, relOFF);
   Serial.begin(115200);
   pinMode(trig, OUTPUT); pinMode(echo, INPUT);
   pinMode(RAD_trig, OUTPUT); pinMode(RAD_echo, INPUT);
@@ -325,14 +328,14 @@ void ballaszt(int bal, int jobb) {
     int bkul = int(bal) - ballaszt_bal_toltottseg;
     if (bkul < 0) {
       //nyomás csökkentése 1-el
-      digitalWrite(BALLASZT_REL_B_K, 0);
+      digitalWrite(BALLASZT_REL_B_K, relON);
       ballaszt_nyitvaB_L = 1;
       ballaszt_timer = millis();
       ballaszt_bal_toltottseg--;
     }
     else if (bkul > 0) {
       //nyomás növelése 1-el
-      digitalWrite(BALLASZT_REL_B_B, 0);
+      digitalWrite(BALLASZT_REL_B_B, relON);
       ballaszt_nyitvaB_F = 1;
       ballaszt_timer = millis();
       ballaszt_bal_toltottseg++;
@@ -344,15 +347,15 @@ void ballaszt(int bal, int jobb) {
 
   if (ballaszt_nyitvaB_L == 1) {
     if (millis() - ballaszt_timer > BALLASZT_MAXPOF_L) {
-      digitalWrite(BALLASZT_REL_B_K, 1);
-      digitalWrite(BALLASZT_REL_B_B, 1);
+      digitalWrite(BALLASZT_REL_B_K, relOFF);
+      digitalWrite(BALLASZT_REL_B_B, relOFF);
       ballaszt_nyitvaB_L = 0;
     }
   }
   if (ballaszt_nyitvaB_F == 1) {
     if (millis() - ballaszt_timer > BALLASZT_MAXPOF) {
-      digitalWrite(BALLASZT_REL_B_K, 1);
-      digitalWrite(BALLASZT_REL_B_B, 1);
+      digitalWrite(BALLASZT_REL_B_K, relOFF);
+      digitalWrite(BALLASZT_REL_B_B, relOFF);
       ballaszt_nyitvaB_F = 0;
     }
   }

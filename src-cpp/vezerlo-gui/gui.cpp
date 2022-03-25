@@ -260,6 +260,12 @@ void GUI::fps()
     }
     //Külső folyamatok sikerességére vonatkozó adatok
     }
+    }else{
+        QPixmap pm2 = QPixmap("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/resources/aqualab-logo-v0.1.png"); // <- path to image file
+        ui->ad->setPixmap(pm2);
+        ui->ad->setScaledContents(true);
+    }
+    fpsID++;
     int pid=pr->processId();
     ui->joyPID->setText(QString::number(pid));
 
@@ -270,15 +276,6 @@ void GUI::fps()
     if (pid==0){ui->kepPID->setStyleSheet("QLineEdit {background-color: red;}");if(kepena==1){ui->startKepb->setEnabled(true);}}
     else{ui->kepPID->setStyleSheet("QLineEdit {background-color: green;}");if(kepena==1){ui->startKepb->setEnabled(false);}}
 
-
-    ui->ballaszt_balval->setText(QString::number(ui->ballaszt_baltart->value()));
-    ui->ballaszt_jobbval->setText(QString::number(ui->ballaszt_jobbtart->value()));
-    }else{
-        QPixmap pm2 = QPixmap("C:/Users/Kertész Domokos/Desktop/.Programozás/Projektek/Tengeralattjáró/v1 - Github/tengeralattjaro-cpp/src-cpp/vezerlo-gui/resources/aqualab-logo-v0.1.png"); // <- path to image file
-        ui->ad->setPixmap(pm2);
-        ui->ad->setScaledContents(true);
-    }
-    fpsID++;
 
 }
 
@@ -669,6 +666,8 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
     }
     ui->mentesid->setText(QString::number(mentid));
 
+    ui->ballaszt_balval->setText(QString::number(ui->ballaszt_baltart->value()));
+    ui->ballaszt_jobbval->setText(QString::number(ui->ballaszt_jobbtart->value()));
 }
 void GUI::mentes(int id=0)
 {
@@ -1060,12 +1059,15 @@ void GUI::serConn()
     mSerial->setStopBits(QSerialPort::OneStop);
     mSerial->setFlowControl(QSerialPort::NoFlowControl);
 
+    connect(mSerial, &QSerialPort::readyRead,
+            this, &GUI::serkom);
+
     if(mSerial->open(QIODevice::ReadWrite)) {
         qDebug() << "SERIAL: OK!";
         msg("Soros nyitás siekres",1);
     } else {
         qDebug() << "SERIAL: ERROR!";
-        msg("Soros nyitás siekrtelen",3);
+        msg("Soros nyitás sikertelen",3);
     }
     mSerial->clear(QSerialPort::AllDirections);
 

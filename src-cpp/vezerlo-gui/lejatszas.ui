@@ -76,7 +76,7 @@
       <x>0</x>
       <y>0</y>
       <width>521</width>
-      <height>277</height>
+      <height>261</height>
      </rect>
     </property>
     <attribute name="label">
@@ -97,9 +97,9 @@
      <widget class="QPushButton" name="filekivalasztas">
       <property name="geometry">
        <rect>
-        <x>414</x>
+        <x>384</x>
         <y>29</y>
-        <width>81</width>
+        <width>111</width>
         <height>21</height>
        </rect>
       </property>
@@ -112,7 +112,7 @@
        <rect>
         <x>35</x>
         <y>29</y>
-        <width>371</width>
+        <width>341</width>
         <height>21</height>
        </rect>
       </property>
@@ -267,7 +267,7 @@
       <x>0</x>
       <y>0</y>
       <width>521</width>
-      <height>277</height>
+      <height>261</height>
      </rect>
     </property>
     <attribute name="label">

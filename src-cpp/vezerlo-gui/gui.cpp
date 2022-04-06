@@ -1,6 +1,5 @@
 #include "gui.h"
 #include "ui_gui.h"
-
 #include "felvetel.h"
 #include "lejatszas.h"
 #include <settings.h>
@@ -46,6 +45,7 @@
 #include <QDesktopServices>
 #include <QDateTime>
 
+
 SockRead sock;
 
 
@@ -80,7 +80,7 @@ void read(){
             qDebug()<<"Leállítás";
             break;
         }
-        Sleep(1);
+        //Sleep(1);
         dat=sock.readS();
         if(rsz%10==0){
             kuldendo_mutex.lock();
@@ -110,6 +110,8 @@ void kepment(QPixmap img,QString path){
     qDebug()<<path;
 }
 
+void bioment()
+
 GUI::GUI(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::GUI)
@@ -136,7 +138,7 @@ qDebug()<<p+tm;
     }else{
         getUserdat();
     }
-    qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
+//    qRegisterMetaTypeStreamOperators<QList<bool> >("QList<int>");
     widget = new Felvetel;
     lejatszas=new Lejatszas;
 
@@ -160,7 +162,7 @@ qDebug()<<p+tm;
 
     QTimer *kt = new QTimer(this);
     connect(kt, &QTimer::timeout, this, QOverload<>::of(&GUI::fps));
-    kt->start(1000/streamFps);
+    kt->start(1000/streamFps/2);
 
     QTimer *friss = new QTimer(this);
     connect(friss, &QTimer::timeout, this, QOverload<>::of(&GUI::updateKommData));
@@ -283,7 +285,7 @@ void GUI::fps()
 
 void GUI::update()
 {
-
+int phdat,turbdat;
     updateID++;
     ui->rid_l->setText(QString::number(updateID));
     QList<double> jd=get_joystickAdatok();
@@ -351,6 +353,8 @@ void GUI::update()
         }
         ui->nyersOlvasott->setText(string);
         if(olvasott.size()>28){
+phdat=olvasott[7];
+turbdat=olvasott[6];
 QTableWidgetItem *i;
 QColor red(QColor("red"));
 QColor green(QColor("green"));
@@ -397,9 +401,9 @@ ui->foadatok_4->setItem(0,2, i = new QTableWidgetItem(QString::number(0)));//5v 
     if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,3, i = new QTableWidgetItem(QString::number(0)));//12v masodlagos
     if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
-ui->foadatok_4->setItem(0,4, i = new QTableWidgetItem(QString::number(olvasott[4])));//csp1
+ui->foadatok_4->setItem(0,4, i = new QTableWidgetItem(QString::number(phdat)));//ph
     if(olvasott[4]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
-ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp2
+ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(turbdat)));//atlatszosag
     if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
             QObject *object2 = ui->magmer->rootObject();
             object2->setProperty("alt", olvasott[12]);//magasság
@@ -462,6 +466,11 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(0)));//csp
             }
         }
       }
+        if (ui->bioment->isChecked()==1){
+            saveBio(phdat,turbdat,( ui->slid1->value()+ui->slid2->value() )/2);
+        }
+
+
    }
 }
 //    if (joystickAdatok.size()>2){}
@@ -948,6 +957,32 @@ void GUI::getUserdat()
     mentmax=sets->value("Maxment").toInt();
     felvPathGyok=sets->value("FelvPath").toString();
     playpath=sets->value("PlayPath").toString();
+}
+
+void GUI::saveBio(int ph, int turb, int motavarage)
+{
+phs.append(ph);
+turbs.append(turb);
+    if (phs.size()>1000){
+
+        QString writed;
+        for (int i; i<phs.size(); i++){
+            writed=writed+QString::number(phs[i])+";";
+            writed=writed+QString::number(turbs[i])+";";
+            writed=writed+QString::number(motavarage)+"\n";
+        }
+
+
+        QFile parameterFile(p+"\\"+tm+"\\bio.txt");
+        if(parameterFile.open(QFile::WriteOnly | QFile::Text | QFile::Append))
+        {
+//            msg("Sikeres biológiai adat mentés",1);
+            parameterFile.seek(parameterFile.size());
+            QTextStream out(&parameterFile);
+            out << writed;
+            parameterFile.close();
+        }
+}
 }
 
 
@@ -1464,6 +1499,18 @@ QString GUI::listToStr(QList<int> l)
     }
     return string;
 }
+QString GUI::listToStrpontosv(QList<int> l)
+{
+    QString string;
+    elozoOlvasottList=olvasott;
+    for(int i=0; i<l.size(); i++)
+    {
+        string += QString::number(l[i]);
+        if(i<l.size()-1)
+            string += ";" ;
+    }
+    return string;
+}
 
 QString GUI::generatePath(int id)
 {
@@ -1474,5 +1521,3 @@ QString GUI::generatePath(int id)
     QString fullPath=felvPathGyok+nam;
     return fullPath;
 }
-
-

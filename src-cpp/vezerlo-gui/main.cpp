@@ -12,9 +12,9 @@
 int main(int argc, char *argv[])
 {
 
-
     QApplication a(argc, argv);
-    GUI w;
+
+
 
     QPixmap pixmap(":/icons/logo");
     pixmap=pixmap.scaled(QSize(400,400));
@@ -23,7 +23,10 @@ int main(int argc, char *argv[])
     splash.showMessage("AquaLab 2022 - loading interface");
 //    Sleep(1000);//in production mode
 
+
+    GUI w;
     w.show();
+    splash.close();
     return a.exec();
 }
 

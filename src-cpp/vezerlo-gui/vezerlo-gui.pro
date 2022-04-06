@@ -58,3 +58,6 @@ RESOURCES += \
 
 CONFIG-=debug_and_release
 DESTDIR = ./
+
+TEMPLATE = app
+INCLUDEPATH += .

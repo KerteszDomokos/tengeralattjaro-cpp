@@ -90,10 +90,11 @@ private:
     void ment();
     QString listToStr(QList<double> l);
     QString listToStr(QList<int> l);
+    QString listToStrpontosv(QList<int> l);
     QString generatePath(int id);
     void saveUserdat();//a settings ablakban megadott beállítások mentése
     void getUserdat();//a settings ablakból elmentett adatok lekérése
-
+    void saveBio(int ph, int turb,int motavarage);
 
     QProcess *pr ;//joystick process cl pointer
     QProcess *pr2 ;//kép process cl pointer
@@ -147,7 +148,8 @@ private:
     QString playpath;
     long fpsID=0;
     QString tm;
-    int streamFps=30;
+    int streamFps=40;
+    QList<int> phs, turbs;
 
 
 

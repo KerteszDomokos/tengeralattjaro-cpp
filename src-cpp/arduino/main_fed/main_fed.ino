@@ -52,6 +52,7 @@
 #define relOFF 0
 
 
+
 //könyvtár pédányok létrehozása
 Servo sb;
 Servo sj;
@@ -114,6 +115,18 @@ bool ballaszt_nyitvaB_F = 0;
 
 bool ballaszt_nyitvaJ = 0;
 
+
+int turb;
+double ph;
+
+#define turbsens A2//a1
+#define SensorPin A8            //pH meter Analog output to Arduino Analog Input 0
+#define Offset 0.00            //deviation compensate
+#define LED 13
+#define samplingInterval 20
+#define ArrayLenth  20    //times of collection
+int pHArray[ArrayLenth];   //Store the average value of the sensor feedback
+int pHArrayIndex=0;
 
 //kommunikáció
 int myArray[30];
@@ -209,7 +222,7 @@ void loop()
   if (millis() - kommill > 15) //Kommunikáció, és adatgyűjtés
   {
     kommill = millis();
-
+    biosz();
     //int mely = tavm(0);
     //mely=0;
     checkCom();
@@ -219,7 +232,7 @@ void loop()
     //motorJobbRead=myArray[0];
     int raspiAkk = analogRead(raspiAkk_PIN);
     //kommunikáció:
-    rpikom(komms, bviz, mely, err_k(), analogRead(csp1), h1, h2, h3, hum, 
+    rpikom(komms, bviz, mely, err_k(), analogRead(csp1), h1, int(turb), ph, hum, 
       motorBalRead, motorJobbRead, raspiAkk, double(random(50,90))/10, double(random(1500,8000))/10, 
       double(random(0,100000))/150, double(random(1000,10000))/10, double(random(0,5000))/10, 
       RAD_adatok[RAD_pos],ballaszt_bal_toltottseg,ballaszt_jobb_toltottseg,pressure(),0);
@@ -361,6 +374,66 @@ void ballaszt(int bal, int jobb) {
   }
 
 //jobb törölve
+}
+
+void biosz(){
+  int sv = analogRead(turbsens);// read the input on analog pin 0:
+  float vt = sv * (5.0 / 1024.0); // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
+  turb = map(vt,4.2,2.5,0,3000);
+
+
+static unsigned long samplingTime = millis();
+  static unsigned long printTime = millis();
+  static float voltage;
+  if(millis()-samplingTime > samplingInterval)
+  {
+      pHArray[pHArrayIndex++]=analogRead(SensorPin);
+      if(pHArrayIndex==ArrayLenth)pHArrayIndex=0;
+      voltage = avergearray(pHArray, ArrayLenth)*5.0/1024;
+      ph = 3.5*voltage+Offset;
+      samplingTime=millis();
+  }
+
+}
+double avergearray(int* arr, int number){
+  int i;
+  int max,min;
+  double avg;
+  long amount=0;
+  if(number<=0){
+    Serial.println("Error number for the array to avraging!/n");
+    return 0;
+  }
+  if(number<5){   //less than 5, calculated directly statistics
+    for(i=0;i<number;i++){
+      amount+=arr[i];
+    }
+    avg = amount/number;
+    return avg;
+  }else{
+    if(arr[0]<arr[1]){
+      min = arr[0];max=arr[1];
+    }
+    else{
+      min=arr[1];max=arr[0];
+    }
+    for(i=2;i<number;i++){
+      if(arr[i]<min){
+        amount+=min;        //arr<min
+        min=arr[i];
+      }else {
+        if(arr[i]>max){
+          amount+=max;    //arr>max
+          max=arr[i];
+        }else{
+          amount+=arr[i]; //min<=arr<=max
+        }
+      }//if
+    }//for
+    avg = (double)amount/(number-2);
+  }//if
+  return avg;
+
 }
 
 

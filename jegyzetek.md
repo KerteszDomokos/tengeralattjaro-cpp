@@ -175,7 +175,7 @@
 
 ## Megjegyzések
 - VSCode SSH kiterjesztés Permission denied: sudo chown -R myuser /path/to/folder 
-- A csomagösszeállításhoz a C:\Qt\QtIFW-4.1.1\bin\binarycreator.exe -c config/config.xml -p packages -f "AquaLab Installer - v0.7-1" parancs használandó  
+- A csomagösszeállításhoz a "C:\Qt\Tools\QtInstallerFramework\4.3\bin\binarycreator.exe" -c config/config.xml -p packages -f "AquaLab Installer - v0.7-1" parancs használandó  
   - "C:\Qt\Tools\QtInstallerFramework\4.2\bin\binarycreator.exe"
 - DLL összeállításhoz használandó: windeployqt path-to-app-binary
 - languist: lupdate -pro project.pro

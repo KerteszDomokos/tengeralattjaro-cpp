@@ -110,7 +110,23 @@ void kepment(QPixmap img,QString path){
     qDebug()<<path;
 }
 
-void bioment()
+void bioment(QList<int> ph,QList<int> turb,QList<int> motav, QString path){
+    QString writed;
+    for (int i; i<ph.size(); i++){
+        writed=writed+QString::number(ph[i])+";";
+        writed=writed+QString::number(turb[i])+";";
+        writed=writed+QString::number(motav[i])+"\n";
+    }
+    QFile parameterFile(path);
+    if(parameterFile.open(QFile::WriteOnly | QFile::Text | QFile::Append))
+    {
+//            msg("Sikeres biológiai adat mentés",1);
+        parameterFile.seek(parameterFile.size());
+        QTextStream out(&parameterFile);
+        out << writed;
+        parameterFile.close();
+    }
+}
 
 GUI::GUI(QWidget *parent)
     : QMainWindow(parent)
@@ -930,6 +946,17 @@ void GUI::openDocumentation()
     QDesktopServices::openUrl(QUrl("file:///"+qApp->applicationDirPath()+"/documentation/dokvez.html")); //a futtatható fájllal azonos dir-ben kell a fájl!!
 }
 
+void GUI::biolast()
+{
+    QString pf(p+"\\"+tm+"\\bio.txt");
+
+    std::thread sbio(bioment,phs,turbs,motavarages,pf);
+    sbio.detach();
+    phs.clear();
+    turbs.clear();
+    motavarages.clear();
+}
+
 void GUI::saveUserdat()
 {
     sets->setValue("beavleh",QVariant::fromValue(booldatas_settings));
@@ -963,26 +990,16 @@ void GUI::saveBio(int ph, int turb, int motavarage)
 {
 phs.append(ph);
 turbs.append(turb);
+motavarages.append(motavarage);
     if (phs.size()>1000){
+        QString pf(p+"\\"+tm+"\\bio.txt");
 
-        QString writed;
-        for (int i; i<phs.size(); i++){
-            writed=writed+QString::number(phs[i])+";";
-            writed=writed+QString::number(turbs[i])+";";
-            writed=writed+QString::number(motavarage)+"\n";
-        }
-
-
-        QFile parameterFile(p+"\\"+tm+"\\bio.txt");
-        if(parameterFile.open(QFile::WriteOnly | QFile::Text | QFile::Append))
-        {
-//            msg("Sikeres biológiai adat mentés",1);
-            parameterFile.seek(parameterFile.size());
-            QTextStream out(&parameterFile);
-            out << writed;
-            parameterFile.close();
-        }
-}
+        std::thread sbio(bioment,phs,turbs,motavarages,pf);
+        sbio.detach();
+        phs.clear();
+        turbs.clear();
+        motavarages.clear();
+    }
 }
 
 

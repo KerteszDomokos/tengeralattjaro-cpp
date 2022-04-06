@@ -4962,8 +4962,8 @@ p, li { white-space: pre-wrap; }
    <slot>motorNull()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>366</x>
-     <y>1018</y>
+     <x>371</x>
+     <y>1016</y>
     </hint>
     <hint type="destinationlabel">
      <x>1000</x>
@@ -4978,8 +4978,8 @@ p, li { white-space: pre-wrap; }
    <slot>serKeres()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>758</x>
-     <y>868</y>
+     <x>769</x>
+     <y>866</y>
     </hint>
     <hint type="destinationlabel">
      <x>1340</x>
@@ -4994,8 +4994,8 @@ p, li { white-space: pre-wrap; }
    <slot>serConn()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>670</x>
-     <y>898</y>
+     <x>672</x>
+     <y>896</y>
     </hint>
     <hint type="destinationlabel">
      <x>1301</x>
@@ -5010,8 +5010,8 @@ p, li { white-space: pre-wrap; }
    <slot>serDeconn()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>744</x>
-     <y>898</y>
+     <x>755</x>
+     <y>896</y>
     </hint>
     <hint type="destinationlabel">
      <x>1305</x>
@@ -5026,8 +5026,8 @@ p, li { white-space: pre-wrap; }
    <slot>stK()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>761</x>
-     <y>544</y>
+     <x>765</x>
+     <y>542</y>
     </hint>
     <hint type="destinationlabel">
      <x>813</x>
@@ -5042,8 +5042,8 @@ p, li { white-space: pre-wrap; }
    <slot>stJ()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>761</x>
-     <y>594</y>
+     <x>765</x>
+     <y>592</y>
     </hint>
     <hint type="destinationlabel">
      <x>804</x>
@@ -5090,8 +5090,8 @@ p, li { white-space: pre-wrap; }
    <slot>akksporolas()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>906</y>
+     <x>495</x>
+     <y>904</y>
     </hint>
     <hint type="destinationlabel">
      <x>818</x>
@@ -5106,8 +5106,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballaszt_manualis_click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1005</x>
-     <y>849</y>
+     <x>1008</x>
+     <y>847</y>
     </hint>
     <hint type="destinationlabel">
      <x>1006</x>
@@ -5122,8 +5122,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballaszt_emelkedes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1005</x>
-     <y>978</y>
+     <x>1008</x>
+     <y>976</y>
     </hint>
     <hint type="destinationlabel">
      <x>947</x>
@@ -5138,8 +5138,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballaszt_erzekenyseg()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1014</x>
-     <y>1003</y>
+     <x>1017</x>
+     <y>1001</y>
     </hint>
     <hint type="destinationlabel">
      <x>1283</x>
@@ -5154,8 +5154,8 @@ p, li { white-space: pre-wrap; }
    <slot>talca_becsuk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>415</x>
-     <y>998</y>
+     <x>426</x>
+     <y>996</y>
     </hint>
     <hint type="destinationlabel">
      <x>430</x>
@@ -5170,8 +5170,8 @@ p, li { white-space: pre-wrap; }
    <slot>talca_kinyit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>425</x>
-     <y>888</y>
+     <x>427</x>
+     <y>886</y>
     </hint>
     <hint type="destinationlabel">
      <x>408</x>
@@ -5186,8 +5186,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztBalmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>827</x>
-     <y>867</y>
+     <x>830</x>
+     <y>865</y>
     </hint>
     <hint type="destinationlabel">
      <x>915</x>
@@ -5202,8 +5202,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztBalk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>827</x>
-     <y>923</y>
+     <x>830</x>
+     <y>921</y>
     </hint>
     <hint type="destinationlabel">
      <x>894</x>
@@ -5218,8 +5218,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztBalmin()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>827</x>
-     <y>977</y>
+     <x>830</x>
+     <y>975</y>
     </hint>
     <hint type="destinationlabel">
      <x>872</x>
@@ -5234,8 +5234,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztJobbmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1087</x>
-     <y>867</y>
+     <x>1090</x>
+     <y>865</y>
     </hint>
     <hint type="destinationlabel">
      <x>978</x>
@@ -5250,8 +5250,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztJobbk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1087</x>
-     <y>923</y>
+     <x>1090</x>
+     <y>921</y>
     </hint>
     <hint type="destinationlabel">
      <x>1002</x>
@@ -5282,8 +5282,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztJobbmin()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1087</x>
-     <y>977</y>
+     <x>1090</x>
+     <y>975</y>
     </hint>
     <hint type="destinationlabel">
      <x>1099</x>
@@ -5298,8 +5298,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztJobbk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1015</x>
-     <y>928</y>
+     <x>1018</x>
+     <y>926</y>
     </hint>
     <hint type="destinationlabel">
      <x>932</x>
@@ -5314,8 +5314,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztBalk()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1015</x>
-     <y>928</y>
+     <x>1018</x>
+     <y>926</y>
     </hint>
     <hint type="destinationlabel">
      <x>958</x>
@@ -5330,8 +5330,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztBalmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1005</x>
-     <y>978</y>
+     <x>1008</x>
+     <y>976</y>
     </hint>
     <hint type="destinationlabel">
      <x>835</x>
@@ -5346,8 +5346,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztJobbmax()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1005</x>
-     <y>978</y>
+     <x>1008</x>
+     <y>976</y>
     </hint>
     <hint type="destinationlabel">
      <x>840</x>
@@ -5426,8 +5426,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztPluszegy()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1135</x>
-     <y>1038</y>
+     <x>1138</x>
+     <y>1036</y>
     </hint>
     <hint type="destinationlabel">
      <x>674</x>
@@ -5442,8 +5442,8 @@ p, li { white-space: pre-wrap; }
    <slot>ballasztMinuszegy()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1035</x>
-     <y>1038</y>
+     <x>1038</x>
+     <y>1036</y>
     </hint>
     <hint type="destinationlabel">
      <x>698</x>
@@ -5464,6 +5464,22 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>1192</x>
      <y>535</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bioment</sender>
+   <signal>clicked()</signal>
+   <receiver>GUI</receiver>
+   <slot>biolast()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>460</x>
+     <y>979</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>230</x>
+     <y>1063</y>
     </hint>
    </hints>
   </connection>
@@ -5500,5 +5516,6 @@ p, li { white-space: pre-wrap; }
   <slot>ballasztMinuszegy()</slot>
   <slot>mentesGo()</slot>
   <slot>openDocumentation()</slot>
+  <slot>biolast()</slot>
  </slots>
 </ui>

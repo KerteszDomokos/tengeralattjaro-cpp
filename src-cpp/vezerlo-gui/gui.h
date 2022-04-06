@@ -77,6 +77,7 @@ private slots:
     void updateonoff(int upt=20);
     void stopKommunikacio(bool onoff);
     void openDocumentation();
+    void biolast();
 
 
 
@@ -149,7 +150,7 @@ private:
     long fpsID=0;
     QString tm;
     int streamFps=40;
-    QList<int> phs, turbs;
+    QList<int> phs, turbs,motavarages;
 
 
 

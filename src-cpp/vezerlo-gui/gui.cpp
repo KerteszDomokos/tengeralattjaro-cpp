@@ -418,9 +418,10 @@ ui->foadatok_4->setItem(0,2, i = new QTableWidgetItem(QString::number(0)));//5v 
 ui->foadatok_4->setItem(0,3, i = new QTableWidgetItem(QString::number(0)));//12v masodlagos
     if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,4, i = new QTableWidgetItem(QString::number(phdat)));//ph
-    if(olvasott[4]< 950){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+    if(phdat< 4 || phdat>10){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
 ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(turbdat)));//atlatszosag
-    if(0> 65){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+    if(turbdat > 3000){i->setData(Qt::BackgroundRole,red);} else{i->setData(Qt::BackgroundRole,green);}
+
             QObject *object2 = ui->magmer->rootObject();
             object2->setProperty("alt", olvasott[12]);//magasság
             QObject *object3 = ui->compass->rootObject();
@@ -583,6 +584,15 @@ ui->foadatok_4->setItem(0,5, i = new QTableWidgetItem(QString::number(turbdat)))
         bmot=b;
         jmot=a;
     }
+
+    if (joystickAdatok[12]==1 && joyBlast==0){
+        ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->value()+1);
+    }
+    if (joystickAdatok[9]==1 && joyJlast==0){
+        ui->ballaszt_baltart->setValue(ui->ballaszt_baltart->value()-1);
+    }
+    joyBlast=joystickAdatok[12];
+    joyJlast=joystickAdatok[9];
 
     int szoros=ui->ballasztErz->value();
     QList<double> idl;
@@ -1078,7 +1088,7 @@ void GUI::serkom()
         ui->serNyers->setText(str);
     }
 
-    mSerial->clear(QSerialPort::AllDirections);
+    //mSerial->clear(QSerialPort::AllDirections);
 }
 
 void GUI::serKeres()

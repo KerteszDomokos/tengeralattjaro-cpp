@@ -151,6 +151,7 @@ private:
     QString tm;
     int streamFps=40;
     QList<int> phs, turbs,motavarages;
+    bool joyBlast=0, joyJlast=0;
 
 
 

@@ -32,7 +32,7 @@ pinMode(A1,INPUT);
 
 void loop() {
   
-int a = map(analogRead(m2),1,1023,-400,400);
+int a = map(analogRead(m2),1,1023,400,-400);
 int b = map(analogRead(m1),1,1023,-400,400);//jobb
 int c = digitalRead(k1);
 int d = digitalRead(k3);
